@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Daily AI Digest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #12121a;
+  --surface2: #1a1a26;
+  --border: #2a2a3a;
+  --text: #e4e4ef;
+  --text-dim: #8888a0;
+  --accent: #7c5cfc;
+  --accent-glow: rgba(124, 92, 252, 0.15);
+  --accent2: #00d4aa;
+  --red: #ff6b6b;
+  --yellow: #ffd166;
+  --tag-bg: rgba(124, 92, 252, 0.12);
+  --code-bg: #1a1a28;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--accent2); }
+
+/* HEADER */
+.site-header {
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+}
+.header-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-weight: 800;
+  font-size: 1.3em;
+  letter-spacing: -0.5px;
+}
+.logo span { color: var(--accent); }
+nav a {
+  color: var(--text-dim);
+  margin-left: 24px;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+nav a:hover { color: var(--text); }
+
+/* HERO */
+.hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 24px 40px;
+}
+.hero h1 {
+  font-size: 2.8em;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.hero h1 .gradient {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  font-size: 1.15em;
+  color: var(--text-dim);
+  max-width: 560px;
+}
+
+/* POST LIST */
+.posts-list {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 24px 60px;
+}
+.section-label {
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.post-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 16px;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  color: inherit;
+}
+.post-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(124, 92, 252, 0.1);
+}
+.post-card .post-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78em;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.post-card .post-date .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent2);
+  display: inline-block;
+}
+.post-card h2 {
+  font-size: 1.35em;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+.post-card p {
+  color: var(--text-dim);
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+.post-card .tags {
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.post-card .tag {
+  background: var(--tag-bg);
+  color: var(--accent);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.75em;
+  font-weight: 500;
+}
+
+/* POST PAGE */
+.post-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+.post-page .back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-dim);
+  font-size: 0.85em;
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+.post-page .back-link:hover { color: var(--accent); }
+.post-page .post-header {
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
+.post-page .post-header .post-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82em;
+  color: var(--accent);
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+.post-page .post-header h1 {
+  font-size: 2.2em;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+.post-page .post-header .tags {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.post-page .tag {
+  background: var(--tag-bg);
+  color: var(--accent);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.78em;
+  font-weight: 500;
+}
+
+/* POST CONTENT */
+.post-content {
+  font-size: 1.05em;
+  line-height: 1.8;
+}
+.post-content h2 {
+  font-size: 1.5em;
+  font-weight: 700;
+  margin: 40px 0 16px;
+  letter-spacing: -0.3px;
+}
+.post-content h3 {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin: 28px 0 12px;
+}
+.post-content p { margin-bottom: 16px; }
+.post-content strong { color: var(--text); font-weight: 600; }
+.post-content blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 12px 20px;
+  margin: 20px 0;
+  background: var(--accent-glow);
+  border-radius: 0 8px 8px 0;
+  color: var(--text-dim);
+  font-style: italic;
+}
+.post-content code {
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--code-bg);
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-size: 0.88em;
+  color: var(--accent2);
+}
+.post-content pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  overflow-x: auto;
+  margin: 20px 0;
+}
+.post-content pre code {
+  background: none;
+  padding: 0;
+  color: var(--text);
+  font-size: 0.88em;
+}
+.post-content ul, .post-content ol {
+  margin: 16px 0;
+  padding-left: 24px;
+}
+.post-content li { margin-bottom: 6px; }
+.post-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 36px 0;
+}
+.post-content a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.post-content a:hover { color: var(--accent2); }
+
+/* ABOUT PAGE */
+.about-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+.about-page h1 {
+  font-size: 2em;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+.about-page p {
+  color: var(--text-dim);
+  font-size: 1.05em;
+  margin-bottom: 16px;
+}
+
+/* FOOTER */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 24px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.82em;
+}
+.site-footer a { color: var(--accent); }
+
+/* RESPONSIVE */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 2em; }
+  .post-page .post-header h1 { font-size: 1.7em; }
+  .post-card { padding: 20px 22px; }
+  nav a { margin-left: 16px; font-size: 0.82em; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo">Daily<span>AI</span>Digest</a>
+    <nav>
+      <a href="/">Posts</a>
+      <a href="/about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+
+<div class="about-page">
+  <h1>About Daily AI Digest</h1>
+  <p>Daily AI Digest is your go-to source for curated news and updates on AI agents, automation tools, Claude Code, and the broader AI ecosystem.</p>
+  <p>Every day, we scan X (Twitter), YouTube, Hacker News, and leading AI blogs to bring you the most relevant, actionable, and fresh content. No fluff — just what matters.</p>
+  <p>Each post includes the source, why it matters, a recommended response, and a draft hook you can use for your own social media.</p>
+  <p><strong>Topics we cover:</strong></p>
+  <ul>
+    <li>AI Agents & Agent Frameworks</li>
+    <li>Claude Code & AI Coding Assistants</li>
+    <li>Open-source AI Tools & Models</li>
+    <li>AI Automation & Workflows</li>
+    <li>Startup & Industry News</li>
+  </ul>
+  <p>Stay ahead of the curve. Check back daily.</p>
+</div>
+
+<footer class="site-footer">
+  <p>Daily AI Digest &mdash; Your daily dose of AI agent news. Built with ❤️ and hosted on Cloudflare Pages.</p>
+  <p style="margin-top:8px">&copy; 2026 DailyAIDigest. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
