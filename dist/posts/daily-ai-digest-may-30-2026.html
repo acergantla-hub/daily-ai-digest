@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily AI Digest — May 30, 2026 — Daily AI Digest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #12121a;
+  --surface2: #1a1a26;
+  --border: #2a2a3a;
+  --text: #e4e4ef;
+  --text-dim: #8888a0;
+  --accent: #7c5cfc;
+  --accent-glow: rgba(124, 92, 252, 0.15);
+  --accent2: #00d4aa;
+  --red: #ff6b6b;
+  --yellow: #ffd166;
+  --tag-bg: rgba(124, 92, 252, 0.12);
+  --code-bg: #1a1a28;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--accent2); }
+
+/* HEADER */
+.site-header {
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+}
+.header-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-weight: 800;
+  font-size: 1.3em;
+  letter-spacing: -0.5px;
+}
+.logo span { color: var(--accent); }
+nav a {
+  color: var(--text-dim);
+  margin-left: 24px;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+nav a:hover { color: var(--text); }
+
+/* HERO */
+.hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 24px 40px;
+}
+.hero h1 {
+  font-size: 2.8em;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.hero h1 .gradient {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  font-size: 1.15em;
+  color: var(--text-dim);
+  max-width: 560px;
+}
+
+/* POST LIST */
+.posts-list {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 24px 60px;
+}
+.section-label {
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.post-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 16px;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  color: inherit;
+}
+.post-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(124, 92, 252, 0.1);
+}
+.post-card .post-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78em;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.post-card .post-date .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent2);
+  display: inline-block;
+}
+.post-card h2 {
+  font-size: 1.35em;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+.post-card p {
+  color: var(--text-dim);
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+.post-card .tags {
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.post-card .tag {
+  background: var(--tag-bg);
+  color: var(--accent);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.75em;
+  font-weight: 500;
+}
+
+/* POST PAGE */
+.post-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+.post-page .back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-dim);
+  font-size: 0.85em;
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+.post-page .back-link:hover { color: var(--accent); }
+.post-page .post-header {
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
+.post-page .post-header .post-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82em;
+  color: var(--accent);
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+.post-page .post-header h1 {
+  font-size: 2.2em;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+.post-page .post-header .tags {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.post-page .tag {
+  background: var(--tag-bg);
+  color: var(--accent);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.78em;
+  font-weight: 500;
+}
+
+/* POST CONTENT */
+.post-content {
+  font-size: 1.05em;
+  line-height: 1.8;
+}
+.post-content h2 {
+  font-size: 1.5em;
+  font-weight: 700;
+  margin: 40px 0 16px;
+  letter-spacing: -0.3px;
+}
+.post-content h3 {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin: 28px 0 12px;
+}
+.post-content p { margin-bottom: 16px; }
+.post-content strong { color: var(--text); font-weight: 600; }
+.post-content blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 12px 20px;
+  margin: 20px 0;
+  background: var(--accent-glow);
+  border-radius: 0 8px 8px 0;
+  color: var(--text-dim);
+  font-style: italic;
+}
+.post-content code {
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--code-bg);
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-size: 0.88em;
+  color: var(--accent2);
+}
+.post-content pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  overflow-x: auto;
+  margin: 20px 0;
+}
+.post-content pre code {
+  background: none;
+  padding: 0;
+  color: var(--text);
+  font-size: 0.88em;
+}
+.post-content ul, .post-content ol {
+  margin: 16px 0;
+  padding-left: 24px;
+}
+.post-content li { margin-bottom: 6px; }
+.post-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 36px 0;
+}
+.post-content a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.post-content a:hover { color: var(--accent2); }
+
+/* ABOUT PAGE */
+.about-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+.about-page h1 {
+  font-size: 2em;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+.about-page p {
+  color: var(--text-dim);
+  font-size: 1.05em;
+  margin-bottom: 16px;
+}
+
+/* FOOTER */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 24px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.82em;
+}
+.site-footer a { color: var(--accent); }
+
+/* RESPONSIVE */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 2em; }
+  .post-page .post-header h1 { font-size: 1.7em; }
+  .post-card { padding: 20px 22px; }
+  nav a { margin-left: 16px; font-size: 0.82em; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo">Daily<span>AI</span>Digest</a>
+    <nav>
+      <a href="/">Posts</a>
+      <a href="/about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+
+<article class="post-page">
+  <a href="/" class="back-link">&larr; Back to all posts</a>
+  <header class="post-header">
+    <div class="post-date">May 30, 2026 &middot; Daily Digest</div>
+    <h1>Daily AI Digest — May 30, 2026</h1>
+    <div class='tags'><span class="tag">ai-agents</span><span class="tag">claude-code</span><span class="tag">gemini</span><span class="tag">security</span><span class="tag">daily-digest</span></div>
+  </header>
+  <div class="post-content">
+    <h1 id="daily-ai-digest-may-30-2026">Daily AI Digest — May 30, 2026</h1>
+<p><strong>47 stories from the last 24 hours.</strong> Here's what matters today.</p>
+<hr />
+<h2 id="top-stories">Top Stories</h2>
+<h3 id="agents">Agents</h3>
+<p><strong>1. Google I/O 2026: Welcome to the Agentic Gemini Era</strong><br />
+Google's I/O keynote made it clear — Gemini is going all-in on agents. Expect deeper integrations across Google's product suite.<br />
+<a href="https://blog.google/innovation-and-ai/sundar-pichai-io-2026/">Read more</a></p>
+<p><strong>2. Anthropic Launches Cowork — Claude Desktop Agent for Non-Technical Users</strong><br />
+Anthropic released Cowork, extending Claude Code's capabilities to non-technical users. File work, no coding required.<br />
+<a href="https://venturebeat.com/technology/anthropic-launches-cowork-a-claude-desktop-agent-that-works-in-your-files-no">Read more</a></p>
+<p><strong>3. Robinhood Now Lets Your AI Agents Trade Stocks</strong><br />
+Robinhood opened API access for AI agents to execute trades. One of the most-read stories today (91 points on HN).<br />
+<a href="https://techcrunch.com/2026/05/27/robinhood-now-lets-your-ai-agents-trade-stocks/">Read more</a></p>
+<p><strong>4. Critical Vulnerability Found in Starlette — 325M Weekly Downloads Affected</strong><br />
+A flaw called "BadHost" was discovered in Starlette, a package with 325 million weekly downloads. If you're running AI agents on Starlette, patch now.<br />
+<a href="https://arstechnica.com/information-technology/2026/05/millions-of-ai-agents-imperiled-by-critical-vulnerability-in-open-source-package/">Read more</a></p>
+<p><strong>5. Salesforce Rebuilds Slackbot as a Full AI Agent</strong><br />
+Salesforce is competing with Microsoft and Google in workplace AI. The new Slackbot is a fully rebuilt agent, more than just notifications.<br />
+<a href="https://venturebeat.com/technology/salesforce-rolls-out-new-slackbot-ai-agent-as-it-battles-microsoft-and">Read more</a></p>
+<p><strong>6. 40% of Enterprises Will Demote or Decommission Autonomous AI Agents</strong><br />
+Gartner predicts governance issues will cause 40% of enterprises to pull back on autonomous agents. Worth understanding the gap between ambition and execution.<br />
+<a href="https://www.gartner.com/en/newsroom/press-releases/2026-05-26-gartner-says-applying-uniform-governance-across-ai-agents-will-lead-to-enterprise-ai-agent-failure">Read more</a></p>
+<p><strong>7. Non-Programmer Builds Talent Marketplace with 7 AI Agents in 21 Days for $5K</strong><br />
+A proof-of-concept showing what's possible — a full marketplace built by non-developer using AI agents.<br />
+<a href="https://www.bearhugrecruiting.com/startup-recruiting/bearhug-network-origin-story">Read more</a></p>
+<p><strong>8. NousCoder-14B — Open Claude Code Alternative Model Drops</strong><br />
+NousCoder-14B matches or exceeds several closed-source coding models. An open-source Claude Code moment.<br />
+<a href="https://venturebeat.com/technology/nous-researchs-nouscoder-14b-is-an-open-source-coding-model-landing-right-in">Read more</a></p>
+<p><strong>9. The Internet Is Being Rebuilt for Machines</strong><br />
+AWS, Cloudflare, and others are redesigning cloud infrastructure for machine-generated traffic, not just humans. The future is agent-native.<br />
+<a href="https://techcrunch.com/2026/05/28/the-internet-is-being-rebuilt-for-machines/">Read more</a></p>
+<p><strong>10. Unhealthy Code Makes AI Agents Consume 35-50% More Tokens</strong><br />
+Code quality directly impacts how many tokens agents burn through. If you're deploying agents at scale, code health is a cost factor.<br />
+<a href="https://codescene.com/blog/unhealthy-code-is-burning-your-token-usage-heres-the-data/">Read more</a></p>
+<hr />
+<h2 id="quick-hits">Quick Hits</h2>
+<ul>
+<li><strong>Endava builds agentic org with Codex</strong> — Weeks of requirements analysis cut to hours. <a href="https://openai.com/index/endava">Read</a></li>
+<li><strong>Sea deploys Codex across eng teams</strong> — Asian tech giant goes all-in on AI-native dev. <a href="https://openai.com/index/sea-david-chen">Read</a></li>
+<li><strong>ITBench-AA: Models score below 50% on enterprise IT tasks</strong> — Benchmark says agents still struggle with real enterprise work. <a href="https://huggingface.co/blog/ibm-research/itbench-aa">Read</a></li>
+<li><strong>Hugging Face agent glossary</strong> — Harness, scaffold, and key AI terms explained. <a href="https://huggingface.co/blog/agent-glossary">Read</a></li>
+<li><strong>MIT on org design in age of agents</strong> — How enterprises should restructure for AI. <a href="https://www.technologyreview.com/2026/05/26/1137584/rethinking-organizational-design-in-the-age-of-agentic-ai">Read</a></li>
+<li><strong>CAPTCHAs can still detect AI agents</strong> — RoundTable AI research shows CAPTCHA systems remain effective. <a href="https://research.roundtable.ai/captchas-detect-ai/">Read</a></li>
+<li><strong>Agent Memory Guard by OWASP</strong> — Open-source defense against AI agent memory poisoning. <a href="https://github.com/OWASP/www-project-agent-memory-guard">Read</a></li>
+<li><strong>OpenHive</strong> — AI agents share solutions so others don't re-solve problems. <a href="https://openhivemind.vercel.app/">Read</a></li>
+<li><strong>AI Permissions framework</strong> — The missing layer between "works" and "safe" for agents. <a href="https://scalex.dev/blog/ai-agent-permissions/">Read</a></li>
+<li><strong>Playwright-MCP</strong> — Let AI agents run and manage Playwright tests. <a href="https://github.com/Bairinikhi1/playwright-mcp">Read</a></li>
+<li><strong>Agentkeeper v1.1</strong> — Solves goldfish memory problem in AI agents. <a href="https://github.com/Thinklanceai/agentkeeper">Read</a></li>
+<li><strong>Claude Code token reducer: Headroom</strong> — Cuts Claude Code token usage ~50%. <a href="https://extraheadroom.com/">Read</a></li>
+<li><strong>Python package for Claude Code hooks</strong> — 18 points on HN, worth checking out. <a href="https://github.com/RasmusGodske/claude-hook-utils">Read</a></li>
+<li><strong>Sesame launches iOS app</strong> — Conversational AI from Oculus founders hits the App Store. <a href="https://techcrunch.com/2026/05/28/sesame-the-conversational-ai-startup-from-oculus-founders-launches-its-ios-app/">Read</a></li>
+</ul>
+<hr />
+<h2 id="why-this-matters">Why This Matters</h2>
+<p>Three big themes from today:</p>
+<ol>
+<li>
+<p><strong>The agent war is escalating</strong> — Google (Gemini), Anthropic (Cowork + Claude Code), Salesforce (Slackbot), and Robinhood (agent trading) all dropped agent news. There is no "wait and see" anymore.</p>
+</li>
+<li>
+<p><strong>Security is catching up</strong> — Starlette vulnerability (325M downloads), memory poisoning defense from OWASP, and the agent permissions gap. As agents go mainstream, the attack surface grows.</p>
+</li>
+<li>
+<p><strong>Infrastructure is shifting</strong> — The internet is being rebuilt for machines, open-source models match closed ones, and non-developers can build real products. The barriers to entry are collapsing.</p>
+</li>
+</ol>
+<hr />
+<p><em>Stay ahead. Check back tomorrow.</em></p>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <p>Daily AI Digest &mdash; Your daily dose of AI agent news. Built with ❤️ and hosted on Cloudflare Pages.</p>
+  <p style="margin-top:8px">&copy; 2026 DailyAIDigest. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
