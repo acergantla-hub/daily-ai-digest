@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily AI Digest — June 01, 2026 — Daily AI Digest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #12121a;
+  --surface2: #1a1a26;
+  --border: #2a2a3a;
+  --text: #e4e4ef;
+  --text-dim: #8888a0;
+  --accent: #7c5cfc;
+  --accent-glow: rgba(124, 92, 252, 0.15);
+  --accent2: #00d4aa;
+  --red: #ff6b6b;
+  --yellow: #ffd166;
+  --tag-bg: rgba(124, 92, 252, 0.12);
+  --code-bg: #1a1a28;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--accent2); }
+
+/* HEADER */
+.site-header {
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+}
+.header-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-weight: 800;
+  font-size: 1.3em;
+  letter-spacing: -0.5px;
+}
+.logo span { color: var(--accent); }
+nav a {
+  color: var(--text-dim);
+  margin-left: 24px;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+nav a:hover { color: var(--text); }
+
+/* HERO */
+.hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 24px 40px;
+}
+.hero h1 {
+  font-size: 2.8em;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.hero h1 .gradient {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  font-size: 1.15em;
+  color: var(--text-dim);
+  max-width: 560px;
+}
+
+/* POST LIST */
+.posts-list {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 24px 60px;
+}
+.section-label {
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.post-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 16px;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  color: inherit;
+}
+.post-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(124, 92, 252, 0.1);
+}
+.post-card .post-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78em;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.post-card .post-date .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent2);
+  display: inline-block;
+}
+.post-card h2 {
+  font-size: 1.35em;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+.post-card p {
+  color: var(--text-dim);
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+.post-card .tags {
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.post-card .tag {
+  background: var(--tag-bg);
+  color: var(--accent);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.75em;
+  font-weight: 500;
+}
+
+/* POST PAGE */
+.post-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+.post-page .back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-dim);
+  font-size: 0.85em;
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+.post-page .back-link:hover { color: var(--accent); }
+.post-page .post-header {
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
+.post-page .post-header .post-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82em;
+  color: var(--accent);
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+.post-page .post-header h1 {
+  font-size: 2.2em;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+.post-page .post-header .tags {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.post-page .tag {
+  background: var(--tag-bg);
+  color: var(--accent);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.78em;
+  font-weight: 500;
+}
+
+/* POST CONTENT */
+.post-content {
+  font-size: 1.05em;
+  line-height: 1.8;
+}
+.post-content h2 {
+  font-size: 1.5em;
+  font-weight: 700;
+  margin: 40px 0 16px;
+  letter-spacing: -0.3px;
+}
+.post-content h3 {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin: 28px 0 12px;
+}
+.post-content p { margin-bottom: 16px; }
+.post-content strong { color: var(--text); font-weight: 600; }
+.post-content blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 12px 20px;
+  margin: 20px 0;
+  background: var(--accent-glow);
+  border-radius: 0 8px 8px 0;
+  color: var(--text-dim);
+  font-style: italic;
+}
+.post-content code {
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--code-bg);
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-size: 0.88em;
+  color: var(--accent2);
+}
+.post-content pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  overflow-x: auto;
+  margin: 20px 0;
+}
+.post-content pre code {
+  background: none;
+  padding: 0;
+  color: var(--text);
+  font-size: 0.88em;
+}
+.post-content ul, .post-content ol {
+  margin: 16px 0;
+  padding-left: 24px;
+}
+.post-content li { margin-bottom: 6px; }
+.post-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 36px 0;
+}
+.post-content a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.post-content a:hover { color: var(--accent2); }
+
+/* ABOUT PAGE */
+.about-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+.about-page h1 {
+  font-size: 2em;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+.about-page p {
+  color: var(--text-dim);
+  font-size: 1.05em;
+  margin-bottom: 16px;
+}
+
+/* FOOTER */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 24px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.82em;
+}
+.site-footer a { color: var(--accent); }
+
+/* RESPONSIVE */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 2em; }
+  .post-page .post-header h1 { font-size: 1.7em; }
+  .post-card { padding: 20px 22px; }
+  nav a { margin-left: 16px; font-size: 0.82em; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo">Daily<span>AI</span>Digest</a>
+    <nav>
+      <a href="/">Posts</a>
+      <a href="/about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+
+<article class="post-page">
+  <a href="/" class="back-link">&larr; Back to all posts</a>
+  <header class="post-header">
+    <div class="post-date">June 01, 2026 &middot; Daily Digest</div>
+    <h1>Daily AI Digest — June 01, 2026</h1>
+    <div class='tags'><span class="tag">ai-agents</span><span class="tag">claude-code</span><span class="tag">daily-digest</span><span class="tag">softbank</span><span class="tag">groq</span><span class="tag">cognition</span><span class="tag">devin</span><span class="tag">open-source-ai</span><span class="tag">g7</span><span class="tag">amnesty</span><span class="tag">meta</span><span class="tag">gemini</span><span class="tag">ai-psychosis</span><span class="tag">copilot</span><span class="tag">tokenmaxxing</span></div>
+  </header>
+  <div class="post-content">
+    <h1 id="daily-ai-digest-june-01-2026">Daily AI Digest — June 01, 2026</h1>
+<p><em>Your complete daily briefing on AI agents, coding tools, industry news, and policy. 10 stories curated for you.</em></p>
+<hr />
+<h2 id="1-softbank-commits-75-billion-to-build-french-ai-data-centers">1. SoftBank Commits €75 Billion to Build French AI Data Centers</h2>
+<p><strong>Infrastructure</strong> | June 01, 2026 | TechCrunch</p>
+<p>SoftBank Group announced plans to invest up to €75 billion (approximately $87 billion) to develop and operate up to 5 gigawatts of additional data center capacity in France. This marks SoftBank's largest AI infrastructure investment in Europe and one of the biggest single-country data center commitments in history. The first phase involves building facilities in Dunkirk (Loon-Plage), Bosquel, and Bouchain to deliver 3.1 gigawatts to the Hauts-de-France region by 2031.</p>
+<p>French Economic Minister Roland Lescure called the announcement "a testament to President Emmanuel Macron's ambition to position France as a leading destination all along the AI value chain." The investment comes as opposition to data center construction grows in the United States over environmental concerns and grid impact questions. SoftBank, which is both an investor in and customer of OpenAI, is clearly betting that Europe will be more welcoming to massive AI infrastructure builds. The company also recently announced plans for a 9.2-gigawatt natural gas-powered data center in Ohio, showing its global ambitions span both continents.</p>
+<p><strong>Key Takeaways:</strong><br />
+- €75B ($87B) is the largest single European AI infrastructure investment ever announced<br />
+- 5 GW of capacity across France by 2031, with 3.1 GW in the first phase<br />
+- Signals a strategic shift of AI infrastructure investment to Europe as US faces regulatory and environmental pushback</p>
+<p><a href="https://techcrunch.com/2026/05/30/softbank-says-it-will-invest-up-to-e75-billion-to-build-french-data-centers/">Read full story</a></p>
+<hr />
+<h2 id="2-ai-chip-startup-groq-raising-650-million-after-nvidias-20b-not-acqui-hire">2. AI Chip Startup Groq Raising $650 Million After Nvidia's $20B Not-Acqui-Hire</h2>
+<p><strong>AI Chips &amp; Hardware</strong> | May 29, 2026 | TechCrunch</p>
+<p>AI chip startup Groq is looking to raise $650 million in new funding from existing investors, according to Axios. The fundraising comes just months after Groq struck a unique "not-an-acquisition" deal with Nvidia valued at a reported $20 billion, which involved top-level Groq employees moving to the chip giant and Groq licensing its hardware technology to Nvidia. That deal effectively paid out Groq's investors in cash.</p>
+<p>Now those same investors are being asked to back Groq's new direction: an inference neocloud business built around its homegrown AI chips. Inference — the processing that happens after an AI prompt — is currently a much larger market need than model training. Existing backers Disruptive and Infinitium have reportedly agreed to fill the round if other investors don't take their pro-rata shares. The company is currently led by interim CEO Adam Winter and CFO Matt Eng.</p>
+<p><strong>Key Takeaways:</strong><br />
+- $650M raise follows Nvidia's $20B partial acquisition that paid out early investors<br />
+- Groq is pivoting from pure hardware to an inference cloud services business<br />
+- Inference is now the dominant market need, surpassing training in commercial importance</p>
+<p><a href="https://techcrunch.com/2026/05/29/after-nvidias-20b-not-acqui-hire-ai-chip-startup-groq-reportedly-raising-650m/">Read full story</a></p>
+<hr />
+<h2 id="3-cognitions-scott-wu-says-ai-coding-agents-shouldnt-replace-humans-but-devin-ships-89-of-their-code">3. Cognition's Scott Wu Says AI Coding Agents Shouldn't Replace Humans — But Devin Ships 89% of Their Code</h2>
+<p><strong>AI Coding Agents</strong> | May 29, 2026 | TechCrunch</p>
+<p>Cognition CEO Scott Wu — whose two-year-old AI coding agent startup recently raised $1 billion at a staggering $26 billion valuation — says Devin was never designed to replace human programmers. "We've never thought about it as replacing humans," Wu told TechCrunch. "We really just thought of it as: this is your buddy who helps you build more." Wu, a former child competitive programming prodigy who won a nationwide math competition for seventh-graders as a second-grader, keeps a stuffed animal on his desk as a physical symbol of Devin as a helpful companion.</p>
+<p>The reality inside Cognition is striking: 89% of code committed by the company's engineers was actually committed by Devin, with the rest by local agents in Windsurf (the AI coding competitor Cognition acquired last year). Wu says Devin handles "long-tail maintenance tasks that many programmers don't like to do anyway" — bringing old software up to date, migrating applications between platforms. He rates Devin's current skill level as "somewhere between a junior and a mid-level engineer" depending on the task. Wu predicts agents will enter other fields from customer service to medicine, but hopes the goal will always be augmentation, not replacement.</p>
+<p><strong>Key Takeaways:</strong><br />
+- Cognition raised $1B at a $26B valuation, making it one of the most valuable AI coding startups<br />
+- 89% of Cognition's own code is committed by Devin, yet Wu insists it's not about replacing humans<br />
+- Devin currently operates at junior-to-mid-level engineer capability, handling maintenance and migration tasks</p>
+<p><a href="https://techcrunch.com/2026/05/29/cognitions-scott-wu-says-ai-coding-agents-shouldnt-replace-humans/">Read full story</a></p>
+<hr />
+<h2 id="4-claude-code-ecosystem-explodes-ralphy-rotom-and-claude-code-os-lead-a-wave-of-new-tools">4. Claude Code Ecosystem Explodes: Ralphy, Rotom, and Claude Code OS Lead a Wave of New Tools</h2>
+<p><strong>Claude Code &amp; AI Coding</strong> | June 01, 2026 | Hacker News / GitHub</p>
+<p>The Claude Code ecosystem is experiencing explosive growth with three significant open-source projects appearing on Hacker News in the last 24 hours:</p>
+<p><strong>Ralphy</strong> is an autonomous Claude Code runner built on the "Ralph loop" concept. It wraps the Claude Code CLI in an autonomous loop that runs overnight — you queue tasks, close your laptop, and wake up to completed branches. It follows a plan-first workflow (plan → execute → validate → iterate → commit), includes hard safety guardrails that block dangerous operations like force-pushes to main or <code>rm -rf /</code>, and features a kanban dashboard. It's a Python port of Frank Bria's ralph-claude-code and automatically resumes work when Claude usage limits reset.</p>
+<p><strong>Rotom</strong> is a local Rust-built API gateway that lets you use Codex, Grok, Kiro, or Cursor OAuth credentials with Claude Code and any OpenAI/Anthropic-compatible client. You log in once with an OAuth provider, then point your tools at the local server. This solves the problem of wanting to use Claude Code with models from other providers without complex configuration.</p>
+<p><strong>Claude Code OS</strong> is an operational memory system for Claude Code that solves the "every session starts from zero" problem. A <code>_brain/</code> folder lives inside your project root, reads from your code/docs/configs on first run, and self-updates daily based on what changed. It enables proactive tasks like "find customers who dropped usage 30%+ and draft re-engagement messages" or scheduled weekly reports — all with full context already loaded.</p>
+<p><strong>Key Takeaways:</strong><br />
+- Three major Claude Code ecosystem tools launched within 24 hours, showing the platform's rapid growth<br />
+- Ralphy enables truly autonomous overnight coding with safety guardrails<br />
+- Claude Code OS solves the persistent memory problem that plagues all AI coding assistants</p>
+<p><a href="https://github.com/Mizerness/Ralphy">Read Ralphy</a> | <a href="https://github.com/RyanKung/rotom">Read Rotom</a> | <a href="https://github.com/bernardohcrocha/claude-code-os/">Read Claude Code OS</a></p>
+<hr />
+<h2 id="5-amnesty-international-calls-for-ban-on-generative-ai-systems-built-on-unlawful-web-scraping">5. Amnesty International Calls for Ban on Generative AI Systems Built on Unlawful Web Scraping</h2>
+<p><strong>AI Policy &amp; Human Rights</strong> | May 28, 2026 | Amnesty International</p>
+<p>Amnesty International published a major briefing titled "Unlawful by Design: Exposing the Human Rights Costs of Generative AI," arguing that standalone generative AI systems based on unlawful web scraping are fundamentally incompatible with international human rights law (IHRL). The report finds that these systems depend on "mass invasions of privacy by design" and are in conflict with IHRL through their design, development, and deployment.</p>
+<p>The briefing examines how generative AI's data collection and model training practices abuse privacy rights, enable discrimination, and threaten freedom of expression and thought. Amnesty International is calling for a prohibition of such systems — a sweeping recommendation that, if adopted by governments, would fundamentally reshape the AI industry. The report adds to growing global pressure on AI companies regarding their training data practices, coming alongside similar debates in the EU under the AI Act and ongoing lawsuits from content creators.</p>
+<p><strong>Key Takeaways:</strong><br />
+- Amnesty International is calling for a prohibition of generative AI systems based on unlawful web scraping<br />
+- The report argues these systems are "fundamentally incompatible" with international human rights law<br />
+- This adds to mounting legal and regulatory pressure on AI training data practices globally</p>
+<p><a href="https://www.amnesty.org/en/documents/pol40/0996/2026/en/">Read full report</a></p>
+<hr />
+<h2 id="6-g7-agrees-on-shared-language-for-open-source-and-open-weights-ai">6. G7 Agrees on Shared Language for Open-Source and Open-Weights AI</h2>
+<p><strong>AI Policy &amp; Open Source</strong> | May 30, 2026 | Phoronix</p>
+<p>Ahead of the 52nd G7 Summit in Evian, France, the G7 Digital and Technology Ministers' Meeting produced an agreed-upon framework with shared language around open-source AI models. The document establishes a spectrum of AI openness with four distinct categories:</p>
+<ul>
+<li><strong>Open Source AI with Open Data</strong>: Full release under an OS license including weights, deployment code, training code, AND full training data</li>
+<li><strong>Open Source AI</strong>: Same as above but with possible exceptions for training data (with data information provided instead)</li>
+<li><strong>Open Weights AI</strong>: Weights and deployment code released under an OS license</li>
+<li><strong>Weights Available AI</strong>: Weights and deployment code with usage restrictions (commercial, geographic, or use-case)</li>
+</ul>
+<p>The framework also outlines principles of being community-driven and recognizes AI openness as a spectrum. This agreement provides the first major international governmental framework for categorizing AI openness, which could influence future regulation and procurement policies across G7 nations.</p>
+<p><strong>Key Takeaways:</strong><br />
+- First major international governmental framework categorizing levels of AI openness<br />
+- Four-tier classification system from fully open (code + data) to restricted weights<br />
+- Could shape future AI regulation and government procurement across G7 nations</p>
+<p><a href="https://www.phoronix.com/news/G7-On-Open-Source-AI">Read full story</a></p>
+<hr />
+<h2 id="7-meta-reportedly-developing-ai-pendant-expanding-hardware-ambitions">7. Meta Reportedly Developing AI Pendant, Expanding Hardware Ambitions</h2>
+<p><strong>AI Hardware</strong> | May 30, 2026 | TechCrunch</p>
+<p>Meta is developing an AI-powered pendant that it plans to start testing within the next year, according to a memo viewed by The Information. The device builds on technology from Limitless, an AI device startup Meta acquired at the end of 2025 that made a pendant for recording conversations. Meta said at the time the acquisition would "accelerate our work to build AI-enabled wearables."</p>
+<p>The memo also reveals plans to expand Meta's lineup of AI glasses and launch a "Wearables for Work" business subscription. These moves represent Meta's attempt to reverse the fortunes of its Reality Labs division, which lost $4 billion in the first quarter of this year alone. Previous AI wearables have struggled with consumer adoption due to privacy concerns and questionable utility, but Meta seems determined to keep betting on hardware as a platform for AI interaction.</p>
+<p><strong>Key Takeaways:</strong><br />
+- Meta is developing an AI pendant building on its late-2025 Limitless acquisition<br />
+- Plans include expanded AI glasses lineup and a "Wearables for Work" business subscription<br />
+- Reality Labs lost $4B in Q1 2026, making hardware success critical for Meta's AI strategy</p>
+<p><a href="https://techcrunch.com/2026/05/30/meta-is-reportedly-developing-an-ai-pendant/">Read full story</a></p>
+<hr />
+<h2 id="8-googles-gemini-spark-a-247-agentic-assistant-that-actually-works">8. Google's Gemini Spark: A 24/7 Agentic Assistant That Actually Works</h2>
+<p><strong>AI Assistants</strong> | May 30, 2026 | TechCrunch</p>
+<p>Google's Gemini Spark — a new 24/7 agentic assistant introduced at Google I/O — is getting positive early reviews. Unlike always-on AI systems like OpenClaw that require keeping your machine awake, Spark runs on virtual machines in the cloud, meaning you can close your laptop. It integrates deeply with Google's productivity apps (Gmail, Calendar, Docs, Sheets, Slides) and is designed for work-adjacent tasks: summarizing your inbox, organizing expenses, scanning emails and calendars to surface your top three daily must-dos.</p>
+<p>Google CEO Sundar Pichai joked at IO that Spark means "yes, you can close your laptop" — a dig at the always-on local AI systems that have gained popularity. TechCrunch's hands-on review found it "actually pretty useful" for productivity tasks, though noted it's still primarily designed for work rather than personal use. The service represents Google's vision of agentic AI "for the rest of us" — people who want automation without the complexity of managing an always-on AI machine.</p>
+<p><strong>Key Takeaways:</strong><br />
+- Gemini Spark runs on cloud VMs, eliminating the need to keep your computer awake<br />
+- Deep integration with Google Workspace apps for productivity automation<br />
+- Represents Google's push for mainstream agentic AI that doesn't require technical setup</p>
+<p><a href="https://techcrunch.com/2026/05/30/i-put-googles-24-7-ai-assistant-gemini-spark-to-work-and-its-actually-pretty-useful/">Read full story</a></p>
+<hr />
+<h2 id="9-the-ai-psychosis-debate-tech-ceos-layoffs-and-a-growing-backlash">9. The "AI Psychosis" Debate: Tech CEOs, Layoffs, and a Growing Backlash</h2>
+<p><strong>AI Industry Culture</strong> | May 31, 2026 | TechCrunch Equity Podcast</p>
+<p>Box founder Aaron Levie ignited a firestorm by suggesting tech CEOs are "uniquely prone to AI psychosis" — making sweeping claims about AI replacing workers without understanding what those workers actually do. On the TechCrunch Equity podcast, the team unpacked this idea against a backdrop of concerning trends: ClickUp recently cut 22% of its workforce for AI agents, 2026 tech layoffs are already nearly matching all of 2025, and DuckDuckGo reported a 30% surge in installs as users reject Google's AI-heavy search experience.</p>
+<p>The debate reveals a deep polarization in the AI landscape. As TechCrunch's Anthony Ha noted, "everybody's using it and everybody loves it, but also no one's using it and everybody hates it at the same time." Google faces a particular dilemma: chasing AI features to keep up with competitors while potentially damaging the information retrieval experience that defined its brand for decades. The "AI psychosis" framing suggests that decision-makers most enthusiastic about AI replacement may be the least qualified to judge what can actually be automated.</p>
+<p><strong>Key Takeaways:</strong><br />
+- "AI psychosis" describes CEOs making replacement decisions without understanding the roles they're eliminating<br />
+- DuckDuckGo installs surged 30% as users push back against AI-heavy search<br />
+- 2026 tech layoffs are nearly matching all of 2025, driven partly by AI-driven workforce reductions</p>
+<p><a href="https://techcrunch.com/2026/05/31/making-sense-of-the-debate-over-ai-psychosis/">Read full story</a></p>
+<hr />
+<h2 id="10-instagrams-ai-support-feature-is-being-used-to-hijack-accounts">10. Instagram's AI Support Feature Is Being Used to Hijack Accounts</h2>
+<p><strong>AI Security</strong> | May 31, 2026 | Hacker News</p>
+<p>A serious security flaw in Meta's AI-powered Instagram support feature is being actively exploited to hijack accounts, with over 100 high-value accounts already compromised. The exploit works when the AI support option is enabled for an account (it appears to be A/B tested for a percentage of users): an attacker uses a VPN near the account's region, asks the AI agent to send a code to an arbitrary email, then passes the received code back to the agent, which provides a password reset link.</p>
+<p>The vulnerability has been known in "blackhat circles" for days and is being shared on Telegram. The poster noted that Meta has a pattern of not acknowledging security flaws — a similar exploit in February allowed anyone to view email addresses and phone numbers on any Instagram account, which Meta never publicly addressed. The recommended patch is to disable the AI support feature entirely until the issue is resolved and to revert hijacked accounts.</p>
+<p><strong>Key Takeaways:</strong><br />
+- Over 100 high-value Instagram accounts hijacked via AI support feature exploit<br />
+- Attack requires only a VPN and social engineering of Meta's AI agent<br />
+- Meta has a pattern of not publicly acknowledging security vulnerabilities</p>
+<p><a href="https://news.ycombinator.com/item?id=48350239">Read on Hacker News</a></p>
+<hr />
+<h2 id="why-this-matters-today">Why This Matters Today</h2>
+<p>Three major themes emerge from today's news that deserve attention.</p>
+<p><strong>The infrastructure arms race is going global.</strong> SoftBank's €75B French data center commitment, combined with Groq's $650M raise to build out inference cloud services, shows that the AI infrastructure buildout is accelerating and diversifying geographically. As US data center construction faces growing environmental opposition, Europe is positioning itself as the next frontier for AI infrastructure. This has profound implications for where AI compute lives, who controls it, and how it's powered.</p>
+<p><strong>The Claude Code ecosystem is becoming a platform.</strong> Three significant open-source tools launching within 24 hours — Ralphy for autonomous overnight coding, Rotom for multi-provider OAuth, and Claude Code OS for persistent memory — signal that Claude Code is evolving from a tool into a platform. This mirrors how VS Code's extension ecosystem made it dominant in text editors. The developers building on top of Claude Code are creating the infrastructure layer for AI-assisted software development.</p>
+<p><strong>The human cost of AI hype is becoming visible.</strong> From Amnesty's call to ban scraped AI systems, to the "AI psychosis" debate about CEOs who don't understand the jobs they're eliminating, to coders who refuse to work without AI despite evidence it may produce worse code, the social and ethical dimensions of AI adoption are becoming impossible to ignore. The Instagram security flaw is a concrete example of what happens when AI features are shipped without adequate safety testing. As the technology accelerates, the gap between AI's capabilities and our ability to deploy it responsibly is widening.</p>
+<hr />
+<p><em>Daily AI Digest — Your complete daily briefing on AI agents, coding tools, industry news, and policy.</em><br />
+<em>Check back tomorrow for more.</em></p>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <p>Daily AI Digest &mdash; Your daily dose of AI agent news. Built with ❤️ and hosted on Cloudflare Pages.</p>
+  <p style="margin-top:8px">&copy; 2026 DailyAIDigest. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
