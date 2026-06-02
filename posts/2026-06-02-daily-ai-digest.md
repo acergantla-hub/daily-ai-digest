@@ -14,7 +14,7 @@ tags: ai-agents, claude-code, daily-digest, anthropic-ipo, nvidia-rtx-spark, gem
 
 ### Anthropic Has Officially Filed to Go Public
 
-**AI News** | June 1, 2026 | TechCrunch / The Verge
+**AI News** | June 2, 2026 | TechCrunch / The Verge
 
 Anthropic, the AI lab behind Claude, filed confidentially with the U.S. Securities and Exchange Commission (SEC) for an initial public offering, marking a pivotal moment in the AI industry. The filing comes less than a week after Anthropic raised a staggering $65 billion in a Series H funding round that pushed its post-money valuation to $965 billion — surpassing its rival OpenAI's $852 billion valuation and making it the world's most valuable startup.
 
@@ -36,7 +36,7 @@ The IPO filing sets up a fascinating showdown between Anthropic and OpenAI, both
 
 ### Alphabet Plans to Raise $80B to Pay for AI Buildout
 
-**AI News** | June 1, 2026 | TechCrunch
+**AI News** | June 2, 2026 | TechCrunch
 
 Alphabet announced plans to raise $80 billion through a massive stock sale to fund its AI infrastructure expansion, signaling the extraordinary capital demands of the AI arms race. The plan includes selling $10 billion in stock directly to Warren Buffett's Berkshire Hathaway, a notable endorsement from one of the world's most respected institutional investors. The funds will go toward "general corporate purposes, including capital expenditures to scale AI infrastructure and global compute."
 
@@ -56,7 +56,7 @@ This raise represents a new phase in the AI infrastructure war, where the capita
 
 ### Nvidia Chases $200B CPU Market with AI Agent PCs from Microsoft, Dell, and HP
 
-**AI Hardware** | June 1, 2026 | TechCrunch / The Verge
+**AI Hardware** | June 2, 2026 | TechCrunch / The Verge
 
 Nvidia made a bombshell announcement at Computex 2026 in Taipei, unveiling the RTX Spark — a PC CPU it calls a "superchip" — that delivers 1 petaflop of performance and is specifically designed to run AI agents like OpenClaw and Hermes Agent locally on consumer laptops. The chip will power AI PCs from ASUS, Dell, HP, Lenovo, Microsoft Surface, MSI, Acer, and Gigabyte, with systems expected this fall.
 
@@ -100,7 +100,7 @@ The bigger strategic question is why Google created Spark as a separate product 
 
 ### Florida Sues OpenAI in First-of-Its-Kind Lawsuit Over ChatGPT Violence Links
 
-**AI Policy** | June 1, 2026 | TechCrunch / The Verge
+**AI Policy** | June 2, 2026 | TechCrunch / The Verge
 
 Florida Attorney General James Uthmeier filed a landmark lawsuit against OpenAI and CEO Sam Altman, marking the first state-level legal action against an AI company over alleged links between its product and violent incidents. The 83-page complaint accuses OpenAI of ignoring internal and external safety warnings while prioritizing the "AI arms race" over user protection.
 
@@ -124,7 +124,7 @@ This case adds to OpenAI's growing legal docket, which recently concluded with a
 
 **AI Coding** | May 30, 2026 | TechCrunch
 
-GitHub Copilot switched from its flat-rate subscription model to token-based billing on June 1, 2026, triggering a wave of developer anger as some users reported cost increases exceeding 1,000%. Where developers previously paid a predictable monthly fee — typically $10-$40 — the new usage-based model has produced shocking bills. One Redditor reported costs jumping from $29/month to nearly $750; another posted a screenshot showing a bill escalating from $50 to approximately $3,000.
+GitHub Copilot switched from its flat-rate subscription model to token-based billing yesterday (June 1, 2026), triggering a wave of developer anger as some users reported cost increases exceeding 1,000%. Where developers previously paid a predictable monthly fee — typically $10-$40 — the new usage-based model has produced shocking bills. One Redditor reported costs jumping from $29/month to nearly $750; another posted a screenshot showing a bill escalating from $50 to approximately $3,000.
 
 The backlash reveals a fundamental tension in the AI coding tool market. Microsoft had encouraged heavy usage patterns, including premium requests that could spawn dozens or even hundreds of sub-agents running for hours or days. Now, with token-based billing, those usage patterns become prohibitively expensive. Critics argue Microsoft set expectations for unlimited usage and then "pulled the rug out."
 
@@ -133,7 +133,7 @@ However, defenders of the new model note that costs remain manageable for develo
 For individual developers and small shops, the economics of AI-assisted coding are shifting dramatically. The industry is grappling with a fundamental question: should AI coding tools be cost-effective productivity multipliers, or will they become premium services affordable only to well-funded organizations?
 
 **Key Takeaways:**
-- Token-based billing effective June 1 replaced flat subscription rates
+- Token-based billing effective yesterday (June 1) replaced flat subscription rates<br />
 - Some developers report costs surging 1,000%+ (e.g., $29 → $750/month)
 - Microsoft encouraged heavy usage patterns now being penalized by new pricing
 - Highlights unsustainability of subsidized AI tool pricing models
@@ -166,7 +166,7 @@ This messaging is notable coming amid a wave of 2026 tech layoffs justified by A
 
 ### Meta's AI Support Chatbot Exploited to Hijack Instagram Accounts
 
-**AI Security** | June 1, 2026 | The Verge
+**AI Security** | June 2, 2026 | The Verge
 
 A serious security vulnerability in Meta's AI support chatbot allowed hackers to hijack Instagram accounts — including high-profile ones — simply by asking the chatbot to switch email addresses and reset passwords. In a video shared on Telegram, a hacker demonstrated how they could take over an account by conversationally manipulating the AI support bot into performing account recovery actions that should have required human verification.
 
@@ -188,7 +188,7 @@ Meta has been investing heavily in AI across its products, including development
 
 ### AI Weather Startup WindBorne Out-Forecasting Government Agencies
 
-**AI News** | June 1, 2026 | TechCrunch
+**AI News** | June 2, 2026 | TechCrunch
 
 WindBorne Systems, a Stanford-born startup, released WeatherMesh-6, an AI weather forecasting model that claims to outperform the European Centre for Medium-Range Weather Forecasts (ECMWF) — the gold standard in meteorology. The company says WeatherMesh-6 is "as accurate five days out as a traditional forecast is the day before," particularly for surface temperature predictions. The model produces forecasts every hour (versus every six hours for traditional models) at 3km resolution across Europe and the continental U.S.
 
@@ -208,7 +208,7 @@ WindBorne has raised $25 million in venture funding at a reported $85 million va
 
 ### DuckDuckGo Launches 'No-AI' Search Extensions as Traffic Booms
 
-**AI News** | June 1, 2026 | TechCrunch
+**AI News** | June 2, 2026 | TechCrunch
 
 Privacy-focused search engine DuckDuckGo launched browser extensions for Chrome and Firefox that let users filter out AI-generated content from their search results. The "no-AI" filters arrive as the company is experiencing a significant traffic surge, though it didn't disclose specific numbers. The move positions DuckDuckGo as a counterweight to the AI-dominated search landscape where Google's AI Overviews have fundamentally changed how people find information online.
 
@@ -226,7 +226,7 @@ The extensions reflect growing consumer concern about AI-generated content flood
 
 ### Grammys CEO Harvey Mason Jr. on AI Music Industry Crisis
 
-**AI Policy** | June 1, 2026 | The Verge / Decoder Podcast
+**AI Policy** | June 2, 2026 | The Verge / Decoder Podcast
 
 Recording Academy CEO Harvey Mason Jr. delivered a candid assessment of AI's impact on the music industry in a wide-ranging Decoder podcast interview, revealing that AI use has become "omnipresent" in music production and that streaming platforms like Deezer report more than 50,000 AI-generated songs uploaded every single day. Mason, a legendary producer who has worked with artists from Janet Jackson to Beyoncé, said he personally uses AI tools in sessions and believes the quality has improved dramatically in the past 18 months.
 
