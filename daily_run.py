@@ -23,20 +23,19 @@ GITHUB_REPO = "acergantla-hub/daily-ai-digest"
 
 # AI news sources to search
 NEWS_SOURCES = [
-    "arstechnica.com/ai",
     "techcrunch.com/category/artificial-intelligence",
+    "arstechnica.com/ai",
     "theverge.com/ai-artificial-intelligence",
     "venturebeat.com/ai",
     "hacker-news",
-    "arxiv.org",
+    "reuters.com/technology/artificial-intelligence",
+    "bbc.com/news",
+    "404media.co",
+    "simonwillison.net",
     "anthropic.com/news",
     "openai.com/news",
     "blog.google/technology/ai",
-    "microsoft.com/en-us/research/blog",
-    "nvidia.com/en-us/research",
-    "bloomberg.com/technology",
-    "simonwillison.net",
-    "arxiv.org/list/cs.AI/recent",
+    "economist.com",
 ]
 
 def run_cmd(cmd, cwd=None, check=True):
