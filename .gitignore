@@ -4,3 +4,7 @@
 !.dev.vars.example
 .env*
 !.env.example
+
+# Generated Instagram posts (local only)
+instagram_posts/
+.current_stories.json
