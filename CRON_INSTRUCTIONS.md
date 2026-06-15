@@ -6,6 +6,25 @@ You are running the Daily AI Digest pipeline. Complete ALL steps below.
 
 Fetch today's AI news by curling these sources directly (web_search is not configured, use `curl -sL`):
 
+**For each article you consider, also try to find a relevant image:**
+- **News Articles:** Look for og:image or twitter:image meta tags in the article's HTML
+- **Company Announcements:** Use the company logo or product screenshot from their official site
+- **Research Papers:** Use diagrams or figures from the paper (if available and copyright allows)
+
+**How to fetch article images with curl and grep:**
+1. Fetch the article: `curl -sL '<article-url>'`
+2. Extract og:image: `grep -i 'og:image' | grep -o 'content="[^"]*"' | cut -d'"' -f2`
+3. Extract twitter:image: `grep -i 'twitter:image' | grep -o 'content="[^"]*"' | cut -d'"' -f2`
+4. To verify an image URL: `curl -sL -I <image-url> | head -5`
+
+**Image sources to prioritize:**
+1. Official og:image/twitter:image from the news article
+2. Company logo from the mentioned organization's site
+3. Screenshot of the product/technology being discussed
+4. Graph or chart from the original source (research paper, report)
+
+**Important:** Only use images you have the right to use (official sources, public domain, or properly credited). When in doubt, skip the image rather than risk copyright issues.
+
 **Primary sources (check all of these):**
 - `https://techcrunch.com/category/artificial-intelligence/` — TechCrunch AI section
 - `https://arstechnica.com/ai/` — Ars Technica AI section
@@ -55,6 +74,8 @@ tags: ai-agents, claude-code, daily-digest, google, anthropic, openai, [relevant
 
 ### Story Title Here
 
+![Optional: Relevant image from article](image-url-here)
+
 **Category Name** | Date | Source Name
 
 Story summary paragraph (2-4 sentences covering the key facts and why it matters).
@@ -84,8 +105,18 @@ Today's digest reveals several converging themes...
 [4-6 paragraph analysis section connecting all the stories and discussing broader implications]
 ```
 
-CRITICAL: Each story section needs:
+**Adding Images (Optional but Recommended):**
+For each story, you MAY include one relevant image right after the title. This could be:
+- A screenshot from the article
+- A logo of the company/product mentioned
+- A relevant graphic or chart
+- Use standard markdown syntax: `![Description](image-url)`
+
+Only include images if they add value and are from legitimate sources (article itself, official company sites, etc.). Avoid random stock photos.
+
+**CRITICAL: Each story section needs:**
 - A ### heading with the story title
+- An optional image line (markdown image syntax)
 - A bold category line with source and date
 - 2-4 well-written summary paragraphs (don't just copy from sources — synthesize and write in your own words)
 - A "Key Takeaways" section with 4 bullet points

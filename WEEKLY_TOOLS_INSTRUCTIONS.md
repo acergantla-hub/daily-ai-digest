@@ -8,6 +8,26 @@ This post discovers and showcases the BEST new AI tools, apps, repos, and produc
 Search broadly across the internet for new AI tools, apps, webapps, GitHub repos, and products.
 Focus on tools that are FREE or have a generous free tier. Prioritize quality over quantity.
 
+**For each tool you consider, also try to find a relevant image:**
+- **GitHub Repos:** Use the repository owner's avatar (https://github.com/<username>.png) or look for a logo in the repo's README
+- **Websites/Web Apps:** Try to fetch the favicon (`https://domain.com/favicon.ico`) or look for og:image meta tags
+- **Official Sites:** Check the tool's official website for logos or screenshots
+- **Product Hunt/Futurepedia:** These sites often have tool images you can use (credit the source)
+
+**Image sources to prioritize (in order):**
+1. Official tool logo from the company website
+2. GitHub repository avatar/logo
+3. Favicon from the tool's website
+4. Screenshot of the tool interface (if demonstrating features)
+5. Product Hunt/listing site image (only if clearly credited)
+
+**How to fetch images with curl:**
+- GitHub avatar: `curl -sL 'https://github.com/<username>.png' -o /tmp/logo.png` (then base64 encode or note the URL)
+- Favicon: `curl -sL 'https://example.com/favicon.ico'`
+- To check if an image URL is valid: `curl -sL -I <image-url> | grep -i "content-type: image"`
+
+**Important:** Only use images you have the right to use (official sources, public domain, or properly credited). When in doubt, skip the image rather than risk copyright issues.
+
 **GitHub (new trending AI repos):**
 - `curl -sL 'https://github.com/trending?since=weekly&spoken_language_code=en'` — trending repos this week
 - `curl -sL 'https://github.com/trending/python?since=weekly'` — Python AI repos
@@ -82,8 +102,11 @@ Brief intro paragraph (2-3 sentences) about what you found this week and the ove
 **Pricing:** Free / Freemium / Open Source
 **Link:** [tool-name](URL)
 
+![Optional: Tool logo/screenshot](image-url-here)
+
 2-3 paragraph description of what the tool does, why it's cool, and how to use it.
 Include specific features, tech stack if known, and standout capabilities.
+You can include additional images in the description if helpful (e.g., screenshots of the interface).
 
 **Why it's great:**
 - Specific reason 1
