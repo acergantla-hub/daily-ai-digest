@@ -4,14 +4,29 @@ You are running the Daily AI Digest pipeline. Complete ALL steps below.
 
 ## Step 1: Search for today's top AI news
 
-Search the web for today's biggest AI news stories. Use web_search with queries like:
-- "AI news today"
-- "artificial intelligence latest developments"
-- "OpenAI Anthropic Google AI news"
-- "AI agents news"
-- "LLM large language model news"
+Fetch today's AI news by curling these sources directly (web_search is not configured, use `curl -sL`):
 
-Aim to find 8-12 high-quality stories. Skip stories that are purely marketing/announcements unless they are significant (new model releases, major partnerships, etc.).
+**Primary sources (check all of these):**
+- `https://techcrunch.com/category/artificial-intelligence/` — TechCrunch AI section
+- `https://arstechnica.com/ai/` — Ars Technica AI section
+- `https://www.theverge.com/ai-artificial-intelligence` — The Verge AI section
+- `https://venturebeat.com/ai/` — VentureBeat AI section
+- `https://news.ycombinator.com/` — Hacker News (filter for AI stories)
+- `https://www.reuters.com/technology/artificial-intelligence/` — Reuters AI
+- `https://www.bbc.com/news/topics/cywd23g0wzwt` — BBC AI stories
+
+**Company blogs (check for recent posts):**
+- `https://www.anthropic.com/news` — Anthropic announcements
+- `https://openai.com/news` — OpenAI announcements
+- `https://blog.google/technology/ai/` — Google AI blog
+- `https://microsoft.com/en-us/research/blog` — Microsoft Research
+
+**Secondary sources:**
+- `https://www.404media.co/` — 404 Media (AI coverage)
+- `https://simonwillison.net/` — Simon Willison's blog (daily AI notes)
+- `https://www.economist.com/` — Economist tech/AI coverage
+
+For each source, use: `curl -sL --max-time 15 '<URL>'` then extract article titles and URLs using Python regex. Deduplicate across sources. Aim for 8-12 high-quality stories. Prioritize stories about model releases, AI agents, policy/regulation, security, industry/funding, and research breakthroughs. Skip pure marketing fluff unless it is significant.
 
 Prioritize stories about:
 - New AI model releases/updates
