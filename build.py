@@ -67,21 +67,52 @@ def build_post_list(posts):
     for p in sorted(posts, key=lambda x: x['date'], reverse=True):
         tags_html = ''.join(f'<span class="tag">{t}</span>' for t in p.get('tags', []))
         excerpt = p.get('excerpt', '')
+        category = p.get('category', '')
         items.append(f'''
     <a href="/posts/{p["slug"]}.html" class="post-card">
-      <div class="post-date"><span class="dot"></span> {p['date_display']}{f" &middot; {p['category']}" if p.get('category') else ""}</div>
-      <h2>{p['title']}</h2>
-      <p>{excerpt}</p>
-      {"<div class='tags'>" + tags_html + "</div>" if tags_html else ""}
+      <div class="post-card-inner">
+        <div class="post-meta">
+          <span class="post-date">{p['date_display']}</span>
+          {f'<span class="post-category">{category}</span>' if category else ''}
+        </div>
+        <h2>{p['title']}</h2>
+        <p>{excerpt}</p>
+        {"<div class='tags'>" + tags_html + "</div>" if tags_html else ""}
+      </div>
     </a>''')
+
+    post_count = len(posts)
+    # Count unique categories
+    categories = set(p.get('category', 'General') for p in posts)
 
     content = f'''
 <section class="hero">
-  <h1>Your Daily Dose of <span class="gradient">AI Agent News</span></h1>
-  <p>Curated updates on AI agents, Claude Code, automation tools, and the latest in AI. Fresh posts every day.</p>
+  <div class="hero-badge"><span class="live-dot"></span> LIVE &mdash; DAILY UPDATES</div>
+  <h1>
+    <span class="line1">Your Daily Dose of</span>
+    <span class="line2">AI Agent News</span>
+  </h1>
+  <p class="hero-sub">Curated updates on AI agents, Claude Code, automation tools, and the latest in AI. Fresh posts every single day.</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-number">{post_count}</span>
+      <span class="stat-label">Articles</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">{len(categories)}</span>
+      <span class="stat-label">Categories</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">365</span>
+      <span class="stat-label">Days/Year</span>
+    </div>
+  </div>
 </section>
+<div class="section-label-row">
+  <span class="section-label">Latest Posts</span>
+  <div class="section-line"></div>
+</div>
 <section class="posts-list">
-  <div class="section-label">&mdash; Latest Posts &mdash;</div>
   {''.join(items)}
 </section>'''
     return render_base('Home', content)
@@ -89,13 +120,16 @@ def build_post_list(posts):
 def build_post_page(post_meta, post_body_html, post):
     """Build an individual post page."""
     tags_html = ''.join(f'<span class="tag">{t}</span>' for t in post.get('tags', []))
-    share_url = f"/posts/{post['slug']}.html"
+    category = post.get('category', 'General')
 
     content = f'''
 <article class="post-page">
-  <a href="/" class="back-link">&larr; Back to all posts</a>
+  <a href="/" class="back-link">&#8592; Back to all posts</a>
   <header class="post-header">
-    <div class="post-date">{post['date_display']}{f" &middot; {post.get('category', 'General')}" if post.get('category') else ""}</div>
+    <div class="post-meta">
+      <span class="post-date">{post['date_display']}</span>
+      <span class="post-category">{category}</span>
+    </div>
     <h1>{post['title']}</h1>
     {"<div class='tags'>" + tags_html + "</div>" if tags_html else ""}
   </header>

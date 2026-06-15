@@ -5,317 +5,809 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Home — Daily AI Digest</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0a0a0f;
-  --surface: #12121a;
-  --surface2: #1a1a26;
-  --border: #2a2a3a;
-  --text: #e4e4ef;
-  --text-dim: #8888a0;
-  --accent: #7c5cfc;
-  --accent-glow: rgba(124, 92, 252, 0.15);
-  --accent2: #00d4aa;
-  --red: #ff6b6b;
-  --yellow: #ffd166;
-  --tag-bg: rgba(124, 92, 252, 0.12);
-  --code-bg: #1a1a28;
+  --bg: #030308;
+  --bg2: #080810;
+  --surface: #0d0d1a;
+  --surface2: #12122a;
+  --border: #1a1a3a;
+  --border-glow: #ff006e33;
+  --text: #e8e8f0;
+  --text-dim: #7878a0;
+  --neon-pink: #ff006e;
+  --neon-blue: #00f0ff;
+  --neon-purple: #b000ff;
+  --neon-yellow: #ffe600;
+  --neon-green: #00ff88;
+  --pink-glow: rgba(255, 0, 110, 0.3);
+  --blue-glow: rgba(0, 240, 255, 0.2);
+  --code-bg: #0a0a18;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+html { scroll-behavior: smooth; }
+
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Rajdhani', system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
-a:hover { color: var(--accent2); }
+/* ═══════════ ANIMATED BACKGROUND ═══════════ */
+.bg-mesh {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
 
-/* HEADER */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.15;
+  animation: blobFloat 20s ease-in-out infinite;
+}
+.blob-1 {
+  width: 600px; height: 600px;
+  background: var(--neon-pink);
+  top: -200px; left: -100px;
+  animation-delay: 0s;
+}
+.blob-2 {
+  width: 500px; height: 500px;
+  background: var(--neon-blue);
+  top: 40%; right: -150px;
+  animation-delay: -7s;
+}
+.blob-3 {
+  width: 400px; height: 400px;
+  background: var(--neon-purple);
+  bottom: -100px; left: 30%;
+  animation-delay: -14s;
+}
+.blob-4 {
+  width: 300px; height: 300px;
+  background: var(--neon-pink);
+  top: 60%; left: 10%;
+  animation-delay: -3s;
+  opacity: 0.08;
+}
+
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(80px, -60px) scale(1.1); }
+  50% { transform: translate(-40px, 80px) scale(0.9); }
+  75% { transform: translate(60px, 40px) scale(1.05); }
+}
+
+/* Grid overlay */
+.grid-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,0,110,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,0,110,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+
+/* ═══════════ THREE.JS CANVAS ═══════════ */
+#particles-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ═══════════ CONTENT WRAPPER ═══════════ */
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+/* ═══════════ HEADER ═══════════ */
 .site-header {
-  border-bottom: 1px solid var(--border);
-  padding: 20px 0;
+  padding: 16px 0;
   position: sticky;
   top: 0;
-  background: rgba(10, 10, 15, 0.85);
-  backdrop-filter: blur(12px);
+  background: rgba(3, 3, 8, 0.8);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
   z-index: 100;
+  border-bottom: 1px solid var(--border);
 }
+
 .header-inner {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .logo {
-  font-weight: 800;
-  font-size: 1.3em;
-  letter-spacing: -0.5px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 1.4em;
+  letter-spacing: 3px;
+  text-decoration: none;
+  color: var(--text);
+  text-shadow: 0 0 20px var(--pink-glow);
+  transition: all 0.3s;
+  position: relative;
 }
-.logo span { color: var(--accent); }
+.logo:hover {
+  text-shadow: 0 0 30px var(--pink-glow), 0 0 60px rgba(255,0,110,0.2);
+}
+.logo .accent {
+  color: var(--neon-pink);
+  text-shadow: 0 0 15px var(--neon-pink), 0 0 30px rgba(255,0,110,0.5);
+}
+.logo .pulse {
+  animation: logoPulse 2s ease-in-out infinite;
+  display: inline-block;
+}
+@keyframes logoPulse {
+  0%, 100% { text-shadow: 0 0 15px var(--neon-pink), 0 0 30px rgba(255,0,110,0.5); }
+  50% { text-shadow: 0 0 25px var(--neon-pink), 0 0 50px rgba(255,0,110,0.7), 0 0 80px rgba(255,0,110,0.3); }
+}
+
+nav {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
 nav a {
   color: var(--text-dim);
-  margin-left: 24px;
-  font-size: 0.9em;
-  font-weight: 500;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 0.95em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 8px 18px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
 }
-nav a:hover { color: var(--text); }
+nav a::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%;
+  width: 0; height: 2px;
+  background: var(--neon-pink);
+  box-shadow: 0 0 10px var(--neon-pink);
+  transition: all 0.3s;
+  transform: translateX(-50%);
+}
+nav a:hover {
+  color: var(--neon-pink);
+  border-color: rgba(255,0,110,0.2);
+  text-shadow: 0 0 10px var(--pink-glow);
+}
+nav a:hover::before {
+  width: 80%;
+}
 
-/* HERO */
+/* ═══════════ HERO ═══════════ */
 .hero {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 60px 24px 40px;
+  padding: 100px 32px 80px;
+  text-align: center;
+  position: relative;
 }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  border: 1px solid rgba(255,0,110,0.3);
+  border-radius: 100px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75em;
+  color: var(--neon-pink);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  background: rgba(255,0,110,0.05);
+  box-shadow: 0 0 20px rgba(255,0,110,0.1), inset 0 0 20px rgba(255,0,110,0.05);
+  animation: badgeGlow 3s ease-in-out infinite;
+}
+.hero-badge .live-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--neon-green);
+  box-shadow: 0 0 8px var(--neon-green);
+  animation: livePulse 1.5s ease-in-out infinite;
+}
+@keyframes livePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+@keyframes badgeGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(255,0,110,0.1), inset 0 0 20px rgba(255,0,110,0.05); }
+  50% { box-shadow: 0 0 30px rgba(255,0,110,0.2), inset 0 0 30px rgba(255,0,110,0.08); }
+}
+
 .hero h1 {
-  font-size: 2.8em;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 4.5em;
   font-weight: 900;
-  letter-spacing: -1.5px;
-  line-height: 1.15;
-  margin-bottom: 16px;
+  letter-spacing: -2px;
+  line-height: 1.05;
+  margin-bottom: 24px;
+  position: relative;
 }
-.hero h1 .gradient {
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
+
+.hero h1 .line1 {
+  display: block;
+  color: var(--text);
+  text-shadow: 0 0 40px rgba(255,255,255,0.1);
+}
+.hero h1 .line2 {
+  display: block;
+  font-size: 1.1em;
+  background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple), var(--neon-blue));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  filter: drop-shadow(0 0 30px rgba(255,0,110,0.3));
+  animation: gradientShift 5s ease-in-out infinite;
+  background-size: 200% 200%;
 }
-.hero p {
-  font-size: 1.15em;
-  color: var(--text-dim);
-  max-width: 560px;
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
-/* POST LIST */
-.posts-list {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px 24px 60px;
+.hero-sub {
+  font-size: 1.25em;
+  color: var(--text-dim);
+  max-width: 600px;
+  margin: 0 auto 48px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
 }
-.section-label {
-  font-size: 0.75em;
+.hero-sub .typed-cursor {
+  color: var(--neon-pink);
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Stats bar */
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-top: 48px;
+}
+.stat {
+  text-align: center;
+}
+.stat-number {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2em;
+  font-weight: 800;
+  color: var(--neon-blue);
+  text-shadow: 0 0 20px var(--blue-glow);
+  display: block;
+}
+.stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7em;
+  color: var(--text-dim);
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--accent);
-  font-weight: 600;
-  margin-bottom: 24px;
+  margin-top: 4px;
+}
+
+/* ═══════════ SECTION LABEL ═══════════ */
+.section-label-row {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 32px 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.section-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--neon-pink);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.section-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--neon-pink), transparent);
+  opacity: 0.3;
+}
+
+/* ═══════════ POST LIST ═══════════ */
+.posts-list {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px 80px;
 }
 
 .post-card {
   display: block;
-  background: var(--surface);
+  background: linear-gradient(135deg, rgba(13,13,26,0.8), rgba(18,18,42,0.6));
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 28px 32px;
-  margin-bottom: 16px;
-  transition: all 0.25s ease;
+  padding: 36px 40px;
+  margin-bottom: 20px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   text-decoration: none;
   color: inherit;
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
+
+.post-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, rgba(255,0,110,0.05), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.post-card::after {
+  content: '';
+  position: absolute;
+  top: -1px; left: -1px;
+  width: calc(100% + 2px); height: calc(100% + 2px);
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple), var(--neon-blue));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s;
+  filter: blur(1px);
+}
+
 .post-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(124, 92, 252, 0.1);
+  border-color: rgba(255,0,110,0.3);
+  transform: translateY(-4px) rotateX(2deg);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.4),
+    0 0 40px rgba(255,0,110,0.1),
+    inset 0 0 60px rgba(255,0,110,0.03);
+}
+.post-card:hover::before { opacity: 1; }
+.post-card:hover::after { opacity: 0.5; }
+
+.post-card-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.post-card .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
 }
 .post-card .post-date {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.78em;
-  color: var(--text-dim);
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  color: var(--neon-blue);
+  letter-spacing: 1px;
 }
-.post-card .post-date .dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--accent2);
-  display: inline-block;
+.post-card .post-category {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7em;
+  color: var(--neon-pink);
+  background: rgba(255,0,110,0.1);
+  padding: 2px 10px;
+  border-radius: 100px;
+  border: 1px solid rgba(255,0,110,0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 .post-card h2 {
-  font-size: 1.35em;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5em;
   font-weight: 700;
-  letter-spacing: -0.3px;
-  margin-bottom: 10px;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
   color: var(--text);
+  transition: color 0.3s;
+  line-height: 1.3;
+}
+.post-card:hover h2 {
+  color: var(--neon-pink);
+  text-shadow: 0 0 20px var(--pink-glow);
 }
 .post-card p {
   color: var(--text-dim);
-  font-size: 0.95em;
-  line-height: 1.6;
+  font-size: 1.05em;
+  line-height: 1.7;
+  font-weight: 400;
 }
 .post-card .tags {
-  margin-top: 14px;
+  margin-top: 18px;
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
 }
 .post-card .tag {
-  background: var(--tag-bg);
-  color: var(--accent);
-  padding: 3px 10px;
-  border-radius: 20px;
+  background: rgba(0,240,255,0.06);
+  color: var(--neon-blue);
+  padding: 3px 12px;
+  border-radius: 100px;
   font-size: 0.75em;
   font-weight: 500;
+  border: 1px solid rgba(0,240,255,0.15);
+  transition: all 0.3s;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.5px;
+}
+.post-card:hover .tag {
+  border-color: rgba(0,240,255,0.3);
+  background: rgba(0,240,255,0.1);
 }
 
-/* POST PAGE */
+/* ═══════════ POST PAGE ═══════════ */
 .post-page {
-  max-width: 720px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 48px 24px 80px;
+  padding: 60px 32px 100px;
 }
+
 .post-page .back-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  color: var(--text-dim);
+  gap: 8px;
+  color: var(--neon-blue);
+  font-family: 'JetBrains Mono', monospace;
   font-size: 0.85em;
   font-weight: 500;
-  margin-bottom: 32px;
-}
-.post-page .back-link:hover { color: var(--accent); }
-.post-page .post-header {
+  text-decoration: none;
   margin-bottom: 40px;
-  padding-bottom: 32px;
-  border-bottom: 1px solid var(--border);
+  padding: 8px 16px;
+  border: 1px solid rgba(0,240,255,0.2);
+  border-radius: 8px;
+  transition: all 0.3s;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
-.post-page .post-header .post-date {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.82em;
-  color: var(--accent);
-  margin-bottom: 14px;
-  font-weight: 500;
-}
-.post-page .post-header h1 {
-  font-size: 2.2em;
-  font-weight: 800;
-  letter-spacing: -1px;
-  line-height: 1.2;
-  margin-bottom: 14px;
-}
-.post-page .post-header .tags {
-  display: flex; gap: 8px; flex-wrap: wrap;
-}
-.post-page .tag {
-  background: var(--tag-bg);
-  color: var(--accent);
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.78em;
-  font-weight: 500;
+.post-page .back-link:hover {
+  background: rgba(0,240,255,0.1);
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 20px var(--blue-glow);
 }
 
-/* POST CONTENT */
+.post-header {
+  margin-bottom: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.post-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0;
+  width: 100px; height: 1px;
+  background: var(--neon-pink);
+  box-shadow: 0 0 10px var(--neon-pink);
+}
+
+.post-header .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.post-header .post-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85em;
+  color: var(--neon-blue);
+  letter-spacing: 1px;
+}
+.post-header .post-category {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75em;
+  color: var(--neon-pink);
+  background: rgba(255,0,110,0.1);
+  padding: 3px 14px;
+  border-radius: 100px;
+  border: 1px solid rgba(255,0,110,0.25);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+.post-header h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.6em;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--text) 30%, var(--neon-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.post-header .tags {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.post-header .tag {
+  background: rgba(0,240,255,0.06);
+  color: var(--neon-blue);
+  padding: 4px 14px;
+  border-radius: 100px;
+  font-size: 0.78em;
+  font-weight: 500;
+  border: 1px solid rgba(0,240,255,0.15);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.5px;
+}
+
+/* ═══════════ POST CONTENT ═══════════ */
 .post-content {
-  font-size: 1.05em;
-  line-height: 1.8;
+  font-size: 1.12em;
+  line-height: 1.85;
+  font-weight: 400;
 }
 .post-content h2 {
-  font-size: 1.5em;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.6em;
   font-weight: 700;
-  margin: 40px 0 16px;
-  letter-spacing: -0.3px;
+  margin: 56px 0 20px;
+  letter-spacing: -0.5px;
+  color: var(--text);
+  position: relative;
+  padding-left: 20px;
+}
+.post-content h2::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 3px; height: 70%;
+  background: linear-gradient(180deg, var(--neon-pink), var(--neon-purple));
+  border-radius: 4px;
+  box-shadow: 0 0 10px var(--neon-pink);
 }
 .post-content h3 {
-  font-size: 1.2em;
-  font-weight: 600;
-  margin: 28px 0 12px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.3em;
+  font-weight: 700;
+  margin: 36px 0 14px;
+  color: var(--neon-blue);
+  letter-spacing: 0.5px;
 }
-.post-content p { margin-bottom: 16px; }
-.post-content strong { color: var(--text); font-weight: 600; }
+.post-content p { margin-bottom: 20px; color: var(--text); }
+.post-content strong { color: var(--text); font-weight: 700; }
+.post-content em { color: var(--text-dim); }
+
 .post-content blockquote {
-  border-left: 3px solid var(--accent);
-  padding: 12px 20px;
-  margin: 20px 0;
-  background: var(--accent-glow);
-  border-radius: 0 8px 8px 0;
+  border-left: 3px solid var(--neon-pink);
+  padding: 16px 24px;
+  margin: 28px 0;
+  background: rgba(255,0,110,0.05);
+  border-radius: 0 12px 12px 0;
   color: var(--text-dim);
   font-style: italic;
+  box-shadow: inset 0 0 30px rgba(255,0,110,0.03);
 }
+
 .post-content code {
   font-family: 'JetBrains Mono', monospace;
   background: var(--code-bg);
-  padding: 2px 7px;
-  border-radius: 5px;
-  font-size: 0.88em;
-  color: var(--accent2);
+  border: 1px solid var(--border);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.85em;
+  color: var(--neon-green);
 }
 .post-content pre {
   background: var(--code-bg);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 20px 24px;
+  padding: 24px 28px;
   overflow-x: auto;
-  margin: 20px 0;
+  margin: 24px 0;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.3);
 }
 .post-content pre code {
   background: none;
+  border: none;
   padding: 0;
   color: var(--text);
   font-size: 0.88em;
 }
+
 .post-content ul, .post-content ol {
-  margin: 16px 0;
-  padding-left: 24px;
+  margin: 20px 0;
+  padding-left: 28px;
 }
-.post-content li { margin-bottom: 6px; }
+.post-content li {
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.post-content li::marker {
+  color: var(--neon-pink);
+}
+
 .post-content hr {
   border: none;
-  border-top: 1px solid var(--border);
-  margin: 36px 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-pink), var(--neon-blue), transparent);
+  margin: 48px 0;
+  opacity: 0.3;
 }
-.post-content a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
-.post-content a:hover { color: var(--accent2); }
 
-/* ABOUT PAGE */
+.post-content a {
+  color: var(--neon-blue);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0,240,255,0.3);
+  transition: all 0.3s;
+  padding-bottom: 1px;
+}
+.post-content a:hover {
+  color: var(--neon-pink);
+  border-bottom-color: var(--neon-pink);
+  text-shadow: 0 0 10px var(--pink-glow);
+}
+
+/* ═══════════ ABOUT PAGE ═══════════ */
 .about-page {
-  max-width: 720px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 48px 24px 80px;
+  padding: 60px 32px 100px;
 }
 .about-page h1 {
-  font-size: 2em;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.8em;
   font-weight: 800;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, var(--text), var(--neon-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 .about-page p {
   color: var(--text-dim);
-  font-size: 1.05em;
-  margin-bottom: 16px;
+  font-size: 1.12em;
+  margin-bottom: 20px;
+  line-height: 1.8;
 }
+.about-page strong { color: var(--neon-blue); }
 
-/* FOOTER */
+/* ═══════════ FOOTER ═══════════ */
 .site-footer {
   border-top: 1px solid var(--border);
-  padding: 32px 24px;
+  padding: 48px 32px;
   text-align: center;
   color: var(--text-dim);
-  font-size: 0.82em;
+  font-size: 0.88em;
+  position: relative;
 }
-.site-footer a { color: var(--accent); }
+.site-footer::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 50%;
+  transform: translateX(-50%);
+  width: 200px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-pink), transparent);
+}
+.site-footer a {
+  color: var(--neon-pink);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.site-footer a:hover {
+  text-shadow: 0 0 15px var(--pink-glow);
+}
 
-/* RESPONSIVE */
-@media (max-width: 640px) {
-  .hero h1 { font-size: 2em; }
-  .post-page .post-header h1 { font-size: 1.7em; }
-  .post-card { padding: 20px 22px; }
-  nav a { margin-left: 16px; font-size: 0.82em; }
+/* ═══════════ SCROLL ANIMATIONS ═══════════ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════ CUSTOM SCROLLBAR ═══════════ */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-pink);
+}
+
+/* ═══════════ SELECTION ═══════════ */
+::selection {
+  background: rgba(255,0,110,0.3);
+  color: var(--text);
+}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2.8em; }
+  .hero h1 .line2 { font-size: 1em; }
+  .hero-stats { gap: 24px; }
+  .stat-number { font-size: 1.5em; }
+  .post-card { padding: 24px 24px; }
+  .post-card h2 { font-size: 1.2em; }
+  .post-header h1 { font-size: 1.8em; }
+  .post-content h2 { font-size: 1.3em; }
+  .header-inner { padding: 0 20px; }
+  .hero { padding: 60px 20px 50px; }
+  nav a { padding: 6px 12px; font-size: 0.82em; }
+  .logo { font-size: 1.1em; letter-spacing: 2px; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 2.2em; }
+  .hero-stats { flex-direction: column; gap: 16px; }
+  .section-label-row { padding: 40px 20px 24px; }
+  .posts-list { padding: 0 16px 60px; }
+  .post-page { padding: 40px 20px 80px; }
 }
 </style>
 </head>
 <body>
 
+<!-- ANIMATED BACKGROUND -->
+<div class="bg-mesh">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+</div>
+<div class="grid-overlay"></div>
+
+<!-- THREE.JS PARTICLES -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- MAIN CONTENT -->
+<div class="content-wrapper">
+
 <header class="site-header">
   <div class="header-inner">
-    <a href="/" class="logo">Daily<span>AI</span>Digest</a>
+    <a href="/" class="logo">DAILY<span class="accent pulse">AI</span>DIGEST</a>
     <nav>
       <a href="/">Posts</a>
       <a href="/about.html">About</a>
@@ -325,66 +817,260 @@ nav a:hover { color: var(--text); }
 
 
 <section class="hero">
-  <h1>Your Daily Dose of <span class="gradient">AI Agent News</span></h1>
-  <p>Curated updates on AI agents, Claude Code, automation tools, and the latest in AI. Fresh posts every day.</p>
+  <div class="hero-badge"><span class="live-dot"></span> LIVE &mdash; DAILY UPDATES</div>
+  <h1>
+    <span class="line1">Your Daily Dose of</span>
+    <span class="line2">AI Agent News</span>
+  </h1>
+  <p class="hero-sub">Curated updates on AI agents, Claude Code, automation tools, and the latest in AI. Fresh posts every single day.</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-number">8</span>
+      <span class="stat-label">Articles</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">2</span>
+      <span class="stat-label">Categories</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">365</span>
+      <span class="stat-label">Days/Year</span>
+    </div>
+  </div>
 </section>
+<div class="section-label-row">
+  <span class="section-label">Latest Posts</span>
+  <div class="section-line"></div>
+</div>
 <section class="posts-list">
-  <div class="section-label">&mdash; Latest Posts &mdash;</div>
   
     <a href="/posts/daily-ai-digest-june-15-2026.html" class="post-card">
-      <div class="post-date"><span class="dot"></span> June 15, 2026 &middot; Daily Digest</div>
-      <h2>Daily AI Digest — June 15, 2026</h2>
-      <p>10 stories: US government forces Anthropic to shut down Fable 5 and Mythos 5 models on national security grounds, OpenAI readies major ChatGPT overhaul to pivot toward agents, Jeff Bezos' Prometheus raises $12B for physical AI engineering, Meta unwinds $2B Manus deal under China pressure, Google announces Gemini 3.5 Live Translate for 70+ languages, Meta Applied AI team in revolt, KPMG pulls AI report over hallucinations, Google sues Chinese AI scam network, Mistral rumored to raise €3B at €20B valuation, and Meta's catch-up AI ambitions under Alexandr Wang.</p>
-      <div class='tags'><span class="tag">ai-agents</span><span class="tag">claude</span><span class="tag">chatgpt</span><span class="tag">anthropic</span><span class="tag">openai</span><span class="tag">google</span><span class="tag">meta</span><span class="tag">mistral</span><span class="tag">policy</span><span class="tag">security</span><span class="tag">ai-hardware</span><span class="tag">ai-pricing</span><span class="tag">china</span></div>
+      <div class="post-card-inner">
+        <div class="post-meta">
+          <span class="post-date">June 15, 2026</span>
+          <span class="post-category">Daily Digest</span>
+        </div>
+        <h2>Daily AI Digest — June 15, 2026</h2>
+        <p>10 stories: US government forces Anthropic to shut down Fable 5 and Mythos 5 models on national security grounds, OpenAI readies major ChatGPT overhaul to pivot toward agents, Jeff Bezos' Prometheus raises $12B for physical AI engineering, Meta unwinds $2B Manus deal under China pressure, Google announces Gemini 3.5 Live Translate for 70+ languages, Meta Applied AI team in revolt, KPMG pulls AI report over hallucinations, Google sues Chinese AI scam network, Mistral rumored to raise €3B at €20B valuation, and Meta's catch-up AI ambitions under Alexandr Wang.</p>
+        <div class='tags'><span class="tag">ai-agents</span><span class="tag">claude</span><span class="tag">chatgpt</span><span class="tag">anthropic</span><span class="tag">openai</span><span class="tag">google</span><span class="tag">meta</span><span class="tag">mistral</span><span class="tag">policy</span><span class="tag">security</span><span class="tag">ai-hardware</span><span class="tag">ai-pricing</span><span class="tag">china</span></div>
+      </div>
     </a>
     <a href="/posts/daily-ai-digest-june-04-2026.html" class="post-card">
-      <div class="post-date"><span class="dot"></span> June 04, 2026 &middot; Daily Digest</div>
-      <h2>Daily AI Digest — June 04, 2026</h2>
-      <p>10 stories: Google Gemma 4 12B runs multimodal AI on your laptop, Uber caps AI tool spending at $1500/month, Anthropic reveals Claude containment engineering, UK orders Google to fix AI search attribution, Microsoft's agent-first Android OS, OpenAI solves 80-year math problem, Intel's cheaper AI chip, Florida sues OpenAI, vibe coding prompt injection war, and LLM hacking benchmarks.</p>
-      <div class='tags'><span class="tag">ai-agents</span><span class="tag">claude-code</span><span class="tag">daily-digest</span><span class="tag">google</span><span class="tag">anthropic</span><span class="tag">openai</span><span class="tag">microsoft</span><span class="tag">nvidia</span><span class="tag">intel</span><span class="tag">policy</span><span class="tag">security</span><span class="tag">llm-hacking</span><span class="tag">ai-hardware</span><span class="tag">ai-pricing</span></div>
+      <div class="post-card-inner">
+        <div class="post-meta">
+          <span class="post-date">June 04, 2026</span>
+          <span class="post-category">Daily Digest</span>
+        </div>
+        <h2>Daily AI Digest — June 04, 2026</h2>
+        <p>10 stories: Google Gemma 4 12B runs multimodal AI on your laptop, Uber caps AI tool spending at $1500/month, Anthropic reveals Claude containment engineering, UK orders Google to fix AI search attribution, Microsoft's agent-first Android OS, OpenAI solves 80-year math problem, Intel's cheaper AI chip, Florida sues OpenAI, vibe coding prompt injection war, and LLM hacking benchmarks.</p>
+        <div class='tags'><span class="tag">ai-agents</span><span class="tag">claude-code</span><span class="tag">daily-digest</span><span class="tag">google</span><span class="tag">anthropic</span><span class="tag">openai</span><span class="tag">microsoft</span><span class="tag">nvidia</span><span class="tag">intel</span><span class="tag">policy</span><span class="tag">security</span><span class="tag">llm-hacking</span><span class="tag">ai-hardware</span><span class="tag">ai-pricing</span></div>
+      </div>
     </a>
     <a href="/posts/daily-ai-digest-june-03-2026.html" class="post-card">
-      <div class="post-date"><span class="dot"></span> June 03, 2026 &middot; Daily Digest</div>
-      <h2>Daily AI Digest — June 03, 2026</h2>
-      <p>12 stories: Stanford study says AI beats law professors, Microsoft launches AI agent sandbox, Copilot pricing backlash, Florida sues OpenAI, MiniMax disrupts pricing, Nvidia bets $150B on Taiwan, quantum breakthrough, and more.</p>
-      <div class='tags'><span class="tag">ai-agents</span><span class="tag">claude-code</span><span class="tag">daily-digest</span><span class="tag">microsoft</span><span class="tag">openai</span><span class="tag">nvidia</span><span class="tag">policy</span><span class="tag">mathematics</span><span class="tag">mental-health</span></div>
+      <div class="post-card-inner">
+        <div class="post-meta">
+          <span class="post-date">June 03, 2026</span>
+          <span class="post-category">Daily Digest</span>
+        </div>
+        <h2>Daily AI Digest — June 03, 2026</h2>
+        <p>12 stories: Stanford study says AI beats law professors, Microsoft launches AI agent sandbox, Copilot pricing backlash, Florida sues OpenAI, MiniMax disrupts pricing, Nvidia bets $150B on Taiwan, quantum breakthrough, and more.</p>
+        <div class='tags'><span class="tag">ai-agents</span><span class="tag">claude-code</span><span class="tag">daily-digest</span><span class="tag">microsoft</span><span class="tag">openai</span><span class="tag">nvidia</span><span class="tag">policy</span><span class="tag">mathematics</span><span class="tag">mental-health</span></div>
+      </div>
     </a>
     <a href="/posts/daily-ai-digest-june-2-2026.html" class="post-card">
-      <div class="post-date"><span class="dot"></span> June 02, 2026 &middot; Daily Digest</div>
-      <h2>Daily AI Digest — June 2, 2026</h2>
-      <p>12 stories: Anthropic files IPO at $965B, Alphabet raises $80B, Nvidia enters CPU market, Gemini Spark hands-on, Florida sues OpenAI, GitHub Copilot outrage, AI music debate, and more</p>
-      <div class='tags'><span class="tag">ai-agents</span><span class="tag">claude-code</span><span class="tag">daily-digest</span><span class="tag">anthropic-ipo</span><span class="tag">nvidia-rtx-spark</span><span class="tag">gemini-spark</span><span class="tag">openai-lawsuit</span><span class="tag">github-copilot</span><span class="tag">ai-music</span><span class="tag">ai-hardware</span></div>
+      <div class="post-card-inner">
+        <div class="post-meta">
+          <span class="post-date">June 02, 2026</span>
+          <span class="post-category">Daily Digest</span>
+        </div>
+        <h2>Daily AI Digest — June 2, 2026</h2>
+        <p>12 stories: Anthropic files IPO at $965B, Alphabet raises $80B, Nvidia enters CPU market, Gemini Spark hands-on, Florida sues OpenAI, GitHub Copilot outrage, AI music debate, and more</p>
+        <div class='tags'><span class="tag">ai-agents</span><span class="tag">claude-code</span><span class="tag">daily-digest</span><span class="tag">anthropic-ipo</span><span class="tag">nvidia-rtx-spark</span><span class="tag">gemini-spark</span><span class="tag">openai-lawsuit</span><span class="tag">github-copilot</span><span class="tag">ai-music</span><span class="tag">ai-hardware</span></div>
+      </div>
     </a>
     <a href="/posts/daily-ai-digest-june-01-2026.html" class="post-card">
-      <div class="post-date"><span class="dot"></span> June 01, 2026 &middot; Daily Digest</div>
-      <h2>Daily AI Digest — June 01, 2026</h2>
-      <p>10 stories: SoftBank €75B French datacenter push, Groq $650M raise, Cognition's $26B valuation & Scott Wu on AI not replacing devs, Claude Code ecosystem explodes with Ralphy/Rotom/Claude-Code-OS, Amnesty calls for ban on scraped AI, G7 agrees on open-source AI language, Meta AI pendant, Gemini Spark review, AI psychosis debate, Instagram AI security flaw</p>
-      <div class='tags'><span class="tag">ai-agents</span><span class="tag">claude-code</span><span class="tag">daily-digest</span><span class="tag">softbank</span><span class="tag">groq</span><span class="tag">cognition</span><span class="tag">devin</span><span class="tag">open-source-ai</span><span class="tag">g7</span><span class="tag">amnesty</span><span class="tag">meta</span><span class="tag">gemini</span><span class="tag">ai-psychosis</span><span class="tag">copilot</span><span class="tag">tokenmaxxing</span></div>
+      <div class="post-card-inner">
+        <div class="post-meta">
+          <span class="post-date">June 01, 2026</span>
+          <span class="post-category">Daily Digest</span>
+        </div>
+        <h2>Daily AI Digest — June 01, 2026</h2>
+        <p>10 stories: SoftBank €75B French datacenter push, Groq $650M raise, Cognition's $26B valuation & Scott Wu on AI not replacing devs, Claude Code ecosystem explodes with Ralphy/Rotom/Claude-Code-OS, Amnesty calls for ban on scraped AI, G7 agrees on open-source AI language, Meta AI pendant, Gemini Spark review, AI psychosis debate, Instagram AI security flaw</p>
+        <div class='tags'><span class="tag">ai-agents</span><span class="tag">claude-code</span><span class="tag">daily-digest</span><span class="tag">softbank</span><span class="tag">groq</span><span class="tag">cognition</span><span class="tag">devin</span><span class="tag">open-source-ai</span><span class="tag">g7</span><span class="tag">amnesty</span><span class="tag">meta</span><span class="tag">gemini</span><span class="tag">ai-psychosis</span><span class="tag">copilot</span><span class="tag">tokenmaxxing</span></div>
+      </div>
     </a>
     <a href="/posts/daily-ai-digest-may-31-2026.html" class="post-card">
-      <div class="post-date"><span class="dot"></span> May 31, 2026 &middot; Daily Digest</div>
-      <h2>Daily AI Digest — May 31, 2026</h2>
-      <p>17 stories: Anthropic nears $1T valuation with $65B raise, OpenRouter secures $113M Series B, GitHub Copilot billing backlash, Asana acquires StackAI, Sesame launches from Oculus founders, and the US government proposes sweeping changes to science funding.</p>
-      <div class='tags'><span class="tag">ai-agents</span><span class="tag">claude-code</span><span class="tag">daily-digest</span><span class="tag">anthropic</span><span class="tag">openai</span><span class="tag">openrouter</span><span class="tag">series-b</span><span class="tag">ai-funding</span><span class="tag">github-copilot</span><span class="tag">ai-coding</span><span class="tag">ai-policy</span><span class="tag">ai-hardware</span><span class="tag">gemini</span><span class="tag">ai-startups</span></div>
+      <div class="post-card-inner">
+        <div class="post-meta">
+          <span class="post-date">May 31, 2026</span>
+          <span class="post-category">Daily Digest</span>
+        </div>
+        <h2>Daily AI Digest — May 31, 2026</h2>
+        <p>17 stories: Anthropic nears $1T valuation with $65B raise, OpenRouter secures $113M Series B, GitHub Copilot billing backlash, Asana acquires StackAI, Sesame launches from Oculus founders, and the US government proposes sweeping changes to science funding.</p>
+        <div class='tags'><span class="tag">ai-agents</span><span class="tag">claude-code</span><span class="tag">daily-digest</span><span class="tag">anthropic</span><span class="tag">openai</span><span class="tag">openrouter</span><span class="tag">series-b</span><span class="tag">ai-funding</span><span class="tag">github-copilot</span><span class="tag">ai-coding</span><span class="tag">ai-policy</span><span class="tag">ai-hardware</span><span class="tag">gemini</span><span class="tag">ai-startups</span></div>
+      </div>
     </a>
     <a href="/posts/daily-ai-digest-may-30-2026.html" class="post-card">
-      <div class="post-date"><span class="dot"></span> May 30, 2026 &middot; Daily Digest</div>
-      <h2>Daily AI Digest — May 30, 2026</h2>
-      <p>47 stories today: Google's agentic Gemini era, Anthropic's Cowork Claude agent, Robinhood lets AI agents trade stocks, a critical vulnerability in Starlette, and more.</p>
-      <div class='tags'><span class="tag">ai-agents</span><span class="tag">claude-code</span><span class="tag">gemini</span><span class="tag">security</span><span class="tag">daily-digest</span></div>
+      <div class="post-card-inner">
+        <div class="post-meta">
+          <span class="post-date">May 30, 2026</span>
+          <span class="post-category">Daily Digest</span>
+        </div>
+        <h2>Daily AI Digest — May 30, 2026</h2>
+        <p>47 stories today: Google's agentic Gemini era, Anthropic's Cowork Claude agent, Robinhood lets AI agents trade stocks, a critical vulnerability in Starlette, and more.</p>
+        <div class='tags'><span class="tag">ai-agents</span><span class="tag">claude-code</span><span class="tag">gemini</span><span class="tag">security</span><span class="tag">daily-digest</span></div>
+      </div>
     </a>
     <a href="/posts/welcome-to-daily-ai-digest.html" class="post-card">
-      <div class="post-date"><span class="dot"></span> May 30, 2026 &middot; Launch</div>
-      <h2>Welcome to Daily AI Digest</h2>
-      <p>Why we built this site, what you'll find here, and how to stay ahead of the AI curve every single day.</p>
-      <div class='tags'><span class="tag">launch</span><span class="tag">ai-agents</span><span class="tag">welcome</span></div>
+      <div class="post-card-inner">
+        <div class="post-meta">
+          <span class="post-date">May 30, 2026</span>
+          <span class="post-category">Launch</span>
+        </div>
+        <h2>Welcome to Daily AI Digest</h2>
+        <p>Why we built this site, what you'll find here, and how to stay ahead of the AI curve every single day.</p>
+        <div class='tags'><span class="tag">launch</span><span class="tag">ai-agents</span><span class="tag">welcome</span></div>
+      </div>
     </a>
 </section>
 
 <footer class="site-footer">
-  <p>Daily AI Digest &mdash; Your daily dose of AI agent news. Built with ❤️ and hosted on Cloudflare Pages.</p>
-  <p style="margin-top:8px">&copy; 2026 DailyAIDigest. All rights reserved.</p>
+  <p>DAILY AI DIGEST &mdash; Your daily dose of AI agent news.</p>
+  <p style="margin-top:8px; font-family:'JetBrains Mono',monospace; font-size:0.85em; opacity:0.5;">&copy; 2026 LancerLoki. Built with &lt;3 on Cloudflare Pages.</p>
 </footer>
+
+</div>
+
+<!-- THREE.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ═══════════ PARTICLE FIELD ═══════════
+(function() {
+  const canvas = document.getElementById('particles-canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 50;
+
+  // Particles
+  const particleCount = 800;
+  const positions = new Float32Array(particleCount * 3);
+  const colors = new Float32Array(particleCount * 3);
+  const sizes = new Float32Array(particleCount);
+
+  const colorPalette = [
+    new THREE.Color(0xff006e), // pink
+    new THREE.Color(0x00f0ff), // cyan
+    new THREE.Color(0xb000ff), // purple
+  ];
+
+  for (let i = 0; i < particleCount; i++) {
+    positions[i * 3] = (Math.random() - 0.5) * 120;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 120;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 80;
+
+    const color = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+    colors[i * 3] = color.r;
+    colors[i * 3 + 1] = color.g;
+    colors[i * 3 + 2] = color.b;
+
+    sizes[i] = Math.random() * 2 + 0.5;
+  }
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+  const material = new THREE.PointsMaterial({
+    size: 1.2,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.6,
+    blending: THREE.AdditiveBlending,
+    sizeAttenuation: true,
+  });
+
+  const particles = new THREE.Points(geometry, material);
+  scene.add(particles);
+
+  // Mouse tracking
+  let mouseX = 0, mouseY = 0;
+  let targetMouseX = 0, targetMouseY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    targetMouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    targetMouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+  });
+
+  // Animation
+  function animate() {
+    requestAnimationFrame(animate);
+
+    mouseX += (targetMouseX - mouseX) * 0.05;
+    mouseY += (targetMouseY - mouseY) * 0.05;
+
+    particles.rotation.y += 0.001;
+    particles.rotation.x += 0.0005;
+    particles.rotation.y += mouseX * 0.002;
+    particles.rotation.x += mouseY * 0.002;
+
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  // Resize
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+})();
+
+// ═══════════ SCROLL FADE-IN ═══════════
+(function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, i * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.post-card, .hero, .section-label-row, .post-page, .about-page').forEach(el => {
+    el.classList.add('fade-up');
+    observer.observe(el);
+  });
+
+  // Trigger hero immediately
+  setTimeout(() => {
+    const hero = document.querySelector('.hero');
+    if (hero) hero.classList.add('visible');
+  }, 100);
+})();
+
+// ═══════════ 3D TILT ON CARDS ═══════════
+document.querySelectorAll('.post-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = (y - centerY) / 20;
+    const rotateY = (centerX - x) / 20;
+    card.style.transform = `translateY(-4px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+</script>
 
 </body>
 </html>
