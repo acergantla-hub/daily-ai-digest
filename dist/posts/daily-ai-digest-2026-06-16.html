@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily AI Digest — 2026-06-16 — Daily AI Digest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf9f7;
+  --bg-warm: #f5f0eb;
+  --surface: #ffffff;
+  --surface-glass: rgba(255,255,255,0.7);
+  --border: #e8e4df;
+  --border-strong: #d4cfc8;
+  --text: #1a1a2e;
+  --text-secondary: #4a4a6a;
+  --text-dim: #8a8a9a;
+  --accent: #6c5ce7;
+  --accent-warm: #e17055;
+  --accent-gold: #f0932b;
+  --accent-teal: #00b894;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+  --shadow-xl: 0 24px 60px rgba(0,0,0,0.1), 0 8px 20px rgba(0,0,0,0.05);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-xs: 6px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ═══════════ AMBIENT BACKGROUND ═══════════ */
+.ambient-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.35;
+  animation: orbDrift 25s ease-in-out infinite;
+}
+.orb-1 {
+  width: 700px; height: 700px;
+  background: linear-gradient(135deg, #e8d5f5, #d5e8f5);
+  top: -200px; right: -100px;
+  animation-delay: 0s;
+}
+.orb-2 {
+  width: 500px; height: 500px;
+  background: linear-gradient(135deg, #fde8d5, #f5e8d5);
+  bottom: -100px; left: -100px;
+  animation-delay: -10s;
+}
+.orb-3 {
+  width: 400px; height: 400px;
+  background: linear-gradient(135deg, #d5f5e8, #d5e8f5);
+  top: 50%; left: 50%;
+  animation-delay: -18s;
+  opacity: 0.2;
+}
+
+@keyframes orbDrift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.05); }
+  66% { transform: translate(-30px, 20px) scale(0.95); }
+}
+
+/* Noise texture overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ═══════════ CONTENT ═══════════ */
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+/* ═══════════ HEADER ═══════════ */
+.site-header {
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250, 249, 247, 0.8);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  transition: all 0.3s ease;
+}
+
+.header-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--text);
+  transition: opacity 0.2s;
+}
+.logo:hover { opacity: 0.7; }
+
+.logo-mark {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, var(--accent), #a29bfe);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.15em;
+  color: white;
+  font-weight: 400;
+  box-shadow: 0 2px 8px rgba(108, 92, 231, 0.25);
+  transform: rotate(-3deg);
+  transition: transform 0.3s ease;
+}
+.logo:hover .logo-mark { transform: rotate(0deg) scale(1.05); }
+
+.logo-text {
+  font-weight: 700;
+  font-size: 1.15em;
+  letter-spacing: -0.5px;
+}
+.logo-text span {
+  font-weight: 400;
+  color: var(--text-dim);
+  font-size: 0.85em;
+  margin-left: 2px;
+}
+
+nav {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+nav a {
+  color: var(--text-secondary);
+  font-size: 0.9em;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: var(--radius-xs);
+  transition: all 0.2s ease;
+}
+nav a:hover {
+  color: var(--text);
+  background: rgba(0,0,0,0.04);
+}
+
+/* ═══════════ HERO ═══════════ */
+.hero {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 80px 32px 64px;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.hero-eyebrow-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent-teal);
+  box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.15);
+  animation: dotPulse 2s ease-in-out infinite;
+}
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.15); }
+  50% { box-shadow: 0 0 0 6px rgba(0, 184, 148, 0.08); }
+}
+.hero-eyebrow-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78em;
+  font-weight: 500;
+  color: var(--accent-teal);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 3.8em;
+  font-weight: 400;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  color: var(--text);
+  max-width: 700px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-desc {
+  font-size: 1.18em;
+  color: var(--text-secondary);
+  max-width: 520px;
+  line-height: 1.7;
+  font-weight: 400;
+  margin-bottom: 40px;
+}
+
+/* Hero stats */
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.hero-stat-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.8em;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.hero-stat-label {
+  font-size: 0.8em;
+  color: var(--text-dim);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* ═══════════ SECTION HEADER ═══════════ */
+.section-header {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 32px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.4em;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+  color: var(--text);
+}
+.section-link {
+  font-size: 0.88em;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap 0.2s;
+}
+.section-link:hover { gap: 8px; }
+
+/* ═══════════ POSTS GRID ═══════════ */
+.posts-grid {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 32px 80px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+/* Featured post (first one spans full width) */
+.post-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.post-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-strong);
+}
+
+.post-card-featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding: 48px;
+  background: linear-gradient(135deg, #fefefe, #f8f6f3);
+  border-color: var(--border-strong);
+  align-items: center;
+}
+.post-card-featured:hover {
+  box-shadow: var(--shadow-xl);
+}
+
+.post-card-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.post-card-icon {
+  width: 80px; height: 80px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  position: relative;
+}
+.post-card-icon::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 26px;
+  opacity: 0.15;
+  background: inherit;
+  filter: blur(12px);
+  z-index: -1;
+}
+
+.post-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.post-card-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75em;
+  color: var(--text-dim);
+  letter-spacing: 0.3px;
+}
+.post-card-category {
+  font-size: 0.72em;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+.cat-digest { background: rgba(108,92,231,0.08); color: var(--accent); }
+.cat-tools { background: rgba(225,112,85,0.08); color: var(--accent-warm); }
+.cat-general { background: rgba(0,184,148,0.08); color: var(--accent-teal); }
+
+.post-card h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5em;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+  margin-bottom: 10px;
+  color: var(--text);
+  line-height: 1.3;
+  transition: color 0.2s;
+}
+.post-card:hover h2 { color: var(--accent); }
+
+.post-card-featured h2 {
+  font-size: 2em;
+  margin-bottom: 14px;
+}
+
+.post-card p {
+  color: var(--text-secondary);
+  font-size: 0.95em;
+  line-height: 1.7;
+  font-weight: 400;
+}
+.post-card-featured p {
+  font-size: 1.05em;
+}
+
+.post-card-tags {
+  margin-top: 18px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.post-card-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7em;
+  color: var(--text-dim);
+  background: rgba(0,0,0,0.03);
+  padding: 3px 10px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+}
+.post-card:hover .post-card-tag {
+  border-color: var(--border-strong);
+  background: rgba(0,0,0,0.05);
+}
+
+.post-card-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 20px;
+  font-size: 0.88em;
+  font-weight: 500;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+.post-card:hover .post-card-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ═══════════ POST PAGE ═══════════ */
+.post-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 60px 32px 100px;
+}
+
+.post-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-dim);
+  font-size: 0.88em;
+  font-weight: 500;
+  text-decoration: none;
+  margin-bottom: 40px;
+  transition: color 0.2s;
+}
+.post-back:hover { color: var(--accent); }
+
+.post-header {
+  margin-bottom: 48px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--border);
+}
+
+.post-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.post-header-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8em;
+  color: var(--text-dim);
+}
+.post-header-category {
+  font-size: 0.75em;
+  font-weight: 600;
+  padding: 3px 12px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.post-header h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.6em;
+  font-weight: 400;
+  letter-spacing: -1px;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+.post-header h1 em { font-style: italic; color: var(--accent); }
+
+.post-header-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.post-header-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72em;
+  color: var(--text-dim);
+  background: rgba(0,0,0,0.03);
+  padding: 4px 12px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+}
+
+/* ═══════════ POST CONTENT ═══════════ */
+.post-content {
+  font-size: 1.08em;
+  line-height: 1.85;
+  color: var(--text);
+}
+.post-content h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.6em;
+  font-weight: 400;
+  margin: 48px 0 16px;
+  letter-spacing: -0.3px;
+  color: var(--text);
+  position: relative;
+}
+.post-content h2::before {
+  content: '';
+  display: block;
+  width: 32px; height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin-bottom: 12px;
+  opacity: 0.3;
+}
+.post-content h3 {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin: 32px 0 12px;
+  color: var(--text);
+  letter-spacing: -0.2px;
+}
+.post-content p { margin-bottom: 18px; }
+.post-content strong { font-weight: 600; color: var(--text); }
+
+.post-content blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 16px 24px;
+  margin: 28px 0;
+  background: rgba(108,92,231,0.03);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.post-content code {
+  font-family: 'JetBrains Mono', monospace;
+  background: rgba(0,0,0,0.04);
+  border: 1px solid var(--border);
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  color: var(--accent);
+}
+.post-content pre {
+  background: #1a1a2e;
+  border-radius: var(--radius-sm);
+  padding: 24px 28px;
+  overflow-x: auto;
+  margin: 24px 0;
+  box-shadow: var(--shadow-md);
+}
+.post-content pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #e8e8f0;
+  font-size: 0.88em;
+}
+
+.post-content ul, .post-content ol {
+  margin: 18px 0;
+  padding-left: 24px;
+}
+.post-content li { margin-bottom: 6px; }
+.post-content li::marker { color: var(--accent); }
+
+.post-content hr {
+  border: none;
+  height: 1px;
+  background: var(--border);
+  margin: 40px 0;
+}
+
+.post-content a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(108,92,231,0.2);
+  transition: all 0.2s;
+}
+.post-content a:hover {
+  border-bottom-color: var(--accent);
+}
+
+/* ═══════════ ABOUT PAGE ═══════════ */
+.about-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 60px 32px 100px;
+}
+.about-page h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.6em;
+  font-weight: 400;
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+}
+.about-page p {
+  color: var(--text-secondary);
+  font-size: 1.08em;
+  margin-bottom: 18px;
+  line-height: 1.8;
+}
+.about-page strong { color: var(--text); }
+
+/* ═══════════ FOOTER ═══════════ */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 32px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.85em;
+}
+.site-footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.site-footer a:hover { text-decoration: underline; }
+
+/* ═══════════ SCROLL ANIMATIONS ═══════════ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════ SCROLLBAR ═══════════ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ═══════════ SELECTION ═══════════ */
+::selection {
+  background: rgba(108,92,231,0.12);
+  color: var(--text);
+}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2.6em; }
+  .hero-stats { gap: 24px; }
+  .posts-grid { grid-template-columns: 1fr; }
+  .post-card-featured { grid-template-columns: 1fr; padding: 32px; }
+  .post-card-featured h2 { font-size: 1.5em; }
+  .post-card { padding: 28px; }
+  .post-header h1 { font-size: 2em; }
+  .post-content h2 { font-size: 1.4em; }
+  .header-inner { padding: 14px 20px; }
+  .hero { padding: 56px 20px 48px; }
+  .section-header { padding: 0 20px 24px; }
+  .posts-grid { padding: 0 20px 60px; }
+  .post-page { padding: 40px 20px 80px; }
+  .logo-text { font-size: 1em; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 2.1em; }
+  .hero-stats { flex-direction: column; gap: 16px; }
+  .post-card-featured { padding: 24px; }
+  .post-card { padding: 22px; }
+}
+</style>
+</head>
+<body>
+
+<!-- AMBIENT BACKGROUND -->
+<div class="ambient-bg">
+  <div class="ambient-orb orb-1"></div>
+  <div class="ambient-orb orb-2"></div>
+  <div class="ambient-orb orb-3"></div>
+</div>
+<div class="noise-overlay"></div>
+
+<!-- MAIN CONTENT -->
+<div class="content-wrapper">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-mark">A</div>
+      <div class="logo-text">Daily AI <span>Digest</span></div>
+    </a>
+    <nav>
+      <a href="/">Posts</a>
+      <a href="/about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+
+<article class="post-page">
+  <a href="/" class="post-back">← Back to all posts</a>
+  <header class="post-header">
+    <div class="post-header-meta">
+      <span class="post-header-date">June 16, 2026</span>
+      <span class="post-header-category cat-digest">Daily Digest</span>
+    </div>
+    <h1>Daily AI Digest — 2026-06-16</h1>
+    <div class='post-header-tags'><span class="post-header-tag">ai-agents</span><span class="post-header-tag">anthropic</span><span class="post-header-tag">claude</span><span class="post-header-tag">daily-digest</span><span class="post-header-tag">google</span><span class="post-header-tag">nvidia</span><span class="post-header-tag">openai</span><span class="post-header-tag">salesforce</span><span class="post-header-tag">meta</span><span class="post-header-tag">india</span><span class="post-header-tag">ai-policy</span><span class="post-header-tag">cybersecurity</span></div>
+  </header>
+  <div class="post-content">
+    <h3 id="us-government-forces-anthropic-to-pull-fable-5-and-mythos-5-models">US Government Forces Anthropic to Pull Fable 5 and Mythos 5 Models</h3>
+<p><img alt="Trump and Anthropic tension" src="https://techcrunch.com/wp-content/uploads/2026/06/trump-2267050833.jpg?resize=1200,800" /></p>
+<p><strong>AI Policy | June 15 | TechCrunch</strong></p>
+<p>In an unprecedented move, the US Commerce Department sent Anthropic a directive invoking export controls that forced the company to shut down access to its two most powerful models — Fable 5 and Mythos 5 — just days after launch. The directive banned non-Americans, including Anthropic's own foreign employees, from accessing the models, citing unspecified national security concerns related to a reported jailbreak vulnerability.</p>
+<p>Anthropic had no choice but to disable both models for all customers worldwide to ensure compliance. The letter was never made public, and Anthropic says it lacks specific details about the alleged threat. This marks the first time the US government has successfully forced a major tech company to pull AI products offline unilaterally, without court approval.</p>
+<p><strong>Key Takeaways:</strong><br />
+- The Commerce Department used an obscure export control directive to force Anthropic's hand<br />
+- Fable 5 and Mythos 5 were completely inaccessible to all users within hours<br />
+- The order highlights that the AI industry is not immune to government interference<br />
+- Anthropic disputes the government's characterization of the alleged jailbreak issue<br />
+- Other AI labs are now on notice: comply or face similar action</p>
+<p><a href="https://techcrunch.com/2026/06/15/the-us-governments-anthropic-models-ban-was-never-about-an-ai-jailbreak/">Read full story</a></p>
+<hr />
+<h3 id="76-cybersecurity-experts-protest-the-ban-call-it-dangerous">76 Cybersecurity Experts Protest the Ban, Call It "Dangerous"</h3>
+<p><img alt="Claude Mythos" src="https://techcrunch.com/wp-content/uploads/2026/06/claude-mythos-logo.jpg?resize=1200,800" /></p>
+<p><strong>Cybersecurity | June 15 | TechCrunch</strong></p>
+<p>A group of 76 cybersecurity veterans — including former Facebook CSO Alex Stamos, Bugcrowd founder Casey Ellis, famed cryptographer Jon Callas, and Luta Security founder Katie Moussouris — published an open letter urging the White House to lift the export control order. They argue that pulling the best AI models away from defenders while adversaries rapidly advance is "dangerous" and undermines national security rather than protecting it.</p>
+<p>When Mythos launched in April, Anthropic claimed it was exceptionally powerful at finding security vulnerabilities. Now the very experts who would use it to secure critical software are locked out. The tension between the Trump administration and Anthropic reportedly stems from "personality differences" as much as technical concerns, according to Axios.</p>
+<p><strong>Key Takeaways:</strong><br />
+- 76 senior cybersecurity experts signed an open letter against the ban<br />
+- Defenders argue the ban hurts security more than it helps<br />
+- The move may actually weaken US cybersecurity posture<br />
+- Dispute appears partly political, not purely technical<br />
+- Similar restrictions on other AI companies are unlikely, per The Information</p>
+<p><a href="https://techcrunch.com/2026/06/15/cybersecurity-vets-protest-dangerous-us-government-ban-on-anthropics-most-powerful-models/">Read full story</a></p>
+<hr />
+<h3 id="anthropic-shuts-down-fable-and-mythos-following-trump-admin-directive">Anthropic Shuts Down Fable and Mythos Following Trump Admin Directive</h3>
+<p><img alt="Fable 5" src="https://cdn.arstechnica.net/wp-content/uploads/2026/06/fable5-1152x648.webp" /></p>
+<p><strong>AI Policy | June 12 | Ars Technica</strong></p>
+<p>Kyle Orland reports on the full timeline of the Anthropic shutdown. The Commerce Department's Friday evening directive came after reports of a jailbreak that could bypass classifier-based safeguards on Fable 5, particularly around cybersecurity, chemistry, and biology prompts. Anthropic posted that the only way to ensure immediate compliance was to "abruptly disable Fable 5 and Mythos 5 for all our customers." Access to other Anthropic models like Claude Opus and Sonnet remains unaffected.</p>
+<p>Reports first reached the government through Amazon CEO Andy Jassy, and the White House is privately blaming Anthropic's handling of the jailbreak rather than seeing the models themselves as inherently dangerous.</p>
+<p><strong>Key Takeaways:</strong><br />
+- The FBI was reportedly aware of the jailbreak vulnerability before public launch<br />
+- Other Anthropic models remain available — only Fable 5 and Mythos 5 were pulled<br />
+- The administration is unlikely to extend similar export controls to other AI companies<br />
+- Anthropic's partnership with Tata Consultancy Services in India adds complexity to the situation<br />
+- India is now debating whether it can afford to rely on US-controlled AI technologies</p>
+<p><a href="https://arstechnica.com/ai/2026/06/anthropic-shuts-down-fable-mythos-models-following-trum">Read full story</a></p>
+<hr />
+<h3 id="nvidia-seeks-to-raise-over-25b-in-first-bond-deal-since-2021">Nvidia Seeks to Raise Over $25B in First Bond Deal Since 2021</h3>
+<p><img alt="Nvidia chips" src="https://cdn.arstechnica.net/wp-content/uploads/2025/08/nvidia-chip-1152x648-1754500479.jpg" /></p>
+<p><strong>Industry | June 15 | Ars Technica via Financial Times</strong></p>
+<p>Nvidia is planning a massive $25 billion investment-grade bond sale — its first in five years — in a seven-part offering ranging from 2 to 30 year maturities. The issuance was upsized from $20 billion after receiving over $85 billion in orders, demonstrating extraordinary investor appetite. The 10-year portion was priced at just 0.5 percentage points above US Treasuries, down from 0.75 points during initial talks.</p>
+<p>Favorable market conditions following the US-Iran deal helped Nvidia secure low borrowing costs. Portfolio manager Lauren Wagandt called it "a very high-quality company" that "doesn't come to the market as often as other tech names."</p>
+<p><strong>Key Takeaways:</strong><br />
+- $25B bond sale is among the largest in tech history<br />
+- Orders exceeded $85B — more than 3x oversubscribed<br />
+- Proceeds likely to fund massive AI infrastructure expansion<br />
+- First bond deal since 2021, testing investor appetite for more AI exposure<br />
+- Strong demand reflects confidence in Nvidia's central role in the AI ecosystem</p>
+<p><a href="https://arstechnica.com/ai/2026/06/chipmaker-nvidia-seeks-to-raise-over-25b-in-first-bond-/">Read full story</a></p>
+<hr />
+<h3 id="jeff-bezoss-prometheus-hits-41b-valuation-for-physical-ai">Jeff Bezos's Prometheus Hits $41B Valuation for Physical AI</h3>
+<p><img alt="Jeff Bezos and Vik Bajaj" src="https://cdn.arstechnica.net/wp-content/uploads/2026/06/Bezos-Bajaj-Prometheus-1152x648.jpg" /></p>
+<p><strong>Industry | June 12 | Ars Technica</strong></p>
+<p>Jeff Bezos's startup Prometheus — focused on "physical AI" (applying deep learning to robotics and manufacturing) — has raised $12 billion in a new round, following an initial $6.2 billion last year. The $41 billion valuation makes it one of the best-funded AI startups ever. Investors include JPMorgan Chase, Goldman Sachs, BlackRock, and Bezos himself.</p>
+<p>The company currently employs 150 people and plans to spend heavily on compute. Bezos serves as co-CEO alongside Vik Bajaj. Prometheus aims to build the foundational models for physical systems, similar to how LLMs transformed language.</p>
+<p><strong>Key Takeaways:</strong><br />
+- $18.2B total raised, $41B valuation — one of the largest AI startup valuations ever<br />
+- Focus on "physical AI" — robotics, manufacturing, embodied intelligence<br />
+- Backed by JPMorgan, Goldman Sachs, BlackRock, and Bezos personally<br />
+- Currently 150 employees, heavily investing in compute infrastructure<br />
+- Represents growing investor belief that AI's next frontier is the physical world</p>
+<p><a href="https://arstechnica.com/ai/2026/06/heres-what-jeff-bezos-new-startup-prometheus-will-do/">Read full story</a></p>
+<hr />
+<h3 id="meta-launches-ai-mode-on-facebook-pulling-from-public-posts">Meta Launches "AI Mode" on Facebook, Pulling from Public Posts</h3>
+<p><img alt="Meta apps" src="https://techcrunch.com/wp-content/uploads/2026/05/meta-apps-GettyImages-2152655816.jpg?w=1024" /></p>
+<p><strong>Product | June 15 | TechCrunch</strong></p>
+<p>Meta announced a wave of new AI features on Facebook, headlined by "AI Mode" — a search feature that uses Meta AI to synthesize answers from public posts across Groups and Reels. Users can ask questions in plain language and get answers pulled from real discussions rather than scrolling through search results. The feature raises familiar concerns about reliability of AI-synthesized user content.</p>
+<p>Beyond search, Meta added AI editing tools for video collages, photo presets for changing clothes and hairstyles, and continues to integrate AI across its family of apps as it races to catch up with OpenAI and Google.</p>
+<p><strong>Key Takeaways:</strong><br />
+- AI Mode synthesizes answers from public Facebook posts, Groups, and Reels<br />
+- Follows Meta's Reddit-style app "Forum" with similar AI Ask feature<br />
+- Raises concerns about misinformation from unvetted user content<br />
+- Part of Meta's aggressive push to close the AI gap with OpenAI and Google<br />
+- New creative tools include AI video editing and photo presets</p>
+<p><a href="https://techcrunch.com/2026/06/15/metas-new-ai-mode-on-facebook-pulls-from-public-info-across-its-platforms/">Read full story</a></p>
+<hr />
+<h3 id="salesforce-acquires-ai-customer-service-platform-fin-for-36b">Salesforce Acquires AI Customer Service Platform Fin for $3.6B</h3>
+<p><img alt="Salesforce Fin acquisition" src="https://techcrunch.com/wp-content/uploads/2024/06/GettyImages-1125951338.jpg?resize=1200,900" /></p>
+<p><strong>Industry | June 15 | TechCrunch</strong></p>
+<p>Salesforce announced its acquisition of AI customer service startup Fin for $3.6 billion, aiming to boost its Agentforce platform. Fin brings proven agent technology and its groundbreaking internal model "Apex" and agent "Operator." CEO Marc Benioff said the acquisition will help companies build trusted agents that deliver measurable outcomes at scale.</p>
+<p>The deal is expected to close in early 2027. Fin's CEO Eoghan McCabe will continue leading the company post-acquisition, saying "little will practically change" and that Salesforce's resources will accelerate their work.</p>
+<p><strong>Key Takeaways:</strong><br />
+- $3.6B acquisition targets Salesforce's Agentforce enterprise AI platform<br />
+- Fin brings its own model "Apex" and agent "Operator" technology<br />
+- Deal expected to close in Q4 FY2027 (early calendar 2027)<br />
+- Fin's leadership team stays in place post-acquisition<br />
+- Signals massive enterprise appetite for AI agent technology</p>
+<p><a href="https://techcrunch.com/2026/06/15/salesforce-acquires-ai-customer-service-platform-fin-for-3-6b/">Read full story</a></p>
+<hr />
+<h3 id="ai-agents-get-identities-newcore-emerges-from-stealth-with-66m">AI Agents Get Identities: NewCore Emerges from Stealth with $66M</h3>
+<p><img alt="NewCore founders" src="https://techcrunch.com/wp-content/uploads/2026/06/newcore-founders.jpg?resize=1200,800" /></p>
+<p><strong>Security | June 15 | TechCrunch</strong></p>
+<p>Cybersecurity startup NewCore emerged from stealth with $66 million in funding at a $300 million valuation, aiming to solve a problem it believes every company will soon face: how to authenticate, govern, and control AI agents at scale. Led by Cyberstarts, Index Ventures, and Evolution Equity Partners, NewCore is building identity infrastructure for AI agents that are increasingly treated as workplace participants rather than software tools.</p>
+<p>Goldman Sachs tested AI coding agent Devin as an employee, and McKinsey says 25,000 AI agents already work alongside its 60,000 staff. NewCore founder Zohar Alon (formerly of Dome9, acquired by Check Point) warns that 15-20 year old identity platforms will break under the scale and complexity of AI agents.</p>
+<p><strong>Key Takeaways:</strong><br />
+- $66M seed round at $300M val for AI agent identity infrastructure<br />
+- Goldman Sachs and McKinsey already deploying agents alongside human employees<br />
+- Existing identity platforms not built for AI agent scale<br />
+- AI agents will need employee-like identities, governance, and access controls<br />
+- Represents a new category: enterprise identity for non-human workers</p>
+<p><a href="https://techcrunch.com/2026/06/15/ai-agents-are-becoming-employees-newcore-emerges-with-66m-to-give-them-identities/">Read full story</a></p>
+<hr />
+<h3 id="indias-ai-future-in-question-as-anthropic-suspends-model-access">India's AI Future in Question as Anthropic Suspends Model Access</h3>
+<p><img alt="Anthropic in India" src="https://techcrunch.com/wp-content/uploads/2026/06/Claude-photo.jpg?w=1024" /></p>
+<p><strong>AI Policy | June 13 | TechCrunch</strong></p>
+<p>Anthropic's model suspension has triggered a reckoning in India, one of the world's largest AI markets. The timing is particularly painful — it came right after Anthropic announced a partnership with Tata Consultancy Services to expand enterprise AI adoption across India. Indian founders, investors, and policy experts are now debating whether the country can afford to rely on US-controlled AI technologies.</p>
+<p>The incident highlights the growing movement for "sovereign AI" — countries and companies wanting control over the models and computing infrastructure they depend on. India's own AI star Sarvam is part of this trend (see below).</p>
+<p><strong>Key Takeaways:</strong><br />
+- India's AI ambitions are closely tied to US-developed technologies<br />
+- The Anthropic-TCS partnership was announced just before the shutdown<br />
+- Reignited debate over India's need for sovereign AI capabilities<br />
+- Part of a global trend toward national AI independence<br />
+- Indian startups like Sarvam are positioning as domestic alternatives</p>
+<p><a href="https://techcrunch.com/2026/06/13/as-anthropic-suspends-access-to-new-models-india-debates-its-ai-future/">Read full story</a></p>
+<hr />
+<h3 id="sarvam-becomes-indias-newest-ai-unicorn-with-234m-raise">Sarvam Becomes India's Newest AI Unicorn with $234M Raise</h3>
+<p><img alt="Sarvam" src="https://techcrunch.com/wp-content/uploads/2026/02/sarvam.jpg?resize=1200,800" /></p>
+<p><strong>Industry | June 15 | TechCrunch</strong></p>
+<p>Bengaluru-based Sarvam has raised $234 million at a $1.5 billion valuation, becoming India's newest AI unicorn. HCLTech led the round with a $150 million strategic investment, alongside Bessemer Venture Partners, Khosla Ventures, and Peak XV Partners. The startup builds full-stack AI — from open source models (30B and 105B parameter versions) to inference infrastructure and enterprise applications optimized for Indian languages and use cases.</p>
+<p>Sarvam is positioning itself as India's answer to the sovereign AI challenge, with products deployed in banking, insurance, government services, and defense.</p>
+<p><strong>Key Takeaways:</strong><br />
+- $234M round at $1.5B valuation makes Sarvam India's newest AI unicorn<br />
+- HCLTech invested $150M as lead strategic investor<br />
+- Full-stack AI: models, inference infra, and enterprise apps<br />
+- Optimized for Indian languages and domestic use cases<br />
+- Reflects global push for sovereign AI capabilities</p>
+<p><a href="https://techcrunch.com/2026/06/15/sarvam-becomes-indias-newest-ai-unicorn-with-234-million-funding-round-led-by-hcltech/">Read full story</a></p>
+<hr />
+<h3 id="cohere-launches-north-mini-code-first-open-source-agentic-coding-model">Cohere Launches North Mini Code: First Open-Source Agentic Coding Model</h3>
+<p><img alt="North Mini Code" src="https://cdn.sanity.io/images/rjtqmwfu/web3-prod/824d32875c1faf5d7048cb18d83e006e46c9b869-3840x2160.png?rect=0,72,3840,2016&amp;w=1200&amp;h=630" /></p>
+<p><strong>Open Source | June 16 | Cohere</strong></p>
+<p>Cohere has launched North Mini Code, its first open-source agentic coding model. The 30B parameter mixture-of-experts (MoE) model uses just 3B active parameters, making it efficient enough to run on modest hardware. Available under Apache 2.0 license, it features a 256K context window with 64K max generation.</p>
+<p>The model is optimized for code generation and agentic software engineering tasks. Developers can download weights from Hugging Face or deploy via Cohere's Model Vault. It's also available through OpenCode with a free Cohere API key.</p>
+<p><strong>Key Takeaways:</strong><br />
+- 30B total parameters, only 3B active (MoE architecture)<br />
+- Apache 2.0 license — fully open source<br />
+- 256K context window, 64K max generation<br />
+- Designed for agentic coding and software engineering<br />
+- Cohere's push for "sovereign AI" — efficient enough to run locally</p>
+<p><a href="https://cohere.com/blog/north-mini-code">Read full story</a></p>
+<hr />
+<h2 id="why-this-matters-today">Why This Matters Today</h2>
+<p>Today's digest paints a picture of an AI industry at an inflection point — where the tension between innovation and control is reaching a boiling point.</p>
+<p>The US government's shutdown of Anthropic's most powerful models is a watershed moment. It demonstrates that AI companies operate at the pleasure of governments, and that national security concerns can override commercial and scientific interests overnight. The fact that 76 cybersecurity veterans called the ban "dangerous" underscores a painful irony: the very tools needed to defend digital infrastructure are being restricted in the name of protecting it. Other AI labs are watching closely — if it happened to Anthropic, it can happen to anyone.</p>
+<p>Meanwhile, the capital flowing into AI continues to accelerate at a staggering pace. Nvidia's $25B bond oversubscribed 3x, Bezos's Prometheus hits $41B, Salesforce drops $3.6B on Fin, and Sarvam reaches unicorn status with India backing it. The message from investors is clear: AI is not a bubble — it's the largest wealth creation event in history, and everyone wants in.</p>
+<p>But beneath the money, structural challenges are emerging. The AI layoff wave is becoming a "powder keg," with 40,000 cuts in a single month and AI cited as the top reason for layoffs across every industry. NewCore's $66M raise to manage AI agent identities signals that companies are already hitting governance walls. And India's debate over sovereign AI — triggered by the Anthropic shutdown — shows that the geopolitical dimensions of AI are just beginning to unfold.</p>
+<p>The theme connecting everything is clear: AI is becoming too powerful for existing systems to handle — whether those systems are government regulations, corporate identity platforms, or global supply chains. The next phase of the AI revolution won't just be about building better models. It will be about building the infrastructure, governance, and international frameworks needed to manage what we've already created.</p>
+<p>We're not just building the future. We're scrambling to govern it.</p>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <p>Daily AI Digest &mdash; Curated AI agent news, every day.</p>
+  <p style="margin-top:6px; opacity:0.6;">&copy; 2026 LancerLoki &middot; Built with care on Cloudflare Pages</p>
+</footer>
+
+</div>
+
+<!-- SCROLL ANIMATIONS -->
+<script>
+(function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.post-card, .hero, .section-header, .post-page, .about-page').forEach(el => {
+    el.classList.add('fade-up');
+    observer.observe(el);
+  });
+
+  setTimeout(() => {
+    const hero = document.querySelector('.hero');
+    if (hero) hero.classList.add('visible');
+  }, 100);
+})();
+</script>
+
+</body>
+</html>
