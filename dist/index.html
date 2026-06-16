@@ -179,18 +179,31 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.6;
 .dg-rt{display:flex;align-items:center;gap:4px}
 .dg-sc{display:flex;align-items:center;gap:4px;color:var(--a5)}
 
-/* ═══ PULSE ═══ */
-.pulse-sec{position:relative;z-index:2;padding:var(--sec) 40px}
-.pulse-inner{max-width:var(--cw);margin:0 auto}
-.pulse-dash{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.pulse-stat{position:relative;padding:44px 32px;background:var(--card);border:1px solid var(--gb);border-radius:var(--rs);backdrop-filter:blur(20px);text-align:center;overflow:hidden;transition:all .4s cubic-bezier(.4,0,.2,1)}
-.pulse-stat:hover{border-color:var(--gbh);transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.25)}
-.pulse-stat::after{content:'';position:absolute;bottom:0;left:10%;right:10%;height:2px;background:var(--grad);opacity:0;transition:opacity .4s}
-.pulse-stat:hover::after{opacity:1}
-.pulse-icon{font-size:32px;margin-bottom:16px;display:block}
-.pulse-val{font-family:var(--fd);font-size:52px;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px;line-height:1}
-.pulse-lbl{font-size:14px;color:var(--tx2);font-weight:500}
-.pulse-tr{display:inline-flex;align-items:center;gap:4px;margin-top:14px;padding:4px 12px;background:rgba(52,211,153,.1);border-radius:100px;font-size:11px;font-weight:600;color:var(--a4)}
+/* ═══ METRICS (below hero) ═══ */
+.metrics-sec{position:relative;z-index:2;padding:60px 40px 0}
+.metrics-inner{max-width:var(--cw);margin:0 auto}
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.metric-card{position:relative;padding:36px 28px;background:var(--card);border:1px solid var(--gb);border-radius:var(--r);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);text-align:center;overflow:hidden;transition:all .45s cubic-bezier(.4,0,.2,1)}
+.metric-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent)}
+.metric-card::after{content:'';position:absolute;inset:0;border-radius:var(--r);background:radial-gradient(ellipse at 50% 0%,rgba(124,108,240,.06),transparent 70%);opacity:0;transition:opacity .45s;pointer-events:none}
+.metric-card:hover::after{opacity:1}
+.metric-card:hover{border-color:rgba(124,108,240,.15);transform:translateY(-6px);box-shadow:0 24px 64px rgba(0,0,0,.3),0 0 40px rgba(124,108,240,.06)}
+.metric-glow{position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:120px;height:120px;border-radius:50%;opacity:.12;filter:blur(40px);pointer-events:none;transition:opacity .45s}
+.metric-card:hover .metric-glow{opacity:.25}
+.metric-icon{width:52px;height:52px;margin:0 auto 16px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;position:relative;z-index:1}
+.metric-icon.p{background:linear-gradient(135deg,rgba(124,108,240,.15),rgba(124,108,240,.05));border:1px solid rgba(124,108,240,.15)}
+.metric-icon.c{background:linear-gradient(135deg,rgba(0,212,240,.15),rgba(0,212,240,.05));border:1px solid rgba(0,212,240,.15)}
+.metric-icon.g{background:linear-gradient(135deg,rgba(52,211,153,.15),rgba(52,211,153,.05));border:1px solid rgba(52,211,153,.15)}
+.metric-icon.pk{background:linear-gradient(135deg,rgba(244,114,182,.15),rgba(244,114,182,.05));border:1px solid rgba(244,114,182,.15)}
+.metric-val{font-family:var(--fd);font-size:clamp(36px,4vw,52px);font-weight:700;line-height:1.1;margin-bottom:6px;position:relative;z-index:1}
+.metric-val .num{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.metric-val .suf{font-size:.5em;opacity:.7}
+.metric-lbl{font-size:13px;color:var(--tx2);font-weight:500;margin-bottom:12px;position:relative;z-index:1}
+.metric-trend{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:100px;font-size:11px;font-weight:600;position:relative;z-index:1}
+.metric-trend.up{background:rgba(52,211,153,.08);color:var(--a4);border:1px solid rgba(52,211,153,.12)}
+.metric-trend.new{background:rgba(0,212,240,.08);color:var(--a3);border:1px solid rgba(0,212,240,.12)}
+.metric-bar{height:3px;background:rgba(255,255,255,.04);border-radius:100px;margin-top:16px;overflow:hidden;position:relative;z-index:1}
+.metric-bar-fill{height:100%;border-radius:100px;width:0;transition:width 1.8s cubic-bezier(.4,0,.2,1)}
 
 /* ═══ TOOLS ═══ */
 .tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -260,7 +273,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.6;
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:1024px){
   .dg-grid{grid-template-columns:repeat(2,1fr)}.tools-grid{grid-template-columns:repeat(2,1fr)}
-  .pulse-dash{grid-template-columns:repeat(2,1fr)}.feat-img{min-height:320px}
+  .metrics-grid{grid-template-columns:repeat(2,1fr)}.feat-img{min-height:320px}
   .feat-content{padding:36px 28px 40px}
   .feat-ai-summary{padding:16px 18px}
   .footer-inner{grid-template-columns:1fr 1fr}
@@ -269,16 +282,16 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.6;
   :root{--sec:80px}.nav{padding:14px 20px}.nav-links{display:none}.nav-mt{display:block}
   .hero{padding:120px 20px 80px}.hero h1{letter-spacing:-1.5px}.hfc{display:none}
   .sec{padding:var(--sec) 20px}.feat-sec{padding:0 20px var(--sec)}
-  .pulse-sec,.social-sec,.nl-sec{padding:var(--sec) 20px}
+  .metrics-sec,.social-sec,.nl-sec{padding:var(--sec) 20px}
   .dg-grid{grid-template-columns:1fr}.tools-grid{grid-template-columns:1fr}
-  .pulse-dash{grid-template-columns:repeat(2,1fr)}.feat-content{padding:36px 28px 40px}
+  .metrics-grid{grid-template-columns:repeat(2,1fr)}.feat-content{padding:36px 28px 40px}
   .feat-img{min-height:240px}.feat-img-icon{font-size:70px}
   .feat-ai-summary{padding:16px 18px;flex-direction:column;gap:10px}
   .nl-card{padding:48px 28px}.nl-form{flex-direction:column}.social-metrics{gap:32px}
   .footer-inner{grid-template-columns:1fr;gap:32px}.footer-bot{flex-direction:column;gap:16px;text-align:center}
 }
 @media(max-width:480px){
-  .pulse-dash{grid-template-columns:1fr}.hero-ctas{flex-direction:column;width:100%}.btn-p,.btn-s{width:100%;justify-content:center}
+  .metrics-grid{grid-template-columns:1fr}.hero-ctas{flex-direction:column;width:100%}.btn-p,.btn-s{width:100%;justify-content:center}
 }
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.07);border-radius:100px}
 </style>
@@ -537,7 +550,7 @@ const POSTS_DATA = [
     <li><a href="#featured">Featured</a></li>
     <li><a href="#latest">Latest</a></li>
     <li><a href="#tools">Tools</a></li>
-    <li><a href="#pulse">Pulse</a></li>
+    <li><a href="#metrics">Pulse</a></li>
     <li><a href="#newsletter" class="nav-cta">Subscribe Free</a></li>
   </ul>
   <button class="nav-mt" id="navToggle" aria-label="Menu">☰</button>
@@ -568,6 +581,48 @@ const POSTS_DATA = [
 
 <!-- ═══ TICKER ═══ -->
 <div class="ticker"><div class="ticker-track" id="tickerTrack"></div></div>
+
+<!-- ═══ METRICS (right below hero) ═══ -->
+<section class="metrics-sec" id="metrics">
+  <div class="metrics-inner">
+    <div class="metrics-grid reveal">
+      <div class="metric-card">
+        <div class="metric-glow" style="background:rgba(124,108,240,.3)"></div>
+        <div class="metric-icon p">📰</div>
+        <div class="metric-val"><span class="num" data-count="2847">0</span></div>
+        <div class="metric-lbl">Articles Summarized</div>
+        <span class="metric-trend up">↑ 12% this week</span>
+        <div class="metric-bar"><div class="metric-bar-fill" style="width:85%;background:linear-gradient(90deg,#7c6cf0,#b46eff)"></div></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-glow" style="background:rgba(0,212,240,.3)"></div>
+        <div class="metric-icon c">📡</div>
+        <div class="metric-val"><span class="num" data-count="48">0</span></div>
+        <div class="metric-lbl">Sources Monitored</div>
+        <span class="metric-trend new">+ 3 new</span>
+        <div class="metric-bar"><div class="metric-bar-fill" style="width:68%;background:linear-gradient(90deg,#00d4f0,#34d399)"></div></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-glow" style="background:rgba(52,211,153,.3)"></div>
+        <div class="metric-icon g">🛠</div>
+        <div class="metric-val"><span class="num" data-count="126">0</span></div>
+        <div class="metric-lbl">AI Tools Tracked</div>
+        <span class="metric-trend up">↑ 8 this week</span>
+        <div class="metric-bar"><div class="metric-bar-fill" style="width:72%;background:linear-gradient(90deg,#34d399,#00d4f0)"></div></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-glow" style="background:rgba(244,114,182,.3)"></div>
+        <div class="metric-icon pk">📄</div>
+        <div class="metric-val"><span class="num" data-count="892">0</span></div>
+        <div class="metric-lbl">Papers Analyzed</div>
+        <span class="metric-trend up">↑ 24 this week</span>
+        <div class="metric-bar"><div class="metric-bar-fill" style="width:60%;background:linear-gradient(90deg,#f472b6,#b46eff)"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
 <!-- ═══ FEATURED ═══ -->
 <section class="feat-sec" id="featured">
@@ -616,23 +671,6 @@ const POSTS_DATA = [
     <p class="sec-d">Every day we scan the entire AI landscape and distill the most important developments into concise, actionable briefings.</p>
   </div>
   <div class="dg-grid" id="dgGrid"></div>
-</section>
-
-<!-- ═══ MARKET PULSE ═══ -->
-<section class="pulse-sec" id="pulse">
-  <div class="pulse-inner">
-    <div class="sec-h reveal">
-      <div class="sec-ey">Real-Time Analytics</div>
-      <h2 class="sec-t">AI Market <span class="grad">Pulse</span></h2>
-      <p class="sec-d">Tracking the metrics that matter across the AI ecosystem.</p>
-    </div>
-    <div class="pulse-dash reveal">
-      <div class="pulse-stat"><span class="pulse-icon">📰</span><div class="pulse-val" data-count="2847">0</div><div class="pulse-lbl">Articles Summarized</div><span class="pulse-tr">↑ 12% this week</span></div>
-      <div class="pulse-stat"><span class="pulse-icon">📡</span><div class="pulse-val" data-count="48">0</div><div class="pulse-lbl">Sources Monitored</div><span class="pulse-tr">↑ 3 new</span></div>
-      <div class="pulse-stat"><span class="pulse-icon">🛠</span><div class="pulse-val" data-count="126">0</div><div class="pulse-lbl">AI Tools Tracked</div><span class="pulse-tr">↑ 8 this week</span></div>
-      <div class="pulse-stat"><span class="pulse-icon">📄</span><div class="pulse-val" data-count="892">0</div><div class="pulse-lbl">Papers Analyzed</div><span class="pulse-tr">↑ 24 this week</span></div>
-    </div>
-  </div>
 </section>
 
 <!-- ═══ TRENDING TOOLS ═══ -->
@@ -907,6 +945,10 @@ const POSTS_DATA = [
   var counters=document.querySelectorAll('[data-count]');
   var co=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var el=e.target,target=parseInt(el.dataset.count),dur=2200,start=performance.now();function tick(n){var p=Math.min((n-start)/dur,1),ease=1-Math.pow(1-p,4);el.textContent=Math.floor(target*ease).toLocaleString();if(p<1)requestAnimationFrame(tick);else el.textContent=target.toLocaleString();}requestAnimationFrame(tick);co.unobserve(el);}});},{threshold:.3});
   counters.forEach(function(el){co.observe(el);});
+  // Animate metric bars
+  var metricBars=document.querySelectorAll('.metric-bar-fill');
+  var barObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var bar=e.target;bar.style.width=bar.style.width;barObs.unobserve(bar);}});},{threshold:.3});
+  metricBars.forEach(function(bar){barObs.observe(bar);});
 
   // ── Nav ──
   var nav=document.getElementById('nav');
