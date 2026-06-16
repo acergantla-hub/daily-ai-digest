@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Daily AI Digest — Premium Static Site Builder v2.0
-Reads markdown posts from ./posts/ and generates a premium dark-themed static site in ./dist/
+Daily AI Digest — Premium Static Site Builder v3.0
+Reads markdown posts from ./posts/ and generates a world-class AI media platform in ./dist/
 """
 
 import os
@@ -28,9 +28,11 @@ TEMPLATE_FILE = APP_DIR / "post-template.html"
 INDEX_FILE = APP_DIR / "index.html"
 ABOUT_FILE = APP_DIR / "about.html"
 
+
 def slugify(title):
     s = re.sub(r'[^\w\s-]', '', title.lower())
     return re.sub(r'[\s_]+', '-', s.strip())
+
 
 def parse_frontmatter(content):
     meta = {}
@@ -44,15 +46,18 @@ def parse_frontmatter(content):
                 meta[key.strip()] = val.strip().strip('"').strip("'")
     return meta, body
 
+
 def md_to_html(md_text):
     md = markdown.Markdown(extensions=['fenced_code', 'codehilite', 'tables', 'toc', 'nl2br'])
     return md.convert(md_text)
+
 
 def cat_class(category):
     cat = (category or 'General').lower()
     if 'digest' in cat and 'tool' not in cat: return 'digest'
     if 'tool' in cat: return 'tools'
     return 'general'
+
 
 def build_posts_data(posts):
     """Build JSON data for the index page."""
@@ -71,6 +76,7 @@ def build_posts_data(posts):
         })
     return result
 
+
 def build_post_page(post, template_html):
     """Build an individual post page from template."""
     tags_html = ''.join(f'<span class="post-header-tag">{t}</span>' for t in post.get('tags', []))
@@ -84,6 +90,7 @@ def build_post_page(post, template_html):
     html = html.replace('{{CONTENT}}', post['body_html'])
     return html
 
+
 def build_index(posts_data_json):
     """Build the index.html with real post data."""
     html = INDEX_FILE.read_text()
@@ -95,8 +102,9 @@ def build_index(posts_data_json):
     
     return html
 
+
 def build():
-    print("🔨 Building Daily AI Digest v2.0 — Premium Edition...")
+    print("🔨 Building Daily AI Digest v3.0 — World-Class AI Media Platform...")
 
     # Clean dist
     if DIST_DIR.exists():
@@ -104,7 +112,7 @@ def build():
     DIST_DIR.mkdir()
     (DIST_DIR / "posts").mkdir()
 
-    # Copy app files
+    # Copy static assets from app
     for f in APP_DIR.glob("*.html"):
         if f.name != 'post-template.html':
             shutil.copy2(f, DIST_DIR / f.name)
@@ -165,6 +173,7 @@ def build():
     print(f"\n✅ Build complete! {len(posts)} posts generated.")
     print(f"   Output: {DIST_DIR}/")
     print(f"   Deploy: Push to GitHub → Cloudflare Pages → /dist")
+
 
 if __name__ == '__main__':
     build()
