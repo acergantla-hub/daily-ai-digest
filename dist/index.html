@@ -122,24 +122,37 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.6;
 
 /* ═══ FEATURED ═══ */
 .feat-sec{position:relative;z-index:2;padding:0 40px var(--sec);max-width:var(--cw);margin:0 auto}
-.feat-card{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--card);border:1px solid var(--gb);border-radius:var(--r);backdrop-filter:blur(24px);overflow:hidden;transition:all .5s cubic-bezier(.4,0,.2,1);cursor:pointer;text-decoration:none;color:inherit}
-.feat-card:hover{border-color:var(--gbh);transform:translateY(-5px);box-shadow:0 28px 80px rgba(0,0,0,.4),0 0 40px rgba(124,108,240,.06)}
-.feat-img{position:relative;min-height:420px;background:linear-gradient(135deg,#1a1040,#0c2340,#1a1040);display:flex;align-items:center;justify-content:center;overflow:hidden}
-.feat-img::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(124,108,240,.2),transparent 50%),radial-gradient(circle at 70% 60%,rgba(0,212,240,.15),transparent 50%)}
-.feat-img-in{position:relative;z-index:1;text-align:center;padding:40px}
-.feat-img-icon{font-size:80px;margin-bottom:16px;display:block;animation:fi 6s ease-in-out infinite}
-@keyframes fi{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-.feat-img-label{font-family:var(--fm);font-size:12px;color:var(--tx3);text-transform:uppercase;letter-spacing:3px}
-.feat-content{padding:56px 48px;display:flex;flex-direction:column;justify-content:center}
-.feat-meta{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
-.feat-cat{padding:5px 14px;background:rgba(124,108,240,.12);border:1px solid rgba(124,108,240,.25);border-radius:100px;color:var(--a1);font-weight:600;font-size:12px;letter-spacing:.5px}
+.feat-card{position:relative;display:block;background:var(--card);border:1px solid var(--gb);border-radius:var(--r);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);overflow:hidden;transition:all .55s cubic-bezier(.4,0,.2,1);cursor:pointer;text-decoration:none;color:inherit}
+.feat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);opacity:0;transition:opacity .5s}
+.feat-card:hover::before{opacity:1}
+.feat-card:hover{border-color:rgba(124,108,240,.2);transform:translateY(-6px);box-shadow:0 32px 100px rgba(0,0,0,.45),0 0 60px rgba(124,108,240,.08),inset 0 1px 0 rgba(255,255,255,.04)}
+.feat-img{position:relative;min-height:480px;background:linear-gradient(135deg,#0f0a2a,#0a1a30,#0f0a2a);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.feat-img::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 500px 400px at 25% 35%,rgba(124,108,240,.18),transparent 60%),radial-gradient(ellipse 400px 350px at 75% 65%,rgba(0,212,240,.12),transparent 60%),radial-gradient(ellipse 300px 300px at 50% 50%,rgba(180,110,255,.08),transparent 60%)}
+.feat-img::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,rgba(10,10,20,.95),transparent);pointer-events:none}
+.feat-img-in{position:relative;z-index:1;text-align:center;padding:60px 40px}
+.feat-img-icon{font-size:100px;margin-bottom:20px;display:block;animation:fi 6s ease-in-out infinite;filter:drop-shadow(0 0 30px rgba(124,108,240,.3))}
+@keyframes fi{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-12px) scale(1.03)}}
+.feat-img-label{font-family:var(--fm);font-size:11px;color:var(--tx3);text-transform:uppercase;letter-spacing:4px}
+.feat-content{padding:48px 56px 56px;display:flex;flex-direction:column;gap:20px}
+.feat-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.feat-cat{padding:6px 16px;background:rgba(124,108,240,.12);border:1px solid rgba(124,108,240,.25);border-radius:100px;color:var(--a1);font-weight:600;font-size:11px;letter-spacing:.8px;text-transform:uppercase}
+.feat-rt{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;background:rgba(0,212,240,.08);border:1px solid rgba(0,212,240,.15);border-radius:100px;color:var(--a3);font-size:11px;font-weight:600;font-family:var(--fm)}
 .feat-date{font-family:var(--fm);font-size:13px;color:var(--tx3)}
-.feat-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.2);border-radius:100px;color:var(--a4);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;width:fit-content}
-.feat-content h2{font-family:var(--fd);font-size:clamp(24px,3vw,36px);font-weight:700;letter-spacing:-1px;line-height:1.2;margin-bottom:16px;transition:color .3s}
+.feat-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.2);border-radius:100px;color:var(--a4);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;width:fit-content}
+.feat-badge::before{content:'✦';font-size:10px}
+.feat-content h2{font-family:var(--fd);font-size:clamp(28px,3.5vw,44px);font-weight:700;letter-spacing:-1.2px;line-height:1.15;margin-bottom:4px;transition:all .4s}
 .feat-card:hover .feat-content h2{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.feat-ex{font-size:16px;color:var(--tx2);line-height:1.7;margin-bottom:28px}
+.feat-ex{font-size:17px;color:var(--tx2);line-height:1.75;max-width:680px}
+.feat-ai-summary{display:flex;align-items:flex-start;gap:14px;padding:20px 24px;background:rgba(124,108,240,.04);border:1px solid rgba(124,108,240,.08);border-radius:var(--rs);margin-top:4px}
+.feat-ai-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,rgba(124,108,240,.15),rgba(0,212,240,.15));display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;border:1px solid rgba(124,108,240,.15)}
+.feat-ai-text{flex:1}
+.feat-ai-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--a1);margin-bottom:4px}
+.feat-ai-desc{font-size:14px;color:var(--tx2);line-height:1.6}
+.feat-footer{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
 .feat-read{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--a1);transition:gap .3s}
 .feat-card:hover .feat-read{gap:14px}
+.feat-tags{display:flex;gap:6px;flex-wrap:wrap}
+.feat-tag{padding:4px 10px;background:rgba(255,255,255,.03);border:1px solid var(--gb);border-radius:100px;font-size:11px;color:var(--tx2);font-family:var(--fm)}
 
 /* ═══ DIGESTS ═══ */
 .dg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -239,7 +252,9 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.6;
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:1024px){
   .dg-grid{grid-template-columns:repeat(2,1fr)}.tools-grid{grid-template-columns:repeat(2,1fr)}
-  .pulse-dash{grid-template-columns:repeat(2,1fr)}.feat-card{grid-template-columns:1fr}.feat-img{min-height:280px}
+  .pulse-dash{grid-template-columns:repeat(2,1fr)}.feat-img{min-height:320px}
+  .feat-content{padding:36px 28px 40px}
+  .feat-ai-summary{padding:16px 18px}
   .footer-inner{grid-template-columns:1fr 1fr}
 }
 @media(max-width:768px){
@@ -248,7 +263,9 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.6;
   .sec{padding:var(--sec) 20px}.feat-sec{padding:0 20px var(--sec)}
   .pulse-sec,.social-sec,.nl-sec{padding:var(--sec) 20px}
   .dg-grid{grid-template-columns:1fr}.tools-grid{grid-template-columns:1fr}
-  .pulse-dash{grid-template-columns:repeat(2,1fr)}.feat-content{padding:36px 28px}
+  .pulse-dash{grid-template-columns:repeat(2,1fr)}.feat-content{padding:36px 28px 40px}
+  .feat-img{min-height:240px}.feat-img-icon{font-size:70px}
+  .feat-ai-summary{padding:16px 18px;flex-direction:column;gap:10px}
   .nl-card{padding:48px 28px}.nl-form{flex-direction:column}.social-metrics{gap:32px}
   .footer-inner{grid-template-columns:1fr;gap:32px}.footer-bot{flex-direction:column;gap:16px;text-align:center}
 }
@@ -552,6 +569,7 @@ const POSTS_DATA = [
   </div>
   <a href="#" class="feat-card reveal" id="featuredCard">
     <div class="feat-img">
+      <div class="feat-img-nodes" id="featImgNodes"></div>
       <div class="feat-img-in">
         <span class="feat-img-icon">🧠</span>
         <div class="feat-img-label">AI Intelligence Report</div>
@@ -559,13 +577,24 @@ const POSTS_DATA = [
     </div>
     <div class="feat-content">
       <div class="feat-meta">
-        <span class="feat-badge">✦ AI Visual Summary</span>
+        <span class="feat-badge">AI Visual Summary</span>
         <span class="feat-cat" id="featCat">Daily Digest</span>
+        <span class="feat-rt">⏱ 5 min read</span>
         <span class="feat-date" id="featDate">Loading...</span>
       </div>
       <h2 id="featTitle">Loading featured story...</h2>
       <p class="feat-ex" id="featExcerpt">Loading...</p>
-      <span class="feat-read">Read Full Story →</span>
+      <div class="feat-ai-summary">
+        <div class="feat-ai-icon">⚡</div>
+        <div class="feat-ai-text">
+          <div class="feat-ai-label">AI Summary</div>
+          <div class="feat-ai-desc" id="featAiDesc">Loading AI-generated summary...</div>
+        </div>
+      </div>
+      <div class="feat-footer">
+        <div class="feat-tags" id="featTags"></div>
+        <span class="feat-read">Read Full Story →</span>
+      </div>
     </div>
   </a>
 </section>
@@ -893,6 +922,30 @@ const POSTS_DATA = [
     document.getElementById('featExcerpt').textContent=f.excerpt||"Today's curated AI intelligence briefing.";
     document.getElementById('featDate').textContent=f.dateDisplay||f.date;
     document.getElementById('featCat').textContent=f.category||'Daily Digest';
+    // AI summary from excerpt
+    var aiDesc=f.excerpt?f.excerpt.substring(0,180)+(f.excerpt.length>180?'...':''):"Today's curated AI intelligence briefing covering the latest breakthroughs, agent developments, and industry shifts.";
+    document.getElementById('featAiDesc').textContent=aiDesc;
+    // Tags
+    var tagsEl=document.getElementById('featTags');
+    if(f.tags&&f.tags.length){
+      tagsEl.innerHTML=f.tags.slice(0,5).map(function(t){return'<span class="feat-tag">'+t.replace(/-/g,' ')+'</span>';}).join('');
+    }else{
+      tagsEl.innerHTML='<span class="feat-tag">AI</span><span class="feat-tag">Daily Digest</span><span class="feat-tag">Breakthroughs</span>';
+    }
+    // Floating nodes in featured image
+    var nodesEl=document.getElementById('featImgNodes');
+    if(nodesEl){
+      var nodeHtml='';
+      for(var ni=0;ni<12;ni++){
+        var nx=10+Math.random()*80;
+        var ny=10+Math.random()*80;
+        var nd=1.5+Math.random()*2.5;
+        var ndl=Math.random()*3;
+        var nc=Math.random()>.6?'var(--a1)':Math.random()>.5?'var(--a3)':'var(--a2)';
+        nodeHtml+='<div class="feat-img-node" style="left:'+nx+'%;top:'+ny+'%;width:'+nd+'px;height:'+nd+'px;background:'+nc+';animation-delay:-'+ndl+'s;box-shadow:0 0 '+nd*3+'px '+nc+'"></div>';
+      }
+      nodesEl.innerHTML=nodeHtml;
+    }
     fc.href=f.url;
     var rest=POSTS_DATA.slice(1,7);
     grid.innerHTML=rest.map(function(p,i){return'<a href="'+p.url+'" class="dg-card reveal rd'+Math.min(i+1,6)+'"><div class="dg-icon '+ic(p.category)+'">'+ig(p.category)+'</div><div class="dg-cat">'+(p.category||'Daily Digest')+'</div><h3>'+p.title+'</h3><p class="dg-ex">'+(p.excerpt||'Curated AI intelligence briefing.')+'</p><div class="dg-meta"><div class="dg-ml"><span class="dg-rt">⏱ 5 min</span><span class="dg-sc">★ 9.'+Math.floor(Math.random()*9)+'</span></div><span>'+(p.dateDisplay||p.date)+'</span></div></a>';}).join('');
