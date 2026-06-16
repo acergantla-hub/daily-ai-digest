@@ -113,8 +113,8 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.6;
 .nav-links a:hover{color:var(--tx)}
 .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--grad);transition:width .3s cubic-bezier(.4,0,.2,1)}
 .nav-links a:hover::after{width:100%}
-.nav-cta{padding:10px 24px;background:var(--grad);border:none;border-radius:12px;color:#fff;font-size:13px;font-weight:600;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);text-decoration:none;box-shadow:0 0 24px rgba(124,108,240,.25)}
-.nav-cta:hover{transform:translateY(-2px);box-shadow:0 4px 32px rgba(124,108,240,.5)}
+.nav-cta{padding:10px 24px;background:#00d4f0;border:none;border-radius:12px;color:#020205;font-size:13px;font-weight:700;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);text-decoration:none;box-shadow:0 0 20px rgba(0,212,240,.35)}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 4px 32px rgba(0,212,240,.6);background:#33e0f7}
 .nav-mt{display:none;background:none;border:none;color:var(--tx);font-size:24px;cursor:pointer;padding:4px}
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -300,8 +300,8 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.6;
 .nl-input{flex:1;padding:18px 24px;background:rgba(255,255,255,.04);border:1px solid var(--glass-b);border-radius:16px;color:var(--tx);font-size:15px;font-family:var(--fb);outline:none;transition:all .3s}
 .nl-input::placeholder{color:var(--tx3)}
 .nl-input:focus{border-color:var(--a1);background:rgba(255,255,255,.06);box-shadow:0 0 0 4px rgba(124,108,240,.1)}
-.nl-btn{padding:18px 36px;background:var(--grad);border:none;border-radius:16px;color:#fff;font-size:15px;font-weight:600;cursor:pointer;transition:all .35s cubic-bezier(.4,0,.2,1);white-space:nowrap;box-shadow:0 4px 24px rgba(124,108,240,.3)}
-.nl-btn:hover{transform:translateY(-3px);box-shadow:0 8px 36px rgba(124,108,240,.5)}
+.nl-btn{padding:18px 36px;background:#00d4f0;border:none;border-radius:16px;color:#020205;font-size:15px;font-weight:700;cursor:pointer;transition:all .35s cubic-bezier(.4,0,.2,1);white-space:nowrap;box-shadow:0 4px 24px rgba(0,212,240,.35)}
+.nl-btn:hover{transform:translateY(-3px);box-shadow:0 8px 36px rgba(0,212,240,.6);background:#33e0f7}
 .nl-btn:active{transform:translateY(0)}
 .nl-note{margin-top:20px;font-size:13px;color:var(--tx3)}
 
@@ -377,11 +377,9 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.6;
 ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.07);border-radius:100px}
 ::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.14)}
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   POSTS DATA
-   ═══════════════════════════════════════════════════════════════════════════ */
-const POSTS_DATA = [];
 </style>
+<script>
+const POSTS_DATA = [];</script>
 </head>
 <body>
 
@@ -452,7 +450,7 @@ const POSTS_DATA = [];
     <div class="sec-ey">Editor's Pick</div>
     <h2 class="sec-t">Featured <span class="grad">Story</span></h2>
   </div>
-  <a href="/posts/daily-ai-digest-latest.html" class="feat-card reveal" id="featuredCard">
+  <a href="#" class="feat-card reveal" id="featuredCard">
     <div class="feat-img">
       <div class="feat-img-in">
         <span class="feat-img-icon">🧠</span>
@@ -937,7 +935,7 @@ const POSTS_DATA = [];
     const btn = e.target.querySelector('button');
     if (inp.value) {
       btn.textContent = 'Subscribed ✓';
-      btn.style.background = 'linear-gradient(135deg,#34d399,#00d4f0)';
+      btn.style.background = '#34d399';
       inp.value = '';
       setTimeout(() => { btn.textContent = 'Subscribe Free →'; btn.style.background = ''; }, 3000);
     }
