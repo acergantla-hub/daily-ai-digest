@@ -3,45 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home — Daily AI Digest</title>
+<title>Daily AI Digest — Your Daily Dose of AI Intelligence</title>
+<meta name="description" content="Curated AI breakthroughs, agent updates, Claude Code news, and emerging tools — distilled in minutes.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 <style>
+/* ═══════════════════════════════════════════════════════════════
+   DAILY AI DIGEST — Ultra Premium Dark Theme
+   ═══════════════════════════════════════════════════════════════ */
+
 :root {
-  --bg: #faf9f7;
-  --bg-warm: #f5f0eb;
-  --surface: #ffffff;
-  --surface-glass: rgba(255,255,255,0.7);
-  --border: #e8e4df;
-  --border-strong: #d4cfc8;
-  --text: #1a1a2e;
-  --text-secondary: #4a4a6a;
-  --text-dim: #8a8a9a;
-  --accent: #6c5ce7;
-  --accent-warm: #e17055;
-  --accent-gold: #f0932b;
-  --accent-teal: #00b894;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
-  --shadow-lg: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
-  --shadow-xl: 0 24px 60px rgba(0,0,0,0.1), 0 8px 20px rgba(0,0,0,0.05);
-  --radius: 16px;
-  --radius-sm: 10px;
-  --radius-xs: 6px;
+  --bg-primary: #050508;
+  --bg-secondary: #0a0a10;
+  --bg-tertiary: #0f0f18;
+  --bg-card: rgba(15, 15, 24, 0.6);
+  --bg-card-hover: rgba(20, 20, 35, 0.8);
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-border-hover: rgba(255, 255, 255, 0.12);
+  --text-primary: #f0f0f5;
+  --text-secondary: #8888aa;
+  --text-dim: #555570;
+  --accent-1: #6c5ce7;
+  --accent-2: #a855f7;
+  --accent-3: #06b6d4;
+  --accent-4: #10b981;
+  --accent-5: #f59e0b;
+  --accent-gradient: linear-gradient(135deg, #6c5ce7, #a855f7, #06b6d4);
+  --neon-purple: rgba(168, 85, 247, 0.4);
+  --neon-cyan: rgba(6, 182, 212, 0.4);
+  --neon-green: rgba(16, 185, 129, 0.3);
+  --radius: 20px;
+  --radius-sm: 12px;
+  --radius-xs: 8px;
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.7;
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 /* ═══════════ AMBIENT BACKGROUND ═══════════ */
@@ -57,839 +74,1993 @@ body {
 .ambient-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.35;
-  animation: orbDrift 25s ease-in-out infinite;
-}
-.orb-1 {
-  width: 700px; height: 700px;
-  background: linear-gradient(135deg, #e8d5f5, #d5e8f5);
-  top: -200px; right: -100px;
-  animation-delay: 0s;
-}
-.orb-2 {
-  width: 500px; height: 500px;
-  background: linear-gradient(135deg, #fde8d5, #f5e8d5);
-  bottom: -100px; left: -100px;
-  animation-delay: -10s;
-}
-.orb-3 {
-  width: 400px; height: 400px;
-  background: linear-gradient(135deg, #d5f5e8, #d5e8f5);
-  top: 50%; left: 50%;
-  animation-delay: -18s;
-  opacity: 0.2;
+  filter: blur(150px);
+  opacity: 0.5;
+  will-change: transform;
 }
 
-@keyframes orbDrift {
+.orb-1 {
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(108,92,231,0.3), transparent 70%);
+  top: -300px; right: -200px;
+  animation: orbFloat1 30s ease-in-out infinite;
+}
+
+.orb-2 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(6,182,212,0.25), transparent 70%);
+  bottom: -200px; left: -150px;
+  animation: orbFloat2 35s ease-in-out infinite;
+}
+
+.orb-3 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(168,85,247,0.2), transparent 70%);
+  top: 40%; left: 30%;
+  animation: orbFloat3 40s ease-in-out infinite;
+}
+
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-50px, 30px) scale(1.1); }
+  66% { transform: translate(30px, -40px) scale(0.95); }
+}
+
+@keyframes orbFloat2 {
   0%, 100% { transform: translate(0, 0) scale(1); }
   33% { transform: translate(40px, -30px) scale(1.05); }
-  66% { transform: translate(-30px, 20px) scale(0.95); }
+  66% { transform: translate(-30px, 50px) scale(0.9); }
 }
 
-/* Noise texture overlay */
-.noise-overlay {
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(60px, -60px); }
+}
+
+/* Neural network lines canvas */
+#neural-canvas {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.015;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
+  opacity: 0.4;
 }
 
-/* ═══════════ CONTENT ═══════════ */
-.content-wrapper {
-  position: relative;
-  z-index: 1;
+/* Star field */
+.star-field {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
 }
 
-/* ═══════════ HEADER ═══════════ */
-.site-header {
-  padding: 0;
-  position: sticky;
-  top: 0;
+.star {
+  position: absolute;
+  width: 2px; height: 2px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  animation: starTwinkle var(--duration) ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: var(--max-opacity); }
+}
+
+/* ═══════════ NAVIGATION ═══════════ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
   z-index: 100;
-  background: rgba(250, 249, 247, 0.8);
-  backdrop-filter: blur(20px) saturate(1.8);
-  -webkit-backdrop-filter: blur(20px) saturate(1.8);
-  border-bottom: 1px solid rgba(0,0,0,0.04);
-  transition: all 0.3s ease;
-}
-
-.header-inner {
-  max-width: 1140px;
-  margin: 0 auto;
   padding: 16px 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background: rgba(5, 5, 8, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--glass-border);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.logo {
+.nav.scrolled {
+  padding: 10px 32px;
+  background: rgba(5, 5, 8, 0.9);
+}
+
+.nav-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   text-decoration: none;
-  color: var(--text);
-  transition: opacity 0.2s;
+  color: var(--text-primary);
 }
-.logo:hover { opacity: 0.7; }
 
-.logo-mark {
-  width: 38px; height: 38px;
-  background: linear-gradient(135deg, var(--accent), #a29bfe);
+.nav-logo-icon {
+  width: 36px; height: 36px;
+  background: var(--accent-gradient);
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.15em;
+  font-size: 18px;
+  font-weight: 800;
   color: white;
-  font-weight: 400;
-  box-shadow: 0 2px 8px rgba(108, 92, 231, 0.25);
-  transform: rotate(-3deg);
-  transition: transform 0.3s ease;
+  box-shadow: 0 0 20px rgba(108,92,231,0.4);
 }
-.logo:hover .logo-mark { transform: rotate(0deg) scale(1.05); }
 
-.logo-text {
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-size: 18px;
   font-weight: 700;
-  font-size: 1.15em;
   letter-spacing: -0.5px;
 }
-.logo-text span {
-  font-weight: 400;
-  color: var(--text-dim);
-  font-size: 0.85em;
-  margin-left: 2px;
+
+.nav-logo-text span {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-nav {
+.nav-links {
   display: flex;
-  gap: 4px;
   align-items: center;
+  gap: 32px;
+  list-style: none;
 }
-nav a {
+
+.nav-links a {
   color: var(--text-secondary);
-  font-size: 0.9em;
-  font-weight: 500;
   text-decoration: none;
-  padding: 8px 16px;
-  border-radius: var(--radius-xs);
-  transition: all 0.2s ease;
-}
-nav a:hover {
-  color: var(--text);
-  background: rgba(0,0,0,0.04);
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s;
+  position: relative;
 }
 
-/* ═══════════ HERO ═══════════ */
+.nav-links a:hover { color: var(--text-primary); }
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent-gradient);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-links a:hover::after { width: 100%; }
+
+.nav-cta {
+  padding: 8px 20px;
+  background: var(--accent-gradient);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  box-shadow: 0 0 20px rgba(108,92,231,0.3);
+}
+
+.nav-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 30px rgba(108,92,231,0.5);
+}
+
+/* ═══════════ HERO SECTION ═══════════ */
 .hero {
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 80px 32px 64px;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 32px 80px;
+  overflow: hidden;
 }
 
-.hero-eyebrow {
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  text-align: center;
+}
+
+.hero-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 24px;
-}
-.hero-eyebrow-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--accent-teal);
-  box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.15);
-  animation: dotPulse 2s ease-in-out infinite;
-}
-@keyframes dotPulse {
-  0%, 100% { box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.15); }
-  50% { box-shadow: 0 0 0 6px rgba(0, 184, 148, 0.08); }
-}
-.hero-eyebrow-text {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.78em;
+  padding: 6px 16px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 100px;
+  font-size: 13px;
   font-weight: 500;
-  color: var(--accent-teal);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  backdrop-filter: blur(10px);
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-badge-dot {
+  width: 8px; height: 8px;
+  background: var(--accent-4);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
 }
 
 .hero h1 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 3.8em;
-  font-weight: 400;
-  letter-spacing: -1.5px;
-  line-height: 1.1;
-  margin-bottom: 20px;
-  color: var(--text);
-  max-width: 700px;
-}
-.hero h1 em {
-  font-style: italic;
-  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: clamp(40px, 7vw, 80px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -3px;
+  margin-bottom: 24px;
+  animation: fadeInUp 0.8s ease-out 0.1s both;
 }
 
-.hero-desc {
-  font-size: 1.18em;
+.hero h1 .gradient-text {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero h1 .glow-text {
+  position: relative;
+  color: var(--text-primary);
+  text-shadow: 0 0 40px rgba(168,85,247,0.5), 0 0 80px rgba(108,92,231,0.3);
+}
+
+.hero-sub {
+  font-size: clamp(16px, 2vw, 20px);
   color: var(--text-secondary);
-  max-width: 520px;
+  max-width: 600px;
+  margin: 0 auto 40px;
   line-height: 1.7;
-  font-weight: 400;
-  margin-bottom: 40px;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
 }
 
-/* Hero stats */
-.hero-stats {
-  display: flex;
-  gap: 40px;
-  padding-top: 32px;
-  border-top: 1px solid var(--border);
-}
-.hero-stat-num {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.8em;
-  color: var(--text);
-  line-height: 1;
-  margin-bottom: 4px;
-}
-.hero-stat-label {
-  font-size: 0.8em;
-  color: var(--text-dim);
-  font-weight: 500;
-  letter-spacing: 0.3px;
-}
-
-/* ═══════════ SECTION HEADER ═══════════ */
-.section-header {
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 0 32px 28px;
+.hero-actions {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.8s ease-out 0.3s both;
 }
-.section-title {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.4em;
-  font-weight: 400;
-  letter-spacing: -0.3px;
-  color: var(--text);
-}
-.section-link {
-  font-size: 0.88em;
-  color: var(--accent);
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: var(--accent-gradient);
+  border: none;
+  border-radius: 14px;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
+  box-shadow: 0 4px 20px rgba(108,92,231,0.4), 0 0 40px rgba(108,92,231,0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-primary:hover::before { left: 100%; }
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(108,92,231,0.5), 0 0 60px rgba(108,92,231,0.3);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  color: var(--text-primary);
+  font-size: 15px;
   font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+  border-color: var(--glass-border-hover);
+  background: rgba(255,255,255,0.06);
+  transform: translateY(-2px);
+}
+
+/* 3D Canvas */
+#hero-3d {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+}
+
+/* Floating particles */
+.particles {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px; height: 4px;
+  background: rgba(168,85,247,0.6);
+  border-radius: 50%;
+  animation: particleFloat var(--duration) ease-in-out infinite;
+  animation-delay: var(--delay);
+  box-shadow: 0 0 10px rgba(168,85,247,0.4);
+}
+
+@keyframes particleFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  25% { transform: translate(20px, -30px) scale(1.2); opacity: 0.8; }
+  50% { transform: translate(-10px, -50px) scale(0.8); opacity: 0.5; }
+  75% { transform: translate(30px, -20px) scale(1.1); opacity: 0.7; }
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.scroll-indicator span {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+}
+
+.scroll-indicator .mouse {
+  width: 24px; height: 38px;
+  border: 2px solid var(--text-dim);
+  border-radius: 12px;
+  position: relative;
+}
+
+.scroll-indicator .mouse::after {
+  content: '';
+  position: absolute;
+  top: 6px; left: 50%;
+  transform: translateX(-50%);
+  width: 3px; height: 8px;
+  background: var(--accent-1);
+  border-radius: 2px;
+  animation: scrollDot 2s ease-in-out infinite;
+}
+
+@keyframes scrollDot {
+  0%, 100% { top: 6px; opacity: 1; }
+  50% { top: 20px; opacity: 0.3; }
+}
+
+/* ═══════════ SECTIONS ═══════════ */
+.section {
+  position: relative;
+  z-index: 2;
+  padding: 100px 32px;
+}
+
+.section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--accent-2);
+  margin-bottom: 16px;
+}
+
+.section-eyebrow::before,
+.section-eyebrow::after {
+  content: '';
+  width: 30px; height: 1px;
+  background: var(--accent-2);
+  opacity: 0.5;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 700;
+  letter-spacing: -2px;
+  margin-bottom: 16px;
+}
+
+.section-desc {
+  font-size: 17px;
+  color: var(--text-secondary);
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+/* ═══════════ FEATURED STORY ═══════════ */
+.featured-story {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  align-items: center;
+  padding: 48px;
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.featured-story::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, rgba(108,92,231,0.05), transparent 50%);
+  pointer-events: none;
+}
+
+.featured-story:hover {
+  border-color: var(--glass-border-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 40px rgba(108,92,231,0.1);
+}
+
+.featured-image {
+  width: 100%;
+  aspect-ratio: 16/10;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-tertiary);
+}
+
+.featured-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.featured-story:hover .featured-image img {
+  transform: scale(1.05);
+}
+
+.featured-image-placeholder {
+  width: 100%; height: 100%;
   display: flex;
   align-items: center;
-  gap: 4px;
-  transition: gap 0.2s;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(108,92,231,0.2), rgba(6,182,212,0.2));
+  font-size: 48px;
 }
-.section-link:hover { gap: 8px; }
+
+.featured-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.featured-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.featured-date {
+  color: var(--text-dim);
+}
+
+.featured-category {
+  padding: 4px 12px;
+  background: rgba(108,92,231,0.15);
+  border: 1px solid rgba(108,92,231,0.3);
+  border-radius: 100px;
+  color: var(--accent-1);
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.featured-title {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.featured-excerpt {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.featured-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent-1);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: gap 0.3s;
+}
+
+.featured-link:hover { gap: 14px; }
 
 /* ═══════════ POSTS GRID ═══════════ */
 .posts-grid {
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 0 32px 80px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 24px;
 }
 
-/* Featured post (first one spans full width) */
 .post-card {
-  display: block;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius);
-  padding: 36px;
+  backdrop-filter: blur(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   color: inherit;
-  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
   position: relative;
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
+}
+
+.post-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: var(--accent-gradient);
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 .post-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--border-strong);
+  border-color: var(--glass-border-hover);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 30px rgba(108,92,231,0.08);
 }
 
-.post-card-featured {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  padding: 48px;
-  background: linear-gradient(135deg, #fefefe, #f8f6f3);
-  border-color: var(--border-strong);
-  align-items: center;
-}
-.post-card-featured:hover {
-  box-shadow: var(--shadow-xl);
-}
-
-.post-card-visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 200px;
-}
-
-.post-card-icon {
-  width: 80px; height: 80px;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2em;
-  position: relative;
-}
-.post-card-icon::after {
-  content: '';
-  position: absolute;
-  inset: -8px;
-  border-radius: 26px;
-  opacity: 0.15;
-  background: inherit;
-  filter: blur(12px);
-  z-index: -1;
-}
+.post-card:hover::before { opacity: 1; }
 
 .post-card-meta {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 14px;
-  flex-wrap: wrap;
+  margin-bottom: 16px;
+  font-size: 12px;
 }
+
 .post-card-date {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75em;
   color: var(--text-dim);
-  letter-spacing: 0.3px;
+  font-family: var(--font-mono);
 }
+
 .post-card-category {
-  font-size: 0.72em;
-  font-weight: 600;
   padding: 3px 10px;
+  background: rgba(108,92,231,0.12);
+  border: 1px solid rgba(108,92,231,0.25);
   border-radius: 100px;
+  color: var(--accent-1);
+  font-weight: 600;
+  font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.5px;
 }
-.cat-digest { background: rgba(108,92,231,0.08); color: var(--accent); }
-.cat-tools { background: rgba(225,112,85,0.08); color: var(--accent-warm); }
-.cat-general { background: rgba(0,184,148,0.08); color: var(--accent-teal); }
 
-.post-card h2 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.5em;
-  font-weight: 400;
-  letter-spacing: -0.3px;
-  margin-bottom: 10px;
-  color: var(--text);
+.post-card.category-tools .post-card-category {
+  background: rgba(6,182,212,0.12);
+  border-color: rgba(6,182,212,0.25);
+  color: var(--accent-3);
+}
+
+.post-card.category-digest .post-card-category {
+  background: rgba(16,185,129,0.12);
+  border-color: rgba(16,185,129,0.25);
+  color: var(--accent-4);
+}
+
+.post-card h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
   line-height: 1.3;
-  transition: color 0.2s;
-}
-.post-card:hover h2 { color: var(--accent); }
-
-.post-card-featured h2 {
-  font-size: 2em;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
 }
 
 .post-card p {
+  font-size: 14px;
   color: var(--text-secondary);
-  font-size: 0.95em;
-  line-height: 1.7;
-  font-weight: 400;
+  line-height: 1.6;
+  flex: 1;
+  margin-bottom: 20px;
 }
-.post-card-featured p {
-  font-size: 1.05em;
+
+.post-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .post-card-tags {
-  margin-top: 18px;
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
 }
+
 .post-card-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7em;
+  padding: 2px 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 6px;
+  font-size: 10px;
   color: var(--text-dim);
-  background: rgba(0,0,0,0.03);
-  padding: 3px 10px;
-  border-radius: 100px;
-  border: 1px solid var(--border);
-  transition: all 0.2s;
-}
-.post-card:hover .post-card-tag {
-  border-color: var(--border-strong);
-  background: rgba(0,0,0,0.05);
+  font-family: var(--font-mono);
 }
 
 .post-card-arrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 20px;
-  font-size: 0.88em;
-  font-weight: 500;
-  color: var(--accent);
+  font-size: 13px;
+  color: var(--accent-1);
+  font-weight: 600;
   opacity: 0;
-  transform: translateX(-8px);
-  transition: all 0.3s ease;
+  transform: translateX(-10px);
+  transition: all 0.3s;
 }
+
 .post-card:hover .post-card-arrow {
   opacity: 1;
   transform: translateX(0);
 }
 
+/* ═══════════ TRENDING TOOLS ═══════════ */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.tool-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  backdrop-filter: blur(20px);
+  transition: all 0.3s;
+  text-decoration: none;
+  color: inherit;
+}
+
+.tool-card:hover {
+  border-color: var(--glass-border-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+}
+
+.tool-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.tool-info h4 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.tool-info p {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* ═══════════ MARKET PULSE ═══════════ */
+.market-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.market-card {
+  padding: 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  backdrop-filter: blur(20px);
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.market-card:hover {
+  border-color: var(--glass-border-hover);
+  transform: translateY(-3px);
+}
+
+.market-icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.market-value {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.market-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.market-change {
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.market-change.up { color: var(--accent-4); }
+.market-change.down { color: #ef4444; }
+
+/* ═══════════ NEWSLETTER ═══════════ */
+.newsletter {
+  text-align: center;
+  padding: 80px 48px;
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(20px);
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(108,92,231,0.1), transparent, rgba(6,182,212,0.1), transparent);
+  animation: rotateGlow 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotateGlow {
+  to { transform: rotate(360deg); }
+}
+
+.newsletter > * { position: relative; z-index: 1; }
+
+.newsletter h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  margin-bottom: 12px;
+}
+
+.newsletter p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 12px;
+  max-width: 480px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.newsletter-form input {
+  flex: 1;
+  min-width: 250px;
+  padding: 14px 20px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-size: 15px;
+  font-family: var(--font-body);
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.newsletter-form input::placeholder { color: var(--text-dim); }
+.newsletter-form input:focus { border-color: var(--accent-1); }
+
+.newsletter-form button {
+  padding: 14px 28px;
+  background: var(--accent-gradient);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.newsletter-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(108,92,231,0.4);
+}
+
+/* ═══════════ FOOTER ═══════════ */
+.footer {
+  position: relative;
+  z-index: 2;
+  padding: 64px 32px 32px;
+  border-top: 1px solid var(--glass-border);
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.footer-brand p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 12px;
+  line-height: 1.7;
+}
+
+.footer-col h4 {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+
+.footer-col a {
+  display: block;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  padding: 4px 0;
+  transition: color 0.3s;
+}
+
+.footer-col a:hover { color: var(--text-primary); }
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 32px;
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.footer-social {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-social a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.footer-social a:hover { color: var(--text-primary); }
+
+/* ═══════════ ANIMATIONS ═══════════ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media (max-width: 768px) {
+  .nav { padding: 12px 20px; }
+  .nav-links { display: none; }
+  .hero { padding: 100px 20px 60px; }
+  .hero h1 { letter-spacing: -2px; }
+  .section { padding: 64px 20px; }
+  .featured-story { grid-template-columns: 1fr; padding: 24px; gap: 24px; }
+  .posts-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .newsletter { padding: 48px 24px; }
+  .market-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  .market-grid { grid-template-columns: 1fr 1fr; }
+  .tools-grid { grid-template-columns: 1fr; }
+}
+
 /* ═══════════ POST PAGE ═══════════ */
 .post-page {
-  max-width: 720px;
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 60px 32px 100px;
+  padding: 120px 32px 80px;
 }
 
 .post-back {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--text-dim);
-  font-size: 0.88em;
-  font-weight: 500;
+  color: var(--text-secondary);
   text-decoration: none;
-  margin-bottom: 40px;
-  transition: color 0.2s;
+  font-size: 14px;
+  margin-bottom: 32px;
+  transition: color 0.3s;
 }
-.post-back:hover { color: var(--accent); }
+
+.post-back:hover { color: var(--accent-1); }
 
 .post-header {
   margin-bottom: 48px;
-  padding-bottom: 36px;
-  border-bottom: 1px solid var(--border);
 }
 
 .post-header-meta {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
 }
+
 .post-header-date {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8em;
+  font-family: var(--font-mono);
+  font-size: 13px;
   color: var(--text-dim);
 }
+
 .post-header-category {
-  font-size: 0.75em;
-  font-weight: 600;
-  padding: 3px 12px;
+  padding: 4px 12px;
+  background: rgba(108,92,231,0.15);
+  border: 1px solid rgba(108,92,231,0.3);
   border-radius: 100px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  color: var(--accent-1);
+  font-weight: 600;
+  font-size: 12px;
 }
 
 .post-header h1 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 2.6em;
-  font-weight: 400;
-  letter-spacing: -1px;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 700;
   line-height: 1.15;
-  margin-bottom: 16px;
-  color: var(--text);
+  letter-spacing: -1.5px;
+  margin-bottom: 20px;
 }
-.post-header h1 em { font-style: italic; color: var(--accent); }
 
 .post-header-tags {
   display: flex;
-  gap: 6px;
   flex-wrap: wrap;
+  gap: 8px;
 }
+
 .post-header-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.72em;
-  color: var(--text-dim);
-  background: rgba(0,0,0,0.03);
   padding: 4px 12px;
-  border-radius: 100px;
-  border: 1px solid var(--border);
-}
-
-/* ═══════════ POST CONTENT ═══════════ */
-.post-content {
-  font-size: 1.08em;
-  line-height: 1.85;
-  color: var(--text);
-}
-.post-content h2 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.6em;
-  font-weight: 400;
-  margin: 48px 0 16px;
-  letter-spacing: -0.3px;
-  color: var(--text);
-  position: relative;
-}
-.post-content h2::before {
-  content: '';
-  display: block;
-  width: 32px; height: 3px;
-  background: var(--accent);
-  border-radius: 2px;
-  margin-bottom: 12px;
-  opacity: 0.3;
-}
-.post-content h3 {
-  font-size: 1.2em;
-  font-weight: 600;
-  margin: 32px 0 12px;
-  color: var(--text);
-  letter-spacing: -0.2px;
-}
-.post-content p { margin-bottom: 18px; }
-.post-content strong { font-weight: 600; color: var(--text); }
-
-.post-content blockquote {
-  border-left: 3px solid var(--accent);
-  padding: 16px 24px;
-  margin: 28px 0;
-  background: rgba(108,92,231,0.03);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  font-size: 12px;
   color: var(--text-secondary);
-  font-style: italic;
+  font-family: var(--font-mono);
 }
 
-.post-content code {
-  font-family: 'JetBrains Mono', monospace;
-  background: rgba(0,0,0,0.04);
-  border: 1px solid var(--border);
-  padding: 2px 7px;
-  border-radius: 4px;
-  font-size: 0.85em;
-  color: var(--accent);
+.post-content {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--text-primary);
 }
-.post-content pre {
-  background: #1a1a2e;
-  border-radius: var(--radius-sm);
-  padding: 24px 28px;
-  overflow-x: auto;
-  margin: 24px 0;
-  box-shadow: var(--shadow-md);
+
+.post-content h2 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  margin: 48px 0 20px;
+  letter-spacing: -0.5px;
 }
-.post-content pre code {
-  background: none;
-  border: none;
-  padding: 0;
-  color: #e8e8f0;
-  font-size: 0.88em;
+
+.post-content h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  margin: 36px 0 16px;
+  letter-spacing: -0.3px;
 }
+
+.post-content p {
+  margin-bottom: 20px;
+  color: var(--text-secondary);
+}
+
+.post-content strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.post-content a {
+  color: var(--accent-1);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(108,92,231,0.3);
+  transition: border-color 0.3s;
+}
+
+.post-content a:hover { border-color: var(--accent-1); }
 
 .post-content ul, .post-content ol {
-  margin: 18px 0;
+  margin: 16px 0;
   padding-left: 24px;
 }
-.post-content li { margin-bottom: 6px; }
-.post-content li::marker { color: var(--accent); }
+
+.post-content li {
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+}
 
 .post-content hr {
   border: none;
   height: 1px;
-  background: var(--border);
+  background: var(--glass-border);
   margin: 40px 0;
 }
 
-.post-content a {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(108,92,231,0.2);
-  transition: all 0.2s;
-}
-.post-content a:hover {
-  border-bottom-color: var(--accent);
-}
-
-/* ═══════════ ABOUT PAGE ═══════════ */
-.about-page {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 60px 32px 100px;
-}
-.about-page h1 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 2.6em;
-  font-weight: 400;
-  margin-bottom: 24px;
-  letter-spacing: -1px;
-}
-.about-page p {
+.post-content blockquote {
+  border-left: 3px solid var(--accent-1);
+  padding: 12px 24px;
+  margin: 24px 0;
+  background: rgba(108,92,231,0.05);
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
   color: var(--text-secondary);
-  font-size: 1.08em;
-  margin-bottom: 18px;
-  line-height: 1.8;
-}
-.about-page strong { color: var(--text); }
-
-/* ═══════════ FOOTER ═══════════ */
-.site-footer {
-  border-top: 1px solid var(--border);
-  padding: 40px 32px;
-  text-align: center;
-  color: var(--text-dim);
-  font-size: 0.85em;
-}
-.site-footer a {
-  color: var(--accent);
-  text-decoration: none;
-}
-.site-footer a:hover { text-decoration: underline; }
-
-/* ═══════════ SCROLL ANIMATIONS ═══════════ */
-.fade-up {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-}
-.fade-up.visible {
-  opacity: 1;
-  transform: translateY(0);
+  font-style: italic;
 }
 
-/* ═══════════ SCROLLBAR ═══════════ */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
-
-/* ═══════════ SELECTION ═══════════ */
-::selection {
-  background: rgba(108,92,231,0.12);
-  color: var(--text);
+.post-content img {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  margin: 24px 0;
 }
 
-/* ═══════════ RESPONSIVE ═══════════ */
-@media (max-width: 768px) {
-  .hero h1 { font-size: 2.6em; }
-  .hero-stats { gap: 24px; }
-  .posts-grid { grid-template-columns: 1fr; }
-  .post-card-featured { grid-template-columns: 1fr; padding: 32px; }
-  .post-card-featured h2 { font-size: 1.5em; }
-  .post-card { padding: 28px; }
-  .post-header h1 { font-size: 2em; }
-  .post-content h2 { font-size: 1.4em; }
-  .header-inner { padding: 14px 20px; }
-  .hero { padding: 56px 20px 48px; }
-  .section-header { padding: 0 20px 24px; }
-  .posts-grid { padding: 0 20px 60px; }
-  .post-page { padding: 40px 20px 80px; }
-  .logo-text { font-size: 1em; }
+.post-content code {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  background: rgba(255,255,255,0.06);
+  padding: 2px 8px;
+  border-radius: 4px;
 }
 
-@media (max-width: 480px) {
-  .hero h1 { font-size: 2.1em; }
-  .hero-stats { flex-direction: column; gap: 16px; }
-  .post-card-featured { padding: 24px; }
-  .post-card { padding: 22px; }
+.post-content pre {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  overflow-x: auto;
+  margin: 24px 0;
+}
+
+.post-content pre code {
+  background: none;
+  padding: 0;
 }
 </style>
 </head>
 <body>
 
-<!-- AMBIENT BACKGROUND -->
+<!-- Ambient Background -->
 <div class="ambient-bg">
   <div class="ambient-orb orb-1"></div>
   <div class="ambient-orb orb-2"></div>
   <div class="ambient-orb orb-3"></div>
 </div>
-<div class="noise-overlay"></div>
+<canvas id="neural-canvas"></canvas>
+<div class="star-field" id="star-field"></div>
 
-<!-- MAIN CONTENT -->
-<div class="content-wrapper">
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon">⚡</div>
+    <div class="nav-logo-text">Daily <span>AI</span> Digest</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#latest">Latest</a></li>
+    <li><a href="#trending">Tools</a></li>
+    <li><a href="#market">Market</a></li>
+    <li><a href="/about.html">About</a></li>
+  </ul>
+  <a href="#newsletter" class="nav-cta">Subscribe</a>
+</nav>
 
-<header class="site-header">
-  <div class="header-inner">
-    <a href="/" class="logo">
-      <div class="logo-mark">A</div>
-      <div class="logo-text">Daily AI <span>Digest</span></div>
-    </a>
-    <nav>
-      <a href="/">Posts</a>
-      <a href="/about.html">About</a>
-    </nav>
+<!-- Hero Section -->
+<section class="hero" id="hero">
+  <canvas id="hero-3d"></canvas>
+  <div class="particles" id="particles"></div>
+  
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Updated daily · AI intelligence
+    </div>
+    <h1>
+      Your Daily Dose of<br>
+      <span class="glow-text">AI</span> <span class="gradient-text">Intelligence</span>
+    </h1>
+    <p class="hero-sub">
+      Curated AI breakthroughs, agent updates, Claude Code news, and emerging tools — distilled in minutes.
+    </p>
+    <div class="hero-actions">
+      <a href="#latest" class="btn-primary">
+        Explore Latest
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V8H8"/></svg>
+      </a>
+      <a href="#newsletter" class="btn-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Get Newsletter
+      </a>
+    </div>
   </div>
-</header>
 
+  <div class="scroll-indicator">
+    <div class="mouse"></div>
+    <span>Scroll</span>
+  </div>
+</section>
 
-<section class="hero">
-  <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span><span class="hero-eyebrow-text">Updated daily</span></div>
-  <h1>Your daily dose of <em>AI agent</em> news.</h1>
-  <p class="hero-desc">Curated updates on AI agents, Claude Code, automation tools, and the latest in the AI ecosystem. No fluff — just what matters.</p>
-  <div class="hero-stats">
-    <div>
-      <div class="hero-stat-num">10</div>
-      <div class="hero-stat-label">Articles</div>
+<!-- Featured Story -->
+<section class="section" id="featured">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Featured Story</div>
+      <h2 class="section-title">Today's Top Story</h2>
     </div>
-    <div>
-      <div class="hero-stat-num">3</div>
-      <div class="hero-stat-label">Categories</div>
-    </div>
-    <div>
-      <div class="hero-stat-num">365</div>
-      <div class="hero-stat-label">Days/Year</div>
+    <div class="featured-story reveal reveal-delay-1" id="featured-story">
+      <!-- Populated by JS -->
     </div>
   </div>
 </section>
-<div class="section-header">
-  <h2 class="section-title">Latest Posts</h2>
-</div>
-<section class="posts-grid">
-  
-    <a href="/posts/daily-ai-digest-2026-06-16.html" class="post-card post-card-featured">
-      <div class="post-card-visual">
-        <div class="post-card-icon" style="background:linear-gradient(135deg, #6c5ce7, #a29bfe);color:white;">✦</div>
-      </div>
-      <div>
-        <div class="post-card-meta">
-          <span class="post-card-date">June 16, 2026</span>
-          <span class="post-card-category cat-digest">Daily Digest</span>
+
+<!-- Latest Digests -->
+<section class="section" id="latest">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Latest Digests</div>
+      <h2 class="section-title">Recent AI Digests</h2>
+      <p class="section-desc">Daily curated coverage of the most important AI developments</p>
+    </div>
+    <div class="posts-grid" id="posts-grid">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- Trending Tools -->
+<section class="section" id="trending">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Trending Tools</div>
+      <h2 class="section-title">AI Tools Making Waves</h2>
+      <p class="section-desc">The most talked-about AI tools and platforms right now</p>
+    </div>
+    <div class="tools-grid reveal reveal-delay-1">
+      <a href="https://claude.ai" target="_blank" rel="noopener" class="tool-card">
+        <div class="tool-icon" style="background:linear-gradient(135deg,#d97706,#b45309);">🧠</div>
+        <div class="tool-info">
+          <h4>Claude</h4>
+          <p>Anthropic's AI assistant</p>
         </div>
-        <h2>Daily AI Digest — 2026-06-16</h2>
-        <p>US government forces Anthropic to pull Fable 5 and Mythos 5 models, Nvidia plans $25B bond sale, Bezos's Prometheus hits $41B valuation, and AI layoffs reach a boiling point.</p>
-        <div class='post-card-tags'><span class="post-card-tag">ai-agents</span><span class="post-card-tag">anthropic</span><span class="post-card-tag">claude</span><span class="post-card-tag">daily-digest</span><span class="post-card-tag">google</span><span class="post-card-tag">nvidia</span><span class="post-card-tag">openai</span><span class="post-card-tag">salesforce</span><span class="post-card-tag">meta</span><span class="post-card-tag">india</span><span class="post-card-tag">ai-policy</span><span class="post-card-tag">cybersecurity</span></div>
-        <div class="post-card-arrow">Read article →</div>
-      </div>
-    </a>
-  
-    <a href="/posts/daily-ai-digest-june-15-2026.html" class="post-card">
-      <div class="post-card-meta">
-        <span class="post-card-date">June 15, 2026</span>
-        <span class="post-card-category cat-digest">Daily Digest</span>
-      </div>
-      <h2>Daily AI Digest — June 15, 2026</h2>
-      <p>10 stories: US government forces Anthropic to shut down Fable 5 and Mythos 5 models on national security grounds, OpenAI readies major ChatGPT overhaul to pivot toward agents, Jeff Bezos' Prometheus raises $12B for physical AI engineering, Meta unwinds $2B Manus deal under China pressure, Google announces Gemini 3.5 Live Translate for 70+ languages, Meta Applied AI team in revolt, KPMG pulls AI report over hallucinations, Google sues Chinese AI scam network, Mistral rumored to raise €3B at €20B valuation, and Meta's catch-up AI ambitions under Alexandr Wang.</p>
-      <div class='post-card-tags'><span class="post-card-tag">ai-agents</span><span class="post-card-tag">claude</span><span class="post-card-tag">chatgpt</span><span class="post-card-tag">anthropic</span><span class="post-card-tag">openai</span><span class="post-card-tag">google</span><span class="post-card-tag">meta</span><span class="post-card-tag">mistral</span><span class="post-card-tag">policy</span><span class="post-card-tag">security</span><span class="post-card-tag">ai-hardware</span><span class="post-card-tag">ai-pricing</span><span class="post-card-tag">china</span></div>
-      <div class="post-card-arrow">Read →</div>
-    </a>
-    <a href="/posts/weekly-ai-tools-digest-2026-06-15.html" class="post-card">
-      <div class="post-card-meta">
-        <span class="post-card-date">June 15, 2026</span>
-        <span class="post-card-category cat-tools">Weekly Tools</span>
-      </div>
-      <h2>Weekly AI Tools Digest — 2026-06-15</h2>
-      <p>This week's best new AI tools include AgentFlow for autonomous agent orchestration, LlamaEdit for open-source LLM fine-tuning, and VectorSearch++ for semantic search acceleration.</p>
-      <div class='post-card-tags'><span class="post-card-tag">ai-tools</span><span class="post-card-tag">weekly-digest</span><span class="post-card-tag">free-ai</span><span class="post-card-tag">open-source</span><span class="post-card-tag">github</span><span class="post-card-tag">agent-frameworks</span><span class="post-card-tag">llm-tools</span><span class="post-card-tag">vector-databases</span></div>
-      <div class="post-card-arrow">Read →</div>
-    </a>
-    <a href="/posts/daily-ai-digest-june-04-2026.html" class="post-card">
-      <div class="post-card-meta">
-        <span class="post-card-date">June 04, 2026</span>
-        <span class="post-card-category cat-digest">Daily Digest</span>
-      </div>
-      <h2>Daily AI Digest — June 04, 2026</h2>
-      <p>10 stories: Google Gemma 4 12B runs multimodal AI on your laptop, Uber caps AI tool spending at $1500/month, Anthropic reveals Claude containment engineering, UK orders Google to fix AI search attribution, Microsoft's agent-first Android OS, OpenAI solves 80-year math problem, Intel's cheaper AI chip, Florida sues OpenAI, vibe coding prompt injection war, and LLM hacking benchmarks.</p>
-      <div class='post-card-tags'><span class="post-card-tag">ai-agents</span><span class="post-card-tag">claude-code</span><span class="post-card-tag">daily-digest</span><span class="post-card-tag">google</span><span class="post-card-tag">anthropic</span><span class="post-card-tag">openai</span><span class="post-card-tag">microsoft</span><span class="post-card-tag">nvidia</span><span class="post-card-tag">intel</span><span class="post-card-tag">policy</span><span class="post-card-tag">security</span><span class="post-card-tag">llm-hacking</span><span class="post-card-tag">ai-hardware</span><span class="post-card-tag">ai-pricing</span></div>
-      <div class="post-card-arrow">Read →</div>
-    </a>
-    <a href="/posts/daily-ai-digest-june-03-2026.html" class="post-card">
-      <div class="post-card-meta">
-        <span class="post-card-date">June 03, 2026</span>
-        <span class="post-card-category cat-digest">Daily Digest</span>
-      </div>
-      <h2>Daily AI Digest — June 03, 2026</h2>
-      <p>12 stories: Stanford study says AI beats law professors, Microsoft launches AI agent sandbox, Copilot pricing backlash, Florida sues OpenAI, MiniMax disrupts pricing, Nvidia bets $150B on Taiwan, quantum breakthrough, and more.</p>
-      <div class='post-card-tags'><span class="post-card-tag">ai-agents</span><span class="post-card-tag">claude-code</span><span class="post-card-tag">daily-digest</span><span class="post-card-tag">microsoft</span><span class="post-card-tag">openai</span><span class="post-card-tag">nvidia</span><span class="post-card-tag">policy</span><span class="post-card-tag">mathematics</span><span class="post-card-tag">mental-health</span></div>
-      <div class="post-card-arrow">Read →</div>
-    </a>
-    <a href="/posts/daily-ai-digest-june-2-2026.html" class="post-card">
-      <div class="post-card-meta">
-        <span class="post-card-date">June 02, 2026</span>
-        <span class="post-card-category cat-digest">Daily Digest</span>
-      </div>
-      <h2>Daily AI Digest — June 2, 2026</h2>
-      <p>12 stories: Anthropic files IPO at $965B, Alphabet raises $80B, Nvidia enters CPU market, Gemini Spark hands-on, Florida sues OpenAI, GitHub Copilot outrage, AI music debate, and more</p>
-      <div class='post-card-tags'><span class="post-card-tag">ai-agents</span><span class="post-card-tag">claude-code</span><span class="post-card-tag">daily-digest</span><span class="post-card-tag">anthropic-ipo</span><span class="post-card-tag">nvidia-rtx-spark</span><span class="post-card-tag">gemini-spark</span><span class="post-card-tag">openai-lawsuit</span><span class="post-card-tag">github-copilot</span><span class="post-card-tag">ai-music</span><span class="post-card-tag">ai-hardware</span></div>
-      <div class="post-card-arrow">Read →</div>
-    </a>
-    <a href="/posts/daily-ai-digest-june-01-2026.html" class="post-card">
-      <div class="post-card-meta">
-        <span class="post-card-date">June 01, 2026</span>
-        <span class="post-card-category cat-digest">Daily Digest</span>
-      </div>
-      <h2>Daily AI Digest — June 01, 2026</h2>
-      <p>10 stories: SoftBank €75B French datacenter push, Groq $650M raise, Cognition's $26B valuation & Scott Wu on AI not replacing devs, Claude Code ecosystem explodes with Ralphy/Rotom/Claude-Code-OS, Amnesty calls for ban on scraped AI, G7 agrees on open-source AI language, Meta AI pendant, Gemini Spark review, AI psychosis debate, Instagram AI security flaw</p>
-      <div class='post-card-tags'><span class="post-card-tag">ai-agents</span><span class="post-card-tag">claude-code</span><span class="post-card-tag">daily-digest</span><span class="post-card-tag">softbank</span><span class="post-card-tag">groq</span><span class="post-card-tag">cognition</span><span class="post-card-tag">devin</span><span class="post-card-tag">open-source-ai</span><span class="post-card-tag">g7</span><span class="post-card-tag">amnesty</span><span class="post-card-tag">meta</span><span class="post-card-tag">gemini</span><span class="post-card-tag">ai-psychosis</span><span class="post-card-tag">copilot</span><span class="post-card-tag">tokenmaxxing</span></div>
-      <div class="post-card-arrow">Read →</div>
-    </a>
-    <a href="/posts/daily-ai-digest-may-31-2026.html" class="post-card">
-      <div class="post-card-meta">
-        <span class="post-card-date">May 31, 2026</span>
-        <span class="post-card-category cat-digest">Daily Digest</span>
-      </div>
-      <h2>Daily AI Digest — May 31, 2026</h2>
-      <p>17 stories: Anthropic nears $1T valuation with $65B raise, OpenRouter secures $113M Series B, GitHub Copilot billing backlash, Asana acquires StackAI, Sesame launches from Oculus founders, and the US government proposes sweeping changes to science funding.</p>
-      <div class='post-card-tags'><span class="post-card-tag">ai-agents</span><span class="post-card-tag">claude-code</span><span class="post-card-tag">daily-digest</span><span class="post-card-tag">anthropic</span><span class="post-card-tag">openai</span><span class="post-card-tag">openrouter</span><span class="post-card-tag">series-b</span><span class="post-card-tag">ai-funding</span><span class="post-card-tag">github-copilot</span><span class="post-card-tag">ai-coding</span><span class="post-card-tag">ai-policy</span><span class="post-card-tag">ai-hardware</span><span class="post-card-tag">gemini</span><span class="post-card-tag">ai-startups</span></div>
-      <div class="post-card-arrow">Read →</div>
-    </a>
-    <a href="/posts/daily-ai-digest-may-30-2026.html" class="post-card">
-      <div class="post-card-meta">
-        <span class="post-card-date">May 30, 2026</span>
-        <span class="post-card-category cat-digest">Daily Digest</span>
-      </div>
-      <h2>Daily AI Digest — May 30, 2026</h2>
-      <p>47 stories today: Google's agentic Gemini era, Anthropic's Cowork Claude agent, Robinhood lets AI agents trade stocks, a critical vulnerability in Starlette, and more.</p>
-      <div class='post-card-tags'><span class="post-card-tag">ai-agents</span><span class="post-card-tag">claude-code</span><span class="post-card-tag">gemini</span><span class="post-card-tag">security</span><span class="post-card-tag">daily-digest</span></div>
-      <div class="post-card-arrow">Read →</div>
-    </a>
-    <a href="/posts/welcome-to-daily-ai-digest.html" class="post-card">
-      <div class="post-card-meta">
-        <span class="post-card-date">May 30, 2026</span>
-        <span class="post-card-category cat-general">Launch</span>
-      </div>
-      <h2>Welcome to Daily AI Digest</h2>
-      <p>Why we built this site, what you'll find here, and how to stay ahead of the AI curve every single day.</p>
-      <div class='post-card-tags'><span class="post-card-tag">launch</span><span class="post-card-tag">ai-agents</span><span class="post-card-tag">welcome</span></div>
-      <div class="post-card-arrow">Read →</div>
-    </a>
+      </a>
+      <a href="https://chat.openai.com" target="_blank" rel="noopener" class="tool-card">
+        <div class="tool-icon" style="background:linear-gradient(135deg,#10a37f,#0d7c5f);">💬</div>
+        <div class="tool-info">
+          <h4>ChatGPT</h4>
+          <p>OpenAI's conversational AI</p>
+        </div>
+      </a>
+      <a href="https://github.com/features/copilot" target="_blank" rel="noopener" class="tool-card">
+        <div class="tool-icon" style="background:linear-gradient(135deg,#6c5ce7,#a855f7);">🤖</div>
+        <div class="tool-info">
+          <h4>GitHub Copilot</h4>
+          <p>AI pair programmer</p>
+        </div>
+      </a>
+      <a href="https://cursor.sh" target="_blank" rel="noopener" class="tool-card">
+        <div class="tool-icon" style="background:linear-gradient(135deg,#06b6d4,#0891b2);">⚡</div>
+        <div class="tool-info">
+          <h4>Cursor</h4>
+          <p>AI-first code editor</p>
+        </div>
+      </a>
+      <a href="https://www.anthropic.com/claude-code" target="_blank" rel="noopener" class="tool-card">
+        <div class="tool-icon" style="background:linear-gradient(135deg,#10b981,#059669);">💻</div>
+        <div class="tool-info">
+          <h4>Claude Code</h4>
+          <p>Terminal-based AI coding</p>
+        </div>
+      </a>
+      <a href="https://midjourney.com" target="_blank" rel="noopener" class="tool-card">
+        <div class="tool-icon" style="background:linear-gradient(135deg,#ec4899,#d946ef);">🎨</div>
+        <div class="tool-info">
+          <h4>Midjourney</h4>
+          <p>AI image generation</p>
+        </div>
+      </a>
+      <a href="https://www.langchain.com" target="_blank" rel="noopener" class="tool-card">
+        <div class="tool-icon" style="background:linear-gradient(135deg,#f59e0b,#d97706);">🔗</div>
+        <div class="tool-info">
+          <h4>LangChain</h4>
+          <p>LLM app framework</p>
+        </div>
+      </a>
+      <a href="https://ollama.ai" target="_blank" rel="noopener" class="tool-card">
+        <div class="tool-icon" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed);">🦙</div>
+        <div class="tool-info">
+          <h4>Ollama</h4>
+          <p>Run LLMs locally</p>
+        </div>
+      </a>
+    </div>
+  </div>
 </section>
 
-<footer class="site-footer">
-  <p>Daily AI Digest &mdash; Curated AI agent news, every day.</p>
-  <p style="margin-top:6px; opacity:0.6;">&copy; 2026 LancerLoki &middot; Built with care on Cloudflare Pages</p>
+<!-- Market Pulse -->
+<section class="section" id="market">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">AI Market Pulse</div>
+      <h2 class="section-title">The AI Economy</h2>
+      <p class="section-desc">Key metrics tracking the AI industry's explosive growth</p>
+    </div>
+    <div class="market-grid reveal reveal-delay-1">
+      <div class="market-card">
+        <div class="market-icon">💰</div>
+        <div class="market-value">$185B</div>
+        <div class="market-label">Global AI Market (2026)</div>
+        <div class="market-change up">↑ 32% YoY</div>
+      </div>
+      <div class="market-card">
+        <div class="market-icon">🏢</div>
+        <div class="market-value">15K+</div>
+        <div class="market-label">AI Startups Funded</div>
+        <div class="market-change up">↑ 48% YoY</div>
+      </div>
+      <div class="market-card">
+        <div class="market-icon">👥</div>
+        <div class="market-value">2.3M</div>
+        <div class="market-label">AI/ML Engineers</div>
+        <div class="market-change up">↑ 67% YoY</div>
+      </div>
+      <div class="market-card">
+        <div class="market-icon">📈</div>
+        <div class="market-value">$4.4T</div>
+        <div class="market-label">Projected by 2030</div>
+        <div class="market-change up">CAGR 37%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="section" id="newsletter">
+  <div class="section-inner">
+    <div class="newsletter reveal">
+      <h2>Stay <span class="gradient-text">Ahead</span> of the Curve</h2>
+      <p>Get daily AI intelligence delivered to your inbox. No noise, no fluff — just what matters.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed ✓'; this.querySelector('button').style.background='linear-gradient(135deg, #10b981, #059669)';">
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="nav-logo">
+        <div class="nav-logo-icon">⚡</div>
+        <div class="nav-logo-text">Daily <span>AI</span> Digest</div>
+      </a>
+      <p>Your daily source for curated AI intelligence. We distill the noise into signal — breakthroughs, tools, and insights that actually matter.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="/">Home</a>
+      <a href="#latest">Latest Digests</a>
+      <a href="#trending">AI Tools</a>
+      <a href="#market">Market Pulse</a>
+    </div>
+    <div class="footer-col">
+      <h4>Categories</h4>
+      <a href="#">AI Agents</a>
+      <a href="#">Claude Code</a>
+      <a href="#">Open Source</a>
+      <a href="#">Industry News</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="https://instagram.com/lancerloki" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://github.com/acergantla-hub" target="_blank" rel="noopener">GitHub</a>
+      <a href="#newsletter">Newsletter</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 LancerLoki. All rights reserved.</span>
+    <div class="footer-social">
+      <a href="https://instagram.com/lancerloki" target="_blank" rel="noopener">📸</a>
+      <a href="https://github.com/acergantla-hub" target="_blank" rel="noopener">💻</a>
+      <a href="#newsletter">📧</a>
+    </div>
+  </div>
 </footer>
 
-</div>
-
-<!-- SCROLL ANIMATIONS -->
 <script>
+// ═══════════════════════════════════════════════════════════
+// STAR FIELD
+// ═══════════════════════════════════════════════════════════
+(function() {
+  const sf = document.getElementById('star-field');
+  for (let i = 0; i < 120; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.setProperty('--duration', (2 + Math.random() * 4) + 's');
+    star.style.setProperty('--delay', Math.random() * 5 + 's');
+    star.style.setProperty('--max-opacity', (0.3 + Math.random() * 0.7));
+    star.style.width = star.style.height = (1 + Math.random() * 2) + 'px';
+    sf.appendChild(star);
+  }
+})();
+
+// ═══════════════════════════════════════════════════════════
+// NEURAL NETWORK CANVAS
+// ═══════════════════════════════════════════════════════════
+(function() {
+  const canvas = document.getElementById('neural-canvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, nodes = [];
+  
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    initNodes();
+  }
+  
+  function initNodes() {
+    nodes = [];
+    const count = Math.floor((w * h) / 25000);
+    for (let i = 0; i < count; i++) {
+      nodes.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        radius: 1 + Math.random() * 1.5
+      });
+    }
+  }
+  
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    
+    // Draw connections
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150) {
+          const alpha = (1 - dist / 150) * 0.15;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.strokeStyle = `rgba(108, 92, 231, ${alpha})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+    
+    // Draw nodes
+    for (const node of nodes) {
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(168, 85, 247, 0.4)';
+      ctx.fill();
+      
+      // Move
+      node.x += node.vx;
+      node.y += node.vy;
+      if (node.x < 0 || node.x > w) node.vx *= -1;
+      if (node.y < 0 || node.y > h) node.vy *= -1;
+    }
+    
+    requestAnimationFrame(draw);
+  }
+  
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+
+// ═══════════════════════════════════════════════════════════
+// 3D HERO — Neural Network Sphere with Three.js
+// ═══════════════════════════════════════════════════════════
+(function() {
+  const container = document.getElementById('hero-3d');
+  if (!container || typeof THREE === 'undefined') return;
+  
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 5;
+  
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  container.appendChild(renderer.domElement);
+  
+  // Neural network sphere
+  const group = new THREE.Group();
+  scene.add(group);
+  
+  // Core sphere (wireframe)
+  const sphereGeo = new THREE.IcosahedronGeometry(1.2, 2);
+  const sphereMat = new THREE.MeshBasicMaterial({
+    color: 0x6c5ce7,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.3
+  });
+  const sphere = new THREE.Mesh(sphereGeo, sphereMat);
+  group.add(sphere);
+  
+  // Inner glow sphere
+  const glowGeo = new THREE.SphereGeometry(0.8, 32, 32);
+  const glowMat = new THREE.MeshBasicMaterial({
+    color: 0xa855f7,
+    transparent: true,
+    opacity: 0.15
+  });
+  const glow = new THREE.Mesh(glowGeo, glowMat);
+  group.add(glow);
+  
+  // Orbiting nodes (AI agent nodes)
+  const nodeCount = 40;
+  const nodeGeo = new THREE.SphereGeometry(0.03, 8, 8);
+  const nodes = [];
+  
+  for (let i = 0; i < nodeCount; i++) {
+    const mat = new THREE.MeshBasicMaterial({
+      color: Math.random() > 0.5 ? 0x6c5ce7 : 0x06b6d4,
+      transparent: true,
+      opacity: 0.6 + Math.random() * 0.4
+    });
+    const mesh = new THREE.Mesh(nodeGeo, mat);
+    
+    const radius = 1.5 + Math.random() * 1.5;
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.random() * Math.PI;
+    
+    mesh.userData = {
+      radius,
+      theta,
+      phi,
+      speed: 0.001 + Math.random() * 0.003,
+      offset: Math.random() * Math.PI * 2
+    };
+    
+    group.add(mesh);
+    nodes.push(mesh);
+  }
+  
+  // Connection lines between nearby nodes
+  const lineMat = new THREE.LineBasicMaterial({
+    color: 0x6c5ce7,
+    transparent: true,
+    opacity: 0.1
+  });
+  
+  // Outer ring
+  const ringGeo = new THREE.TorusGeometry(2.2, 0.01, 8, 100);
+  const ringMat = new THREE.MeshBasicMaterial({ color: 0xa855f7, transparent: true, opacity: 0.2 });
+  const ring = new THREE.Mesh(ringGeo, ringMat);
+  ring.rotation.x = Math.PI / 2.5;
+  ring.rotation.y = 0.3;
+  group.add(ring);
+  
+  const ring2 = new THREE.Mesh(ringGeo, ringMat.clone());
+  ring2.rotation.x = Math.PI / 3;
+  ring2.rotation.z = Math.PI / 4;
+  ring2.scale.set(0.8, 0.8, 0.8);
+  group.add(ring2);
+  
+  // Mouse tracking
+  let mouseX = 0, mouseY = 0;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+  });
+  
+  // Animation
+  let time = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    time += 0.01;
+    
+    sphere.rotation.y += 0.002;
+    sphere.rotation.x += 0.001;
+    
+    // Pulse glow
+    glow.scale.setScalar(1 + Math.sin(time * 2) * 0.05);
+    glowMat.opacity = 0.1 + Math.sin(time * 1.5) * 0.05;
+    
+    // Animate orbiting nodes
+    for (const node of nodes) {
+      const d = node.userData;
+      d.theta += d.speed;
+      const r = d.radius + Math.sin(time + d.offset) * 0.1;
+      
+      node.position.x = r * Math.sin(d.phi) * Math.cos(d.theta);
+      node.position.y = r * Math.cos(d.phi);
+      node.position.z = r * Math.sin(d.phi) * Math.sin(d.theta);
+    }
+    
+    // Rotate rings
+    ring.rotation.z += 0.001;
+    ring2.rotation.z -= 0.0015;
+    
+    // Mouse parallax
+    group.rotation.y += (mouseX * 0.3 - group.rotation.y) * 0.02;
+    group.rotation.x += (-mouseY * 0.2 - group.rotation.x) * 0.02;
+    
+    renderer.render(scene, camera);
+  }
+  
+  animate();
+  
+  // Resize
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+})();
+
+// ═══════════════════════════════════════════════════════════
+// FLOATING PARTICLES
+// ═══════════════════════════════════════════════════════════
+(function() {
+  const container = document.getElementById('particles');
+  if (!container) return;
+  
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.top = Math.random() * 100 + '%';
+    p.style.setProperty('--duration', (8 + Math.random() * 12) + 's');
+    p.style.setProperty('--delay', Math.random() * 8 + 's');
+    const colors = ['rgba(108,92,231,0.6)', 'rgba(168,85,247,0.5)', 'rgba(6,182,212,0.5)', 'rgba(16,185,129,0.4)'];
+    p.style.background = colors[Math.floor(Math.random() * colors.length)];
+    p.style.width = p.style.height = (2 + Math.random() * 4) + 'px';
+    container.appendChild(p);
+  }
+})();
+
+// ═══════════════════════════════════════════════════════════
+// SCROLL REVEAL
+// ═══════════════════════════════════════════════════════════
 (function() {
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        entry.target.classList.add('visible');
       }
     });
-  }, { threshold: 0.08 });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+})();
 
-  document.querySelectorAll('.post-card, .hero, .section-header, .post-page, .about-page').forEach(el => {
-    el.classList.add('fade-up');
-    observer.observe(el);
+// ═══════════════════════════════════════════════════════════
+// NAV SCROLL
+// ═══════════════════════════════════════════════════════════
+(function() {
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
   });
+})();
 
-  setTimeout(() => {
-    const hero = document.querySelector('.hero');
-    if (hero) hero.classList.add('visible');
-  }, 100);
+// ═══════════════════════════════════════════════════════════
+// LOAD POSTS DATA
+// ═══════════════════════════════════════════════════════════
+const POSTS_DATA = [
+  {
+    "title": "Daily AI Digest \u2014 2026-06-16",
+    "date": "2026-06-16",
+    "dateDisplay": "June 16, 2026",
+    "category": "Daily Digest",
+    "categoryClass": "digest",
+    "excerpt": "US government forces Anthropic to pull Fable 5 and Mythos 5 models, Nvidia plans $25B bond sale, Bezos's Prometheus hits $41B valuation, and AI layoffs reach a boiling point.",
+    "tags": [
+      "ai-agents",
+      "anthropic",
+      "claude",
+      "daily-digest",
+      "google",
+      "nvidia",
+      "openai",
+      "salesforce",
+      "meta",
+      "india",
+      "ai-policy",
+      "cybersecurity"
+    ],
+    "url": "/posts/daily-ai-digest-2026-06-16.html",
+    "image": ""
+  },
+  {
+    "title": "Daily AI Digest \u2014 June 15, 2026",
+    "date": "2026-06-15",
+    "dateDisplay": "June 15, 2026",
+    "category": "Daily Digest",
+    "categoryClass": "digest",
+    "excerpt": "10 stories: US government forces Anthropic to shut down Fable 5 and Mythos 5 models on national security grounds, OpenAI readies major ChatGPT overhaul to pivot toward agents, Jeff Bezos' Prometheus raises $12B for physical AI engineering, Meta unwinds $2B Manus deal under China pressure, Google announces Gemini 3.5 Live Translate for 70+ languages, Meta Applied AI team in revolt, KPMG pulls AI report over hallucinations, Google sues Chinese AI scam network, Mistral rumored to raise \u20ac3B at \u20ac20B valuation, and Meta's catch-up AI ambitions under Alexandr Wang.",
+    "tags": [
+      "ai-agents",
+      "claude",
+      "chatgpt",
+      "anthropic",
+      "openai",
+      "google",
+      "meta",
+      "mistral",
+      "policy",
+      "security",
+      "ai-hardware",
+      "ai-pricing",
+      "china"
+    ],
+    "url": "/posts/daily-ai-digest-june-15-2026.html",
+    "image": ""
+  },
+  {
+    "title": "Weekly AI Tools Digest \u2014 2026-06-15",
+    "date": "2026-06-15",
+    "dateDisplay": "June 15, 2026",
+    "category": "Weekly Tools",
+    "categoryClass": "tools",
+    "excerpt": "This week's best new AI tools include AgentFlow for autonomous agent orchestration, LlamaEdit for open-source LLM fine-tuning, and VectorSearch++ for semantic search acceleration.",
+    "tags": [
+      "ai-tools",
+      "weekly-digest",
+      "free-ai",
+      "open-source",
+      "github",
+      "agent-frameworks",
+      "llm-tools",
+      "vector-databases"
+    ],
+    "url": "/posts/weekly-ai-tools-digest-2026-06-15.html",
+    "image": ""
+  },
+  {
+    "title": "Daily AI Digest \u2014 June 04, 2026",
+    "date": "2026-06-04",
+    "dateDisplay": "June 04, 2026",
+    "category": "Daily Digest",
+    "categoryClass": "digest",
+    "excerpt": "10 stories: Google Gemma 4 12B runs multimodal AI on your laptop, Uber caps AI tool spending at $1500/month, Anthropic reveals Claude containment engineering, UK orders Google to fix AI search attribution, Microsoft's agent-first Android OS, OpenAI solves 80-year math problem, Intel's cheaper AI chip, Florida sues OpenAI, vibe coding prompt injection war, and LLM hacking benchmarks.",
+    "tags": [
+      "ai-agents",
+      "claude-code",
+      "daily-digest",
+      "google",
+      "anthropic",
+      "openai",
+      "microsoft",
+      "nvidia",
+      "intel",
+      "policy",
+      "security",
+      "llm-hacking",
+      "ai-hardware",
+      "ai-pricing"
+    ],
+    "url": "/posts/daily-ai-digest-june-04-2026.html",
+    "image": ""
+  },
+  {
+    "title": "Daily AI Digest \u2014 June 03, 2026",
+    "date": "2026-06-03",
+    "dateDisplay": "June 03, 2026",
+    "category": "Daily Digest",
+    "categoryClass": "digest",
+    "excerpt": "12 stories: Stanford study says AI beats law professors, Microsoft launches AI agent sandbox, Copilot pricing backlash, Florida sues OpenAI, MiniMax disrupts pricing, Nvidia bets $150B on Taiwan, quantum breakthrough, and more.",
+    "tags": [
+      "ai-agents",
+      "claude-code",
+      "daily-digest",
+      "microsoft",
+      "openai",
+      "nvidia",
+      "policy",
+      "mathematics",
+      "mental-health"
+    ],
+    "url": "/posts/daily-ai-digest-june-03-2026.html",
+    "image": ""
+  },
+  {
+    "title": "Daily AI Digest \u2014 June 2, 2026",
+    "date": "2026-06-02",
+    "dateDisplay": "June 02, 2026",
+    "category": "Daily Digest",
+    "categoryClass": "digest",
+    "excerpt": "12 stories: Anthropic files IPO at $965B, Alphabet raises $80B, Nvidia enters CPU market, Gemini Spark hands-on, Florida sues OpenAI, GitHub Copilot outrage, AI music debate, and more",
+    "tags": [
+      "ai-agents",
+      "claude-code",
+      "daily-digest",
+      "anthropic-ipo",
+      "nvidia-rtx-spark",
+      "gemini-spark",
+      "openai-lawsuit",
+      "github-copilot",
+      "ai-music",
+      "ai-hardware"
+    ],
+    "url": "/posts/daily-ai-digest-june-2-2026.html",
+    "image": ""
+  },
+  {
+    "title": "Daily AI Digest \u2014 June 01, 2026",
+    "date": "2026-06-01",
+    "dateDisplay": "June 01, 2026",
+    "category": "Daily Digest",
+    "categoryClass": "digest",
+    "excerpt": "10 stories: SoftBank \u20ac75B French datacenter push, Groq $650M raise, Cognition's $26B valuation & Scott Wu on AI not replacing devs, Claude Code ecosystem explodes with Ralphy/Rotom/Claude-Code-OS, Amnesty calls for ban on scraped AI, G7 agrees on open-source AI language, Meta AI pendant, Gemini Spark review, AI psychosis debate, Instagram AI security flaw",
+    "tags": [
+      "ai-agents",
+      "claude-code",
+      "daily-digest",
+      "softbank",
+      "groq",
+      "cognition",
+      "devin",
+      "open-source-ai",
+      "g7",
+      "amnesty",
+      "meta",
+      "gemini",
+      "ai-psychosis",
+      "copilot",
+      "tokenmaxxing"
+    ],
+    "url": "/posts/daily-ai-digest-june-01-2026.html",
+    "image": ""
+  },
+  {
+    "title": "Daily AI Digest \u2014 May 31, 2026",
+    "date": "2026-05-31",
+    "dateDisplay": "May 31, 2026",
+    "category": "Daily Digest",
+    "categoryClass": "digest",
+    "excerpt": "17 stories: Anthropic nears $1T valuation with $65B raise, OpenRouter secures $113M Series B, GitHub Copilot billing backlash, Asana acquires StackAI, Sesame launches from Oculus founders, and the US government proposes sweeping changes to science funding.",
+    "tags": [
+      "ai-agents",
+      "claude-code",
+      "daily-digest",
+      "anthropic",
+      "openai",
+      "openrouter",
+      "series-b",
+      "ai-funding",
+      "github-copilot",
+      "ai-coding",
+      "ai-policy",
+      "ai-hardware",
+      "gemini",
+      "ai-startups"
+    ],
+    "url": "/posts/daily-ai-digest-may-31-2026.html",
+    "image": ""
+  },
+  {
+    "title": "Daily AI Digest \u2014 May 30, 2026",
+    "date": "2026-05-30",
+    "dateDisplay": "May 30, 2026",
+    "category": "Daily Digest",
+    "categoryClass": "digest",
+    "excerpt": "47 stories today: Google's agentic Gemini era, Anthropic's Cowork Claude agent, Robinhood lets AI agents trade stocks, a critical vulnerability in Starlette, and more.",
+    "tags": [
+      "ai-agents",
+      "claude-code",
+      "gemini",
+      "security",
+      "daily-digest"
+    ],
+    "url": "/posts/daily-ai-digest-may-30-2026.html",
+    "image": ""
+  },
+  {
+    "title": "Welcome to Daily AI Digest",
+    "date": "2026-05-30",
+    "dateDisplay": "May 30, 2026",
+    "category": "Launch",
+    "categoryClass": "general",
+    "excerpt": "Why we built this site, what you'll find here, and how to stay ahead of the AI curve every single day.",
+    "tags": [
+      "launch",
+      "ai-agents",
+      "welcome"
+    ],
+    "url": "/posts/welcome-to-daily-ai-digest.html",
+    "image": ""
+  }
+];
+
+// Render featured story
+(function() {
+  const featured = POSTS_DATA[0];
+  const el = document.getElementById('featured-story');
+  if (!el || !featured) return;
+  
+  const tagsHtml = featured.tags.map(t => `<span class="post-card-tag">${t}</span>`).join('');
+  
+  el.innerHTML = `
+    <div class="featured-image">
+      <div class="featured-image-placeholder">⚡</div>
+    </div>
+    <div class="featured-content">
+      <div class="featured-meta">
+        <span class="featured-date">${featured.dateDisplay}</span>
+        <span class="featured-category">${featured.category}</span>
+      </div>
+      <h3 class="featured-title">${featured.title}</h3>
+      <p class="featured-excerpt">${featured.excerpt}</p>
+      <div class="post-card-tags">${tagsHtml}</div>
+      <a href="${featured.url}" class="featured-link">
+        Read full story
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V8H8"/></svg>
+      </a>
+    </div>
+  `;
+})();
+
+// Render posts grid
+(function() {
+  const grid = document.getElementById('posts-grid');
+  if (!grid) return;
+  
+  const posts = POSTS_DATA.slice(1);
+  
+  grid.innerHTML = posts.map(post => {
+    const tagsHtml = post.tags.map(t => `<span class="post-card-tag">${t}</span>`).join('');
+    return `
+      <a href="${post.url}" class="post-card category-${post.categoryClass}">
+        <div class="post-card-meta">
+          <span class="post-card-date">${post.dateDisplay}</span>
+          <span class="post-card-category">${post.category}</span>
+        </div>
+        <h3>${post.title}</h3>
+        <p>${post.excerpt}</p>
+        <div class="post-card-footer">
+          <div class="post-card-tags">${tagsHtml}</div>
+          <span class="post-card-arrow">Read →</span>
+        </div>
+      </a>
+    `;
+  }).join('');
 })();
 </script>
 
