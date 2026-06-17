@@ -249,6 +249,12 @@ def build():
         shutil.copy2(ABOUT_FILE, DIST_DIR / "about.html")
         print("  ✓ About page")
 
+    # Copy assets (story images)
+    assets_src = BASE_DIR / "assets"
+    if assets_src.exists():
+        shutil.copytree(assets_src, DIST_DIR / "assets", dirs_exist_ok=True)
+        print("  ✓ Assets (images)")
+
     print(f"\n✅ Build complete! {len(posts)} posts generated.")
     print(f"   Output: {DIST_DIR}/")
     print(f"   Deploy: Push to GitHub → Cloudflare Pages → /dist")

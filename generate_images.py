@@ -135,10 +135,41 @@ def generate_cover_slide(date_str, num_stories, tags):
 
     return img
 
-def generate_story_slide(index, title, category, summary_lines, key_takeaways, date_str):
-    """Slides 2-N: Individual story cards."""
+def generate_story_slide(index, title, category, summary_lines, key_takeaways, date_str, story_image=None):
+    """Slides 2-N: Individual story cards with optional background image."""
     img = Image.new("RGB", (W, H), BG)
     draw = ImageDraw.Draw(img)
+
+    # If we have a story image, draw it as a background banner at the top
+    img_banner_h = 0
+    if story_image and os.path.exists(story_image):
+        try:
+            bg_img = Image.open(story_image).convert("RGB")
+            target_h = 380
+            bg_aspect = bg_img.width / bg_img.height
+            target_w = int(target_h * bg_aspect)
+            bg_img = bg_img.resize((target_w, target_h), Image.LANCZOS)
+            if bg_img.width > W:
+                left = (bg_img.width - W) // 2
+                bg_img = bg_img.crop((left, 0, left + W, target_h))
+            elif bg_img.width < W:
+                bg_img = bg_img.resize((W, target_h), Image.LANCZOS)
+            img.paste(bg_img, (0, 0))
+            # Dark gradient overlay for readability
+            overlay = Image.new("RGBA", (W, target_h), (0, 0, 0, 0))
+            overlay_draw = ImageDraw.Draw(overlay)
+            for y in range(target_h):
+                alpha_ratio = max(0, (y - target_h * 0.2) / (target_h * 0.8))
+                alpha = int(alpha_ratio * 220)
+                alpha = min(220, max(0, alpha))
+                overlay_draw.line([(0, y), (W, y)], fill=(0, 0, 0, alpha))
+            img = img.convert("RGBA")
+            img = Image.alpha_composite(img, overlay)
+            img = img.convert("RGB")
+            draw = ImageDraw.Draw(img)
+            img_banner_h = target_h
+        except Exception:
+            pass
 
     # Top gradient bar
     draw_gradient_bar(draw, 0, 4)
@@ -155,39 +186,39 @@ def generate_story_slide(index, title, category, summary_lines, key_takeaways, d
     # Date on right
     draw.text((W - 60, badge_y + 8), date_str, font=get_font_regular(20), fill=TEXT_DIM, anchor="rm")
 
-    # Title
-    title_y = badge_y + 60
+    # Title below image banner
+    title_y = max(badge_y + 60, img_banner_h + 20)
     title_lines = wrap_text(title, get_font_bold(42), W - 120, draw)
-    for i, line in enumerate(title_lines[:3]):
+    for i, line in enumerate(title_lines[:2]):
         draw.text((60, title_y + i * 52), line, font=get_font_bold(42), fill=TEXT)
 
     # Divider
-    div_y = title_y + len(title_lines[:3]) * 52 + 20
+    div_y = title_y + len(title_lines[:2]) * 52 + 15
     draw.line([(60, div_y), (W - 60, div_y)], fill=BORDER, width=1)
 
     # Summary
-    summary_y = div_y + 24
-    for line in summary_lines[:4]:
-        wrapped = wrap_text(line, get_font_regular(26), W - 120, draw)
+    summary_y = div_y + 20
+    for line in summary_lines[:3]:
+        wrapped = wrap_text(line, get_font_regular(24), W - 120, draw)
         for wl in wrapped[:2]:
-            draw.text((60, summary_y), wl, font=get_font_regular(26), fill=TEXT_DIM)
-            summary_y += 34
-        if summary_y > 500:
+            draw.text((60, summary_y), wl, font=get_font_regular(24), fill=TEXT_DIM)
+            summary_y += 32
+        if summary_y > 750:
             break
 
     # Key Takeaways box
-    box_y = max(summary_y + 30, 550)
-    if box_y < 800:
-        draw_rounded_rect(draw, [50, box_y, W - 50, box_y + 200], 16, SURFACE, BORDER, 1)
-        draw.text((70, box_y + 16), "Key Takeaways", font=get_font_semibold(24), fill=ACCENT)
+    box_y = summary_y + 25
+    if box_y < 820:
+        draw_rounded_rect(draw, [50, box_y, W - 50, box_y + 160], 16, SURFACE, BORDER, 1)
+        draw.text((70, box_y + 14), "Key Takeaways", font=get_font_semibold(22), fill=ACCENT)
 
-        takeaway_y = box_y + 52
-        for takeaway in key_takeaways[:4]:
-            wrapped = wrap_text(f"• {takeaway}", get_font_regular(22), W - 140, draw)
-            for wl in wrapped[:2]:
-                draw.text((70, takeaway_y), wl, font=get_font_regular(22), fill=TEXT)
-                takeaway_y += 30
-            if takeaway_y > box_y + 180:
+        takeaway_y = box_y + 46
+        for takeaway in key_takeaways[:3]:
+            wrapped = wrap_text(f"• {takeaway}", get_font_regular(20), W - 140, draw)
+            for wl in wrapped[:1]:
+                draw.text((70, takeaway_y), wl, font=get_font_regular(20), fill=TEXT)
+                takeaway_y += 28
+            if takeaway_y > box_y + 145:
                 break
 
     # Bottom bar
@@ -297,7 +328,7 @@ def parse_post_for_slides(md_path):
         'tags': [t.strip() for t in meta.get('tags', '').split(',') if t.strip()],
     }
 
-def generate_all_slides(md_path, output_dir=None):
+def generate_all_slides(md_path, output_dir=None, story_images=None):
     """Generate all Instagram slides for a blog post."""
     if output_dir is None:
         output_dir = OUTPUT_DIR
@@ -322,6 +353,10 @@ def generate_all_slides(md_path, output_dir=None):
     except:
         display_date = date_str
 
+    # Map story index to image path
+    if story_images is None:
+        story_images = {}
+
     slide_paths = []
 
     # Slide 1: Cover
@@ -333,14 +368,17 @@ def generate_all_slides(md_path, output_dir=None):
 
     # Slides 2-N: Stories
     for i, story in enumerate(stories, 1):
+        img_path = story_images.get(i)
         slide = generate_story_slide(
             i, story['title'], story['category'],
-            story['summary'], story['takeaways'], display_date
+            story['summary'], story['takeaways'], display_date,
+            story_image=img_path
         )
         slide_path = output_dir / f"{i+1:02d}_story_{i}.png"
         slide.save(slide_path, "PNG")
         slide_paths.append(str(slide_path))
-        print(f"  ✓ Story {i}: {story['title'][:50]}")
+        img_note = f" [img: {img_path}]" if img_path else ""
+        print(f"  ✓ Story {i}: {story['title'][:50]}{img_note}")
 
     # Final slide: CTA
     cta = generate_cta_slide(display_date)
@@ -351,6 +389,7 @@ def generate_all_slides(md_path, output_dir=None):
 
     print(f"\n✅ {len(slide_paths)} slides generated in {output_dir}/")
     return slide_paths
+
 
 if __name__ == '__main__':
     import sys
