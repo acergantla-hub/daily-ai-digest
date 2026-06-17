@@ -162,6 +162,3 @@ AI is no longer just a technology story — it's a geopolitical, environmental, 
 
 The companies that win won't just have the best models. They'll be the ones navigating regulation, building sovereign infrastructure, and figuring out how AI fits into society — not just software.
 
----
-
-*Read more at [daily-ai-digest.dev](https://daily-ai-digest.dev)*
