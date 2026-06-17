@@ -102,13 +102,21 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.6;
 
 /* ═══ TICKER ═══ */
 .ticker{position:relative;z-index:5;background:rgba(2,2,5,.8);border-top:1px solid var(--gb);border-bottom:1px solid var(--gb);backdrop-filter:blur(12px);overflow:hidden;padding:14px 0}
-.ticker-track{display:flex;animation:tickerScroll 40s linear infinite;width:max-content}
-.ticker-item{display:flex;align-items:center;gap:8px;padding:0 32px;font-size:13px;color:var(--tx2);white-space:nowrap}
-.ticker-item .ti-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
-.ticker-item .ti-dot.g{background:var(--a4);box-shadow:0 0 6px rgba(52,211,153,.4)}
-.ticker-item .ti-dot.p{background:var(--a2);box-shadow:0 0 6px rgba(180,110,255,.4)}
-.ticker-item .ti-dot.c{background:var(--a3);box-shadow:0 0 6px rgba(0,212,240,.4)}
-.ticker-item .ti-sep{color:var(--tx3);margin:0 8px}
+.ticker::before,.ticker::after{content:'';position:absolute;top:0;bottom:0;width:60px;z-index:2;pointer-events:none}
+.ticker::before{left:0;background:linear-gradient(90deg,rgba(2,2,5,.9),transparent)}
+.ticker::after{right:0;background:linear-gradient(-90deg,rgba(2,2,5,.9),transparent)}
+.ticker-track{display:flex;animation:tickerScroll 30s linear infinite;width:max-content}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-item{display:flex;align-items:center;gap:8px;padding:0 6px;font-size:13px;color:var(--tx2);white-space:nowrap}
+.ticker-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;background:rgba(255,255,255,.03);border:1px solid var(--gb);border-radius:100px;font-size:13px;font-weight:500;color:var(--tx2);white-space:nowrap;transition:all .3s cubic-bezier(.4,0,.2,1)}
+.ticker-pill:hover{background:rgba(124,108,240,.1);border-color:rgba(124,108,240,.25);color:var(--tx)}
+.ticker-pill .tp-icon{font-size:14px}
+.ticker-pill .tp-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.ticker-pill .tp-dot.g{background:var(--a4);box-shadow:0 0 6px rgba(52,211,153,.4)}
+.ticker-pill .tp-dot.p{background:var(--a2);box-shadow:0 0 6px rgba(180,110,255,.4)}
+.ticker-pill .tp-dot.c{background:var(--a3);box-shadow:0 0 6px rgba(0,212,240,.4)}
+.ticker-pill .tp-dot.pk{background:#f472b6;box-shadow:0 0 6px rgba(244,114,182,.4)}
+.ticker-sep{display:flex;align-items:center;padding:0 8px;color:var(--tx3);font-size:10px}
 @keyframes tickerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* ═══ SECTION ═══ */
@@ -288,6 +296,8 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.6;
   .feat-img{min-height:240px}.feat-img-icon{font-size:70px}
   .feat-ai-summary{padding:16px 18px;flex-direction:column;gap:10px}
   .nl-card{padding:48px 28px}.nl-form{flex-direction:column}.social-metrics{gap:32px}
+  .ticker::before,.ticker::after{width:30px}
+  .ticker-pill{padding:6px 14px;font-size:12px}
   .footer-inner{grid-template-columns:1fr;gap:32px}.footer-bot{flex-direction:column;gap:16px;text-align:center}
 }
 @media(max-width:480px){
@@ -953,9 +963,22 @@ const POSTS_DATA = [
   for(var i=0;i<sc;i++){var s=document.createElement('div');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.setProperty('--d',(3+Math.random()*6)+'s');s.style.setProperty('--dl',(Math.random()*6)+'s');s.style.setProperty('--mo',(.2+Math.random()*.8).toFixed(2));sf.appendChild(s);}
 
   // ── Ticker ──
-  var ti=[{t:'GPT-5 rumored for Q3 release',d:'p'},{t:'Anthropic raises $4B Series C',d:'g'},{t:'EU AI Act enforcement begins',d:'c'},{t:'Open source models hit GPT-4 parity',d:'g'},{t:'AI agent startups surge 340%',d:'p'},{t:'New Claude Code features dropped',d:'c'},{t:'Google DeepMind announces Gemini 2',d:'p'},{t:'AI safety summit in London',d:'c'},{t:'Cursor AI editor hits 1M users',d:'g'},{t:'Perplexity AI valued at $14B',d:'p'},{t:'Meta releases Llama 4',d:'g'},{t:'AI chip shortage easing',d:'c'}];
+  var ti=[
+    {label:'Claude',icon:'🧠',d:'p'},
+    {label:'GPT-5',icon:'⚡',d:'c'},
+    {label:'Gemini',icon:'✨',d:'g'},
+    {label:'AI Agents',icon:'🤖',d:'p'},
+    {label:'Open Source',icon:'🔓',d:'g'},
+    {label:'Startups',icon:'🚀',d:'c'},
+    {label:'Llama 4',icon:'🦙',d:'p'},
+    {label:'MCP',icon:'🔗',d:'c'},
+    {label:'RAG',icon:'📚',d:'g'},
+    {label:'Sora',icon:'🎬',d:'pk'},
+    {label:'Copilot',icon:'💻',d:'c'},
+    {label:'AGI',icon:'🌟',d:'p'}
+  ];
   var tt=document.getElementById('tickerTrack');
-  var th='';for(var rep=0;rep<3;rep++){ti.forEach(function(item){th+='<div class="ticker-item"><span class="ti-dot '+item.d+'"></span>'+item.t+'<span class="ti-sep">◆</span></div>';});}tt.innerHTML=th;
+  var th='';for(var rep=0;rep<3;rep++){ti.forEach(function(item){th+='<div class="ticker-item"><span class="ticker-pill"><span class="tp-dot '+item.d+'"></span><span class="tp-icon">'+item.icon+'</span>'+item.label+'</span></span></div>';});}tt.innerHTML=th;
 
   // ── Scroll Reveal ──
   var reveals=document.querySelectorAll('.reveal');
