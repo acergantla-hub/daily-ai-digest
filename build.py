@@ -71,75 +71,119 @@ def get_cat_style(category):
     return CAT_STYLES["general"]
 
 def generate_thumbnail_svg(title, category, tags):
-    """Generate a unique SVG thumbnail based on post content."""
+    """Generate a rich AI-themed SVG cover image based on post content."""
+    import base64
     icon, (g1, g2, g3), accent = get_cat_style(category)
-    
-    # Create a deterministic but unique pattern from title hash
     h = hashlib.md5(title.encode()).hexdigest()
-    seed = int(h[:8], 16)
-    
-    # Generate pseudo-random node positions for neural network look
+    accents = ['#7c6cf0', '#b46eff', '#00d4f0', '#34d399', '#f472b6', '#fbbf24']
+    accent2 = accents[int(h[2:4], 16) % len(accents)]
+    accent3 = accents[int(h[4:6], 16) % len(accents)]
+
+    # Helper to safely get hex pairs from hash
+    def hexval(offset, length=2):
+        start = offset % 32
+        end = (offset + length) % 32
+        if end <= start:
+            end = 32
+        val = h[start:end]
+        return int(val, 16) if val else 0
+
+    # Generate nodes
     nodes = []
-    for i in range(8):
-        x = 10 + (int(h[i*2:i*2+2], 16) % 80)
-        y = 10 + (int(h[i*2+16:i*2+18], 16) % 80)
-        r = 2 + (int(h[i], 16) % 4)
+    for i in range(18):
+        x = 8 + (hexval(i * 2) % 84)
+        y = 8 + (hexval(i * 2 + 16) % 84)
+        r = 1.5 + (hexval(i) % 5)
         nodes.append((x, y, r))
-    
-    # Generate connections between nearby nodes
+
+    # Generate connections
     connections = []
     for i in range(len(nodes)):
-        for j in range(i+1, len(nodes)):
+        for j in range(i + 1, len(nodes)):
             dx = nodes[i][0] - nodes[j][0]
             dy = nodes[i][1] - nodes[j][1]
-            dist = (dx*dx + dy*dy) ** 0.5
-            if dist < 35:
-                connections.append((nodes[i][0], nodes[i][1], nodes[j][0], nodes[j][1], max(0.1, 0.4 - dist/100)))
-    
-    # Build SVG
-    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+            dist = (dx * dx + dy * dy) ** 0.5
+            if dist < 30:
+                connections.append((nodes[i][0], nodes[i][1], nodes[j][0], nodes[j][1], max(0.08, 0.35 - dist / 100)))
+
+    svg_parts = []
+    svg_parts.append(f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" preserveAspectRatio="xMidYMid slice">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:{g1}"/>
-      <stop offset="50%" style="stop-color:{g2}"/>
+      <stop offset="40%" style="stop-color:{g2}"/>
       <stop offset="100%" style="stop-color:{g3}"/>
     </linearGradient>
-    <radialGradient id="glow" cx="50%" cy="45%" r="40%">
-      <stop offset="0%" style="stop-color:{accent};stop-opacity:0.25"/>
+    <radialGradient id="glow1" cx="35%" cy="40%" r="50%">
+      <stop offset="0%" style="stop-color:{accent};stop-opacity:0.35"/>
       <stop offset="100%" style="stop-color:{accent};stop-opacity:0"/>
     </radialGradient>
-    <filter id="blur">
-      <feGaussianBlur stdDeviation="1.5"/>
+    <radialGradient id="glow2" cx="70%" cy="65%" r="45%">
+      <stop offset="0%" style="stop-color:{accent2};stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:{accent2};stop-opacity:0"/>
+    </radialGradient>
+    <radialGradient id="glow3" cx="50%" cy="20%" r="35%">
+      <stop offset="0%" style="stop-color:{accent3};stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:{accent3};stop-opacity:0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" style="stop-color:transparent"/>
+      <stop offset="100%" style="stop-color:#000;stop-opacity:0.4"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
+    <filter id="softglow"><feGaussianBlur stdDeviation="8"/></filter>
+    <filter id="bgblur"><feGaussianBlur stdDeviation="1.5"/></filter>
   </defs>
-  <rect width="100" height="100" fill="url(#bg)"/>
-  <rect width="100" height="100" fill="url(#glow)"/>
-  <circle cx="50" cy="45" r="22" fill="none" stroke="{accent}" stroke-width="0.4" opacity="0.2" filter="url(#blur)"/>
-  <circle cx="50" cy="45" r="15" fill="none" stroke="{accent}" stroke-width="0.3" opacity="0.15"/>
-  <circle cx="50" cy="45" r="8" fill="{accent}" opacity="0.06"/>
-  <circle cx="50" cy="45" r="3" fill="{accent}" opacity="0.12"/>
-'''
-    # Add connections
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow1)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+  <rect width="1200" height="630" fill="url(#glow3)"/>
+  <circle cx="200" cy="150" r="180" fill="{accent}" opacity="0.04" filter="url(#bgblur)"/>
+  <circle cx="900" cy="450" r="220" fill="{accent2}" opacity="0.03" filter="url(#bgblur)"/>
+  <circle cx="600" cy="315" r="120" fill="{accent3}" opacity="0.03" filter="url(#bgblur)"/>
+  <g opacity="0.03" stroke="white" stroke-width="0.5">''')
+
+    for i in range(0, 1201, 60):
+        svg_parts.append(f'    <line x1="{i}" y1="0" x2="{i}" y2="630"/>')
+    for i in range(0, 631, 60):
+        svg_parts.append(f'    <line x1="0" y1="{i}" x2="1200" y2="{i}"/>')
+    svg_parts.append('  </g>')
+
+    # Connections
     for x1, y1, x2, y2, op in connections:
-        svg += f'  <line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{accent}" stroke-width="0.3" opacity="{op:.2f}"/>\n'
-    
-    # Add nodes
+        svg_parts.append(f'  <line x1="{x1*10}" y1="{y1*5.25}" x2="{x2*10}" y2="{y2*5.25}" stroke="{accent}" stroke-width="1" opacity="{op:.2f}"/>')
+
+    # Nodes with glow halos
     for x, y, r in nodes:
-        svg += f'  <circle cx="{x}" cy="{y}" r="{r}" fill="{accent}" opacity="0.5"/>\n'
-        svg += f'  <circle cx="{x}" cy="{y}" r="{r*2.5}" fill="{accent}" opacity="0.08"/>\n'
-    
-    # Add icon in center
-    svg += f'  <text x="50" y="52" text-anchor="middle" font-size="28" opacity="0.9">{icon}</text>\n'
-    
-    # Add subtle grid lines
-    for i in range(0, 101, 20):
-        svg += f'  <line x1="{i}" y1="0" x2="{i}" y2="100" stroke="white" stroke-width="0.1" opacity="0.04"/>\n'
-        svg += f'  <line x1="0" y1="{i}" x2="100" y2="{i}" stroke="white" stroke-width="0.1" opacity="0.04"/>\n'
-    
-    svg += '</svg>'
-    
-    # Encode as data URI
-    import base64
+        nx, ny = x * 10, y * 5.25
+        svg_parts.append(f'  <circle cx="{nx}" cy="{ny}" r="{r*8}" fill="{accent}" opacity="0.06" filter="url(#softglow)"/>')
+        svg_parts.append(f'  <circle cx="{nx}" cy="{ny}" r="{r*4}" fill="{accent}" opacity="0.12"/>')
+        svg_parts.append(f'  <circle cx="{nx}" cy="{ny}" r="{r*1.5}" fill="{accent}" opacity="0.7" filter="url(#glow)"/>')
+        svg_parts.append(f'  <circle cx="{nx}" cy="{ny}" r="{r*0.6}" fill="white" opacity="0.4"/>')
+
+    # Floating particles
+    for i in range(12):
+        px = 50 + (hexval(i * 2) % 1100)
+        py = 30 + (hexval(i * 2 + 8) % 570)
+        pr = 1 + (hexval(i) % 3)
+        p_op = 0.1 + (hexval(i + 4) % 20) / 100
+        svg_parts.append(f'  <circle cx="{px}" cy="{py}" r="{pr}" fill="white" opacity="{p_op:.2f}"/>')
+
+    # Center icon
+    svg_parts.append(f'  <text x="600" y="330" text-anchor="middle" font-size="90" opacity="0.85" filter="url(#glow)">{icon}</text>')
+
+    # Category label
+    cat_label = (category or 'Daily Digest').upper()
+    svg_parts.append(f'  <text x="600" y="560" text-anchor="middle" font-size="18" font-family="monospace" letter-spacing="6" fill="white" opacity="0.25">{cat_label}</text>')
+
+    # Vignette
+    svg_parts.append('  <rect width="1200" height="630" fill="url(#vignette)" opacity="0.3"/>')
+    svg_parts.append('</svg>')
+
+    svg = '\n'.join(svg_parts)
     encoded = base64.b64encode(svg.encode()).decode()
     return f"data:image/svg+xml;base64,{encoded}"
 
