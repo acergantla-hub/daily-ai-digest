@@ -834,6 +834,8 @@ const POSTS_DATA = [];
 
   } // ── end renderPosts ──
 
+  renderPosts();
+
   // ── Newsletter ──
   window.handleNL=function(e){e.preventDefault();var inp=e.target.querySelector('input'),btn=e.target.querySelector('button');if(inp.value){btn.textContent='Subscribed ✓';btn.style.background='#34d399';inp.value='';setTimeout(function(){btn.textContent='Subscribe Free →';btn.style.background='';},3000);}};
 
