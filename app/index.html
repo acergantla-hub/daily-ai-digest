@@ -800,36 +800,39 @@ const POSTS_DATA = [];
       grid.innerHTML=pagePosts.map(function(p,i){var imgHtml=p.image?'<img class="dg-thumb-img" src="'+p.image+'" alt="" loading="lazy"/>':'<div style="width:100%;height:100%;background:linear-gradient(135deg,#0f0a2a,#0a1a30)"></div>';return'<a href="'+p.url+'" class="dg-card reveal rd'+Math.min(i+1,6)+'"><div class="dg-thumb">'+imgHtml+'<div class="dg-thumb-overlay"></div><div class="dg-thumb-icon '+ic(p.category)+'">'+ig(p.category)+'</div></div><div class="dg-card-body"><div class="dg-cat">'+(p.category||'Daily Digest')+'</div><h3>'+p.title+'</h3><p class="dg-ex">'+(p.excerpt||'Curated AI intelligence briefing.')+'</p><div class="dg-meta"><div class="dg-ml"><span class="dg-rt">⏱ 5 min</span><span class="dg-sc">★ 9.'+Math.floor(Math.random()*9)+'</span></div><span>'+(p.dateDisplay||p.date)+'</span></div></div></a>';}).join('');
       grid.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
 
-      // Render pagination
-      var paginationHtml = '';
-      if(totalPages > 1) {
-        paginationHtml += '<div class="dg-pagination" style="grid-column:1/-1;display:flex;justify-content:center;align-items:center;gap:8px;padding:40px 0 0;">';
-        // Prev button
-        paginationHtml += '<button class="dg-page-btn" data-page="'+(page-1)+'" '+(page===1?'disabled':'')+' style="padding:10px 20px;background:'+(page===1?'rgba(255,255,255,.03)':'rgba(124,108,240,.15)')+';border:1px solid '+(page===1?'rgba(255,255,255,.05)':'rgba(124,108,240,.3)')+';border-radius:12px;color:'+(page===1?'var(--tx3)':'var(--a1)')+';font-size:13px;font-weight:600;cursor:'+(page===1?'not-allowed':'pointer')+';transition:all .3s;font-family:var(--fb);">← Prev</button>';
-        // Page numbers
-        for(var pNum=1;pNum<=totalPages;pNum++){
-          paginationHtml += '<button class="dg-page-btn" data-page="'+pNum+'" style="padding:10px 16px;background:'+(pNum===page?'linear-gradient(135deg,#7c6cf0,#b46eff)':'rgba(255,255,255,.03)')+';border:1px solid '+(pNum===page?'transparent':'rgba(255,255,255,.05)')+';border-radius:12px;color:'+(pNum===page?'#fff':'var(--tx2)')+';font-size:13px;font-weight:600;cursor:pointer;transition:all .3s;font-family:var(--fb);">'+pNum+'</button>';
-        }
-        // Next button
-        paginationHtml += '<button class="dg-page-btn" data-page="'+(page+1)+'" '+(page===totalPages?'disabled':'')+' style="padding:10px 20px;background:'+(page===totalPages?'rgba(255,255,255,.03)':'rgba(124,108,240,.15)')+';border:1px solid '+(page===totalPages?'rgba(255,255,255,.05)':'rgba(124,108,240,.3)')+';border-radius:12px;color:'+(page===totalPages?'var(--tx3)':'var(--a1)')+';font-size:13px;font-weight:600;cursor:'+(page===totalPages?'not-allowed':'pointer')+';transition:all .3s;font-family:var(--fb);">Next →</button>';
-        paginationHtml += '</div>';
+    // Render pagination into a dedicated container (replace, not append)
+    var pagContainer = grid.parentElement.querySelector('.dg-pagination-wrap');
+    if(!pagContainer){
+      pagContainer = document.createElement('div');
+      pagContainer.className = 'dg-pagination-wrap';
+      grid.parentElement.appendChild(pagContainer);
+    }
+    var paginationHtml = '';
+    if(totalPages > 1) {
+      paginationHtml += '<div class="dg-pagination" style="grid-column:1/-1;display:flex;justify-content:center;align-items:center;gap:8px;padding:40px 0 0;">';
+      paginationHtml += '<button class="dg-page-btn" data-page="'+(page-1)+'" '+(page===1?'disabled':'')+' style="padding:10px 20px;background:'+(page===1?'rgba(255,255,255,.03)':'rgba(124,108,240,.15)')+';border:1px solid '+(page===1?'rgba(255,255,255,.05)':'rgba(124,108,240,.3)')+';border-radius:12px;color:'+(page===1?'var(--tx3)':'var(--a1)')+';font-size:13px;font-weight:600;cursor:'+(page===1?'not-allowed':'pointer')+';transition:all .3s;font-family:var(--fb);">← Prev</button>';
+      for(var pNum=1;pNum<=totalPages;pNum++){
+        paginationHtml += '<button class="dg-page-btn" data-page="'+pNum+'" style="padding:10px 16px;background:'+(pNum===page?'linear-gradient(135deg,#7c6cf0,#b46eff)':'rgba(255,255,255,.03)')+';border:1px solid '+(pNum===page?'transparent':'rgba(255,255,255,.05)')+';border-radius:12px;color:'+(pNum===page?'#fff':'var(--tx2)')+';font-size:13px;font-weight:600;cursor:pointer;transition:all .3s;font-family:var(--fb);">'+pNum+'</button>';
       }
-      grid.insertAdjacentHTML('afterend', paginationHtml);
-
-      // Attach click handlers
-      grid.parentElement.querySelectorAll('.dg-page-btn:not([disabled])').forEach(function(btn){
-        btn.addEventListener('click', function(){
-          var newPage = parseInt(btn.dataset.page);
-          if(newPage >= 1 && newPage <= totalPages) {
-            renderGrid(newPage);
-            document.getElementById('latest').scrollIntoView({behavior:'smooth', block:'start'});
-          }
-        });
-      });
+      paginationHtml += '<button class="dg-page-btn" data-page="'+(page+1)+'" '+(page===totalPages?'disabled':'')+' style="padding:10px 20px;background:'+(page===totalPages?'rgba(255,255,255,.03)':'rgba(124,108,240,.15)')+';border:1px solid '+(page===totalPages?'rgba(255,255,255,.05)':'rgba(124,108,240,.3)')+';border-radius:12px;color:'+(page===totalPages?'var(--tx3)':'var(--a1)')+';font-size:13px;font-weight:600;cursor:'+(page===totalPages?'not-allowed':'pointer')+';transition:all .3s;font-family:var(--fb);">Next →</button>';
+      paginationHtml += '</div>';
+    }
+    pagContainer.innerHTML = paginationHtml;
     }
     renderGrid(1);
   }
   renderPosts();
+
+  // ── Pagination Event Delegation (single handler, no duplicates) ──
+  document.getElementById('latest').addEventListener('click', function(e){
+    var btn = e.target.closest('.dg-page-btn');
+    if(!btn || btn.disabled) return;
+    var newPage = parseInt(btn.dataset.page);
+    if(newPage >= 1 && newPage <= totalPages) {
+      renderGrid(newPage);
+      document.getElementById('latest').scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  });
 
   // ── Newsletter ──
   window.handleNL=function(e){e.preventDefault();var inp=e.target.querySelector('input'),btn=e.target.querySelector('button');if(inp.value){btn.textContent='Subscribed ✓';btn.style.background='#34d399';inp.value='';setTimeout(function(){btn.textContent='Subscribe Free →';btn.style.background='';},3000);}};
