@@ -278,14 +278,40 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.7;
 .tool-tr.up{background:rgba(52,211,153,.1);color:var(--a4)}.tool-tr.hot{background:rgba(244,114,182,.1);color:var(--a6)}.tool-tr.new{background:rgba(0,212,240,.1);color:var(--a3)}
 
 /* ═══ SOCIAL ═══ */
+/* ═══ TRUST / SOCIAL PROOF ═══ */
 .social-sec{position:relative;z-index:2;padding:var(--sec) 40px}
 .social-inner{max-width:var(--cw);margin:0 auto;text-align:center}
-.social-quote{font-family:var(--fd);font-size:clamp(24px,3.5vw,42px);font-weight:600;letter-spacing:-1.2px;line-height:1.3;max-width:800px;margin:0 auto 56px;color:var(--tx)}
+.social-quote{font-family:var(--fd);font-size:clamp(22px,3vw,38px);font-weight:600;letter-spacing:-1px;line-height:1.35;max-width:780px;margin:0 auto 64px;color:var(--tx)}
 .social-quote .grad{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.social-metrics{display:flex;justify-content:center;gap:64px;flex-wrap:wrap}
-.social-metric{text-align:center}
-.social-metric-val{font-family:var(--fd);font-size:44px;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px}
-.social-metric-lbl{font-size:14px;color:var(--tx2)}
+/* Trust grid */
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:64px}
+.trust-card{position:relative;padding:36px 28px;background:linear-gradient(165deg,rgba(16,16,32,.92) 0%,rgba(10,10,22,.98) 60%,rgba(8,8,18,.99) 100%);border:1px solid rgba(255,255,255,.04);border-radius:20px;backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);text-align:center;overflow:hidden;transition:all .5s cubic-bezier(.23,1,.32,1)}
+.trust-card::before{content:'';position:absolute;inset:0;border-radius:20px;padding:1px;background:linear-gradient(170deg,rgba(255,255,255,.06),transparent 40%,transparent 60%,rgba(124,108,240,.06));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;z-index:3}
+.trust-card::after{content:'';position:absolute;top:0;left:0;right:0;height:100%;background:linear-gradient(180deg,rgba(124,108,240,.06) 0%,transparent 40%);opacity:0;transition:opacity .5s;pointer-events:none;z-index:2;border-radius:20px}
+.trust-card:hover::after{opacity:1}
+.trust-card:hover{border-color:rgba(124,108,240,.2);transform:translateY(-6px);box-shadow:0 24px 64px rgba(0,0,0,.35),0 0 40px rgba(124,108,240,.06),inset 0 1px 0 rgba(255,255,255,.06)}
+.trust-icon{width:56px;height:56px;margin:0 auto 18px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;position:relative;z-index:1}
+.trust-icon.p{background:linear-gradient(135deg,rgba(124,108,240,.18),rgba(124,108,240,.06));border:1px solid rgba(124,108,240,.18)}
+.trust-icon.c{background:linear-gradient(135deg,rgba(0,212,240,.18),rgba(0,212,240,.06));border:1px solid rgba(0,212,240,.18)}
+.trust-icon.g{background:linear-gradient(135deg,rgba(52,211,153,.18),rgba(52,211,153,.06));border:1px solid rgba(52,211,153,.18)}
+.trust-icon.pk{background:linear-gradient(135deg,rgba(244,114,182,.18),rgba(244,114,182,.06));border:1px solid rgba(244,114,182,.18)}
+.trust-val{font-family:var(--fd);font-size:clamp(32px,3.5vw,48px);font-weight:700;line-height:1.1;margin-bottom:8px;position:relative;z-index:1}
+.trust-val .num{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.trust-val .suf{font-size:.5em;opacity:.7}
+.trust-lbl{font-size:13px;color:var(--tx2);font-weight:500;margin-bottom:6px;position:relative;z-index:1}
+.trust-sub{font-size:11px;color:var(--tx3);font-family:var(--fm);position:relative;z-index:1}
+/* Sources bar */
+.sources-bar{margin-top:48px;padding:32px 40px;background:linear-gradient(165deg,rgba(16,16,32,.88) 0%,rgba(10,10,22,.95) 100%);border:1px solid rgba(255,255,255,.04);border-radius:20px;backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px)}
+.sources-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--tx3);margin-bottom:20px}
+.sources-row{display:flex;justify-content:center;align-items:center;gap:32px;flex-wrap:wrap}
+.source-item{display:flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:12px;font-size:13px;color:var(--tx2);font-weight:500;transition:all .3s}
+.source-item:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08);color:var(--tx)}
+.source-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.source-dot.p{background:var(--a1);box-shadow:0 0 6px rgba(124,108,240,.4)}
+.source-dot.c{background:var(--a3);box-shadow:0 0 6px rgba(0,212,240,.4)}
+.source-dot.g{background:var(--a4);box-shadow:0 0 6px rgba(52,211,153,.4)}
+.source-dot.pk{background:#f472b6;box-shadow:0 0 6px rgba(244,114,182,.4)}
+/* Social avatars */
 .social-avatars{display:flex;justify-content:center;margin-top:48px}
 .social-avatar{width:44px;height:44px;border-radius:50%;border:3px solid var(--bg);margin-left:-12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff}
 .social-avatar:first-child{margin-left:0}
@@ -335,6 +361,9 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.7;
   .feat-ai-summary{padding:18px 20px}
   .feat-stats{flex-wrap:wrap;gap:12px}
   .dg-thumb{height:200px}
+  .trust-grid{grid-template-columns:repeat(2,1fr)}
+  .sources-bar{padding:24px 20px}
+  .sources-row{gap:16px}
   .footer-inner{grid-template-columns:1fr 1fr}
 }
 @media(max-width:768px){
@@ -350,6 +379,10 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.7;
   .feat-ribbon{font-size:9px;padding:6px 16px}
   .feat-today-badge{font-size:10px;padding:8px 16px}
   .dg-thumb{height:180px}
+  .trust-grid{grid-template-columns:repeat(2,1fr)}
+  .sources-bar{padding:20px 16px}
+  .sources-row{gap:12px}
+  .source-item{padding:6px 12px;font-size:12px}
   .nl-card{padding:48px 28px}.nl-form{flex-direction:column}.social-metrics{gap:32px}
   .ticker::before,.ticker::after{width:30px}
   .ticker-pill{padding:6px 14px;font-size:12px}
@@ -358,6 +391,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.7;
 @media(max-width:480px){
   .metrics-grid{grid-template-columns:1fr}.hero-ctas{flex-direction:column;width:100%}.btn-p,.btn-s{width:100%;justify-content:center}
   .dg-thumb{height:160px}
+  .trust-grid{grid-template-columns:1fr}
 }
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.07);border-radius:100px}
 </style>
@@ -793,13 +827,53 @@ const POSTS_DATA = [
 <section class="social-sec">
   <div class="social-inner">
     <div class="reveal"><p class="social-quote">Trusted by <span class="grad">AI enthusiasts</span>, developers, founders, researchers, and technology professionals worldwide.</p></div>
-    <div class="social-metrics reveal rd1">
-      <div class="social-metric"><div class="social-metric-val" data-count="12500">0</div><div class="social-metric-lbl">Daily Readers</div></div>
-      <div class="social-metric"><div class="social-metric-val" data-count="2847">0</div><div class="social-metric-lbl">Articles Processed</div></div>
-      <div class="social-metric"><div class="social-metric-val" data-count="48">0</div><div class="social-metric-lbl">Sources Monitored</div></div>
-      <div class="social-metric"><div class="social-metric-val" data-count="52">0</div><div class="social-metric-lbl">Weekly Updates</div></div>
+
+    <!-- Trust cards -->
+    <div class="trust-grid reveal rd1">
+      <div class="trust-card">
+        <div class="trust-icon p">📡</div>
+        <div class="trust-val"><span class="num" data-count="48">0</span><span class="suf">+</span></div>
+        <div class="trust-lbl">Sources Monitored</div>
+        <div class="trust-sub">scanned daily</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon c">🏢</div>
+        <div class="trust-val"><span class="num" data-count="126">0</span><span class="suf">+</span></div>
+        <div class="trust-lbl">AI Companies</div>
+        <div class="trust-sub">tracked & analyzed</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon g">📄</div>
+        <div class="trust-val"><span class="num" data-count="892">0</span><span class="suf">+</span></div>
+        <div class="trust-lbl">Research Papers</div>
+        <div class="trust-sub">analyzed this year</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon pk">📰</div>
+        <div class="trust-val"><span class="num" data-count="2847">0</span><span class="suf">+</span></div>
+        <div class="trust-lbl">Updates Published</div>
+        <div class="trust-sub">since launch</div>
+      </div>
     </div>
-    <div class="social-avatars reveal rd2">
+
+    <!-- Sources bar -->
+    <div class="sources-bar reveal rd2">
+      <div class="sources-lbl">Sources We Monitor</div>
+      <div class="sources-row">
+        <div class="source-item"><span class="source-dot p"></span>TechCrunch</div>
+        <div class="source-item"><span class="source-dot c"></span>Ars Technica</div>
+        <div class="source-item"><span class="source-dot g"></span>The Verge</div>
+        <div class="source-item"><span class="source-dot pk"></span>VentureBeat</div>
+        <div class="source-item"><span class="source-dot p"></span>Hacker News</div>
+        <div class="source-item"><span class="source-dot c"></span>Reuters</div>
+        <div class="source-item"><span class="source-dot g"></span>BBC Tech</div>
+        <div class="source-item"><span class="source-dot pk"></span>404 Media</div>
+        <div class="source-item"><span class="source-dot p"></span>Simon Willison</div>
+        <div class="source-item"><span class="source-dot c"></span>Company Blogs</div>
+      </div>
+    </div>
+
+    <div class="social-avatars reveal rd3">
       <div class="social-avatar" style="background:linear-gradient(135deg,#7c6cf0,#b46eff)">A</div>
       <div class="social-avatar" style="background:linear-gradient(135deg,#00d4f0,#34d399)">B</div>
       <div class="social-avatar" style="background:linear-gradient(135deg,#f472b6,#b46eff)">C</div>
