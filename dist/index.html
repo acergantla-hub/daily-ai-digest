@@ -1032,9 +1032,47 @@ const POSTS_DATA = [
       nodesEl.innerHTML=nodeHtml;
     }
     fc.href=f.url;
-    var rest=POSTS_DATA.slice(1,7);
-    grid.innerHTML=rest.map(function(p,i){var imgHtml=p.image?'<img class="dg-thumb-img" src="'+p.image+'" alt="" loading="lazy"/>':'<div style="width:100%;height:100%;background:linear-gradient(135deg,#0f0a2a,#0a1a30)"></div>';return'<a href="'+p.url+'" class="dg-card reveal rd'+Math.min(i+1,6)+'"><div class="dg-thumb">'+imgHtml+'<div class="dg-thumb-overlay"></div><div class="dg-thumb-icon '+ic(p.category)+'">'+ig(p.category)+'</div></div><div class="dg-card-body"><div class="dg-cat">'+(p.category||'Daily Digest')+'</div><h3>'+p.title+'</h3><p class="dg-ex">'+(p.excerpt||'Curated AI intelligence briefing.')+'</p><div class="dg-meta"><div class="dg-ml"><span class="dg-rt">⏱ 5 min</span><span class="dg-sc">★ 9.'+Math.floor(Math.random()*9)+'</span></div><span>'+(p.dateDisplay||p.date)+'</span></div></div></a>';}).join('');
-    grid.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
+    // Show all posts in the grid (not just 6)
+    var rest=POSTS_DATA.slice(1);
+    var perPage = 6;
+    var totalPages = Math.ceil(rest.length / perPage);
+    var currentPage = 1;
+
+    function renderGrid(page) {
+      var start = (page - 1) * perPage;
+      var end = start + perPage;
+      var pagePosts = rest.slice(start, end);
+      grid.innerHTML=pagePosts.map(function(p,i){var imgHtml=p.image?'<img class="dg-thumb-img" src="'+p.image+'" alt="" loading="lazy"/>':'<div style="width:100%;height:100%;background:linear-gradient(135deg,#0f0a2a,#0a1a30)"></div>';return'<a href="'+p.url+'" class="dg-card reveal rd'+Math.min(i+1,6)+'"><div class="dg-thumb">'+imgHtml+'<div class="dg-thumb-overlay"></div><div class="dg-thumb-icon '+ic(p.category)+'">'+ig(p.category)+'</div></div><div class="dg-card-body"><div class="dg-cat">'+(p.category||'Daily Digest')+'</div><h3>'+p.title+'</h3><p class="dg-ex">'+(p.excerpt||'Curated AI intelligence briefing.')+'</p><div class="dg-meta"><div class="dg-ml"><span class="dg-rt">⏱ 5 min</span><span class="dg-sc">★ 9.'+Math.floor(Math.random()*9)+'</span></div><span>'+(p.dateDisplay||p.date)+'</span></div></div></a>';}).join('');
+      grid.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
+
+      // Render pagination
+      var paginationHtml = '';
+      if(totalPages > 1) {
+        paginationHtml += '<div class="dg-pagination" style="grid-column:1/-1;display:flex;justify-content:center;align-items:center;gap:8px;padding:40px 0 0;">';
+        // Prev button
+        paginationHtml += '<button class="dg-page-btn" data-page="'+(page-1)+'" '+(page===1?'disabled':'')+' style="padding:10px 20px;background:'+(page===1?'rgba(255,255,255,.03)':'rgba(124,108,240,.15)')+';border:1px solid '+(page===1?'rgba(255,255,255,.05)':'rgba(124,108,240,.3)')+';border-radius:12px;color:'+(page===1?'var(--tx3)':'var(--a1)')+';font-size:13px;font-weight:600;cursor:'+(page===1?'not-allowed':'pointer')+';transition:all .3s;font-family:var(--fb);">← Prev</button>';
+        // Page numbers
+        for(var pNum=1;pNum<=totalPages;pNum++){
+          paginationHtml += '<button class="dg-page-btn" data-page="'+pNum+'" style="padding:10px 16px;background:'+(pNum===page?'linear-gradient(135deg,#7c6cf0,#b46eff)':'rgba(255,255,255,.03)')+';border:1px solid '+(pNum===page?'transparent':'rgba(255,255,255,.05)')+';border-radius:12px;color:'+(pNum===page?'#fff':'var(--tx2)')+';font-size:13px;font-weight:600;cursor:pointer;transition:all .3s;font-family:var(--fb);">'+pNum+'</button>';
+        }
+        // Next button
+        paginationHtml += '<button class="dg-page-btn" data-page="'+(page+1)+'" '+(page===totalPages?'disabled':'')+' style="padding:10px 20px;background:'+(page===totalPages?'rgba(255,255,255,.03)':'rgba(124,108,240,.15)')+';border:1px solid '+(page===totalPages?'rgba(255,255,255,.05)':'rgba(124,108,240,.3)')+';border-radius:12px;color:'+(page===totalPages?'var(--tx3)':'var(--a1)')+';font-size:13px;font-weight:600;cursor:'+(page===totalPages?'not-allowed':'pointer')+';transition:all .3s;font-family:var(--fb);">Next →</button>';
+        paginationHtml += '</div>';
+      }
+      grid.insertAdjacentHTML('afterend', paginationHtml);
+
+      // Attach click handlers
+      grid.parentElement.querySelectorAll('.dg-page-btn:not([disabled])').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var newPage = parseInt(btn.dataset.page);
+          if(newPage >= 1 && newPage <= totalPages) {
+            renderGrid(newPage);
+            document.getElementById('latest').scrollIntoView({behavior:'smooth', block:'start'});
+          }
+        });
+      });
+    }
+    renderGrid(1);
   }
   renderPosts();
 
