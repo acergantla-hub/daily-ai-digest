@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
-:root{--bg:#020205;--bg2:#06060c;--bg3:#0a0a14;--card:rgba(10,10,20,.7);--glass:rgba(255,255,255,.02);--gb:rgba(255,255,255,.05);--gbh:rgba(255,255,255,.1);--tx:#f0f0f8;--tx2:#a0a0c0;--tx3:#5a5a78;--a1:#7c6cf0;--a2:#b46eff;--a3:#00d4f0;--a4:#34d399;--grad:linear-gradient(135deg,#7c6cf0,#b46eff,#00d4f0);--fd:'Space Grotesk','Inter',system-ui,sans-serif;--fb:'Inter',system-ui,sans-serif;--fm:'JetBrains Mono',monospace;--r:24px;--rs:14px;--rx:10px;--sec:120px;--cw:1200px;--px:clamp(20px,4vw,60px)}
+:root{--bg:#020205;--bg2:#06060c;--bg3:#0a0a14;--card:rgba(10,10,20,.7);--glass:rgba(255,255,255,.02);--gb:rgba(255,255,255,.05);--gbh:rgba(255,255,255,.1);--tx:#f0f0f8;--tx2:#a0a0c0;--tx3:#5a5a78;--a1:#7c6cf0;--a2:#b46eff;--a3:#00d4f0;--a4:#34d399;--grad:linear-gradient(135deg,#7c6cf0,#b46eff,#00d4f0);--fd:'Space Grotesk','Inter',system-ui,sans-serif;--fb:'Inter',system-ui,sans-serif;--fm:'JetBrains Mono',monospace;--r:24px;--rs:14px;--rx:10px;--sec:120px;--cw:1280px;--px:24px}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
 body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.7;overflow-x:hidden;min-height:100vh;width:100%}
@@ -979,14 +979,14 @@ const POSTS_DATA = [
   // ── Particle Trail ──
   var pc=document.getElementById('particle-canvas'),pctx=pc.getContext('2d'),particles=[],lastPX=0,lastPY=0;
   function initP(){pc.width=window.innerWidth;pc.height=window.innerHeight;}
-  function spawnP(x,y){if(particles.length>80)particles.shift();particles.push({x:x,y:y,vx:(Math.random()-.5)*1.5,vy:(Math.random()-.5)*1.5-.5,life:1,decay:.015+Math.random()*.02,r:1+Math.random()*2,color:Math.random()>.5?'124,108,240':'0,212,240'});}
-  function drawP(){pctx.clearRect(0,0,pc.width,pc.height);for(var i=particles.length-1;i>=0;i--){var p=particles[i];p.x+=p.vx;p.y+=p.vy;p.life-=p.decay;if(p.life<=0){particles.splice(i,1);continue;}pctx.beginPath();pctx.arc(p.x,p.y,p.r*p.life,0,Math.PI*2);pctx.fillStyle='rgba('+p.color+','+(p.life*.5)+')';pctx.fill();}requestAnimationFrame(drawP);}
-  document.addEventListener('mousemove',function(e){var dx=e.clientX-lastPX,dy=e.clientY-lastPY;if(Math.sqrt(dx*dx+dy*dy)>8){spawnP(e.clientX,e.clientY);lastPX=e.clientX;lastPY=e.clientY;}});
+  function spawnP(x,y){if(particles.length>40)particles.shift();particles.push({x:x,y:y,vx:(Math.random()-.5)*1.5,vy:(Math.random()-.5)*1.5-.5,life:1,decay:.02+Math.random()*.02,r:1+Math.random()*1.5,color:Math.random()>.5?'124,108,240':'0,212,240'});}
+  function drawP(){pctx.clearRect(0,0,pc.width,pc.height);for(var i=particles.length-1;i>=0;i--){var p=particles[i];p.x+=p.vx;p.y+=p.vy;p.life-=p.decay;if(p.life<=0){particles.splice(i,1);continue;}pctx.beginPath();pctx.arc(p.x,p.y,p.r*p.life,0,Math.PI*2);pctx.fillStyle='rgba('+p.color+','+(p.life*.4)+')';pctx.fill();}requestAnimationFrame(drawP);}
+  document.addEventListener('mousemove',function(e){var dx=e.clientX-lastPX,dy=e.clientY-lastPY;if(Math.sqrt(dx*dx+dy*dy)>12){spawnP(e.clientX,e.clientY);lastPX=e.clientX;lastPY=e.clientY;}});
   initP();drawP();window.addEventListener('resize',initP);
 
   // ── Neural Canvas ──
   var nc=document.getElementById('neural-canvas'),nctx=nc.getContext('2d'),nodes=[];
-  function initN(){nc.width=window.innerWidth;nc.height=window.innerHeight;nodes=[];var c=Math.min(70,Math.floor(window.innerWidth/22));for(var i=0;i<c;i++){nodes.push({x:Math.random()*nc.width,y:Math.random()*nc.height,ox:Math.random()*nc.width,oy:Math.random()*nc.height,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:1.2+Math.random()*1.8,pulse:Math.random()*Math.PI*2});}}
+  function initN(){nc.width=window.innerWidth;nc.height=window.innerHeight;nodes=[];var c=Math.min(35,Math.floor(window.innerWidth/35));for(var i=0;i<c;i++){nodes.push({x:Math.random()*nc.width,y:Math.random()*nc.height,ox:Math.random()*nc.width,oy:Math.random()*nc.height,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:1.2+Math.random()*1.8,pulse:Math.random()*Math.PI*2});}}
   function drawN(){nctx.clearRect(0,0,nc.width,nc.height);var t=Date.now()*.001;for(var i=0;i<nodes.length;i++){var n=nodes[i];n.pulse+=.02;n.x=n.ox+Math.sin(t*.3+i)*40;n.y=n.oy+Math.cos(t*.25+i*.7)*40;var dmx=mx-n.x,dmy=my-n.y,dm=Math.sqrt(dmx*dmx+dmy*dmy);if(dm<250){var f=(1-dm/250)*.15;n.x+=dmx*f;n.y+=dmy*f;}if(n.x<-50)n.ox+=nc.width+100;if(n.x>nc.width+50)n.ox-=nc.width+100;if(n.y<-50)n.oy+=nc.height+100;if(n.y>nc.height+50)n.oy-=nc.height+100;var pr=n.r+Math.sin(n.pulse)*.5,pa=.3+Math.sin(n.pulse)*.15;var grd=nctx.createRadialGradient(n.x,n.y,0,n.x,n.y,pr*4);grd.addColorStop(0,'rgba(124,108,240,'+pa+')');grd.addColorStop(1,'transparent');nctx.beginPath();nctx.arc(n.x,n.y,pr*4,0,Math.PI*2);nctx.fillStyle=grd;nctx.fill();nctx.beginPath();nctx.arc(n.x,n.y,pr,0,Math.PI*2);nctx.fillStyle='rgba(180,110,255,'+(pa+.1)+')';nctx.fill();for(var j=i+1;j<nodes.length;j++){var m=nodes[j],dx=n.x-m.x,dy=n.y-m.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<160){var a=.08*(1-dist/160);nctx.beginPath();nctx.moveTo(n.x,n.y);nctx.lineTo(m.x,m.y);nctx.strokeStyle='rgba(124,108,240,'+a+')';nctx.lineWidth=.5;nctx.stroke();}}}requestAnimationFrame(drawN);}
   initN();drawN();window.addEventListener('resize',initN);
 
@@ -1023,7 +1023,7 @@ const POSTS_DATA = [
     scene.add(glowSphere);
 
     // Neural network nodes on sphere surface
-    var nodeCount=isMobile?40:80;
+    var nodeCount=isMobile?20:40;
     var nodeGeo=new THREE.BufferGeometry();
     var positions=new Float32Array(nodeCount*3);
     var nodePositions=[];
@@ -1043,7 +1043,7 @@ const POSTS_DATA = [
     scene.add(nodeCloud);
 
     // Neural connections between nearby nodes
-    var lineCount=isMobile?60:120;
+    var lineCount=isMobile?25:50;
     var lineGeo=new THREE.BufferGeometry();
     var linePositions=new Float32Array(lineCount*6);
     lineGeo.setAttribute('position',new THREE.BufferAttribute(linePositions,3));
@@ -1052,7 +1052,7 @@ const POSTS_DATA = [
     scene.add(lines);
 
     // Ambient particles around sphere
-    var partCount=isMobile?100:250;
+    var partCount=isMobile?40:80;
     var partGeo=new THREE.BufferGeometry();
     var partPos=new Float32Array(partCount*3);
     for(var i=0;i<partCount;i++){
@@ -1152,7 +1152,7 @@ const POSTS_DATA = [
 
   // ── Star Field ──
   var sf=document.getElementById('star-field');
-  var sc=Math.min(140,Math.floor(window.innerWidth*window.innerHeight/7000));
+  var sc=Math.min(60,Math.floor(window.innerWidth*window.innerHeight/14000));
   for(var i=0;i<sc;i++){var s=document.createElement('div');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.setProperty('--d',(3+Math.random()*6)+'s');s.style.setProperty('--dl',(Math.random()*6)+'s');s.style.setProperty('--mo',(.2+Math.random()*.8).toFixed(2));sf.appendChild(s);}
 
   // ── Ticker ──
