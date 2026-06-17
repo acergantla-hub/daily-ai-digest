@@ -317,22 +317,35 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.7;
 .social-avatar:first-child{margin-left:0}
 
 /* ═══ NEWSLETTER ═══ */
-.nl-sec{position:relative;z-index:2;padding:var(--sec) 40px}
-.nl-card{position:relative;max-width:800px;margin:0 auto;padding:80px 56px;background:var(--card);border:1px solid var(--gb);border-radius:var(--r);backdrop-filter:blur(24px);text-align:center;overflow:hidden}
-.nl-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg,transparent,rgba(124,108,240,.05),transparent,rgba(0,212,240,.05),transparent);animation:ng 12s linear infinite}
+.nl-sec{position:relative;z-index:2;padding:var(--sec) 40px;overflow:hidden}
+/* Floating background orbs */
+.nl-sec::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(124,108,240,.06) 0%,transparent 70%);pointer-events:none;animation:nlOrb1 12s ease-in-out infinite alternate}
+.nl-sec::after{content:'';position:absolute;bottom:-150px;right:10%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,240,.05) 0%,transparent 70%);pointer-events:none;animation:nlOrb2 15s ease-in-out infinite alternate}
+@keyframes nlOrb1{0%{transform:translateX(-50%) translateY(0) scale(1)}100%{transform:translateX(-50%) translateY(40px) scale(1.15)}}
+@keyframes nlOrb2{0%{transform:translateY(0) scale(1)}100%{transform:translateY(-30px) scale(1.1)}}
+.nl-card{position:relative;max-width:860px;margin:0 auto;padding:88px 64px;background:linear-gradient(165deg,rgba(18,16,36,.95) 0%,rgba(10,10,22,.98) 60%,rgba(8,8,18,.99) 100%);border:1px solid rgba(255,255,255,.05);border-radius:28px;backdrop-filter:blur(60px) saturate(200%);-webkit-backdrop-filter:blur(60px) saturate(200%);text-align:center;overflow:hidden;transition:all .5s cubic-bezier(.23,1,.32,1)}
+.nl-card::before{content:'';position:absolute;inset:0;border-radius:28px;padding:1px;background:linear-gradient(170deg,rgba(255,255,255,.08),transparent 40%,transparent 60%,rgba(124,108,240,.08));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;z-index:3}
+.nl-card::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg,transparent,rgba(124,108,240,.04),transparent,rgba(0,212,240,.04),transparent);animation:ng 10s linear infinite;pointer-events:none}
 @keyframes ng{to{transform:rotate(360deg)}}
 .nl-card>*{position:relative;z-index:1}
-.nl-icon{font-size:52px;margin-bottom:24px;display:block}
-.nl-card h2{font-family:var(--fd);font-size:clamp(30px,4vw,48px);font-weight:700;letter-spacing:-1.8px;margin-bottom:20px}
-.nl-card p{font-size:18px;color:var(--tx2);max-width:500px;margin:0 auto 40px;line-height:1.8}
-.nl-form{display:flex;gap:12px;max-width:480px;margin:0 auto}
-.nl-input{flex:1;padding:18px 24px;background:rgba(255,255,255,.04);border:1px solid var(--gb);border-radius:16px;color:var(--tx);font-size:15px;font-family:var(--fb);outline:none;transition:all .3s}
-.nl-input::placeholder{color:var(--tx3)}
-.nl-input:focus{border-color:var(--a1);background:rgba(255,255,255,.06);box-shadow:0 0 0 4px rgba(124,108,240,.1)}
-.nl-btn{padding:18px 36px;background:#00d4f0;border:none;border-radius:16px;color:#020205;font-size:15px;font-weight:700;cursor:pointer;transition:all .35s cubic-bezier(.4,0,.2,1);white-space:nowrap;box-shadow:0 4px 24px rgba(0,212,240,.35)}
-.nl-btn:hover{transform:translateY(-3px);box-shadow:0 8px 36px rgba(0,212,240,.6);background:#33e0f7}
-.nl-btn:active{transform:translateY(0)}
-.nl-note{margin-top:20px;font-size:13px;color:var(--tx3)}
+.nl-card:hover{border-color:rgba(124,108,240,.2);box-shadow:0 40px 100px rgba(0,0,0,.4),0 0 60px rgba(124,108,240,.06),inset 0 1px 0 rgba(255,255,255,.08)}
+.nl-icon{font-size:56px;margin-bottom:28px;display:block;animation:nlIcon 4s ease-in-out infinite}
+@keyframes nlIcon{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-6px) scale(1.05)}}
+.nl-card h2{font-family:var(--fd);font-size:clamp(32px,4.5vw,56px);font-weight:700;letter-spacing:-2px;margin-bottom:20px;line-height:1.1}
+.nl-card h2 .grad{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nl-card p{font-size:18px;color:var(--tx2);max-width:520px;margin:0 auto 44px;line-height:1.8}
+.nl-form{display:flex;gap:12px;max-width:500px;margin:0 auto}
+.nl-input{flex:1;padding:18px 24px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:16px;color:var(--tx);font-size:15px;font-family:var(--fb);outline:none;transition:all .4s cubic-bezier(.23,1,.32,1)}
+.nl-input::placeholder{color:var(--tx3);transition:opacity .3s}
+.nl-input:focus{border-color:rgba(124,108,240,.4);background:rgba(255,255,255,.06);box-shadow:0 0 0 4px rgba(124,108,240,.1),0 0 30px rgba(124,108,240,.08)}
+.nl-input:focus::placeholder{opacity:.5}
+.nl-btn{padding:18px 36px;background:linear-gradient(135deg,#00d4f0,#00b8d4);border:none;border-radius:16px;color:#020205;font-size:15px;font-weight:700;cursor:pointer;transition:all .4s cubic-bezier(.23,1,.32,1);white-space:nowrap;box-shadow:0 4px 24px rgba(0,212,240,.35);position:relative;overflow:hidden}
+.nl-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 30%,rgba(255,255,255,.15) 50%,transparent 70%);transform:translateX(-100%);transition:transform .6s}
+.nl-btn:hover::before{transform:translateX(100%)}
+.nl-btn:hover{transform:translateY(-4px);box-shadow:0 8px 40px rgba(0,212,240,.5);background:linear-gradient(135deg,#33e0f7,#00d4f0)}
+.nl-btn:active{transform:translateY(-1px)}
+.nl-note{margin-top:24px;font-size:13px;color:var(--tx3)}
+.nl-note span{margin:0 8px;opacity:.3}
 
 /* ═══ FOOTER ═══ */
 .footer{position:relative;z-index:2;padding:64px 40px 40px;border-top:1px solid var(--gb)}
@@ -394,6 +407,9 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.7;
   .trust-grid{grid-template-columns:repeat(2,1fr)}
   .sources-bar{padding:24px 20px}
   .sources-row{gap:16px}
+  .nl-card{padding:60px 36px}
+  .nl-form{flex-direction:column;gap:16px}
+  .nl-btn{width:100%}
   .footer-inner{grid-template-columns:1fr 1fr}
 }
 @media(max-width:768px){
@@ -413,7 +429,12 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.7;
   .sources-bar{padding:20px 16px}
   .sources-row{gap:12px}
   .source-item{padding:6px 12px;font-size:12px}
-  .nl-card{padding:48px 28px}.nl-form{flex-direction:column}.social-metrics{gap:32px}
+  .nl-card{padding:48px 28px}
+  .nl-form{flex-direction:column;gap:14px}
+  .nl-btn{width:100%;padding:16px 28px}
+  .nl-input{padding:16px 20px}
+  .nl-note{font-size:12px}
+  .social-metrics{gap:32px}
   .ticker::before,.ticker::after{width:30px}
   .ticker-pill{padding:6px 14px;font-size:12px}
   .footer-inner{grid-template-columns:1fr;gap:32px}.footer-bot{flex-direction:column;gap:16px;text-align:center}
@@ -674,13 +695,13 @@ const POSTS_DATA = [];
 <section class="nl-sec" id="newsletter">
   <div class="nl-card reveal">
     <span class="nl-icon">✦</span>
-    <h2>Stay Ahead of the <span class="grad">AI Revolution</span></h2>
-    <p>Receive the most important AI developments in a concise daily digest. No noise. No fluff. Just signal.</p>
+    <h2>Stay Ahead of AI in <span class="grad">5 Minutes a Day</span></h2>
+    <p>Get the most important AI developments delivered to your inbox every morning. Curated by experts, distilled for busy people.</p>
     <form class="nl-form" onsubmit="handleNL(event)">
       <input type="email" class="nl-input" placeholder="Enter your email address" required>
       <button type="submit" class="nl-btn">Subscribe Free →</button>
     </form>
-    <p class="nl-note">Free forever · No spam · Unsubscribe anytime</p>
+    <p class="nl-note">Free forever <span>·</span> No spam <span>·</span> Unsubscribe anytime</p>
   </div>
 </section>
 
