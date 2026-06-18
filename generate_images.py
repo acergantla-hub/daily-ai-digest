@@ -157,7 +157,7 @@ def gen_cover(date_str, num_stories, categories, accent, accent2):
         x_start += tw+12
 
     d.line([(200,H-80),(W-200,H-80)], fill=(42,42,58), width=1)
-    tc(d, H-60, "daily-ai-digest.dev", freg(22), (80,80,100))
+    tc(d, H-60, "daily-ai-digest.freelancerloki.workers.dev", freg(22), (80,80,100))
     draw_bar(img, accent, y0=H-4, h=4)
     return img
 
@@ -246,7 +246,7 @@ def gen_cta(date_str, accent, accent2):
     for g in range(30, 0, -2):
         rr(d, [bx-g, y-g, bx+bw+g, y+bh+g], 36+g, with_alpha(accent, 0.04), accent, 1)
     rr(d, [bx, y, bx+bw, y+bh], 35, (20,15,50), accent, 2)
-    tc(d, y+18, "daily-ai-digest.dev", fsemibold(30), accent2)
+    tc(d, y+18, "daily-ai-digest.freelancerloki.workers.dev", fsemibold(30), accent2)
 
     y += bh+60
     tc(d, y, "Follow for daily AI news", freg(30), (136,136,160))

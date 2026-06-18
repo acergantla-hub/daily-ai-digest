@@ -16,7 +16,7 @@ for i, t in enumerate(story_titles, 1):
     clean = re.sub(r"\*\*", "", t)
     lines.append(str(i) + ". " + clean)
 lines.append("")
-lines.append("Read the full digest: daily-ai-digest.dev")
+lines.append("Read the full digest: https://daily-ai-digest.freelancerloki.workers.dev")
 lines.append("")
 lines.append("#AI #ArtificialIntelligence #AIagents #ClaudeCode #ChatGPT #OpenAI #Anthropic #GoogleAI #tech #ainews #technews #machinelearning #dailydigest #airesearch")
 

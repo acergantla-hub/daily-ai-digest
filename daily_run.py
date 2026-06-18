@@ -297,7 +297,7 @@ Today's top {len(story_titles)} AI stories:
         caption += f"{i}. {clean}\n"
 
     caption += f"""
-🔗 Read the full digest: daily-ai-digest.dev
+🔗 Read the full digest: https://daily-ai-digest.freelancerloki.workers.dev
 
 #AI #ArtificialIntelligence #AIagents #ClaudeCode #ChatGPT #OpenAI #Anthropic #GoogleAI #tech #ainews #technews #machinelearning #daily digest #airesearch #gpt"""
 
