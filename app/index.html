@@ -1123,7 +1123,42 @@ const POSTS_DATA = [];
   renderPosts();
 
   // ── Newsletter ──
-  window.handleNL=function(e){e.preventDefault();var inp=e.target.querySelector('input'),btn=e.target.querySelector('button');if(inp.value){btn.textContent='Subscribed ✓';btn.style.background='#34d399';inp.value='';setTimeout(function(){btn.textContent='Subscribe Free →';btn.style.background='';},3000);}};
+  window.handleNL=function(e){
+    e.preventDefault();
+    var inp=e.target.querySelector('input'),btn=e.target.querySelector('button'),note=e.target.parentElement.querySelector('.nl-note');
+    var email=inp.value.trim();
+    if(!email)return;
+    btn.textContent='Subscribing...';
+    btn.disabled=true;
+    btn.style.opacity='.7';
+    // Change this URL to your Cloudflare Worker URL once deployed
+    var WORKER_URL='https://daily-ai-digest-newsletter.YOUR_SUBDOMAIN.workers.dev';
+    fetch(WORKER_URL+'/api/subscribe',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email})
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.success||d.alreadySubscribed){
+        btn.textContent='Subscribed ✓';
+        btn.style.background='#34d399';
+        btn.style.opacity='1';
+        inp.value='';
+        if(note){note.innerHTML='<span style="color:#34d399">You\'re in! Welcome to the newsletter.</span>';}
+        setTimeout(function(){btn.textContent='Subscribe Free →';btn.style.background='';btn.disabled=false;btn.style.opacity='1';if(note){note.innerHTML='Free forever <span>·</span> No spam <span>·</span> Unsubscribe anytime';};},4000);
+      }else{
+        btn.textContent='Try Again';
+        btn.disabled=false;
+        btn.style.opacity='1';
+        if(note){note.innerHTML='<span style="color:#f472b6">'+(d.error||'Something went wrong.')+'</span>';}
+      }
+    }).catch(function(err){
+      console.error('Subscribe error:',err);
+      btn.textContent='Try Again';
+      btn.disabled=false;
+      btn.style.opacity='1';
+      if(note){note.innerHTML='<span style="color:#f472b6">Connection error. Try again.</span>';}
+    });
+  };
 
   // ── Mobile Nav ──
   document.getElementById('navToggle').addEventListener('click',function(){var l=document.querySelector('.nav-links');l.style.display=l.style.display==='flex'?'none':'flex';if(l.style.display==='flex'){Object.assign(l.style,{position:'absolute',top:'100%',left:'0',right:'0',flexDirection:'column',padding:'20px',background:'rgba(2,2,5,.95)',backdropFilter:'blur(20px)',borderBottom:'1px solid var(--gb)'});}});

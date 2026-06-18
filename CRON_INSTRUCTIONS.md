@@ -159,10 +159,25 @@ Create an Instagram caption file at `/data/data/com.termux/files/home/daily-ai-d
 - Link to the website
 - Relevant hashtags
 
-## Step 7: Report results
+## Step 7: Send newsletter to subscribers
+
+Run the newsletter sender to email all active subscribers about the new post:
+
+```bash
+cd /data/data/com.termux/files/home/daily-ai-digest
+python3 newsletter/send_newsletter.py send \
+    --slug YYYY-MM-DD-daily-ai-digest \
+    --title "Daily AI Digest — YYYY-MM-DD" \
+    --url "/posts/YYYY-MM-DD-daily-ai-digest.html"
+```
+
+This sends the newsletter via the Cloudflare Worker to all D1 subscribers using Resend.
+
+## Step 8: Report results
 
 Output a summary including:
 1. ✅ Blog post URL on the live site
 2. ✅ Number of Instagram slides generated
 3. ✅ Caption preview
-4. ✅ Notice that user needs to manually upload slides to Instagram
+4. ✅ Newsletter sent to N subscribers (or "No subscribers yet" if 0)
+5. ✅ Notice that user needs to manually upload slides to Instagram
