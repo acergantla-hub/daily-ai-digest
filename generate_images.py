@@ -251,7 +251,7 @@ def gen_cta(date_str, accent, accent2):
     y += bh+60
     tc(d, y, "Follow for daily AI news", freg(30), (136,136,160))
     y += 40
-    tc(d, y, "@lancerloki", fsemibold(28), accent)
+    tc(d, y, "@lancerloki1", fsemibold(28), accent)
 
     d.line([(200,H-80),(W-200,H-80)], fill=(42,42,58), width=1)
     tc(d, H-55, date_str, freg(20), (80,80,100))
