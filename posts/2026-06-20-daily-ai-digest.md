@@ -8,8 +8,6 @@ tags: openai, noam-shazeer, transformer, amazon, trainium, nvidia, ambani, relia
 
 ### OpenAI Hires Transformer Co-Author Noam Shazeer Ahead of IPO
 
-![Noam Shazeer joins OpenAI](assets/story_images/openai_shazeer.png)
-
 **Industry** | June 18, 2026 | TechCrunch
 
 OpenAI has hired Noam Shazeer, one of the most foundational minds in modern generative AI, away from Google DeepMind. Shazeer co-authored the seminal 2017 paper "Attention Is All You Need" which introduced the Transformer architecture — the foundation of every major AI model today.
@@ -30,8 +28,6 @@ OpenAI also brought on Dean Ball, former White House AI policy official who help
 ---
 
 ### SpaceX Acquires AI Coding Platform Cursor for $60 Billion
-
-![Cursor interface](assets/story_images/spacex_cursor.png)
 
 **Industry** | June 19, 2026 | Ars Technica
 
@@ -54,8 +50,6 @@ This is a marriage of two companies that have arguably been falling behind in th
 
 ### Amazon Plans to Sell Trainium AI Chips, Challenging Nvidia Directly
 
-![AWS Trainium chips](assets/story_images/amazon_trainium.png)
-
 **Industry** | June 18, 2026 | TechCrunch
 
 Amazon Web Services is in talks to sell its homegrown Trainium AI chips to third-party companies for use in their own data centers — a move that would directly challenge Nvidia's dominance in the AI hardware market. AWS AI chief Peter DeSantis confirmed the plans to Bloomberg.
@@ -76,8 +70,6 @@ A $50 billion competitor wouldn't tank Nvidia's $326 billion revenue run rate, b
 ---
 
 ### Leaked Financial Docs Show OpenAI Is Losing Billions Despite Revenue Surge
-
-![OpenAI financials](assets/story_images/openai_financials.png)
 
 **Industry** | June 19, 2026 | Ars Technica
 
@@ -100,8 +92,6 @@ As OpenAI files SEC paperwork ahead of its expected IPO, it will need to rein in
 
 ### Mukesh Ambani Brings AI to 500 Million Indians
 
-![Mukesh Ambani Reliance AI](assets/story_images/ambani_reliance.png)
-
 **Industry** | June 19, 2026 | TechCrunch
 
 Billionaire Mukesh Ambani is positioning Reliance Industries as India's national AI champion. At its annual shareholder meeting, Reliance announced three major products: Jio Call Agent (AI assistant that joins phone calls to transcribe, summarize, and perform tasks), an AI-powered MyJio app (handling eSIM activation and roaming plans via natural language), and TeleFrame (a home display using AI agents to surface weather, schedules, and reminders).
@@ -122,8 +112,6 @@ Jio Call Agent launches later this year for Jio's 500+ million users. By embeddi
 ---
 
 ### From PGP to Mythos: Why Export Controls Don't Stop Anyone
-
-![Export controls history](assets/story_images/export_controls.png)
 
 **Policy** | June 19, 2026 | TechCrunch
 
@@ -146,8 +134,6 @@ Anthropic itself has said these capabilities will be broadly available in 6-24 m
 
 ### Trump Administration Helps xAI Fight Pollution Lawsuit, Citing Military Need for Grok
 
-![xAI Colossus data center](assets/story_images/xai_lawsuit.png)
-
 **Policy** | June 18, 2026 | Ars Technica
 
 The Trump administration is intervening on behalf of Elon Musk's xAI to block a Clean Air Act lawsuit filed by the NAACP. The lawsuit alleges xAI violated environmental law by operating up to 57 unpermitted gas turbines at its Colossus data center in Mississippi.
@@ -168,8 +154,6 @@ The Southern Environmental Law Center responded that the US is arguing "xAI shou
 ---
 
 ### Bernie Sanders Unveils $7 Trillion Plan to Give Americans Control of AI
-
-![Bernie Sanders AI plan](assets/story_images/bernie_sanders.png)
 
 **Policy** | June 18, 2026 | Ars Technica
 
