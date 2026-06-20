@@ -273,6 +273,8 @@ def build():
 
         # Build individual post page
         page_html = build_post_page(post, template_html)
+        # Fix asset paths: posts are in /posts/, assets are in /assets/
+        page_html = page_html.replace('src="assets/', 'src="../assets/')
         (DIST_DIR / "posts" / f"{slug}.html").write_text(page_html, encoding='utf-8')
         print(f"  ✓ Post: {title}")
 
