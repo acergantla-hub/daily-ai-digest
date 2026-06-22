@@ -282,7 +282,9 @@ def parse_post(md_path):
         if not tm: continue
         title = tm.group(1).strip()
         cm = re.search(r'\*\*(.+?)\*\*', section)
-        category = cm.group(1) if cm else "General"
+        full_bold = cm.group(1) if cm else "General"
+        # Extract only the category name (first part before |)
+        category = full_bold.split('|')[0].strip() if '|' in full_bold else full_bold
 
         lines = section.split('\n')
         summary_lines = []

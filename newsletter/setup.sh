@@ -2,6 +2,7 @@
 # Cloudflare Newsletter Setup Script
 # Run this to set up everything automatically
 
+# Read token from local file (never commit this!)
 CF_ACCOUNT_ID="e227995b424158109fb77a1de35ab083"
 CF_API_KEY=$(cat ~/cf_api_token.txt | tr -d '[:space:]')
 

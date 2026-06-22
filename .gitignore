@@ -8,3 +8,29 @@
 # Generated Instagram posts (local only)
 instagram_posts/
 .current_stories.json
+
+# Unused story images (keep only actively referenced ones)
+assets/story_images/*.png
+assets/story_images/*.jpg
+assets/story_images/*.webp
+assets/story_images/slide_*.png
+assets/story_images/story_*.txt
+assets/story_images/caption_*.txt
+assets/story_images/gen_slides.py
+
+# Newsletter secrets & temp files
+newsletter/deploy_b64.txt
+newsletter/add_binding.py
+newsletter/check_bindings.py
+newsletter/check_worker.py
+newsletter/deploy_worker.py
+newsletter/setup_cf.py
+newsletter/test_worker.py
+
+# General
+*.pyc
+__pycache__/
+.DS_Store
+*.tmp
+*.bak
+*.swp
