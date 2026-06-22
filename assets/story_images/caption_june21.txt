@@ -1,0 +1,25 @@
+🚀 Daily AI Digest — June 21, 2026
+
+1️⃣ Nobel Laureate John Jumper Leaves DeepMind for Anthropic
+The AlphaFold pioneer who won the 2024 Nobel Prize in Chemistry is joining Anthropic, signaling their push into scientific AI.
+
+2️⃣ Signal CEO: AI Chatbots "Are Not Your Friends"
+Meredith Whittaker warns against emotional attachment to AI companions — they're corporate products, not genuine relationships.
+
+3️⃣ Baseten Raising $1.5B for AI Inference
+The inference infrastructure startup is raising another massive round just months after its last, as demand for production AI compute explodes.
+
+4️⃣ Snap Spins Off AI Video Team into Dotmo
+High compute costs force Snap to spin off its AI video generation team into a separate company.
+
+5️⃣ Elastic Buys Deductive AI for $85M
+Enterprise search giant Elastic acquires the CRV-backed startup to add AI-powered data reasoning to its platform.
+
+6️⃣ Pentagon Uses AI to Write Congress Reports
+The DoD is using AI to generate legally mandated reports for Congress, raising transparency and accountability concerns.
+
+Read full digest 👉 https://daily-ai-digest.freelancerloki.workers.dev/
+
+Follow → @lancerloki1
+
+#AI #ArtificialIntelligence #Anthropic #DeepMind #Signal #Baseten #Snap #Elastic #Pentagon #TechNews #DailyDigest #MachineLearning #AIethics #Tech #Innovation
