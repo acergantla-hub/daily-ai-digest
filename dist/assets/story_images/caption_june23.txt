@@ -1,0 +1,25 @@
+🚀 Daily AI Digest — June 23, 2026
+
+1️⃣ Five Eyes Warns AI Cyber Attacks "Months Away"
+Rare joint intelligence statement from US/UK/Canada/AU/NZ says AI capable of devastating cyber attacks on governments and businesses is months, not years, away.
+
+2️⃣ OpenAI Launches Open-Source Bug Patching Initiative
+OpenAI is using its AI to automatically find and patch vulnerabilities in popular open-source projects, addressing chronic underfunding of open-source security.
+
+3️⃣ Groq Raises $650M After Nvidia Deal Collapsed
+AI chipmaker Groq confirms massive raise and re-staffing spree after Nvidia's $20B acquisition attempt fell through. LPU tech offers GPU alternative.
+
+4️⃣ Baseten Hits $13B Valuation
+AI inference startup reaches $13B in record bet by Australia's Blackbird Ventures. Inference is the new battleground as AI moves to production.
+
+5️⃣ Alphabet Has Worst Day in a Year on AI Fears
+Google's parent company sees worst stock drop in 12+ months amid high-profile talent exits and concerns about falling behind in AI race.
+
+6️⃣ AI Catches Heart Condition Doctors Missed
+AI flagged a serious heart problem initially diagnosed as asthma. Patient received heart transplant after AI intervention. Diagnostic safety net in action.
+
+Read full digest 👉 https://daily-ai-digest.freelancerloki.workers.dev/
+
+Follow → @lancerloki1
+
+#AI #ArtificialIntelligence #Cybersecurity #FiveEyes #OpenAI #Groq #Baseten #Alphabet #Google #TechNews #DailyDigest #MachineLearning #AIethics #Tech #Innovation #InfoSec #HealthcareAI
