@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Previewing GPT-5.6 Sol: a next-generation model",
+    "description": "OpenAI previews GPT-5.6 Sol, a next-generation model with stronger capabilities in coding, science, and cybersecurity, paired with its most advanced safety stack.",
+    "url": "https://openai.com/index/previewing-gpt-5-6-sol/",
+    "source": "openai.com"
+  },
+  {
+    "title": "U.S. government will decide who gets to use latest upgrade to ChatGPT",
+    "description": "The Trump administration came to power preaching a laissez-faire approach to AI but has lately increased oversight of the industry.",
+    "url": "https://www.washingtonpost.com/technology/2026/06/26/openai-says-us-government-will-vet-users-its-latest-ai-model/",
+    "source": "washingtonpost.com"
+  },
+  {
+    "title": "Exclusive: US releases powerful Anthropic model Mythos to some US companies",
+    "description": "The move comes the same day as a new OpenAI model sees a limited release.",
+    "url": "https://www.semafor.com/article/06/27/2026/us-releases-powerful-anthropic-model-mythos-to-some-us-companies",
+    "source": "semafor.com"
+  },
+  {
+    "title": "Ultrasound imaging of the brain \u2014 Aleph",
+    "description": "The most detailed vascular image of a living human brain we&#x27;ve seen, captured with ultrasound through the skull \u2014 and the pipeline behind it.",
+    "url": "https://alephneuro.com/blog/ultrasound-brain",
+    "source": "alephneuro.com"
+  },
+  {
+    "title": "Prediction: A Frontier Open Source LLM Will Be Released On 3rd December 2026 | Doubleword",
+    "description": "Using artificial analysis benchmarks we try to predict when an open source LLM will be released that matches frontier LLMs.",
+    "url": "https://blog.doubleword.ai/frontier-os-llm",
+    "source": "blog.doubleword.ai"
+  },
+  {
+    "title": "GitHub - workweave/router: Model router for agentic systems. Routes every prompt to the right model in &lt;50ms. Cut costs 40-70% with just an endpoint change.",
+    "description": "Model router for agentic systems. Routes every prompt to the right model in &lt;50ms. Cut costs 40-70% with just an endpoint change. - workweave/router",
+    "url": "https://github.com/workweave/router",
+    "source": "github.com"
+  },
+  {
+    "title": "What it Means to Be a Mathematician When AI Does the Math",
+    "description": "Researchers debate motivation, purpose, and the field\u2019s future",
+    "url": "https://spectrum.ieee.org/ai-in-mathematics",
+    "source": "spectrum.ieee.org"
+  },
+  {
+    "title": "Anatomy of a Failed (Nation-State?) Attack",
+    "description": "No description available",
+    "url": "https://grack.com/blog/2026/06/25/dissecting-a-failed-nation-state-attack/",
+    "source": "grack.com"
+  }
+]
