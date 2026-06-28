@@ -40,8 +40,8 @@ for i, t in enumerate(story_titles):
     clean = re.sub(r"\*\*", "", t)
     emoji = num_emojis[i] if i < len(num_emojis) else f"{i+1}."
     lines.append(f"{emoji} {clean}")
-lines.append(f"Read the full digest 👉 daily-ai-digest.freelancerloki.workers.dev")
-lines.append(f"Follow for daily AI news → @lancerloki1")
+lines.append(f"🔗 Link in bio for full digest")
+lines.append(f"📲 Follow @lancerloki1 for daily AI updates")
 lines.append("")
 lines.append("#AI #ArtificialIntelligence #DailyAIDigest #OpenAI #Anthropic #SpaceX #Cursor #Nvidia #AIAgents #MachineLearning #TechNews #AIIndustry #BernieSanders #Trump #Amazon #AWS")
 

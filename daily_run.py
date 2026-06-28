@@ -297,9 +297,10 @@ Today's top {len(story_titles)} AI stories:
         caption += f"{i}. {clean}\n"
 
     caption += f"""
-🔗 Read the full digest: https://daily-ai-digest.freelancerloki.workers.dev
+🔗 Link in bio for full digest
+📲 Follow @lancerloki1 for daily AI updates
 
-#AI #ArtificialIntelligence #AIagents #ClaudeCode #ChatGPT #OpenAI #Anthropic #GoogleAI #tech #ainews #technews #machinelearning #daily digest #airesearch #gpt"""
+#AI #ArtificialIntelligence #AIagents #ClaudeCode #ChatGPT #OpenAI #Anthropic #GoogleAI #tech #ainews #technews #machinelearning #dailydigest #airesearch #gpt"""
 
     caption_path = BASE_DIR / "instagram_posts" / "caption.txt"
     caption_path.write_text(caption, encoding='utf-8')

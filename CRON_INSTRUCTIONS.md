@@ -156,7 +156,8 @@ This will create slides in `/data/data/com.termux/files/home/daily-ai-digest/ins
 Create an Instagram caption file at `/data/data/com.termux/files/home/daily-ai-digest/instagram_posts/caption.txt` with:
 - A hook line
 - Numbered list of stories
-- Link to the website
+- "🔗 Link in bio for full digest"
+- "📲 Follow @lancerloki1 for daily AI updates"
 - Relevant hashtags
 
 ## Step 7: Send newsletter to subscribers
