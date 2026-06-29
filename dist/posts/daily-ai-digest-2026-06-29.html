@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily AI Digest — 2026-06-29 — Daily AI Digest</title>
+<meta name="description" content="Today's top AI news: GLM 5.2 beats Claude in cybersecurity benchmarks, Claude Code second-opinions an MRI, mass AI cheating scandal at Brown, and more.">
+<meta name="theme-color" content="#020205">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#020205;--bg2:#06060c;--bg3:#0a0a14;--card:rgba(10,10,20,.7);--glass:rgba(255,255,255,.02);--gb:rgba(255,255,255,.05);--gbh:rgba(255,255,255,.1);--tx:#f0f0f8;--tx2:#8888a8;--tx3:#4e4e6a;--a1:#7c6cf0;--a2:#b46eff;--a3:#00d4f0;--a4:#34d399;--grad:linear-gradient(135deg,#7c6cf0,#b46eff,#00d4f0);--fd:'Space Grotesk','Inter',system-ui,sans-serif;--fb:'Inter',system-ui,sans-serif;--fm:'JetBrains Mono',monospace;--r:24px;--rs:14px;--rx:10px}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
+body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.6;overflow-x:hidden;min-height:100vh}
+::selection{background:rgba(124,108,240,.35);color:#fff}
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.mesh-bg{position:absolute;inset:-50%;background:radial-gradient(ellipse 600px 600px at 20% 20%,rgba(124,108,240,.12),transparent),radial-gradient(ellipse 500px 500px at 80% 30%,rgba(0,212,240,.08),transparent),radial-gradient(ellipse 700px 700px at 50% 80%,rgba(180,110,255,.07),transparent);animation:mp 20s ease-in-out infinite alternate}
+@keyframes mp{0%{transform:scale(1) rotate(0)}50%{transform:scale(1.15) rotate(3deg)}100%{transform:scale(1) rotate(-2deg)}}
+.orb{position:absolute;border-radius:50%;filter:blur(180px);opacity:.4}
+.orb-1{width:800px;height:800px;background:radial-gradient(circle,rgba(124,108,240,.22),transparent 70%);top:-300px;right:-200px;animation:od 28s ease-in-out infinite}
+.orb-2{width:600px;height:600px;background:radial-gradient(circle,rgba(0,212,240,.18),transparent 70%);bottom:-200px;left:-150px;animation:od 34s ease-in-out infinite reverse}
+@keyframes od{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(-30px,20px) scale(1.05)}50%{transform:translate(15px,-25px) scale(.97)}75%{transform:translate(-20px,-10px) scale(1.02)}}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(2,2,5,.6);backdrop-filter:blur(24px) saturate(200%);-webkit-backdrop-filter:blur(24px) saturate(200%);border-bottom:1px solid var(--gb);transition:all .4s cubic-bezier(.4,0,.2,1)}
+.nav.scrolled{padding:12px 40px;background:rgba(2,2,5,.92)}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--tx)}
+.nav-logo-icon{width:42px;height:42px;background:var(--grad);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#fff;box-shadow:0 0 28px rgba(124,108,240,.35)}
+.nav-logo-text{font-family:var(--fd);font-size:21px;font-weight:700;letter-spacing:-.5px}
+.nav-logo-text span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+.nav-links a{color:var(--tx2);text-decoration:none;font-size:14px;font-weight:500;transition:color .3s}
+.nav-links a:hover{color:var(--tx)}
+.pp{position:relative;z-index:2;max-width:820px;margin:0 auto;padding:140px 40px 100px}
+.pback{display:inline-flex;align-items:center;gap:8px;color:var(--tx2);text-decoration:none;font-size:14px;font-weight:500;margin-bottom:40px;transition:all .3s;padding:8px 18px;background:var(--glass);border:1px solid var(--gb);border-radius:100px;backdrop-filter:blur(10px)}
+.pback:hover{color:var(--tx);border-color:var(--gbh);background:rgba(255,255,255,.05)}
+.ph{margin-bottom:56px}
+.pm{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.pd{font-family:var(--fm);font-size:13px;color:var(--tx3)}
+.pc{padding:5px 14px;background:rgba(124,108,240,.12);border:1px solid rgba(124,108,240,.25);border-radius:100px;color:var(--a1);font-weight:600;font-size:12px;letter-spacing:.5px}
+.prt{font-size:13px;color:var(--tx3);display:flex;align-items:center;gap:4px}
+.ph h1{font-family:var(--fd);font-size:clamp(32px,5.5vw,56px);font-weight:700;line-height:1.1;letter-spacing:-2px;margin-bottom:24px}
+.ptags{display:flex;flex-wrap:wrap;gap:8px}
+.ptag{padding:5px 14px;background:rgba(255,255,255,.03);border:1px solid var(--gb);border-radius:100px;font-size:12px;color:var(--tx2);font-family:var(--fm);transition:all .3s}
+.ptag:hover{background:rgba(255,255,255,.06);border-color:var(--gbh)}
+.pcontent{font-size:17px;line-height:1.85;color:var(--tx)}
+.pcontent h2{font-family:var(--fd);font-size:30px;font-weight:700;margin:56px 0 24px;letter-spacing:-.5px;line-height:1.2}
+.pcontent h3{font-family:var(--fd);font-size:22px;font-weight:600;margin:40px 0 18px;letter-spacing:-.3px;color:var(--tx)}
+.pcontent p{margin-bottom:22px;color:var(--tx2)}
+.pcontent strong{color:var(--tx);font-weight:600}
+.pcontent a{color:var(--a1);text-decoration:none;border-bottom:1px solid rgba(124,108,240,.25);transition:all .3s}
+.pcontent a:hover{border-color:var(--a1);color:var(--a2)}
+.pcontent ul,.pcontent ol{margin:20px 0;padding-left:28px}
+.pcontent li{margin-bottom:10px;color:var(--tx2);line-height:1.7}
+.pcontent hr{border:none;height:1px;background:var(--gb);margin:48px 0}
+.pcontent blockquote{border-left:3px solid var(--a1);padding:16px 28px;margin:32px 0;background:rgba(124,108,240,.04);border-radius:0 var(--rx) var(--rx) 0;color:var(--tx2);font-style:italic;font-size:17px;line-height:1.75}
+.pcontent img{width:100%;border-radius:var(--rs);margin:32px 0;border:1px solid var(--gb)}
+.pcontent code{font-family:var(--fm);font-size:14px;background:rgba(255,255,255,.05);padding:3px 10px;border-radius:6px;color:var(--a2)}
+.pcontent pre{background:rgba(6,6,12,.8);border:1px solid var(--gb);border-radius:var(--rs);padding:24px;overflow-x:auto;margin:32px 0;backdrop-filter:blur(10px)}
+.pcontent pre code{background:none;padding:0;color:var(--tx2);font-size:14px;line-height:1.7}
+.pnav{display:flex;justify-content:space-between;margin-top:72px;padding-top:36px;border-top:1px solid var(--gb);gap:20px}
+.pnav a{color:var(--tx2);text-decoration:none;font-size:14px;transition:all .3s;padding:16px 20px;background:var(--glass);border:1px solid var(--gb);border-radius:var(--rs);max-width:45%;backdrop-filter:blur(10px)}
+.pnav a:hover{color:var(--tx);border-color:var(--gbh);background:rgba(255,255,255,.05)}
+.pnav a span{display:block;font-size:11px;color:var(--tx3);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px}
+.pnav a:last-child{text-align:right}
+.footer{position:relative;z-index:2;padding:48px 40px 32px;border-top:1px solid var(--gb);text-align:center;margin-top:80px}
+.footer p{font-size:13px;color:var(--tx3)}
+.footer a{color:var(--a1);text-decoration:none}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.07);border-radius:100px}
+@media(max-width:768px){
+  .nav{padding:14px 20px}
+  .nav-links{display:none}
+  .pp{padding:110px 20px 70px}
+  .pnav{flex-direction:column}
+  .pnav a{max-width:100%}
+  .pnav a:last-child{text-align:left}
+  .pcontent h2{font-size:24px;margin:40px 0 18px}
+}
+</style>
+</head>
+<body>
+<div class="ambient"><div class="mesh-bg"></div><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+<nav class="nav">
+  <a href="/" class="nav-logo"><div class="nav-logo-icon">⚡</div><div class="nav-logo-text">Daily <span>AI</span> Digest</div></a>
+  <ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/#latest">Latest</a></li><li><a href="/#tools">Tools</a></li><li><a href="/about.html">About</a></li></ul>
+</nav>
+<article class="pp">
+  <a href="/" class="pback">← All Posts</a>
+  <header class="ph">
+    <div class="pm"><span class="pd">June 29, 2026</span><span class="pc">Daily Digest</span><span class="prt">⏱ 5 min read</span></div>
+    <h1>Daily AI Digest — 2026-06-29</h1>
+    <div class="ptags"><span class="post-header-tag">ai-agents</span><span class="post-header-tag">ai-security</span><span class="post-header-tag">claude-code</span><span class="post-header-tag">daily-digest</span><span class="post-header-tag">openai</span><span class="post-header-tag">anthropic</span><span class="post-header-tag">ai-regulation</span><span class="post-header-tag">ai-education</span><span class="post-header-tag">ml-engineering</span></div>
+  </header>
+  <div class="pcontent"><h3 id="glm-52-beats-claude-in-cybersecurity-benchmarks">GLM 5.2 Beats Claude in Cybersecurity Benchmarks</h3>
+<p><strong>AI Security</strong> | June 29, 2026 | Semgrep / Hacker News</p>
+<p>Semgrep has published benchmarks showing that GLM 5.2, the latest model from Zhipu AI, outperforms Anthropic's Claude on cybersecurity evaluation tasks. The benchmarks tested models on code vulnerability detection, security rule generation, and automated triage — tasks that sit at the core of Semgrep's AI-powered security platform.</p>
+<p>The results mark a significant shift in the competitive landscape. While Western frontier models have historically dominated security-focused benchmarks, GLM 5.2's performance suggests that Chinese AI labs are rapidly closing — and in some areas overtaking — the gap in specialized domains. Semgrep noted that the model excelled particularly at identifying subtle logic flaws that other models missed.</p>
+<p><strong>Key Takeaways:</strong><br />
+- GLM 5.2 from Zhipu AI outperforms Claude on Semgrep's cybersecurity benchmarks<br />
+- Suggests narrowing gap between Chinese and Western AI models in specialized domains<br />
+- Implications for AI security tooling — more competitive model choices available<br />
+- Highlights the importance of domain-specific benchmarks over general-purpose leaderboards</p>
+<p><a href="https://semgrep.dev/blog/2026/we-have-mythos-at-home-glm-52-beats-claude-in-our-cyber-benchmarks/">Read full story</a></p>
+<hr />
+<h3 id="claude-code-used-to-get-a-second-opinion-on-an-mri">Claude Code Used to Get a Second Opinion on an MRI</h3>
+<p><strong>AI in Healthcare</strong> | June 28, 2026 | Antoine.fi / Hacker News</p>
+<p>A developer shared a detailed account of using Claude's Opus 4.8 model to get a "second opinion" on an MRI diagnosis for a shoulder injury. After an orthopedist recommended an extensive treatment plan including shockwave therapy and injections, the patient fed the MRI report into Claude Code — which immediately flagged that the shockwave therapy contradicted recent clinical practice guidelines and that one of the injected substances was registered as a homeopathic medicine "without a therapeutic indication."</p>
+<p>The experiment reveals both the promise and peril of AI in medical contexts. Claude successfully identified evidence-based inconsistencies in the treatment plan, but the author is careful to note this is not a substitute for professional medical advice. The case underscores how accessible AI can empower patients to ask better questions of their healthcare providers.</p>
+<p><strong>Key Takeaways:</strong><br />
+- Opus 4.8 identified two treatment recommendations that contradict clinical guidelines<br />
+- AI can help patients cross-reference medical advice against published research<br />
+- Not a replacement for doctors — but a tool for more informed patient-doctor conversations<br />
+- Raises questions about overspecialized medical practices where patients lack expertise to challenge recommendations</p>
+<p><a href="https://antoine.fi/mri-analysis-using-claude-code-opus">Read full story</a></p>
+<hr />
+<h3 id="mass-ai-cheating-scandal-at-brown-university">Mass AI Cheating Scandal at Brown University</h3>
+<p><strong>AI &amp; Education</strong> | June 28, 2026 | El Pais</p>
+<p>Professor Roberto Serrano, a Harrison S. Kravis University Professor of Economics at Brown, has presented "overwhelming evidence" that at least 50 students cheated on a midterm exam in his advanced mathematical economics course ECON 1170 — making it the largest known cheating scandal both at Brown and across the entire Ivy League.</p>
+<p>When Serrano reported the case to university leadership, the response was chilling: the president offered absolute silence, and the dean refused to comment until the professor escalated to the Academic Code Committee. The scandal exposes a growing tension between rapid AI adoption and institutional willingness to enforce academic integrity at the highest levels of higher education.</p>
+<p><strong>Key Takeaways:</strong><br />
+- At least 50 students used AI to cheat on an Ivy League economics midterm<br />
+- Largest known cheating scandal in Brown University and Ivy League history<br />
+- University leadership initially resisted addressing the issue<br />
+- Highlights the growing crisis of AI-enabled academic dishonesty at elite institutions</p>
+<p><a href="https://english.elpais.com/education/2026-06-28/ai-fraud-at-brown-university-academic-integrity-is-at-risk.html">Read full story</a></p>
+<hr />
+<h3 id="openai-codex-still-has-no-way-to-exclude-sensitive-files">OpenAI Codex Still Has No Way to Exclude Sensitive Files</h3>
+<p><strong>AI Developer Tools</strong> | June 29, 2026 | GitHub / Hacker News</p>
+<p>An open issue on OpenAI's Codex repository highlights a critical gap: there is still no way to exclude sensitive files from being read or modified by the AI coding agent. Issue #2847, which has been open for weeks, requests a mechanism similar to <code>.gitignore</code> that would prevent Codex from accessing credentials, secrets, or proprietary code.</p>
+<p>The community response has been significant, with developers pointing out that competing tools like Cursor and Claude Code already implement file exclusion features. The absence of this basic safeguard raises concerns about OpenAI's approach to building agentic coding tools — it suggests security considerations may be lagging behind capability development.</p>
+<p><strong>Key Takeaways:</strong><br />
+- OpenAI Codex lacks a mechanism to exclude sensitive files from AI processing<br />
+- GitHub issue #2847 has drawn significant community attention<br />
+- Competing tools already implement file exclusion safeguards<br />
+- Raises broader concerns about security-by-design in AI coding agents</p>
+<p><a href="https://github.com/openai/codex/issues/2847">Read full story</a></p>
+<hr />
+<h3 id="age-verification-laws-are-really-identity-attribution-systems">Age Verification Laws Are Really Identity Attribution Systems</h3>
+<p><strong>AI &amp; Privacy</strong> | June 29, 2026 | Nonogra.ph / Hacker News</p>
+<p>A detailed analysis argues that the wave of "age verification" regulations sweeping US states, European countries, and Australia are fundamentally identity attribution systems in disguise. While presented as child-safety measures, these laws systematically link digital identities to physical identities (SSN, government ID), creating an infrastructure that can be repurposed for surveillance and speech attribution.</p>
+<p>The author draws a sharp distinction between what law enforcement needs — "What happened?" and "Who did it?" — and argues that age verification solves the "Who" problem at scale, automatically and preemptively. This infrastructure outlasts any single administration's stated intent and creates capabilities that future governments can exploit for political suppression.</p>
+<p><strong>Key Takeaways:</strong><br />
+- Age verification laws create permanent identity-to-digital-account linkages<br />
+- These systems can be repurposed for automated speech attribution and surveillance<br />
+- The legal framework sidesteps traditional due process requirements<br />
+- Infrastructure built for child safety today becomes a tool for political control tomorrow</p>
+<p><a href="https://nonogra.ph/age-verification-is-just-a-precursor-to-attribution-of-speech-06-29-2026">Read full story</a></p>
+<hr />
+<h3 id="nanoeuler-a-gpt-2-scale-model-built-entirely-in-ccuda-from-scratch">NanoEuler: A GPT-2 Scale Model Built Entirely in C/CUDA From Scratch</h3>
+<p><strong>AI Research</strong> | June 29, 2026 | Hacker News</p>
+<p>A developer has released NanoEuler, a GPT-2-scale language model built entirely from scratch in pure C and CUDA — with hand-written backpropagation, a custom BPE tokenizer, FlashAttention implementation, and both pretraining and supervised fine-tuning pipelines. The project demonstrates that you don't need Python or PyTorch to build a functional transformer training pipeline.</p>
+<p>The educational value of NanoEuler is substantial: by stripping away the abstraction layers of modern ML frameworks, it exposes the raw mechanics of how transformers actually learn. Every gradient computation, every attention pattern, every weight update is visible and auditable in C code.</p>
+<p><strong>Key Takeaways:</strong><br />
+- Full GPT-2-scale model implemented in C/CUDA with no Python dependencies<br />
+- Hand-written backpropagation and FlashAttention from scratch<br />
+- Includes both pretraining and SFT training loops<br />
+- Exceptional educational resource for understanding transformer internals</p>
+<p><a href="https://github.com/JustVugg/nanoeuler">Read full story</a></p>
+<hr />
+<h3 id="hackerranks-open-source-ats-gives-different-resume-scores-every-run">HackerRank's Open-Source ATS Gives Different Resume Scores Every Run</h3>
+<p><strong>AI in Hiring</strong> | June 28, 2026 | Dan Unparsed / Hacker News</p>
+<p>After HackerRank open-sourced its AI-powered applicant tracking system (hiring-agent), one developer ran it 100 times on the same resume and got scores ranging from 66 to 99 out of 100. With a hypothetical company cutoff of 85, the same candidate would fail 65% of the time — purely due to LLM non-determinism.</p>
+<p>The ATS uses a small local model (gemma3:4b) at temperature 0.1 to extract structured information from resumes and grade them. While some scoring categories like "technical skills" proved nearly deterministic (8/10 in 98 out of 100 runs), others like "open source contributions" and "personal projects" showed wild variance, effectively turning hiring decisions into a luck filter.</p>
+<p><strong>Key Takeaways:</strong><br />
+- Same resume scored between 66 and 99 across 100 identical runs<br />
+- LLM non-determinism makes AI-powered hiring tools unreliable for borderline decisions<br />
+- Some scoring categories are consistent; others are essentially random<br />
+- Raises serious concerns about fairness in AI-driven applicant screening</p>
+<p><a href="https://danunparsed.com/p/hackerrank-open-source-ats">Read full story</a></p>
+<hr />
+<h3 id="aleph-alphas-savanna-model-training-as-code">Aleph Alpha's Savanna: Model Training as Code</h3>
+<p><strong>ML Engineering</strong> | May 22, 2026 | Aleph Alpha / Hacker News</p>
+<p>Aleph Alpha has introduced Savanna, a "model factory" that implements the entire LLM training pipeline as code — turning model training into a collaborative software engineering project. The system addresses a growing pain point: as training pipelines expand across pretraining, alignment, and evaluation, manual coordination between specialized teams simply doesn't scale.</p>
+<p>Savanna makes end-to-end training runs hermetic and launchable with a single click, enabling teams to work autonomously on their specialty while ensuring that changes integrate cleanly into the production pipeline. The approach draws on software engineering best practices — version control, CI/CD, and reproducible builds — applied to the ML training lifecycle.</p>
+<p><strong>Key Takeaways:</strong><br />
+- Aleph Alpha open-sources a framework for managing ML training as a software project<br />
+- Hermetic, one-click training runs with full reproducibility<br />
+- Addresses organizational scaling challenges in large model training<br />
+- Applies software engineering rigor (versioning, CI/CD) to ML pipelines</p>
+<p><a href="https://aleph-alpha.com/en/blog/model-training-as-code/">Read full story</a></p>
+<hr />
+<h2 id="why-this-matters-today">Why This Matters Today</h2>
+<p>Today's digest reveals a landscape where AI's capabilities and its societal consequences are colliding at every turn.</p>
+<p>On the security front, GLM 5.2 beating Claude on cybersecurity benchmarks is a wake-up call. The assumption that Western frontier models hold an insurmountable lead in every domain is no longer valid — and the implications for national security tooling are significant. Meanwhile, the OpenAI Codex sensitive-files issue shows that even as AI capabilities race ahead, basic security safeguards remain an afterthought in too many developer tools.</p>
+<p>In healthcare and education, two stories paint contrasting pictures of AI's impact on human expertise. Claude Opus catching medication and treatment inconsistencies that a patient might never have questioned is a genuinely empowering use of AI — not replacing doctors, but giving patients the knowledge to have better conversations. Contrast that with 50+ Brown students using AI to cheat on a midterm while university leadership looked the other way. Same technology, opposite outcomes: one amplifies human agency, the other undermines institutional trust.</p>
+<p>The hiring ATS story should alarm anyone who thinks AI will make recruitment "fairer." When the same resume can score 66 or 99 on identical runs, the technology isn't removing bias — it's randomizing it and wrapping it in the veneer of objectivity. Companies deploying these tools at scale are effectively running a lottery.</p>
+<p>Finally, the age verification analysis connects the dots between seemingly benign regulatory movements and their long-term surveillance implications. The infrastructure being built today won't disappear when the stated justification evolves. As AI makes automated surveillance cheaper and more scalable, the legal frameworks we accept now will determine how much freedom we retain later.</p>
+<hr />
+<p><em>This digest was curated by <a href="https://daily-ai-digest.freelancerloki.workers.dev/">Daily AI Digest</a>. Follow for daily AI news updates.</em></p></div>
+  <nav class="pnav"><a href="/"><span>← Previous</span>Home</a><a href="/"><span>Next →</span>Home</a></nav>
+</article>
+<footer class="footer"><p>© 2026 <a href="https://instagram.com/lancerloki1">LancerLoki</a>. All rights reserved.</p></footer>
+<script>window.addEventListener('scroll',()=>document.querySelector('.nav').classList.toggle('scrolled',window.scrollY>50),{passive:true})</script>
+</body>
+</html>
