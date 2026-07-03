@@ -1122,7 +1122,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.7;
   renderPosts();
 
   // ── Newsletter (Cloudflare Worker) ──
-  // Worker: https://daily-ai-digest.freelancerloki.workers.dev/api/subscribe
+  // Worker: https://daily-ai-digest-newsletter.freelancerloki.workers.dev/api/subscribe
   window.handleNL=function(e){
     e.preventDefault();
     var form=e.target;
@@ -1135,7 +1135,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.7;
     btn.style.opacity='.7';
 
     // Submit to Cloudflare Worker
-    fetch('https://daily-ai-digest.freelancerloki.workers.dev/api/subscribe',{
+    fetch('https://daily-ai-digest-newsletter.freelancerloki.workers.dev/api/subscribe',{
       method:'POST',
       headers:{'Content-Type':'application/json','Accept':'application/json'},
       body:JSON.stringify({ email: email })
