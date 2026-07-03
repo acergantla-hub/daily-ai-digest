@@ -1268,11 +1268,11 @@ const POSTS_DATA = [
     <span class="nl-icon">✦</span>
     <h2>Stay Ahead of AI in <span class="grad">5 Minutes a Day</span></h2>
     <p>Get the most important AI developments delivered to your inbox every morning. Curated by experts, distilled for busy people.</p>
-    <form class="nl-form" onsubmit="handleNL(event)">
-      <input type="email" class="nl-input" placeholder="Enter your email address" required>
+    <form class="nl-form" id="nlForm" onsubmit="handleNL(event)">
+      <input type="email" name="email" class="nl-input" placeholder="Enter your email address" required>
       <button type="submit" class="nl-btn">Subscribe Free →</button>
     </form>
-    <p class="nl-note">Free forever <span>·</span> No spam <span>·</span> Unsubscribe anytime</p>
+    <p class="nl-note" id="nlNote">Free forever <span>·</span> No spam <span>·</span> Unsubscribe anytime</p>
   </div>
 </section>
 
@@ -1693,41 +1693,53 @@ const POSTS_DATA = [
 
   renderPosts();
 
-  // ── Newsletter ──
+  // ── Newsletter (FormSubmit.co — free, no signup needed) ──
+  // Emails are forwarded to: freelancerloki@gmail.com
+  // First submission triggers a confirmation email from FormSubmit to activate
   window.handleNL=function(e){
     e.preventDefault();
-    var inp=e.target.querySelector('input'),btn=e.target.querySelector('button'),note=e.target.parentElement.querySelector('.nl-note');
+    var form=e.target;
+    var inp=form.querySelector('input'),btn=form.querySelector('button');
+    var note=document.getElementById('nlNote');
     var email=inp.value.trim();
     if(!email)return;
     btn.textContent='Subscribing...';
     btn.disabled=true;
     btn.style.opacity='.7';
-    // Change this URL to your Cloudflare Worker URL once deployed
-    var WORKER_URL='https://daily-ai-digest-newsletter.YOUR_SUBDOMAIN.workers.dev';
-    fetch(WORKER_URL+'/api/subscribe',{
+
+    // Submit via fetch to FormSubmit (JSON format, avoids page redirect)
+    fetch('https://formsubmit.co/ajax/freelancerloki@gmail.com',{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({email:email})
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        email:email,
+        _subject:'New Newsletter Subscriber — Daily AI Digest',
+        _template:'table',
+        _captcha:false
+      })
     }).then(function(r){return r.json();}).then(function(d){
-      if(d.success||d.alreadySubscribed){
-        btn.textContent='Subscribed ✓';
-        btn.style.background='#34d399';
-        btn.style.opacity='1';
-        inp.value='';
-        if(note){note.innerHTML='<span style="color:#34d399">You\'re in! Welcome to the newsletter.</span>';}
-        setTimeout(function(){btn.textContent='Subscribe Free →';btn.style.background='';btn.disabled=false;btn.style.opacity='1';if(note){note.innerHTML='Free forever <span>·</span> No spam <span>·</span> Unsubscribe anytime';};},4000);
-      }else{
-        btn.textContent='Try Again';
+      btn.textContent='Subscribed ✓';
+      btn.style.background='#34d399';
+      btn.style.opacity='1';
+      inp.value='';
+      if(note){note.innerHTML='<span style="color:#34d399">You\\'re in! Check your inbox for confirmation.</span>';}
+      setTimeout(function(){
+        btn.textContent='Subscribe Free →';
+        btn.style.background='';
         btn.disabled=false;
         btn.style.opacity='1';
-        if(note){note.innerHTML='<span style="color:#f472b6">'+(d.error||'Something went wrong.')+'</span>';}
-      }
+        if(note){note.innerHTML='Free forever <span>·</span> No spam <span>·</span> Unsubscribe anytime';}
+      },5000);
     }).catch(function(err){
       console.error('Subscribe error:',err);
       btn.textContent='Try Again';
       btn.disabled=false;
       btn.style.opacity='1';
       if(note){note.innerHTML='<span style="color:#f472b6">Connection error. Try again.</span>';}
+      setTimeout(function(){
+        btn.textContent='Subscribe Free →';
+        note.innerHTML='Free forever <span>·</span> No spam <span>·</span> Unsubscribe anytime';
+      },3000);
     });
   };
 
