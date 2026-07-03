@@ -285,6 +285,10 @@ def build():
     posts_data = build_posts_data(posts)
     posts_json = json.dumps(posts_data, indent=2)
 
+    # Write posts-data.js (external data file to avoid huge inline scripts)
+    (DIST_DIR / "posts-data.js").write_text(f"const POSTS_DATA = {posts_json};\n", encoding='utf-8')
+    print("  ✓ posts-data.js")
+
     # Build index with real data
     index_html = build_index(posts_json)
     (DIST_DIR / "index.html").write_text(index_html, encoding='utf-8')

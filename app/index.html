@@ -446,9 +446,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.7;
 }
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.07);border-radius:100px}
 </style>
-<script>
-const POSTS_DATA = [];
-</script>
+<script src="posts-data.js"></script>
 </head>
 <body>
 
@@ -959,6 +957,7 @@ const POSTS_DATA = [];
 
   // ── Posts ──
   var grid=document.getElementById('dgGrid'),fc=document.getElementById('featuredCard');
+  if(!grid||!fc){console.error('CRITICAL: grid or fc not found');return;}
   function ic(c){var l=(c||'').toLowerCase();if(l.includes('tool'))return'c';if(l.includes('agent'))return'p';if(l.includes('research'))return'g';if(l.includes('policy'))return'pk';return'p';}
   function ig(c){var l=(c||'').toLowerCase();if(l.includes('tool'))return'🛠';if(l.includes('agent'))return'🤖';if(l.includes('research'))return'🔬';if(l.includes('policy'))return'⚖️';if(l.includes('funding'))return'💰';return'📡';}
   function renderPosts(){
