@@ -1121,9 +1121,8 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.7;
 
   renderPosts();
 
-  // ── Newsletter (FormSubmit.co — free, no signup needed) ──
-  // Emails are forwarded to: freelancerloki@gmail.com
-  // First submission triggers a confirmation email from FormSubmit to activate
+  // ── Newsletter (Cloudflare Worker) ──
+  // Worker: https://daily-ai-digest.freelancerloki.workers.dev/api/subscribe
   window.handleNL=function(e){
     e.preventDefault();
     var form=e.target;
@@ -1135,22 +1134,26 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.7;
     btn.disabled=true;
     btn.style.opacity='.7';
 
-    // Submit via fetch to FormSubmit (JSON format, avoids page redirect)
-    fetch('https://formsubmit.co/ajax/freelancerloki@gmail.com',{
+    // Submit to Cloudflare Worker
+    fetch('https://daily-ai-digest.freelancerloki.workers.dev/api/subscribe',{
       method:'POST',
       headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify({
-        email:email,
-        _subject:'New Newsletter Subscriber — Daily AI Digest',
-        _template:'table',
-        _captcha:false
-      })
+      body:JSON.stringify({ email: email })
     }).then(function(r){return r.json();}).then(function(d){
-      btn.textContent='Subscribed ✓';
-      btn.style.background='#34d399';
-      btn.style.opacity='1';
-      inp.value='';
-      if(note){note.innerHTML='<span style="color:#34d399">You\'re in! Check your inbox for confirmation.</span>';}
+      if (d.success) {
+        btn.textContent='Subscribed ✓';
+        btn.style.background='#34d399';
+        btn.style.opacity='1';
+        inp.value='';
+        if(note){note.innerHTML='<span style="color:#34d399">You\'re in! Welcome to the digest.</span>';}
+      } else if (d.alreadySubscribed) {
+        btn.textContent='Already Subscribed';
+        btn.style.background='var(--a3)';
+        btn.style.opacity='1';
+        if(note){note.innerHTML='<span style="color:var(--a3)">You\'re already on the list!</span>';}
+      } else {
+        throw new Error(d.error || 'Subscription failed');
+      }
       setTimeout(function(){
         btn.textContent='Subscribe Free →';
         btn.style.background='';
@@ -1163,7 +1166,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.7;
       btn.textContent='Try Again';
       btn.disabled=false;
       btn.style.opacity='1';
-      if(note){note.innerHTML='<span style="color:#f472b6">Connection error. Try again.</span>';}
+      if(note){note.innerHTML='<span style="color:#f472b6">Could not connect. Try again later.</span>';}
       setTimeout(function(){
         btn.textContent='Subscribe Free →';
         note.innerHTML='Free forever <span>·</span> No spam <span>·</span> Unsubscribe anytime';

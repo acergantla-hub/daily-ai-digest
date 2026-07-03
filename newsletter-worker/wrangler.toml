@@ -2,15 +2,11 @@ name = "daily-ai-digest-newsletter"
 main = "worker.js"
 compatibility_date = "2024-01-01"
 
-# KV namespace binding — create this with `wrangler kv:namespace create SUBSCRIBERS`
-# then put the returned ID below
+# KV namespace binding - create this with wrangler kv:namespace create SUBSCRIBERS
 [[kv_namespaces]]
 binding = "SUBSCRIBERS"
-id = "YOUR_KV_NAMESPACE_ID"
+id = "c25e0c8909a84e62a3bd700768734d26"
 
-# Optional: SendGrid for email notifications on new subscriber
-# [vars]
-# NOTIFY_EMAIL = "you@example.com"
-# ADMIN_API_KEY = "your-secret-admin-key"
-
-# SendGrid API key as a secret (set with `wrangler secret put SENDGRID_API_KEY`)
+[vars]
+FROM_EMAIL = "freelancerloki@gmail.com"
+SITE_NAME = "Daily AI Digest"
