@@ -250,7 +250,10 @@ def build():
         meta, body = parse_frontmatter(raw)
         title = meta.get('title', f.stem.replace('-', ' ').title())
         date_str = meta.get('date', datetime.now().strftime('%Y-%m-%d'))
-        tags = [t.strip() for t in meta.get('tags', '').split(',') if t.strip()]
+        tags_str = meta.get('tags', '').strip()
+        if tags_str.startswith('[') and tags_str.endswith(']'):
+            tags_str = tags_str[1:-1]
+        tags = [t.strip() for t in tags_str.split(',') if t.strip()]
         category = meta.get('category', '')
         excerpt = meta.get('excerpt', '')
         dt = datetime.strptime(date_str, '%Y-%m-%d')

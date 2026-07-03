@@ -3,7 +3,7 @@ title: "Daily AI Digest — 2026-06-25"
 date: 2026-06-25
 category: "Daily Digest"
 excerpt: "OpenAI's custom chip debuts, Anthropic accuses Alibaba of model extraction, Google brings computer use to Gemini Flash, and Oracle cuts 21,000 jobs in a major AI pivot — your daily roundup of AI news."
-tags: [openai, anthropic, google, alibaba, oracle, gemini, glm, agility-robotics, facebook, europe, chips, token-rationing, philosophers, ai-safety]
+tags: openai, anthropic, google, alibaba, oracle, gemini, glm, agility-robotics, facebook, europe, chips, token-rationing, philosophers, ai-safety
 ---
 
 ### OpenAI Unveils First Custom Chip "Jalapeño" Built by Broadcom
