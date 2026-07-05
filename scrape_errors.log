@@ -1,0 +1,32 @@
+[digest] Fetching Hacker News...
+[digest] HN: 21 items
+[digest] Fetching RSS feeds...
+/home/lancerloki/.hermes/scripts/daily-ai-digest.py:115: DeprecationWarning: Testing an element's truth value will raise an exception in future versions.  Use specific 'len(elem)' or 'elem is not None' test instead.
+  date_el = entry.find("pubDate") or entry.find("{http://purl.org/dc/elements/1.1/}date")
+[digest] OpenAI Blog: 2 items
+[digest] Anthropic Blog: 0 items
+[digest] Google AI Blog: 0 items
+[digest] Hugging Face Blog: 6 items
+[digest] LangChain Blog: 0 items
+[digest] MIT Tech Review AI: 1 items
+[digest] The Verge AI: 0 items
+[digest] TechCrunch AI: 4 items
+[digest] Ars Technica AI: 1 items
+[digest] VentureBeat AI: 4 items
+[digest] Fetching YouTube...
+[digest] YT OpenAI: 0 items
+[digest] YT Google DeepMind: 0 items
+[digest] YT Two Minute Papers: 0 items
+[digest] YT AI Explained: 0 items
+[digest] YT Matt Wolfe: 0 items
+[digest] YT Fireship: 0 items
+[digest] YT TheAIGRID: 0 items
+[digest] Fetching X/Twitter via Nitter...
+[digest] X (AI+agents): 0 items
+[digest] X (claude+code): 0 items
+[digest] X (openclaw): 0 items
+[digest] X (hermes+agent): 0 items
+[digest] X (ai+automation): 0 items
+[digest] Total items: 39
+[digest] Generating image cards in /home/lancerloki/.hermes/digests/20260705_0747...
+[digest] Generated 11 cards
