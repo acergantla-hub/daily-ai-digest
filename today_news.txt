@@ -1,239 +1,246 @@
 📰 Daily AI Digest — July 05, 2026
-   38 stories from the last 24 hours
+   39 stories from the last 24 hours
 ==================================================
 
---- AI Agents (28) ---
+--- AI Agents (29) ---
 
   1. How agents are transforming work
-     Source: RSS: OpenAI Blog  |  Jul 05, 14:32 UTC
-     Why it matters: Just dropped: How agents are transforming work — could change how we build agent workflows.
+     Source: RSS: OpenAI Blog  |  Jul 05, 14:40 UTC
+     Why it matters: Fresh tool/announcement: How agents are transforming work. Might be relevant to your stack.
      > Respond: Read + assess if actionable for your projects.
      Snippet: A new OpenAI research paper shows how AI agents are transforming work, enabling longer, more complex tasks and expanding productivity across roles.
      Link: https://openai.com/index/how-agents-are-transforming-work
 
   2. ScarfBench: Benchmarking AI Agents for Enterprise Java Framework Migration
-     Source: RSS: Hugging Face Blog  |  Jul 05, 14:32 UTC
+     Source: RSS: Hugging Face Blog  |  Jul 05, 14:40 UTC
      Why it matters: Just dropped: ScarfBench: Benchmarking AI Agents for Enterprise Java Framework Migration — could change how we build agent workflows.
      > Respond: Read + assess if actionable for your projects.
      Link: https://huggingface.co/blog/ibm-research/scarfbench
 
   3. Is it agentic enough? Benchmarking open models on your own tooling
-     Source: RSS: Hugging Face Blog  |  Jul 05, 14:32 UTC
+     Source: RSS: Hugging Face Blog  |  Jul 05, 14:40 UTC
      Why it matters: Fresh tool/announcement: Is it agentic enough? Benchmarking open models on your own tooling. Might be relevant to your stack.
      > Respond: Read + assess if actionable for your projects.
      Link: https://huggingface.co/blog/is-it-agentic-enough
 
   4. Agentic Resource Discovery: Let agents search
-     Source: RSS: Hugging Face Blog  |  Jul 05, 14:32 UTC
-     Why it matters: Just dropped: Agentic Resource Discovery: Let agents search — could change how we build agent workflows.
+     Source: RSS: Hugging Face Blog  |  Jul 05, 14:40 UTC
+     Why it matters: Fresh tool/announcement: Agentic Resource Discovery: Let agents search. Might be relevant to your stack.
      > Respond: Read + assess if actionable for your projects.
      Link: https://huggingface.co/blog/agentic-resource-discovery-launch
 
   5. The Open Source Community is backing OpenEnv for Agentic RL
-     Source: RSS: Hugging Face Blog  |  Jul 05, 14:32 UTC
+     Source: RSS: Hugging Face Blog  |  Jul 05, 14:40 UTC
      Why it matters: Just dropped: The Open Source Community is backing OpenEnv for Agentic RL — could change how we build agent workflows.
      > Respond: Read + assess if actionable for your projects.
      Link: https://huggingface.co/blog/openenv-agentic-rl
 
   6. Adding MCP Tools to Reachy Mini
-     Source: RSS: Hugging Face Blog  |  Jul 05, 14:32 UTC
+     Source: RSS: Hugging Face Blog  |  Jul 05, 14:40 UTC
      Why it matters: New in agents: Adding MCP Tools to Reachy Mini. Worth a look if you're building with LLMs.
      > Respond: Read + assess if actionable for your projects.
      Link: https://huggingface.co/blog/adding-mcp-tools-to-reachy-mini
 
   7. Mark Zuckerberg tells staff that AI agents haven’t progressed as quickly as he’d hoped
-     Source: RSS: TechCrunch AI  |  Jul 05, 14:32 UTC
-     Why it matters: New in agents: Mark Zuckerberg tells staff that AI agents haven’t progressed as quickly as he’d.... Worth a look if you're building with LLMs.
+     Source: RSS: TechCrunch AI  |  Jul 05, 14:40 UTC
+     Why it matters: Fresh tool/announcement: Mark Zuckerberg tells staff that AI agents haven’t progressed as quickly as he’d.... Might be relevant to your stack.
      > Respond: Read + assess if actionable for your projects.
      Snippet: At an internal meeting, the Meta CEO reportedly said that AI development efforts were not moving as quickly as anticipated.
      Link: https://techcrunch.com/2026/07/02/mark-zuckerberg-tells-staff-that-ai-agents-havent-progressed-as-quickly-as-hed-hoped/
 
   8. Gemini Spark, Google’s agentic assistant, is now available on Mac
-     Source: RSS: TechCrunch AI  |  Jul 05, 14:32 UTC
-     Why it matters: Fresh tool/announcement: Gemini Spark, Google’s agentic assistant, is now available on Mac. Might be relevant to your stack.
+     Source: RSS: TechCrunch AI  |  Jul 05, 14:40 UTC
+     Why it matters: New in agents: Gemini Spark, Google’s agentic assistant, is now available on Mac. Worth a look if you're building with LLMs.
      > Respond: Read + assess if actionable for your projects.
      Snippet: Google's 24/7 agentic assistant, Gemini Spark, comes to Mac alongside other improvements, like real-time tracking and support for more apps.
      Link: https://techcrunch.com/2026/07/01/gemini-spark-googles-agentic-assistant-is-now-available-on-mac/
 
   9. Notion killing Skiff-influenced email app since most users use AI agents instead
-     Source: RSS: Ars Technica AI  |  Jul 05, 14:32 UTC
-     Why it matters: Fresh tool/announcement: Notion killing Skiff-influenced email app since most users use AI agents instead. Might be relevant to your stack.
+     Source: RSS: Ars Technica AI  |  Jul 05, 14:40 UTC
+     Why it matters: New in agents: Notion killing Skiff-influenced email app since most users use AI agents instead. Worth a look if you're building with LLMs.
      > Respond: Read + assess if actionable for your projects.
      Snippet: Notion is "going all in on using agents to run your inbox."
      Link: https://arstechnica.com/gadgets/2026/06/notion-killing-skiff-influenced-email-app-since-most-users-use-ai-agents-instead/
 
   10. Salesforce rolls out new Slackbot AI agent as it battles Microsoft and Google in workplace AI
-     Source: RSS: VentureBeat AI  |  Jul 05, 14:32 UTC
+     Source: RSS: VentureBeat AI  |  Jul 05, 14:40 UTC
      Why it matters: New in agents: Salesforce rolls out new Slackbot AI agent as it battles Microsoft and Google in.... Worth a look if you're building with LLMs.
      > Respond: Read + assess if actionable for your projects.
      Snippet: Salesforce on Tuesday launched an entirely rebuilt version of Slackbot, the company&#x27;s workplace assistant, transforming it from a simple notification tool into what executives describe as a fully
      Link: https://venturebeat.com/technology/salesforce-rolls-out-new-slackbot-ai-agent-as-it-battles-microsoft-and
 
   11. Anthropic launches Cowork, a Claude Desktop agent that works in your files — no coding required
-     Source: RSS: VentureBeat AI  |  Jul 05, 14:32 UTC
-     Why it matters: Fresh tool/announcement: Anthropic launches Cowork, a Claude Desktop agent that works in your files — no .... Might be relevant to your stack.
+     Source: RSS: VentureBeat AI  |  Jul 05, 14:40 UTC
+     Why it matters: Just dropped: Anthropic launches Cowork, a Claude Desktop agent that works in your files — no ... — could change how we build agent workflows.
      > Respond: Read + assess if actionable for your projects.
      Snippet: Anthropic released Cowork on Monday, a new AI agent capability that extends the power of its wildly successful Claude Code tool to non-technical users — and according to company insiders, the team bui
      Link: https://venturebeat.com/technology/anthropic-launches-cowork-a-claude-desktop-agent-that-works-in-your-files-no
 
-  12. JadePuffer ransomware used AI agent to automate entire attack
+  12. Self-hosted email client with an AI agent, running on Cloudflare Workers
+     Source: Hacker News  |  Jul 05, 14:38 UTC
+     ^ 1 points  |  0 comments
+     Why it matters: Fresh tool/announcement: Self-hosted email client with an AI agent, running on Cloudflare Workers. Might be relevant to your stack.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://github.com/cloudflare/agentic-inbox
+
+  13. JadePuffer ransomware used AI agent to automate entire attack
      Source: Hacker News  |  Jul 05, 12:55 UTC
      ^ 2 points  |  0 comments
-     Why it matters: Fresh tool/announcement: JadePuffer ransomware used AI agent to automate entire attack. Might be relevant to your stack.
+     Why it matters: New in agents: JadePuffer ransomware used AI agent to automate entire attack. Worth a look if you're building with LLMs.
      > Respond: Read + assess if actionable for your projects.
      Link: https://www.bleepingcomputer.com/news/security/jadepuffer-ransomware-used-ai-agent-to-automate-entire-attack/
 
-  13. Show HN: Open-source phone calling infra for AI agents
+  14. Show HN: Open-source phone calling infra for AI agents
      Source: Hacker News  |  Jul 05, 10:51 UTC
      ^ 3 points  |  3 comments
-     Why it matters: Just dropped: Show HN: Open-source phone calling infra for AI agents — could change how we build agent workflows.
+     Why it matters: Fresh tool/announcement: Show HN: Open-source phone calling infra for AI agents. Might be relevant to your stack.
      > Respond: Read + assess if actionable for your projects.
      Link: https://github.com/AgentLineHQ/AgentLine
 
-  14. Learning Multi-Agent Coordination via Sheaf-ADMM
+  15. Learning Multi-Agent Coordination via Sheaf-ADMM
      Source: Hacker News  |  Jul 05, 09:06 UTC
      ^ 2 points  |  0 comments
-     Why it matters: Fresh tool/announcement: Learning Multi-Agent Coordination via Sheaf-ADMM. Might be relevant to your stack.
+     Why it matters: Just dropped: Learning Multi-Agent Coordination via Sheaf-ADMM — could change how we build agent workflows.
      > Respond: Read + assess if actionable for your projects.
      Link: https://pub.sakana.ai/sheaf-admm/
 
-  15. code-on-incus: Give each AI agent its own isolated machine with root
+  16. code-on-incus: Give each AI agent its own isolated machine with root
      Source: Hacker News  |  Jul 05, 07:42 UTC
      ^ 2 points  |  0 comments
-     Why it matters: New in agents: code-on-incus: Give each AI agent its own isolated machine with root. Worth a look if you're building with LLMs.
+     Why it matters: Fresh tool/announcement: code-on-incus: Give each AI agent its own isolated machine with root. Might be relevant to your stack.
      > Respond: Read + assess if actionable for your projects.
      Link: https://github.com/mensfeld/code-on-incus
 
-  16. Agentsnap – find which config change broke your AI agent
+  17. Agentsnap – find which config change broke your AI agent
      Source: Hacker News  |  Jul 05, 06:57 UTC
      ^ 2 points  |  0 comments
-     Why it matters: Just dropped: Agentsnap – find which config change broke your AI agent — could change how we build agent workflows.
+     Why it matters: Fresh tool/announcement: Agentsnap – find which config change broke your AI agent. Might be relevant to your stack.
      > Respond: Read + assess if actionable for your projects.
      Link: https://drive.google.com/file/d/1oPTmOOkBtE0IRV4oy0K4NuuLxYBezXRc/view?usp=sharing
 
-  17. Ask HN: How Do You Connect OpenAI Secure MCP Tunnel with Claude Desktop
+  18. Ask HN: How Do You Connect OpenAI Secure MCP Tunnel with Claude Desktop
      Source: Hacker News  |  Jul 05, 05:38 UTC
      ^ 3 points  |  0 comments
-     Why it matters: Just dropped: Ask HN: How Do You Connect OpenAI Secure MCP Tunnel with Claude Desktop — could change how we build agent workflows.
+     Why it matters: Fresh tool/announcement: Ask HN: How Do You Connect OpenAI Secure MCP Tunnel with Claude Desktop. Might be relevant to your stack.
      > Respond: Read + assess if actionable for your projects.
      Link: https://news.ycombinator.com/item?id=48791510
 
-  18. The tool layer for developers and AI agents
+  19. The tool layer for developers and AI agents
      Source: Hacker News  |  Jul 05, 03:02 UTC
      ^ 2 points  |  1 comments
-     Why it matters: Just dropped: The tool layer for developers and AI agents — could change how we build agent workflows.
+     Why it matters: New in agents: The tool layer for developers and AI agents. Worth a look if you're building with LLMs.
      > Respond: Read + assess if actionable for your projects.
      Link: https://www.utilix.tech/
 
-  19. Show HN: Local MCP – Claude/ChatGPT read your iMessage, Teams, files on-device
+  20. Show HN: Local MCP – Claude/ChatGPT read your iMessage, Teams, files on-device
      Source: Hacker News  |  Jul 05, 02:49 UTC
      ^ 3 points  |  0 comments
-     Why it matters: Fresh tool/announcement: Show HN: Local MCP – Claude/ChatGPT read your iMessage, Teams, files on-device. Might be relevant to your stack.
+     Why it matters: New in agents: Show HN: Local MCP – Claude/ChatGPT read your iMessage, Teams, files on-device. Worth a look if you're building with LLMs.
      > Respond: Read + assess if actionable for your projects.
      Link: https://www.local-mcp.com/en
 
-  20. Damo Academy unveils an AI agent able to discover superconductors
+  21. Damo Academy unveils an AI agent able to discover superconductors
      Source: Hacker News  |  Jul 05, 00:00 UTC
      ^ 7 points  |  0 comments
      Why it matters: Just dropped: Damo Academy unveils an AI agent able to discover superconductors — could change how we build agent workflows.
      > Respond: Read + assess if actionable for your projects.
      Link: https://www.scmp.com/tech/big-tech/article/3359335/alibabas-elements-claw-ai-agent-unearths-four-new-superconductors
 
-  21. Microsoft Copilot OS revealed in LEAKED video: built on Copilot and agentic AI
+  22. Microsoft Copilot OS revealed in LEAKED video: built on Copilot and agentic AI
      Source: Hacker News  |  Jul 04, 22:50 UTC
      ^ 2 points  |  0 comments
-     Why it matters: New in agents: Microsoft Copilot OS revealed in LEAKED video: built on Copilot and agentic AI. Worth a look if you're building with LLMs.
+     Why it matters: Just dropped: Microsoft Copilot OS revealed in LEAKED video: built on Copilot and agentic AI — could change how we build agent workflows.
      > Respond: Read + assess if actionable for your projects.
      Link: https://www.windowscentral.com/microsoft/windows-11/microsoft-copilot-os-revealed-in-leaked-video-lightweight-windows-os-exploration-features-new-desktop-ui-built-entirely-around-copilot-and-agentic-ai
 
-  22. RFC: Stopping runaway AI agent spend with atomic budget reservations
+  23. RFC: Stopping runaway AI agent spend with atomic budget reservations
      Source: Hacker News  |  Jul 04, 22:42 UTC
      ^ 2 points  |  0 comments
-     Why it matters: Just dropped: RFC: Stopping runaway AI agent spend with atomic budget reservations — could change how we build agent workflows.
+     Why it matters: Fresh tool/announcement: RFC: Stopping runaway AI agent spend with atomic budget reservations. Might be relevant to your stack.
      > Respond: Read + assess if actionable for your projects.
      Link: https://github.com/iamapsrajput/agent-budget-protocol/blob/main/RFC.md
 
-  23. Exploiting LLM Agent Supply Chains via Payload-Less Skills
+  24. Exploiting LLM Agent Supply Chains via Payload-Less Skills
      Source: Hacker News  |  Jul 04, 22:01 UTC
      ^ 5 points  |  0 comments
      Why it matters: Fresh tool/announcement: Exploiting LLM Agent Supply Chains via Payload-Less Skills. Might be relevant to your stack.
      > Respond: Read + assess if actionable for your projects.
      Link: https://arxiv.org/abs/2605.14460
 
-  24. Exclusive-Meta's Zuckerberg says AI agent tech progressing slower than expected
+  25. Exclusive-Meta's Zuckerberg says AI agent tech progressing slower than expected
      Source: Hacker News  |  Jul 04, 21:16 UTC
      ^ 2 points  |  0 comments
-     Why it matters: New in agents: Exclusive-Meta's Zuckerberg says AI agent tech progressing slower than expected. Worth a look if you're building with LLMs.
+     Why it matters: Fresh tool/announcement: Exclusive-Meta's Zuckerberg says AI agent tech progressing slower than expected. Might be relevant to your stack.
      > Respond: Read + assess if actionable for your projects.
      Link: https://finance.yahoo.com/technology/ai/articles/exclusive-zuckerberg-says-ai-agent-201123441.html
 
-  25. Email inboxes for AI agents: the complete guide – MailKite
+  26. Email inboxes for AI agents: the complete guide – MailKite
      Source: Hacker News  |  Jul 04, 18:27 UTC
      ^ 2 points  |  0 comments
      Why it matters: New in agents: Email inboxes for AI agents: the complete guide – MailKite. Worth a look if you're building with LLMs.
      > Respond: Read + assess if actionable for your projects.
      Link: https://mailkite.dev/blog/email-inbox-for-ai-agents-guide/
 
-  26. How Tier-1 capital market is using AI Agent architecture
+  27. How Tier-1 capital market is using AI Agent architecture
      Source: Hacker News  |  Jul 04, 16:57 UTC
      ^ 3 points  |  0 comments
-     Why it matters: New in agents: How Tier-1 capital market is using AI Agent architecture. Worth a look if you're building with LLMs.
+     Why it matters: Fresh tool/announcement: How Tier-1 capital market is using AI Agent architecture. Might be relevant to your stack.
      > Respond: Read + assess if actionable for your projects.
      Link: https://electronictradinghub.com/the-ai-agent-architecture-is-published-the-thresholds-are-not/
 
-  27. Show HN: Routing24 – free route optimization agent for Claude Cowork/WebMCP
+  28. Show HN: Routing24 – free route optimization agent for Claude Cowork/WebMCP
      Source: Hacker News  |  Jul 04, 16:43 UTC
      ^ 4 points  |  0 comments
-     Why it matters: New in agents: Show HN: Routing24 – free route optimization agent for Claude Cowork/WebMCP. Worth a look if you're building with LLMs.
+     Why it matters: Fresh tool/announcement: Show HN: Routing24 – free route optimization agent for Claude Cowork/WebMCP. Might be relevant to your stack.
      > Respond: Read + assess if actionable for your projects.
      Link: https://github.com/routing24/skill
 
-  28. Agentic test processes, LLM benchmarks
+  29. Agentic test processes, LLM benchmarks
      Source: Hacker News  |  Jul 04, 15:58 UTC
      ^ 2 points  |  0 comments
-     Why it matters: Just dropped: Agentic test processes, LLM benchmarks — could change how we build agent workflows.
+     Why it matters: New in agents: Agentic test processes, LLM benchmarks. Worth a look if you're building with LLMs.
      > Respond: Read + assess if actionable for your projects.
      Link: https://danluu.com/ai-coding/
 
 
 --- Claude Code (6) ---
 
-  29. Alibaba reportedly bans employees from using Claude Code
-     Source: RSS: TechCrunch AI  |  Jul 05, 14:32 UTC
+  30. Alibaba reportedly bans employees from using Claude Code
+     Source: RSS: TechCrunch AI  |  Jul 05, 14:40 UTC
      Why it matters: Claude Code update: Alibaba reportedly bans employees from using Claude Code. Could affect your dev workflow.
      > Respond: Read + assess if actionable for your projects.
      Snippet: Alibaba has reportedly classified Claude Code as high-risk software.
      Link: https://techcrunch.com/2026/07/04/alibaba-reportedly-bans-employees-from-using-claude-code/
 
-  30. Claude Code costs up to $200 a month. Goose does the same thing for free.
-     Source: RSS: VentureBeat AI  |  Jul 05, 14:32 UTC
+  31. Claude Code costs up to $200 a month. Goose does the same thing for free.
+     Source: RSS: VentureBeat AI  |  Jul 05, 14:40 UTC
      Why it matters: New from Anthropic: Claude Code costs up to $200 a month. Goose does the same thing for free.. Relevant if you use Claude Code daily.
      > Respond: Read + assess if actionable for your projects.
      Snippet: The artificial intelligence coding revolution comes with a catch: it&#x27;s expensive.Claude Code, Anthropic&#x27;s terminal-based AI agent that can write, debug, and deploy code autonomously, has cap
      Link: https://venturebeat.com/infrastructure/claude-code-costs-up-to-usd200-a-month-goose-does-the-same-thing-for-free
 
-  31. Nous Research's NousCoder-14B is an open-source coding model landing right in the Claude Code moment
-     Source: RSS: VentureBeat AI  |  Jul 05, 14:32 UTC
-     Why it matters: Claude Code update: Nous Research's NousCoder-14B is an open-source coding model landing right in th.... Could affect your dev workflow.
+  32. Nous Research's NousCoder-14B is an open-source coding model landing right in the Claude Code moment
+     Source: RSS: VentureBeat AI  |  Jul 05, 14:40 UTC
+     Why it matters: New from Anthropic: Nous Research's NousCoder-14B is an open-source coding model landing right in th.... Relevant if you use Claude Code daily.
      > Respond: Read + assess if actionable for your projects.
      Snippet: Nous Research, the open-source artificial intelligence startup backed by crypto venture firm Paradigm, released a new competitive programming model on Monday that it says matches or exceeds several la
      Link: https://venturebeat.com/technology/nous-researchs-nouscoder-14b-is-an-open-source-coding-model-landing-right-in
 
-  32. Show HN: Self-healing review gate and knowledge base for Claude Code (Beta)
+  33. Show HN: Self-healing review gate and knowledge base for Claude Code (Beta)
      Source: Hacker News  |  Jul 05, 09:31 UTC
      ^ 4 points  |  0 comments
      Why it matters: Claude Code update: Show HN: Self-healing review gate and knowledge base for Claude Code (Beta). Could affect your dev workflow.
      > Respond: Read + assess if actionable for your projects.
      Link: https://verity.md
 
-  33. Show HN: Codex-review – a read-only cross-model review skill for Claude Code
+  34. Show HN: Codex-review – a read-only cross-model review skill for Claude Code
      Source: Hacker News  |  Jul 05, 05:30 UTC
      ^ 2 points  |  0 comments
-     Why it matters: Claude Code update: Show HN: Codex-review – a read-only cross-model review skill for Claude Code. Could affect your dev workflow.
+     Why it matters: New from Anthropic: Show HN: Codex-review – a read-only cross-model review skill for Claude Code. Relevant if you use Claude Code daily.
      > Respond: Read + assess if actionable for your projects.
      Link: https://github.com/shimo4228/codex-review
 
-  34. Drawbridge – Design Editor for Claude Code and Cursor
+  35. Drawbridge – Design Editor for Claude Code and Cursor
      Source: Hacker News  |  Jul 05, 03:48 UTC
      ^ 2 points  |  0 comments
      Why it matters: Claude Code update: Drawbridge – Design Editor for Claude Code and Cursor. Could affect your dev workflow.
@@ -243,14 +250,14 @@
 
 --- OpenClaw (2) ---
 
-  35. We got local models to triage the OpenClaw repo for FREE!*
-     Source: RSS: Hugging Face Blog  |  Jul 05, 14:32 UTC
+  36. We got local models to triage the OpenClaw repo for FREE!*
+     Source: RSS: Hugging Face Blog  |  Jul 05, 14:40 UTC
      Why it matters: OpenClaw update: We got local models to triage the OpenClaw repo for FREE!*. Another option in the agent space.
      > Respond: Read + assess if actionable for your projects.
      Link: https://huggingface.co/blog/local-models-pr-triage
 
-  36. Yep, we’re using OpenClaw to date now
-     Source: RSS: TechCrunch AI  |  Jul 05, 14:32 UTC
+  37. Yep, we’re using OpenClaw to date now
+     Source: RSS: TechCrunch AI  |  Jul 05, 14:40 UTC
      Why it matters: OpenClaw update: Yep, we’re using OpenClaw to date now. Another option in the agent space.
      > Respond: Read + assess if actionable for your projects.
      Snippet: Ben Guez has "a bunch of potential international wives in [his] DMs," thanks to an automated script he set up using OpenClaw, Claude code, and Instagram trials.
@@ -259,19 +266,19 @@
 
 --- AI News (2) ---
 
-  37. OpenAI to acquire Ona
-     Source: RSS: OpenAI Blog  |  Jul 05, 14:32 UTC
+  38. OpenAI to acquire Ona
+     Source: RSS: OpenAI Blog  |  Jul 05, 14:40 UTC
      Why it matters: Fresh: OpenAI to acquire Ona. Worth scanning for opportunity.
      > Respond: Read + assess if actionable for your projects.
      Snippet: OpenAI plans to acquire Ona to expand Codex with secure, persistent cloud environments, enabling long-running AI agents across enterprise workflows.
      Link: https://openai.com/index/openai-to-acquire-ona
 
-  38. Claude Science is Anthropic’s newest flagship product
-     Source: RSS: MIT Tech Review AI  |  Jul 05, 14:32 UTC
+  39. Claude Science is Anthropic’s newest flagship product
+     Source: RSS: MIT Tech Review AI  |  Jul 05, 14:40 UTC
      Why it matters: Fresh: Claude Science is Anthropic’s newest flagship product. Worth scanning for opportunity.
      > Respond: Read + assess if actionable for your projects.
      Snippet: At an event for pharmaceutical executives, biotech founders, and researchers on Tuesday, Anthropic announced Claude Science, a major new product intended to support scientific research in the same way
      Link: https://www.technologyreview.com/2026/06/30/1139987/claude-science-is-anthropics-newest-flagship-product/
 
 ==================================================
-Generated at 14:32 UTC  |  daily-ai-digest
+Generated at 14:40 UTC  |  daily-ai-digest
