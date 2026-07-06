@@ -72,7 +72,7 @@ In a candid internal town hall, Meta CEO Mark Zuckerberg told staff that AI agen
 
 ### OpenAI to Acquire Ona for Long-Running AI Agents
 
-指数：**AI Industry** | July 6, 2026 | OpenAI Blog
+**AI Industry** | July 6, 2026 | OpenAI Blog
 
 OpenAI announced plans to acquire Ona, a move aimed at expanding Codex with secure, persistent cloud environments that enable long-running AI agents across enterprise workflows. The acquisition signals OpenAI's strategy to move beyond chat-based interactions to agents that can operate continuously for hours or days, handling complex multi-step tasks in business environments.
 
@@ -121,3 +121,111 @@ Notion is shutting down its Skiff-influenced email application, with the company
 ### Gemini Spark Comes to Mac
 
 **AI Agents** | July 6, 2026 | TechCrunch
+
+Google's 24/7 agentic assistant Gemini Spark is now available on Mac, bringing real-time tracking and expanded app support to desktop users. The arrival on Mac represents Google's effort to bring its most capable agent to desktop platforms, challenging Apple's own AI ambitions.
+
+**Key Takeaways:**
+- Gemini Spark now available on Mac alongside mobile platforms
+- Includes real-time tracking and broader app integration
+- Google's push for desktop agent presence
+- Competes with Apple's native AI offerings on Mac
+
+[Read full story](https://techcrunch.com/2026/07/01/gemini-spark-googles-agentic-assistant-is-now-available-on-mac/)
+
+---
+
+### OpenAI Fast-Tracking "AI Agent Phone" for 2027
+
+**AI Hardware** | July 6, 2026 | Reddit / Hacker News
+
+OpenAI is reportedly fast-tracking development of its own "AI Agent Phone" for a 2027 launch, positioning it as a direct challenge to the iPhone. The device is expected to be built around agentic AI-first interaction, moving beyond the app-based model that has defined smartphones for over a decade.
+
+**Key Takeaways:**
+- OpenAI developing dedicated AI agent hardware for 2027
+- Positioned as direct iPhone competitor
+- Agent-first interaction model could redefine mobile computing
+- Hardware strategy marks major expansion beyond software
+
+[Read full story](https://old.reddit.com/r/OpenAI/comments/1unbqyd/openai_is_fast_tracking_its_own_ai_agent_phone_for/)
+
+---
+
+### JadePuffer Ransomware Used AI Agent to Automate Entire Attack
+
+**AI Security** | July 6, 2026 | BleepingComputer
+
+JadePuffer ransomware represents a concerning evolution in cyber threats — it used an AI agent to automate an entire attack chain from initial access to data exfiltration. The incident highlights the dark side of agentic AI, where autonomous systems can be weaponized to carry out complex attacks with minimal human oversight.
+
+**Key Takeaways:**
+- AI agents being weaponized in ransomware operations
+- Entire attack chain automated from access to exfiltration
+- Raises stakes for AI security and defensive countermeasures
+- Cybersecurity industry must adapt to agent-driven threats
+
+[Read full story](https://www.bleepingcomputer.com/news/security/jadepuffer-ransomware-used-ai-agent-to-automate-entire-attack/)
+
+---
+
+### Alibaba Reportedly Bans Employees from Using Claude Code
+
+**AI Policy** | July 6, 2026 | TechCrunch
+
+Alibaba has reportedly classified Claude Code as high-risk software and banned employees from using it. The move reflects growing concerns among major tech companies about the security implications of allowing third-party AI coding agents access to proprietary codebases and internal systems.
+
+**Key Takeaways:**
+- Alibaba bans Claude Code on high-risk classification
+- Growing corporate concern over third-party AI tool security
+- Highlights tension between AI productivity gains and IP protection
+- Could signal broader enterprise restrictions on AI coding tools
+
+[Read full story](https://techcrunch.com/2026/07/04/alibaba-reportedly-bans-employees-from-using-claude-code/)
+
+---
+
+### Nous Research's NousCoder-14B Open-Source Coding Model
+
+**AI Models** | July 6, 2026 | VentureBeat
+
+Nous Research, the open-source AI startup backed by crypto venture firm Paradigm, released NousCoder-14B — a competitive programming model that matches or exceeds several leading models on coding benchmarks. The release comes at a pivotal moment as developers weigh expensive proprietary tools like Claude Code against free or low-cost open alternatives.
+
+**Key Takeaways:**
+- Open-source coding model competitive with proprietary alternatives
+- Could pressure pricing of paid AI coding agents
+- Released by well-funded open-source AI startup
+- Timing aligns with growing developer frustration over AI coding tool costs
+
+[Read full story](https://venturebeat.com/technology/nous-researchs-nouscoder-14b-is-an-open-source-coding-model-landing-right-in)
+
+---
+
+### Fugu: A Multi-Agent LLM Orchestrator as a Single API
+
+**AI Agents** | July 6, 2026 | GitHub / Hacker News
+
+Sakana AI released Fugu, a multi-agent LLM orchestrator delivered as a single API. The tool enables developers to coordinate multiple AI agents working together on complex tasks, abstracting away the complexity of agent communication and workflow management.
+
+**Key Takeaways:**
+- Multi-agent orchestration via single API
+- Simplifies complex agent workflows
+- From Sakana AI, known for AI agent research
+- Could accelerate multi-agent application development
+
+[Read full story](https://github.com/SakanaAI/fugu)
+
+---
+
+### The Hype vs. Reality of AI Agents
+
+**Analysis** | July 6, 2026 | Daily AI Digest
+
+Today's stories paint a clear picture of the AI agent landscape in mid-2026: massive investment and enthusiasm, but also a sobering reality check. Zuckerberg's admission that agent development is behind schedule contrasts sharply with the flood of new product launches from Anthropic, Salesforce, and Google. The tension between hype and delivery is becoming impossible to ignore.
+
+On one hand, agents are being deployed everywhere — email inboxes, Slack workspaces, desktop environments, scientific research, and enterprise workflows. The sheer volume of new agent products and features hitting the market suggests the technology is maturing rapidly. OpenAI's acquisition of Ona for long-running agents and Anthropic's launch of Cowork for non-coders both signal that the major labs are betting heavily on agentic interfaces.
+
+On the other hand, even Meta — which bet heavily on agentic AI with thousands of reassignments — is finding the technology harder to scale than expected. The JadePuffer ransomware incident also reminds us that the same agentic capabilities being deployed for productivity can be weaponized for harm, raising the stakes for security.
+
+The emerging consensus: agents are real and useful, but the leap from demo to dependable daily tool remains the industry's biggest challenge. Those who can bridge that gap — making agents truly reliable, secure, and accessible — will define the next phase of AI adoption.
+
+---
+
+*This digest was generated from 46 AI news stories across OpenAI, Anthropic, Meta, Google, Hugging Face, TechCrunch, VentureBeat, Ars Technica, MIT Tech Review, and Hacker News.*
