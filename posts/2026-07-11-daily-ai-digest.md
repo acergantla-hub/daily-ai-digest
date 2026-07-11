@@ -27,11 +27,11 @@ How agents are transforming work. Just dropped: How agents are transforming work
 
 **AI Agents (30)** | July 11, 2026 | 
 
-New in agents: Expanding Managed Agents in Gemini API: background tasks, remote MCP and more. Worth a look if you're building with LLMs. We’re announcing new capabilities in Managed Agents in Gemini API so developers can build reliable, production-ready agents.
+Expanding Managed Agents in Gemini API:  background tasks, remote MCP and more. Just dropped: Expanding Managed Agents in Gemini API: background tasks, remote MCP and more — could change how we build agent workflows. We’re announcing new capabilities in Managed Agents in Gemini API so developers can build reliable, production-ready agents.
 
 **Key Takeaways:**
 - We’re announcing new capabilities in Managed Agents in Gemini API so developers can build reliable, production-ready agents
-- New in agents: Expanding Managed Agents in Gemini API:  background tasks, remote MCP and more. Worth a look if you're building with LLMs.
+- Just dropped: Expanding Managed Agents in Gemini API:  background tasks, remote MCP and more — could change how we build agent workflows.
 - We’re announcing new capabilities in Managed Agents in Gemini API so developers can build reliable, production-ready agents.
 
 [Read full story](https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/)
@@ -56,11 +56,11 @@ ScarfBench: Benchmarking AI Agents for Enterprise Java Framework Migration. New 
 
 **AI Agents (30)** | July 11, 2026 | 
 
-Fresh tool/announcement: Is it agentic enough. Benchmarking open models on your own tooling. Might be relevant to your stack.
+New in agents: Is it agentic enough. Benchmarking open models on your own tooling. Worth a look if you're building with LLMs.
 
 **Key Takeaways:**
 - Benchmarking open models on your own tooling
-- Fresh tool/announcement: Is it agentic enough? Benchmarking open models on your own tooling. Might be relevant to your stack.
+- New in agents: Is it agentic enough? Benchmarking open models on your own tooling. Worth a look if you're building with LLMs.
 
 [Read full story](https://huggingface.co/blog/is-it-agentic-enough)
 
@@ -84,11 +84,11 @@ Agentic Resource Discovery: Let agents search. New in agents: Agentic Resource D
 
 **AI Agents (30)** | July 11, 2026 | 
 
-New in agents: An AI agent startup just let its agent run its $100M fundraise. Worth a look if you're building with LLMs. Lyzr, a startup that builds AI agents for enterprises, used its own AI agent to raise a $100 million round — proof, evidently, that the product actually works.
+Fresh tool/announcement: An AI agent startup just let its agent run its $100M fundraise. Might be relevant to your stack. Lyzr, a startup that builds AI agents for enterprises, used its own AI agent to raise a $100 million round — proof, evidently, that the product actually works.
 
 **Key Takeaways:**
 - Lyzr, a startup that builds AI agents for enterprises, used its own AI agent to raise a $100 million round — proof, evidently, that the product actually works
-- New in agents: An AI agent startup just let its agent run its $100M fundraise. Worth a look if you're building with LLMs.
+- Fresh tool/announcement: An AI agent startup just let its agent run its $100M fundraise. Might be relevant to your stack.
 - Lyzr, a startup that builds AI agents for enterprises, used its own AI agent to raise a $100 million round — proof, evidently, that the product actually works.
 
 [Read full story](https://techcrunch.com/2026/07/09/an-ai-agent-startup-just-let-its-agent-run-its-100-million-fundraise/)
@@ -133,12 +133,12 @@ New from Anthropic: Nous Research's NousCoder-14B is an open-source coding model
 
 **Claude Code (6)** | July 11, 2026 | 
 
-Show HN: Persistent Claude Code sessions you drive as a terminal or a chat. Claude Code update: Show HN: Persistent Claude Code sessions you drive as a terminal or a chat. Could affect your dev workflow.
+Show HN: Persistent Claude Code sessions you drive as a terminal or a chat. New from Anthropic: Show HN: Persistent Claude Code sessions you drive as a terminal or a chat. Relevant if you use Claude Code daily.
 
 **Key Takeaways:**
-- Claude Code update: Show HN: Persistent Claude Code sessions you drive as a terminal or a chat
-- Could affect your dev workflow
-- Claude Code update: Show HN: Persistent Claude Code sessions you drive as a terminal or a chat. Could affect your dev workflow.
+- New from Anthropic: Show HN: Persistent Claude Code sessions you drive as a terminal or a chat
+- Relevant if you use Claude Code daily
+- New from Anthropic: Show HN: Persistent Claude Code sessions you drive as a terminal or a chat. Relevant if you use Claude Code daily.
 
 [Read full story](https://github.com/thrinz/agentpeek)
 
