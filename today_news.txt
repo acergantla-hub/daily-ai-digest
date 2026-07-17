@@ -1,273 +1,356 @@
-📰 Daily AI Digest — July 16, 2026
-   37 stories from the last 24 hours
+📰 Daily AI Digest — July 17, 2026
+   49 stories from the last 24 hours
 ==================================================
 
---- AI Agents (28) ---
+--- AI Agents (30) ---
 
   1. How to manage AI investments in the agentic era
-     Source: RSS: OpenAI Blog  |  Jul 16, 02:34 UTC
+     Source: RSS: OpenAI Blog  |  Jul 17, 02:37 UTC
      Why it matters: Just dropped: How to manage AI investments in the agentic era — could change how we build agent workflows.
      > Respond: Read + assess if actionable for your projects.
      Snippet: Learn how enterprises can manage AI investments in the agentic era by measuring useful work per dollar, improving efficiency, and scaling high-value workflows.
      Link: https://openai.com/index/managing-ai-investments-in-agentic-era
 
   2. How agents are transforming work
-     Source: RSS: OpenAI Blog  |  Jul 16, 02:34 UTC
-     Why it matters: Fresh tool/announcement: How agents are transforming work. Might be relevant to your stack.
+     Source: RSS: OpenAI Blog  |  Jul 17, 02:37 UTC
+     Why it matters: Just dropped: How agents are transforming work — could change how we build agent workflows.
      > Respond: Read + assess if actionable for your projects.
      Snippet: A new OpenAI research paper shows how AI agents are transforming work, enabling longer, more complex tasks and expanding productivity across roles.
      Link: https://openai.com/index/how-agents-are-transforming-work
 
   3. Expanding Managed Agents in Gemini API:  background tasks, remote MCP and more
-     Source: RSS: Google AI Blog  |  Jul 16, 02:34 UTC
-     Why it matters: Just dropped: Expanding Managed Agents in Gemini API:  background tasks, remote MCP and more — could change how we build agent workflows.
+     Source: RSS: Google AI Blog  |  Jul 17, 02:37 UTC
+     Why it matters: Fresh tool/announcement: Expanding Managed Agents in Gemini API:  background tasks, remote MCP and more. Might be relevant to your stack.
      > Respond: Read + assess if actionable for your projects.
      Snippet: We’re announcing new capabilities in Managed Agents in Gemini API so developers can build reliable, production-ready agents.
      Link: https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/
 
-  4. ScarfBench: Benchmarking AI Agents for Enterprise Java Framework Migration
-     Source: RSS: Hugging Face Blog  |  Jul 16, 02:34 UTC
-     Why it matters: Fresh tool/announcement: ScarfBench: Benchmarking AI Agents for Enterprise Java Framework Migration. Might be relevant to your stack.
+  4. NVIDIA Nemotron 3 Embed Ranks #1 Overall on RTEB, Advancing Agentic Retrieval
+     Source: RSS: Hugging Face Blog  |  Jul 17, 02:37 UTC
+     Why it matters: Fresh tool/announcement: NVIDIA Nemotron 3 Embed Ranks #1 Overall on RTEB, Advancing Agentic Retrieval. Might be relevant to your stack.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://huggingface.co/blog/nvidia/nemotron-3-embed-wins-rteb
+
+  5. ScarfBench: Benchmarking AI Agents for Enterprise Java Framework Migration
+     Source: RSS: Hugging Face Blog  |  Jul 17, 02:37 UTC
+     Why it matters: New in agents: ScarfBench: Benchmarking AI Agents for Enterprise Java Framework Migration. Worth a look if you're building with LLMs.
      > Respond: Read + assess if actionable for your projects.
      Link: https://huggingface.co/blog/ibm-research/scarfbench
 
-  5. Is it agentic enough? Benchmarking open models on your own tooling
-     Source: RSS: Hugging Face Blog  |  Jul 16, 02:34 UTC
-     Why it matters: Just dropped: Is it agentic enough? Benchmarking open models on your own tooling — could change how we build agent workflows.
+  6. Is it agentic enough? Benchmarking open models on your own tooling
+     Source: RSS: Hugging Face Blog  |  Jul 17, 02:37 UTC
+     Why it matters: Fresh tool/announcement: Is it agentic enough? Benchmarking open models on your own tooling. Might be relevant to your stack.
      > Respond: Read + assess if actionable for your projects.
      Link: https://huggingface.co/blog/is-it-agentic-enough
 
-  6. Vint Cerf is working on a plan to unleash AI agents on the open internet
-     Source: RSS: TechCrunch AI  |  Jul 16, 02:34 UTC
-     Why it matters: Just dropped: Vint Cerf is working on a plan to unleash AI agents on the open internet — could change how we build agent workflows.
-     > Respond: Read + assess if actionable for your projects.
-     Snippet: The guy behind TCP/IP is working on a standard for identifying AI agents in the wild.
-     Link: https://techcrunch.com/2026/07/15/vint-cerf-is-working-on-a-plan-to-unleash-ai-agents-on-the-open-internet/
-
   7. Notion killing Skiff-influenced email app since most users use AI agents instead
-     Source: RSS: Ars Technica AI  |  Jul 16, 02:34 UTC
-     Why it matters: Just dropped: Notion killing Skiff-influenced email app since most users use AI agents instead — could change how we build agent workflows.
+     Source: RSS: Ars Technica AI  |  Jul 17, 02:37 UTC
+     Why it matters: Fresh tool/announcement: Notion killing Skiff-influenced email app since most users use AI agents instead. Might be relevant to your stack.
      > Respond: Read + assess if actionable for your projects.
      Snippet: Notion is "going all in on using agents to run your inbox."
      Link: https://arstechnica.com/gadgets/2026/06/notion-killing-skiff-influenced-email-app-since-most-users-use-ai-agents-instead/
 
-  8. Agentic orchestration: Enterprise AI organizations have a deployment problem, not a platform problem — and most are calling chatbots agents
-     Source: RSS: VentureBeat AI  |  Jul 16, 02:34 UTC
+  8. The agent security gap: 54% of enterprises have already had an AI agent incident, and most still let agents share credentials
+     Source: RSS: VentureBeat AI  |  Jul 17, 02:37 UTC
+     Why it matters: Fresh tool/announcement: The agent security gap: 54% of enterprises have already had an AI agent incident.... Might be relevant to your stack.
+     > Respond: Read + assess if actionable for your projects.
+     Snippet: Across 107 enterprises, AI agents are being given real access to systems and data while the controls meant to contain them lag behind. More than half have already had a confirmed agent security incide
+     Link: https://venturebeat.com/ai/the-agent-security-gap-54-of-enterprises-have-already-had-an-ai-agent-incident-and-most-still-let-agents-share-credentials
+
+  9. The agent evaluation gap: Enterprise AI organizations have a reality-alignment problem, not a coverage problem — and most are shipping to production anyway
+     Source: RSS: VentureBeat AI  |  Jul 17, 02:37 UTC
+     Why it matters: Fresh tool/announcement: The agent evaluation gap: Enterprise AI organizations have a reality-alignment p.... Might be relevant to your stack.
+     > Respond: Read + assess if actionable for your projects.
+     Snippet: Across 157 enterprises, organizations are granting AI agents more autonomy while trusting the evaluations meant to gate that autonomy less. Half have already shipped an agent that passed their interna
+     Link: https://venturebeat.com/ai/the-agent-evaluation-gap-enterprise-ai-organizations-have-a-reality-alignment-problem-not-a-coverage-problem-and-most-are-shipping-to-production-anyway
+
+  10. Agentic orchestration: Enterprise AI organizations have a deployment problem, not a platform problem — and most are calling chatbots agents
+     Source: RSS: VentureBeat AI  |  Jul 17, 02:37 UTC
      Why it matters: Fresh tool/announcement: Agentic orchestration: Enterprise AI organizations have a deployment problem, no.... Might be relevant to your stack.
      > Respond: Read + assess if actionable for your projects.
      Snippet: Across 101 enterprises, agent orchestration is consolidating onto model-provider platforms — Anthropic’s Claude leads by a wide margin — chosen for the gravity of the underlying model and judged on re
      Link: https://venturebeat.com/ai/agentic-orchestration-enterprise-ai-organizations-have-a-deployment-problem-not-a-platform-problem-and-most-are-calling-chatbots-agents
 
-  9. Salesforce rolls out new Slackbot AI agent as it battles Microsoft and Google in workplace AI
-     Source: RSS: VentureBeat AI  |  Jul 16, 02:34 UTC
-     Why it matters: Fresh tool/announcement: Salesforce rolls out new Slackbot AI agent as it battles Microsoft and Google in.... Might be relevant to your stack.
-     > Respond: Read + assess if actionable for your projects.
-     Snippet: Salesforce on Tuesday launched an entirely rebuilt version of Slackbot, the company&#x27;s workplace assistant, transforming it from a simple notification tool into what executives describe as a fully
-     Link: https://venturebeat.com/technology/salesforce-rolls-out-new-slackbot-ai-agent-as-it-battles-microsoft-and
-
-  10. Anthropic launches Cowork, a Claude Desktop agent that works in your files — no coding required
-     Source: RSS: VentureBeat AI  |  Jul 16, 02:34 UTC
-     Why it matters: Fresh tool/announcement: Anthropic launches Cowork, a Claude Desktop agent that works in your files — no .... Might be relevant to your stack.
-     > Respond: Read + assess if actionable for your projects.
-     Snippet: Anthropic released Cowork on Monday, a new AI agent capability that extends the power of its wildly successful Claude Code tool to non-technical users — and according to company insiders, the team bui
-     Link: https://venturebeat.com/technology/anthropic-launches-cowork-a-claude-desktop-agent-that-works-in-your-files-no
-
-  11. I Reimplemented the Workflows of 40 Multi-Agent LLM Papers – Here Are Lessons
-     Source: Hacker News  |  Jul 16, 02:12 UTC
+  11. Microsoft Ships AI Agents at Enterprise Scale
+     Source: Hacker News  |  Jul 17, 01:53 UTC
      ^ 2 points  |  0 comments
-     Why it matters: Fresh tool/announcement: I Reimplemented the Workflows of 40 Multi-Agent LLM Papers – Here Are Lessons. Might be relevant to your stack.
+     Why it matters: New in agents: Microsoft Ships AI Agents at Enterprise Scale. Worth a look if you're building with LLMs.
      > Respond: Read + assess if actionable for your projects.
-     Link: https://old.reddit.com/r/vibecoding/comments/1uxpox5/i_reimplemented_the_core_workflows_of_40/
+     Link: https://blog.bytebytego.com/p/how-microsoft-ships-ai-agents-at
 
-  12. Show HN: H5i-Python: Python SDK for Programmable Multi-Agent Orchestration
-     Source: Hacker News  |  Jul 15, 22:25 UTC
+  12. Show HN: Git-temp (repo scratchpad for AI agents that won't clutter Git status)
+     Source: Hacker News  |  Jul 17, 00:59 UTC
      ^ 2 points  |  0 comments
-     Why it matters: Fresh tool/announcement: Show HN: H5i-Python: Python SDK for Programmable Multi-Agent Orchestration. Might be relevant to your stack.
+     Why it matters: New in agents: Show HN: Git-temp (repo scratchpad for AI agents that won't clutter Git status). Worth a look if you're building with LLMs.
      > Respond: Read + assess if actionable for your projects.
-     Link: https://github.com/h5i-dev/h5i-python
+     Link: https://github.com/sebmellen/git-temp
 
-  13. Autonomous Security – EDR for AI Agents
-     Source: Hacker News  |  Jul 15, 22:17 UTC
+  13. AegisDB – self-hosted memory for AI agents, in one C binary
+     Source: Hacker News  |  Jul 16, 23:15 UTC
+     ^ 2 points  |  0 comments
+     Why it matters: Just dropped: AegisDB – self-hosted memory for AI agents, in one C binary — could change how we build agent workflows.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://github.com/d4n-larsson/aegisdb
+
+  14. Show HN: Moltshit.com – An Imageboard for AI Agents
+     Source: Hacker News  |  Jul 16, 22:54 UTC
+     ^ 3 points  |  0 comments
+     Why it matters: Fresh tool/announcement: Show HN: Moltshit.com – An Imageboard for AI Agents. Might be relevant to your stack.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://moltshit.com
+
+  15. Your AI agent doesn't know when its memory is gone
+     Source: Hacker News  |  Jul 16, 21:37 UTC
+     ^ 3 points  |  0 comments
+     Why it matters: Just dropped: Your AI agent doesn't know when its memory is gone — could change how we build agent workflows.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://arxiv.org/abs/2607.10582
+
+  16. Show HN: SeekinWeb – Check if AI agents can read your website
+     Source: Hacker News  |  Jul 16, 21:13 UTC
      ^ 4 points  |  0 comments
-     Why it matters: New in agents: Autonomous Security – EDR for AI Agents. Worth a look if you're building with LLMs.
+     Why it matters: Fresh tool/announcement: Show HN: SeekinWeb – Check if AI agents can read your website. Might be relevant to your stack.
      > Respond: Read + assess if actionable for your projects.
-     Link: https://a16y.ai
+     Link: https://seekinweb.com/
 
-  14. Vektorgeist: Operators and their AI agents get one home here
-     Source: Hacker News  |  Jul 15, 20:57 UTC
-     ^ 2 points  |  0 comments
-     Why it matters: Fresh tool/announcement: Vektorgeist: Operators and their AI agents get one home here. Might be relevant to your stack.
+  17. LM Studio Bionic: the AI agent for open models
+     Source: Hacker News  |  Jul 16, 20:18 UTC
+     ^ 167 points  |  64 comments
+     Why it matters: Fresh tool/announcement: LM Studio Bionic: the AI agent for open models. Might be relevant to your stack.
      > Respond: Read + assess if actionable for your projects.
-     Link: https://vektorgeist.com/
+     Link: https://lmstudio.ai/blog/introducing-lm-studio-bionic
 
-  15. X402 Foundation to Standardize Internet Payments for AI Agents
-     Source: Hacker News  |  Jul 15, 20:31 UTC
-     ^ 3 points  |  0 comments
-     Why it matters: New in agents: X402 Foundation to Standardize Internet Payments for AI Agents. Worth a look if you're building with LLMs.
-     > Respond: Read + assess if actionable for your projects.
-     Link: https://techstrong.ai/articles/linux-foundation-launches-x402-foundation-to-standardize-internet-native-payments-for-ai-agents/
-
-  16. Codex Micro – a compact hardware controller for AI agents
-     Source: Hacker News  |  Jul 15, 17:43 UTC
-     ^ 4 points  |  1 comments
-     Why it matters: Just dropped: Codex Micro – a compact hardware controller for AI agents — could change how we build agent workflows.
-     > Respond: Read + assess if actionable for your projects.
-     Link: https://worklouder.cc/codex-micro
-
-  17. Building secure AI agents at scale: Introducing Loom for AWS
-     Source: Hacker News  |  Jul 15, 17:35 UTC
-     ^ 2 points  |  0 comments
-     Why it matters: Fresh tool/announcement: Building secure AI agents at scale: Introducing Loom for AWS. Might be relevant to your stack.
-     > Respond: Read + assess if actionable for your projects.
-     Link: https://aws.amazon.com/blogs/opensource/building-secure-ai-agents-at-scale-introducing-loom-for-aws/
-
-  18. Query Latency in the Age of AI Agents
-     Source: Hacker News  |  Jul 15, 16:48 UTC
-     ^ 2 points  |  0 comments
-     Why it matters: Fresh tool/announcement: Query Latency in the Age of AI Agents. Might be relevant to your stack.
-     > Respond: Read + assess if actionable for your projects.
-     Link: https://cube.dev/blog/query-latency-in-the-age-of-ai-agents
-
-  19. Show HN: Greenflash – we read every conversation your AI agent has with users
-     Source: Hacker News  |  Jul 15, 16:22 UTC
-     ^ 5 points  |  8 comments
-     Why it matters: Just dropped: Show HN: Greenflash – we read every conversation your AI agent has with users — could change how we build agent workflows.
-     > Respond: Read + assess if actionable for your projects.
-     Link: https://www.greenflash.ai/sign-up
-
-  20. What happens when your VPN meets 200 AI agents
-     Source: Hacker News  |  Jul 15, 16:11 UTC
-     ^ 2 points  |  0 comments
-     Why it matters: Just dropped: What happens when your VPN meets 200 AI agents — could change how we build agent workflows.
-     > Respond: Read + assess if actionable for your projects.
-     Link: https://thenewstack.io/unified-access-ai-agents/
-
-  21. How to Make Your AI Agent's Actions Reliable (No Code)
-     Source: Hacker News  |  Jul 15, 15:48 UTC
-     ^ 3 points  |  0 comments
-     Why it matters: New in agents: How to Make Your AI Agent's Actions Reliable (No Code). Worth a look if you're building with LLMs.
-     > Respond: Read + assess if actionable for your projects.
-     Link: https://quickchat.ai/post/reliable-ai-agent-actions
-
-  22. Show HN: Generalized – AI agent skills with community proof
-     Source: Hacker News  |  Jul 15, 15:38 UTC
-     ^ 2 points  |  0 comments
-     Why it matters: New in agents: Show HN: Generalized – AI agent skills with community proof. Worth a look if you're building with LLMs.
-     > Respond: Read + assess if actionable for your projects.
-     Link: https://generalized.dev/
-
-  23. Detecting Prompt Injection Attacks on Purpose-Specific LLM Agents
-     Source: Hacker News  |  Jul 15, 14:56 UTC
-     ^ 2 points  |  0 comments
-     Why it matters: Just dropped: Detecting Prompt Injection Attacks on Purpose-Specific LLM Agents — could change how we build agent workflows.
-     > Respond: Read + assess if actionable for your projects.
-     Link: https://arxiv.org/abs/2607.12624
-
-  24. Show HN: StyleSeed – a design-rules engine so AI agents stop building generic UI
-     Source: Hacker News  |  Jul 15, 13:55 UTC
-     ^ 23 points  |  9 comments
-     Why it matters: Fresh tool/announcement: Show HN: StyleSeed – a design-rules engine so AI agents stop building generic UI. Might be relevant to your stack.
-     > Respond: Read + assess if actionable for your projects.
-     Link: https://github.com/bitjaru/styleseed
-
-  25. Show HN: Aict – Unix coreutils that output XML/JSON, built for AI agents
-     Source: Hacker News  |  Jul 15, 13:39 UTC
-     ^ 16 points  |  6 comments
-     Why it matters: Just dropped: Show HN: Aict – Unix coreutils that output XML/JSON, built for AI agents — could change how we build agent workflows.
-     > Respond: Read + assess if actionable for your projects.
-     Link: https://github.com/synseqack/aict
-
-  26. Show HN: A TypeScript repo where AI agents can't break the architecture
-     Source: Hacker News  |  Jul 15, 13:06 UTC
+  18. Towards the dark factory: Autonomous, isolated AI agents in software engineering
+     Source: Hacker News  |  Jul 16, 16:26 UTC
      ^ 2 points  |  1 comments
-     Why it matters: New in agents: Show HN: A TypeScript repo where AI agents can't break the architecture. Worth a look if you're building with LLMs.
+     Why it matters: New in agents: Towards the dark factory: Autonomous, isolated AI agents in software engineering. Worth a look if you're building with LLMs.
      > Respond: Read + assess if actionable for your projects.
-     Link: https://github.com/lucasgodt/open-agent-ready-typescript
+     Link: https://jeroensoeters.github.io/towards-the-dark-factory/
 
-  27. Aliens: Explaining LLMs and AI agents to my children
-     Source: Hacker News  |  Jul 15, 12:14 UTC
-     ^ 2 points  |  3 comments
-     Why it matters: New in agents: Aliens: Explaining LLMs and AI agents to my children. Worth a look if you're building with LLMs.
-     > Respond: Read + assess if actionable for your projects.
-     Link: https://archive.org/details/aliens_202607
-
-  28. Decibri – unified audio layer for AI agents and Voice AI applications
-     Source: Hacker News  |  Jul 15, 07:23 UTC
+  19. What I Learned from Reimplementing 40 Multi-Agent LLM Papers
+     Source: Hacker News  |  Jul 16, 16:24 UTC
      ^ 3 points  |  0 comments
-     Why it matters: Fresh tool/announcement: Decibri – unified audio layer for AI agents and Voice AI applications. Might be relevant to your stack.
+     Why it matters: New in agents: What I Learned from Reimplementing 40 Multi-Agent LLM Papers. Worth a look if you're building with LLMs.
      > Respond: Read + assess if actionable for your projects.
-     Link: https://decibri.com
+     Link: https://medium.com/@Koukyosyumei/what-i-learned-from-reimplementing-40-multi-agent-llm-papers-bd6b574f5659
 
-
---- Claude Code (7) ---
-
-  29. Claude Code costs up to $200 a month. Goose does the same thing for free.
-     Source: RSS: VentureBeat AI  |  Jul 16, 02:34 UTC
-     Why it matters: Claude Code update: Claude Code costs up to $200 a month. Goose does the same thing for free.. Could affect your dev workflow.
+  20. Building scalable AI agents with modular prompt transpilation
+     Source: Hacker News  |  Jul 16, 16:22 UTC
+     ^ 7 points  |  2 comments
+     Why it matters: Fresh tool/announcement: Building scalable AI agents with modular prompt transpilation. Might be relevant to your stack.
      > Respond: Read + assess if actionable for your projects.
-     Snippet: The artificial intelligence coding revolution comes with a catch: it&#x27;s expensive.Claude Code, Anthropic&#x27;s terminal-based AI agent that can write, debug, and deploy code autonomously, has cap
-     Link: https://venturebeat.com/infrastructure/claude-code-costs-up-to-usd200-a-month-goose-does-the-same-thing-for-free
+     Link: https://developers.googleblog.com/building-scalable-ai-agents-with-modular-prompt-transpilation/
 
-  30. Fuse – an open source MCP/CLI tool to speed up Claude Code on C# codebases
-     Source: Hacker News  |  Jul 15, 22:30 UTC
-     ^ 13 points  |  2 comments
-     Why it matters: Claude Code update: Fuse – an open source MCP/CLI tool to speed up Claude Code on C# codebases. Could affect your dev workflow.
-     > Respond: Read + assess if actionable for your projects.
-     Link: https://github.com/Litenova-Solutions/Fuse
-
-  31. Brainless: Shadcn components that look like Claude Code, Codex and Grok
-     Source: Hacker News  |  Jul 15, 19:42 UTC
-     ^ 98 points  |  20 comments
-     Why it matters: New from Anthropic: Brainless: Shadcn components that look like Claude Code, Codex and Grok. Relevant if you use Claude Code daily.
-     > Respond: Read + assess if actionable for your projects.
-     Link: https://brainless.swerdlow.dev
-
-  32. Show HN: How you auto recover your Claude Code workflow when quota resumes
-     Source: Hacker News  |  Jul 15, 18:09 UTC
-     ^ 3 points  |  0 comments
-     Why it matters: Claude Code update: Show HN: How you auto recover your Claude Code workflow when quota resumes. Could affect your dev workflow.
-     > Respond: Read + assess if actionable for your projects.
-     Link: https://github.com/softcane/cc-session-recover
-
-  33. Show HN: OtoDock, run Claude Code and Codex as a team of agents on your server
-     Source: Hacker News  |  Jul 15, 16:11 UTC
+  21. Show HN: Democr.ai – self-hosted agentic AI runtime with audit and RBAC
+     Source: Hacker News  |  Jul 16, 15:13 UTC
      ^ 2 points  |  0 comments
-     Why it matters: New from Anthropic: Show HN: OtoDock, run Claude Code and Codex as a team of agents on your server. Relevant if you use Claude Code daily.
+     Why it matters: New in agents: Show HN: Democr.ai – self-hosted agentic AI runtime with audit and RBAC. Worth a look if you're building with LLMs.
      > Respond: Read + assess if actionable for your projects.
-     Link: https://github.com/OtoDock/oto-dock/
+     Link: https://github.com/democr-ai/democrai
 
-  34. Apply Claude Code on Screenwriting
-     Source: Hacker News  |  Jul 15, 15:32 UTC
-     ^ 6 points  |  1 comments
-     Why it matters: Claude Code update: Apply Claude Code on Screenwriting. Could affect your dev workflow.
+  22. Show HN: An MCP server that frames screen recordings and shots in Apple bezels
+     Source: Hacker News  |  Jul 16, 14:21 UTC
+     ^ 5 points  |  3 comments
+     Why it matters: Just dropped: Show HN: An MCP server that frames screen recordings and shots in Apple bezels — could change how we build agent workflows.
      > Respond: Read + assess if actionable for your projects.
-     Link: https://untitled.movie
+     Link: https://github.com/cwooddgr/bezelbub/tree/main/bezelbub-mcp
 
-  35. Milepost – plain-Markdown long-term memory for Claude Code
-     Source: Hacker News  |  Jul 15, 06:53 UTC
-     ^ 4 points  |  0 comments
-     Why it matters: Claude Code update: Milepost – plain-Markdown long-term memory for Claude Code. Could affect your dev workflow.
+  23. AI agents write PostgreSQL like Python
+     Source: Hacker News  |  Jul 16, 14:20 UTC
+     ^ 2 points  |  0 comments
+     Why it matters: Just dropped: AI agents write PostgreSQL like Python — could change how we build agent workflows.
      > Respond: Read + assess if actionable for your projects.
-     Link: https://github.com/sashamitrovich/milepost
+     Link: https://vvka-141.github.io/pgmi/articles/ai-agents-write-postgresql-like-python/
+
+  24. Veta: AI agent that QA-tests Android apps
+     Source: Hacker News  |  Jul 16, 14:03 UTC
+     ^ 3 points  |  0 comments
+     Why it matters: New in agents: Veta: AI agent that QA-tests Android apps. Worth a look if you're building with LLMs.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://github.com/Vip3r-MC/Veta
+
+  25. Show HN: AgentReady – MCP server that makes any docs site queryable by AI agents
+     Source: Hacker News  |  Jul 16, 14:00 UTC
+     ^ 3 points  |  0 comments
+     Why it matters: New in agents: Show HN: AgentReady – MCP server that makes any docs site queryable by AI agents. Worth a look if you're building with LLMs.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://www.agentready.it.com
+
+  26. StepFun Unveils StepX Neo, the "First Agentic AI Phone"
+     Source: Hacker News  |  Jul 16, 13:14 UTC
+     ^ 2 points  |  0 comments
+     Why it matters: Fresh tool/announcement: StepFun Unveils StepX Neo, the "First Agentic AI Phone". Might be relevant to your stack.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://www.etvbharat.com/en/technology/stepfun-unveils-stepx-neo-calling-it-worlds-first-agentic-ai-phone-enn26071401799
+
+  27. Show HN: Rackp – a protocol for deriving fault when AI agents cause incidents
+     Source: Hacker News  |  Jul 16, 11:53 UTC
+     ^ 2 points  |  0 comments
+     Why it matters: New in agents: Show HN: Rackp – a protocol for deriving fault when AI agents cause incidents. Worth a look if you're building with LLMs.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://github.com/rackp-io/rackp
+
+  28. Show HN: Cybara – An open-source AI agent platform built with Bun
+     Source: Hacker News  |  Jul 16, 11:04 UTC
+     ^ 2 points  |  0 comments
+     Why it matters: Fresh tool/announcement: Show HN: Cybara – An open-source AI agent platform built with Bun. Might be relevant to your stack.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://github.com/metaspartan/cybara
+
+  29. Semantic transactions: securing untrusted AI agent workflows at the OS boundary
+     Source: Hacker News  |  Jul 16, 08:06 UTC
+     ^ 3 points  |  0 comments
+     Why it matters: New in agents: Semantic transactions: securing untrusted AI agent workflows at the OS boundary. Worth a look if you're building with LLMs.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://latentdynamics.substack.com/p/semantic-transactions-securing-untrusted
+
+  30. Rethinking Databases for Humans and AI Agents
+     Source: Hacker News  |  Jul 16, 07:33 UTC
+     ^ 3 points  |  0 comments
+     Why it matters: New in agents: Rethinking Databases for Humans and AI Agents. Worth a look if you're building with LLMs.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://marcobambini.substack.com/p/rethinking-databases-for-humans-and
 
 
---- OpenClaw (1) ---
+--- Claude Code (13) ---
 
-  36. We got local models to triage the OpenClaw repo for FREE!*
-     Source: RSS: Hugging Face Blog  |  Jul 16, 02:34 UTC
+  31. Claude Code is the ceiling on vibe-coded software
+     Source: Hacker News  |  Jul 17, 01:49 UTC
+     ^ 2 points  |  3 comments
+     Why it matters: New from Anthropic: Claude Code is the ceiling on vibe-coded software. Relevant if you use Claude Code daily.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://danangell.com/blog/posts/claude-code/
+
+  32. Claude Code's system prompts, extracted and tracked across 237 versions
+     Source: Hacker News  |  Jul 16, 21:00 UTC
+     ^ 2 points  |  0 comments
+     Why it matters: Claude Code update: Claude Code's system prompts, extracted and tracked across 237 versions. Could affect your dev workflow.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://github.com/Piebald-AI/claude-code-system-prompts
+
+  33. Ask HN: How companies are protecting Claude Code from reading IP and PII data
+     Source: Hacker News  |  Jul 16, 19:55 UTC
+     ^ 2 points  |  6 comments
+     Why it matters: Claude Code update: Ask HN: How companies are protecting Claude Code from reading IP and PII data. Could affect your dev workflow.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://news.ycombinator.com/item?id=48939454
+
+  34. Fixed Deep research and web fetch in Claude Code : full open source
+     Source: Hacker News  |  Jul 16, 19:07 UTC
+     ^ 1 points  |  0 comments
+     Why it matters: New from Anthropic: Fixed Deep research and web fetch in Claude Code : full open source. Relevant if you use Claude Code daily.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://github.com/kunal12203/webify-mcp
+
+  35. Show HN: A Claude Code skill that finds dev tools – or stays silent
+     Source: Hacker News  |  Jul 16, 17:53 UTC
+     ^ 1 points  |  0 comments
+     Why it matters: New from Anthropic: Show HN: A Claude Code skill that finds dev tools – or stays silent. Relevant if you use Claude Code daily.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://github.com/jaimeramiro-dev/gold-digger
+
+  36. Claudeisms: A list of words Claude Code overuses
+     Source: Hacker News  |  Jul 16, 17:47 UTC
+     ^ 3 points  |  0 comments
+     Why it matters: New from Anthropic: Claudeisms: A list of words Claude Code overuses. Relevant if you use Claude Code daily.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://github.com/archiewood/claudeisms
+
+  37. You can see inline diffs in Claude Code for free, similar to Cursor
+     Source: Hacker News  |  Jul 16, 16:42 UTC
+     ^ 2 points  |  0 comments
+     Why it matters: New from Anthropic: You can see inline diffs in Claude Code for free, similar to Cursor. Relevant if you use Claude Code daily.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://www.norrin.dev/
+
+  38. SnippAI – Screenshot, speak, straight into your Claude Code session
+     Source: Hacker News  |  Jul 16, 15:58 UTC
+     ^ 2 points  |  1 comments
+     Why it matters: Claude Code update: SnippAI – Screenshot, speak, straight into your Claude Code session. Could affect your dev workflow.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://snippai.dev
+
+  39. Show HN: Tmux tab markers for Claude Code, Grok, and pi sessions
+     Source: Hacker News  |  Jul 16, 15:36 UTC
+     ^ 2 points  |  0 comments
+     Why it matters: New from Anthropic: Show HN: Tmux tab markers for Claude Code, Grok, and pi sessions. Relevant if you use Claude Code daily.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://github.com/jhickner/tmux-agent-tabs
+
+  40. I'm 33 and I think Claude Code is melting my brain
+     Source: Hacker News  |  Jul 16, 15:19 UTC
+     ^ 7 points  |  1 comments
+     Why it matters: Claude Code update: I'm 33 and I think Claude Code is melting my brain. Could affect your dev workflow.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://twitter.com/BraedendotTECH/status/2077353000486547633
+
+  41. Memories are an anti-pattern for Claude Code
+     Source: Hacker News  |  Jul 16, 13:56 UTC
+     ^ 1 points  |  0 comments
+     Why it matters: New from Anthropic: Memories are an anti-pattern for Claude Code. Relevant if you use Claude Code daily.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://keyboardsdown.com/posts/02-memories-are-an-anti-pattern/
+
+  42. Migrating off Webflow and the worst way to use Claude Code
+     Source: Hacker News  |  Jul 16, 13:19 UTC
+     ^ 2 points  |  0 comments
+     Why it matters: Claude Code update: Migrating off Webflow and the worst way to use Claude Code. Could affect your dev workflow.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://www.sisyphus.bar/blog/migrating-off-webflow
+
+  43. Manage your Claude Code agents in Raycast
+     Source: Hacker News  |  Jul 16, 04:58 UTC
+     ^ 2 points  |  1 comments
+     Why it matters: New from Anthropic: Manage your Claude Code agents in Raycast. Relevant if you use Claude Code daily.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://github.com/vmc-7645/claude-fleet
+
+
+--- OpenClaw (2) ---
+
+  44. We got local models to triage the OpenClaw repo for FREE!*
+     Source: RSS: Hugging Face Blog  |  Jul 17, 02:37 UTC
      Why it matters: OpenClaw update: We got local models to triage the OpenClaw repo for FREE!*. Another option in the agent space.
      > Respond: Read + assess if actionable for your projects.
      Link: https://huggingface.co/blog/local-models-pr-triage
 
+  45. I created OpenClaw, the breakthrough AI agent [video]
+     Source: Hacker News  |  Jul 16, 08:35 UTC
+     ^ 2 points  |  2 comments
+     Why it matters: OpenClaw update: I created OpenClaw, the breakthrough AI agent [video]. Another option in the agent space.
+     > Respond: Read + assess if actionable for your projects.
+     Link: https://www.ted.com/talks/peter_steinberger_how_i_created_openclaw_the_breakthrough_ai_agent
 
---- AI News (1) ---
 
-  37. Amid hardware legal battle, OpenAI releases a $230 keyboard for Codex
-     Source: RSS: TechCrunch AI  |  Jul 16, 02:34 UTC
+--- AI News (4) ---
+
+  46. How Cars24 scales conversations and builds faster with OpenAI
+     Source: RSS: OpenAI Blog  |  Jul 17, 02:37 UTC
+     Why it matters: Fresh: How Cars24 scales conversations and builds faster with OpenAI. Worth scanning for opportunity.
+     > Respond: Read + assess if actionable for your projects.
+     Snippet: Cars24 uses OpenAI-powered voice and chat agents to handle 1M+ monthly conversation minutes, recover 12% of lost leads, and bring agentic workflows to teams across the company.
+     Link: https://openai.com/index/cars24
+
+  47. Yes, you can now order DoorDash from the command line
+     Source: RSS: TechCrunch AI  |  Jul 17, 02:37 UTC
+     Why it matters: Fresh: Yes, you can now order DoorDash from the command line. Worth scanning for opportunity.
+     > Respond: Read + assess if actionable for your projects.
+     Snippet: DoorDash is opening a limited beta of dd-cli, a command-line tool that lets developers and AI agents search stores, build carts, and place orders from the terminal, marking another step toward softwar
+     Link: https://techcrunch.com/2026/07/16/yes-you-can-now-order-doordash-from-the-command-line/
+
+  48. Amid hardware legal battle, OpenAI releases a $230 keyboard for Codex
+     Source: RSS: TechCrunch AI  |  Jul 17, 02:37 UTC
      Why it matters: Fresh: Amid hardware legal battle, OpenAI releases a $230 keyboard for Codex. Worth scanning for opportunity.
      > Respond: Read + assess if actionable for your projects.
      Snippet: OpenAI, which is in the middle of a legal battle with Apple over hardware trade theft allegations, just released a light-up keyboard designed to be paired with its agentic coding app.
      Link: https://techcrunch.com/2026/07/15/amid-hardware-legal-battle-openai-releases-a-230-keyboard-for-codex/
 
+  49. The AI context gap: Enterprise AI organizations have a trust problem, not a retrieval problem — and most are still building the fix
+     Source: RSS: VentureBeat AI  |  Jul 17, 02:37 UTC
+     Why it matters: Fresh: The AI context gap: Enterprise AI organizations have a trust problem, not a retr.... Worth scanning for opportunity.
+     > Respond: Read + assess if actionable for your projects.
+     Snippet: Across 101 enterprises, the infrastructure that feeds AI agents their business context is being built faster than it can be trusted. Retrieval-augmented generation is already the default context sourc
+     Link: https://venturebeat.com/ai/the-ai-context-gap-enterprise-ai-organizations-have-a-trust-problem-not-a-retrieval-problem-and-most-are-still-building-the-fix
+
 ==================================================
-Generated at 02:34 UTC  |  daily-ai-digest
+Generated at 02:37 UTC  |  daily-ai-digest
