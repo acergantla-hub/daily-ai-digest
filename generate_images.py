@@ -82,10 +82,17 @@ def tc(draw, y, text, font, fill, xc=W//2):
     bb = draw.textbbox((0,0), text, font=font)
     draw.text((xc - (bb[2]-bb[0])//2, y), text, font=font, fill=fill)
 
-def draw_nodes(img, accent, accent2, seed=42, alpha=0.12):
-    draw = ImageDraw.Draw(img)
-    rng = random.Random(seed)
-    nodes = [(rng.randint(50,W-50), rng.randint(50,H-50), rng.randint(2,6)) for _ in range(25)]
+def draw_nodes(img, accent, accent2, seed=42, alpha=0.12, extra_entropy=""):
+    # Incorporate extra entropy (e.g., story title) into seed for content-unique patterns
+    import hashlib
+    if extra_entropy:
+        def draw_nodes(img, accent, accent2, seed=42, alpha=0.12, extra_entropy=""):
+            draw = ImageDraw.Draw(img)
+            rng = random.Random(seed)
+            # Mix title entropy into seed for unique node patterns per story
+            if extra_entropy:
+                rng.seed(seed + hash(extra_entropy) % 1000000)
+            nodes = [(rng.randint(50,W-50), rng.randint(50,H-50), rng.randint(2,6)) for _ in range(25)]
     for i in range(len(nodes)):
         for j in range(i+1, len(nodes)):
             dx, dy = nodes[i][0]-nodes[j][0], nodes[i][1]-nodes[j][1]
@@ -165,7 +172,8 @@ def gen_cover(date_str, num_stories, categories, accent, accent2):
 def gen_story(index, title, category, summary_lines, takeaways, date_str, accent, accent2, icon):
     img = Image.new("RGB", (W,H), (10,10,20))
     draw_gradient_bg(img, ((8,6,25),(15,10,40),(8,6,25)))
-    draw_nodes(img, accent, accent2, seed=index*7, alpha=0.08)
+    # Story title as entropy for unique node pattern
+    draw_nodes(img, accent, accent2, seed=index*7, alpha=0.08, extra_entropy=title)
     draw_bar(img, accent)
     draw_vignette(img)
     d = ImageDraw.Draw(img)
