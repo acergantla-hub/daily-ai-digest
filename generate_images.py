@@ -84,15 +84,11 @@ def tc(draw, y, text, font, fill, xc=W//2):
 
 def draw_nodes(img, accent, accent2, seed=42, alpha=0.12, extra_entropy=""):
     # Incorporate extra entropy (e.g., story title) into seed for content-unique patterns
-    import hashlib
+    draw = ImageDraw.Draw(img)
+    rng = random.Random(seed)
     if extra_entropy:
-        def draw_nodes(img, accent, accent2, seed=42, alpha=0.12, extra_entropy=""):
-            draw = ImageDraw.Draw(img)
-            rng = random.Random(seed)
-            # Mix title entropy into seed for unique node patterns per story
-            if extra_entropy:
-                rng.seed(seed + hash(extra_entropy) % 1000000)
-            nodes = [(rng.randint(50,W-50), rng.randint(50,H-50), rng.randint(2,6)) for _ in range(25)]
+        rng.seed(seed + hash(extra_entropy) % 1000000)
+    nodes = [(rng.randint(50,W-50), rng.randint(50,H-50), rng.randint(2,6)) for _ in range(25)]
     for i in range(len(nodes)):
         for j in range(i+1, len(nodes)):
             dx, dy = nodes[i][0]-nodes[j][0], nodes[i][1]-nodes[j][1]
