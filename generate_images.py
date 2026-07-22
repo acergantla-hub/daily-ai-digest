@@ -24,7 +24,8 @@ CAT_STYLES = {
     "safety":    ("🛡", ((40,10,15),(60,15,20),(35,8,12)),    (255,107,107),(255,209,102)),
     "industry":  ("🏭", ((40,20,10),(55,30,15),(35,15,8)),    (255,209,102),(255,107,107)),
     "products":  ("📱", ((10,20,40),(15,30,55),(8,15,35)),    (0,212,240), (52,211,153)),
-    "models":    ("🧠", ((30,10,40),(45,15,55),(25,8,35)),    (180,110,255),(124,108,240)),
+    "models":    ("🧠", ((30,10,40),(45,15,55),(25),(25,8,35)),    (180,110,255),(124,108,240)),
+    "research":  ("🔬", ((10,30,8,35)),      (180,110,255),(124,108,240)),
     "research":  ("🔬", ((10,30,40),(15,45,55),(8,25,35)),    (0,212,240), (52,211,153)),
     "hardware":  ("💻", ((10,40,30),(15,55,45),(8,35,25)),    (52,211,153),(0,212,240)),
     "business":  ("📊", ((40,15,30),(55,20,45),(35,12,25)),   (244,114,182),(255,209,102)),
@@ -83,7 +84,6 @@ def tc(draw, y, text, font, fill, xc=W//2):
     draw.text((xc - (bb[2]-bb[0])//2, y), text, font=font, fill=fill)
 
 def draw_nodes(img, accent, accent2, seed=42, alpha=0.12, extra_entropy=""):
-    # Incorporate extra entropy (e.g., story title) into seed for content-unique patterns
     draw = ImageDraw.Draw(img)
     rng = random.Random(seed)
     if extra_entropy:
@@ -205,7 +205,7 @@ def gen_story(index, title, category, summary_lines, takeaways, date_str, accent
 
     # Summary
     y += 24
-    for line in summary_lines[:2]:
+    for line in summary_lines[:4]:  # Increased to 4 lines
         wl = wrap(line, freg(26), W-120, d)
         for w in wl[:2]:
             d.text((60, y), w, font=freg(26), fill=(160,160,185))
@@ -215,16 +215,16 @@ def gen_story(index, title, category, summary_lines, takeaways, date_str, accent
     # Key Takeaways card
     if takeaways:
         cy0 = max(y+30, 560)
-        cy1 = min(cy0 + 20 + len(takeaways[:3])*38, cy0+150)
+        cy1 = min(cy0 + 20 + len(takeaways[:5])*38, cy0+150)  # Increased to 5 takeaways
         rr(d, [50, cy0, W-50, cy1], 16, with_alpha((0,0,0), 0.40), accent, 1)
         d.text((70, cy0+12), "🔑  KEY TAKEAWAYS", font=fsemibold(20), fill=accent)
         ty = cy0+44
-        for t in takeaways[:3]:
+        for t in takeaways[:5]:
             d.text((70, ty), "▸  "+t, font=freg(22), fill=(200,200,220))
             ty += 32
 
     d.line([(60,H-50),(W-60,H-50)], fill=(30,30,45), width=1)
-    tc(d, H-38, "Daily AI Digest  •  Story "+str(index)+" of 12", freg(16), (80,80,100))
+    tc(d, H-38, "Daily AI Digest  •  Story "+str(index)+" of 3", freg(16), (80,80,100))  # Updated to 3
     draw_bar(img, accent, y0=H-3, h=3)
     return img
 
@@ -272,7 +272,7 @@ def parse_post(md_path):
     if fm:
         for line in fm.group(1).splitlines():
             if ':' in line:
-                k,_,v = line.partition(':')
+                k, _, v = line.partition(':')
                 meta[k.strip()] = v.strip().strip('"').strip("'")
         body = content[fm.end():]
     else:
@@ -281,9 +281,11 @@ def parse_post(md_path):
     stories = []
     for section in re.split(r'\n---\n', body):
         section = section.strip()
-        if not section: continue
+        if not section:
+            continue
         tm = re.match(r'###\s+(.+)', section)
-        if not tm: continue
+        if not tm:
+            continue
         title = tm.group(1).strip()
         cm = re.search(r'\*\*(.+?)\*\*', section)
         full_bold = cm.group(1) if cm else "General"
@@ -299,18 +301,21 @@ def parse_post(md_path):
                 and not s.startswith('*') and not s.startswith('---')
                 and 'KEY TAKEAWAYS' not in s.upper()):
                 summary_lines.append(s)
-            if len(summary_lines) >= 2: break
+            if len(summary_lines) >= 4:  # Increased to 4
+                break
 
         takeaways = []
         in_kt = False
         for line in lines:
             s = line.strip()
             if 'KEY TAKEAWAYS' in s.upper():
-                in_kt = True; continue
+                in_kt = True
+                continue
             if in_kt:
                 if s.startswith('- ') or s.startswith('• ') or s.startswith('▸'):
                     t = s.lstrip('-•▸ ').strip()
-                    if t: takeaways.append(t)
+                    if t:
+                        takeaways.append(t)
                 elif s.startswith('[') or (s == '' and takeaways):
                     break
 
@@ -321,9 +326,9 @@ def parse_post(md_path):
                     if 20 < len(sent) < 120:
                         takeaways.append(sent)
 
-        stories.append({'title': title, 'category': category, 'summary': summary_lines, 'takeaways': takeaways[:3]})
+        stories.append({'title': title, 'category': category, 'summary': summary_lines, 'takeaways': takeaways[:5]})  # Limit to 5
 
-    return {'meta': meta, 'stories': stories, 'date': meta.get('date',''), 'tags': [t.strip() for t in meta.get('tags','').split(',') if t.strip()]}
+    return {'meta': meta, 'stories': stories, 'date': meta.get('date', ''), 'tags': [t.strip() for t in meta.get('tags', '').split(',') if t.strip()]}
 
 
 def get_cat_style(category):
@@ -354,7 +359,8 @@ def generate_all_slides(md_path, output_dir=None):
 
     data = parse_post(md_path)
     if not data:
-        print("ERROR: Could not parse post"); return []
+        print("ERROR: Could not parse post")
+        return []
 
     date_str = data['date']
     stories = data['stories']
@@ -364,25 +370,40 @@ def generate_all_slides(md_path, output_dir=None):
     except:
         display_date = date_str
 
-    fs0 = get_cat_style(stories[0]['category']) if stories else CAT_STYLES['general']
-    main_acc, main_acc2 = fs0[2], fs0[3]
+    # Select top N stories (default 3)
+    TOP_N = 3
+    selected_stories = stories[:TOP_N]
+
+    # Determine main accent from first story's category
+    if selected_stories:
+        fs0 = get_cat_style(selected_stories[0]['category'])
+        main_acc, main_acc2 = fs0[2], fs0[3]
+    else:
+        main_acc, main_acc2 = CAT_STYLES['general'][2], CAT_STYLES['general'][3]
+
     paths = []
 
     # Cover
-    cover = gen_cover(display_date, len(stories), [s['category'] for s in stories], main_acc, main_acc2)
-    p = out / "01_cover.png"; cover.save(p, "PNG"); paths.append(str(p))
+    cover = gen_cover(display_date, TOP_N, [s['category'] for s in selected_stories], main_acc, main_acc2)
+    p = out / "01_cover.png"
+    cover.save(p, "PNG")
+    paths.append(str(p))
     print("  ✓ Cover")
 
     # Stories
-    for i, s in enumerate(stories, 1):
+    for i, s in enumerate(selected_stories, 1):
         st = get_cat_style(s['category'])
         slide = gen_story(i, s['title'], s['category'], s['summary'], s['takeaways'], display_date, st[2], st[3], st[0])
-        p = out / (str(i+1).zfill(2) + "_story_" + str(i) + ".png"); slide.save(p, "PNG"); paths.append(str(p))
+        p = out / (str(i+1).zfill(2) + "_story_" + str(i) + ".png")
+        slide.save(p, "PNG")
+        paths.append(str(p))
         print("  ✓ Story " + str(i) + ": " + s['title'][:42] + "... [" + s['category'] + "] (" + str(len(s['takeaways'])) + " KT)")
 
     # CTA
     cta = gen_cta(display_date, main_acc, main_acc2)
-    p = out / (str(len(stories)+2).zfill(2) + "_cta.png"); cta.save(p, "PNG"); paths.append(str(p))
+    p = out / (str(len(selected_stories)+2).zfill(2) + "_cta.png")
+    cta.save(p, "PNG")
+    paths.append(str(p))
     print("  ✓ CTA")
 
     print("\n" + str(len(paths)) + " slides in " + str(out) + "/")
@@ -392,5 +413,6 @@ def generate_all_slides(md_path, output_dir=None):
 if __name__ == '__main__':
     import sys
     if len(sys.argv) < 2:
-        print("Usage: python generate_images.py <md_post> [output_dir]"); sys.exit(1)
+        print("Usage: python generate_images.py <md_post> [output_dir]")
+        sys.exit(1)
     generate_all_slides(Path(sys.argv[1]), sys.argv[2] if len(sys.argv) > 2 else None)
