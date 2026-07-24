@@ -29,12 +29,12 @@ NEWS_SOURCES = {
     "OpenAI": "https://openai.com/news",
     "Google AI": "https://blog.google/technology/ai/",
 }
-
-SKIP_URL_PATTERNS = [
+# URL patterns that are NEVER signal
+NOISE_URL_PATTERNS = [
     r"/category/", r"/tag/", r"/author/", r"/page/\d+", r"\.pdf$",
     r"news\.ycombinator\.com/item\?id=", r"hacker-news\.firebaseio\.com",
+    r"platform\.claude\.com/cookbook", r"axios\.com",
 ]
-
 AI_KEYWORDS = [
     'ai', 'gpt', 'claude', 'llm', 'openai', 'anthropic', 'gemini', 'mistral',
     'agent', 'machine learning', 'deepmind', 'neural', 'copilot', 'chatgpt',
@@ -67,7 +67,7 @@ def run_cmd(cmd, cwd=None, timeout=15):
 
 def is_ai_relevant(title: str, url: str = "") -> bool:
     """Check if story is AI-relevant."""
-    for pat in SKIP_URL_PATTERNS:
+    for pat in NOISE_URL_PATTERNS:
         if re.search(pat, url, re.IGNORECASE):
             return False
     title_lower = title.lower()
@@ -101,8 +101,8 @@ def extract_article_links(html: str, base_url: str) -> list[tuple[str, str]]:
 
 
 def fetch_content(url: str) -> str:
-    """Fetch and extract main content."""
-    result = run_cmd(f"curl -sL --max-time 10 '{url}' 2>/dev/null")
+    """Fetch and extract main content - fast."""
+    result = run_cmd(f"curl -sL --max-time 8 '{url}' 2>/dev/null")
     if result.returncode != 0 or not result.stdout:
         return ""
     html = result.stdout
@@ -130,11 +130,11 @@ def search_ai_news():
     all_stories = []
 
     # 1. Hacker News - fast API
-    result = run_cmd("curl -sL 'https://hacker-news.firebaseio.com/v0/topstories.json' 2>/dev/null", timeout=10)
+    result = run_cmd("curl -sL 'https://hacker-news.firebaseio.com/v0/topstories.json' 2>/dev/null", timeout=8)
     if result.returncode == 0 and result.stdout.strip():
         ids = json.loads(result.stdout[:5000])
-        for story_id in ids[:40]:
-            story_result = run_cmd(f"curl -sL 'https://hacker-news.firebaseio.com/v0/item/{story_id}.json' 2>/dev/null", timeout=5)
+        for story_id in ids[:30]:  # Reduced from 40
+            story_result = run_cmd(f"curl -sL 'https://hacker-news.firebaseio.com/v0/item/{story_id}.json' 2>/dev/null", timeout=3)
             if story_result.returncode == 0 and story_result.stdout.strip():
                 try:
                     story = json.loads(story_result.stdout)
@@ -148,27 +148,68 @@ def search_ai_news():
                 except:
                     pass
 
-    # 2. Other sources - fetch listing pages with 10s timeout
+    # 2. Other sources - fetch listing pages with 8s timeout
     for source_name, source_url in NEWS_SOURCES.items():
         if source_name == "Hacker News":
             continue
-        result = run_cmd(f"curl -sL --max-time 10 '{source_url}' 2>/dev/null", timeout=10)
+        result = run_cmd(f"curl -sL --max-time 8 '{source_url}' 2>/dev/null", timeout=8)
         if result.returncode == 0 and result.stdout:
             links = extract_article_links(result.stdout, source_url)
-            for url, title in links[:8]:
+            for url, title in links[:6]:  # Reduced from 8
                 if is_ai_relevant(title, url):
                     all_stories.append({
                         'title': title, 'url': url, 'source': source_name, 'score': 0
                     })
 
-    # Deduplicate
-    seen = set()
+    # Deduplicate - by URL (canonical) + fuzzy title
+    seen_urls = set()
+    seen_titles = set()
     unique = []
+    
+    def normalize_url(url: str) -> str:
+        """Normalize URL for deduplication."""
+        # Remove query params, fragments, trailing slash
+        url = url.split('?')[0].split('#')[0].rstrip('/')
+        # Normalize www
+        url = url.replace('://www.', '://')
+        return url.lower()
+    
+    def normalize_title(title: str) -> str:
+        """Normalize title for fuzzy matching."""
+        # Lowercase, remove punctuation, collapse whitespace
+        t = title.lower()
+        t = re.sub(r'[^\w\s]', '', t)
+        t = re.sub(r'\s+', ' ', t).strip()
+        # Remove common prefix/suffix words that vary
+        t = re.sub(r'^(exclusive|breaking|analysis|opinion|review)\s+', '', t)
+        t = re.sub(r'\s+(exclusive|breaking|analysis|opinion|review)$', '', t)
+        return t
+    
     for s in all_stories:
-        key = s['title'].lower()[:60]
-        if key not in seen:
-            seen.add(key)
-            unique.append(s)
+        norm_url = normalize_url(s['url'])
+        norm_title = normalize_title(s['title'])
+        
+        # Check URL first (strongest signal)
+        if norm_url in seen_urls:
+            continue
+        
+        # Check fuzzy title (last 50 chars of normalized title)
+        title_key = norm_title[-50:] if len(norm_title) > 50 else norm_title
+        # Also check if very similar title exists (substring match)
+        is_dup = False
+        for existing in seen_titles:
+            if title_key in existing or existing in title_key:
+                # High overlap - likely same story
+                if len(title_key) > 20 and len(existing) > 20:
+                    is_dup = True
+                    break
+        
+        if is_dup:
+            continue
+            
+        seen_urls.add(norm_url)
+        seen_titles.add(norm_title)
+        unique.append(s)
 
     # Priority sort
     priority = {'TechCrunch AI': 10, 'ArsTechnica AI': 9, 'The Verge AI': 8, 

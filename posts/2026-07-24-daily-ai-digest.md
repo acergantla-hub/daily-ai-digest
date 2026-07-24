@@ -2,13 +2,13 @@
 title: "Daily AI Digest — July 24, 2026"
 date: "2026-07-24"
 category: Daily Digest
-excerpt: "8 signal stories across 3 categories. 4 filtered."
-tags: agents, models, open-source, daily-digest
+excerpt: "7 signal stories across 2 categories. 5 filtered."
+tags: agents, open-source, daily-digest
 ---
 
 # Daily AI Digest — July 24, 2026 (Friday)
 
-**8 stories from the last 24 hours.** Here's what matters today.
+**7 stories from the last 24 hours.** Here's what matters today.
 
 ---
 
@@ -26,42 +26,35 @@ For months, AI giants have devised special vetted programs and strict guardrails
 Weeks after OpenAI rolled out a new family of conversational models and updated ChatGPT’s voice mode , rival Anthropic is making its move to make Claude more voice-friendly with a new update. The company said Thursday that users can choose between Opus, Sonnet, and Haiku models.
 [Read more](https://techcrunch.com/2026/07/23/anthropic-updates-claude-voice-mode-with-more-capable-models/)
 
-**4. AegisAI, founded by former Google security execs, lands $36M to stop AI-driven spear phishing**
-Hackers are increasingly using AI to launch attacks on a massive scale, with email emerging as a primary target. AI can quickly aggregate personal information — such as information about co-workers, active projects, and recent travel itineraries — allowing bad actors to instantly craft convincing messages that look authentic.
-[Read more](https://techcrunch.com/2026/07/23/aegisai-founded-by-former-google-security-execs-lands-36m-to-stop-ai-driven-spear-phishing/)
-
-**5. OpenAI’s accidental cyberattack against Hugging Face is science fiction that happened**
+**4. OpenAI’s accidental cyberattack against Hugging Face is science fiction that happened**
 The short version: OpenAI were running a cybersecurity test against an unreleased model, with the model’s guardrail features turned off. Rather than solve the test, the model broke its way out of OpenAI’s sandbox, then found exploits to break in to Hugging Face, all so it could cheat on the test by stealing the answers.
 [Read more](https://simonwillison.net/2026/Jul/22/openai-cyberattack/)
 
-**6. A Fireside Chat with Cat and Thariq from the Claude Code team**
+**5. A Fireside Chat with Cat and Thariq from the Claude Code team**
 We talked about Claude Code, Claude Tag, Fable, coding agent security, evals, tool design, and how Anthropic use these tools themselves. The full video of the session is now available on YouTube .
 [Read more](https://simonwillison.net/2026/Jul/21/cat-and-thariq/)
 
----
-
-## Models
-
-**1. OpenAI makes ChatGPT Health available to all US users**
-OpenAI said today it is making ChatGPT Health, a feature that helps users with health-related queries, available to all U.S.-based users over 18 across all plans. The announcement comes a day after a Florida-based pastor sued the company for giving a near-fatal suggestion not to consult a doctor .
-[Read more](https://techcrunch.com/2026/07/23/openai-makes-chatgpt-health-available-to-all-u-s-users/)
+**6. Kimi K3, and what we can still learn from the pelican benchmark**
+It’s currently available via their website and API, but an open weight release is promised “by July 27, 2026”. Moonshot are calling this the first “open 3T-class model” (I guess they’re rounding 2.8 trillion up to 3 trillion), taking the crown from DeepSeek’s 1.6T v4 Pro .
+[Read more](https://simonwillison.net/2026/Jul/16/kimi-k3/)
 
 ---
 
 ## Open Source
 
-**1. Runway launches AI model router as generative media gets crowded**
-Runway no longer wants to be just another AI model company . It wants to become the infrastructure layer for generative media.
-[Read more](https://techcrunch.com/2026/07/23/runway-bets-on-ai-model-routing-as-generative-media-gets-crowded/)
+**1. Bluesky’s AI assistant Attie expands into an open social research tool**
+Attie , Bluesky’s AI assistant that lets you build custom social feeds without programming, is evolving into an open-ended research tool. The company this week said it’s added a new feature to the AI assistant, called Quests, that lets users ask it for information and news spreading across the broader Bluesky social network, nicknamed the Atmosphere.
+[Read more](https://techcrunch.com/2026/07/24/blueskys-ai-assistant-attie-expands-into-an-open-social-research-tool/)
 
 ---
 
 ## Quick Hits
 
 - **AMD takes on Nvidia with its Helios AI rack-scale system** — Chipmaker AMD is taking aim at competitor Nvidia with its latest hardware release: a rack-scale system designed to power... [Read](https://techcrunch.com/2026/07/23/amd-takes-on-nvidia-with-its-helios-ai-rack-scale-system/)
-- **Meta launched a new AI optimism ad set to a song about human extinction** — “Some people will have you believe AI is going to make us feel less connected. That it’s going to leave us behind,” a vo... [Read](https://techcrunch.com/2026/07/23/meta-launched-a-new-ai-optimism-ad-set-to-a-song-about-human-extinction/)
-- **Exclusive: Yelp partners with ChatGPT to surface reviews** — | Cloudflare Please enable cookies. Sorry, you have been blocked You are unable to access axios.com Why have I been bloc... [Read](https://www.axios.com/2026/07/23/yelp-reviews-chatgpt-geo-partnership)
 - **750 million Gemini users Google** — Google’s AI chatbot Gemini has surpassed 750 million monthly active users (MAUs), according to the company’s fourth-quar... [Read](https://techcrunch.com/2026/02/04/googles-gemini-app-has-surpassed-750m-monthly-active-users/)
+- **IRGC Claims It Destroyed Amazon's Bahrain Data Center** — by Abdul Mohammed July 21, 2026 IRGC claims cruise missile strike destroyed AWS Bahrain data center in Wave 24, citing D... [Read](https://houseofsaud.com/irgc-claims-destroyed-amazon-bahrain-data-center/)
+- **Half-Life 2 running natively on HaikuOS** — Haiku ❤ Nvidia (porting Nvidia driver for Turing+ GPUs) - Page 18 - Proprietary & Other - Haiku Community = 40rem)" rel=... [Read](https://discuss.haiku-os.org/t/haiku-nvidia-porting-nvidia-driver-for-turing-gpus/16520?page=18)
+- **Kaizen #4: Overhauled Homelab** — Kaizen #4: Overhauled homelab Published July 5, 2026 14 minutes read I started this “blog-series” to force myself to wri... [Read](https://timharek.no/blog/kaizen-4/)
 
 ---
 
@@ -69,9 +62,7 @@ Runway no longer wants to be just another AI model company . It wants to become 
 
 1. **Voice & agent interfaces hit the desktop** — OpenAI&#8217;s new voice mode makes it to the ChatGPT desktop app, How AI guardrails are impeding the work of offensive cybersecurity researchers, Anthropic updates Claude voice mode with more capable models. The battleground shifts from chat to ambient voice control of agents on your machine.
 
-2. **Guardrails vs. utility tension** — OpenAI makes ChatGPT Health available to all US users. Safety controls blocking legitimate security research; health features launching amid liability suits.
-
-3. **Model routing becomes infrastructure** — Runway launches AI model router as generative media gets crowded. Runway's router signals generative media fragmentation; you need a gateway, not a model.
+2. **Model routing becomes infrastructure** — Bluesky’s AI assistant Attie expands into an open social research tool. Runway's router signals generative media fragmentation; you need a gateway, not a model.
 
 ---
 

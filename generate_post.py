@@ -86,7 +86,11 @@ NOISE_URL_PATTERNS = [
     r"nesbitt\.io",
     r"airbus\.com",
     r"airport\.apunen\.com",
-    r"axios\.com",  # Cloudflare blocks
+    r"axios\.com",
+    r"haiku-os\.org",  # HaikuOS forum
+    r"discuss\.haiku-os\.org",
+    r"kaizen",
+    r"homelab",
 ]
 
 # Title/content patterns that are NEVER signal
@@ -119,6 +123,11 @@ NOISE_TEXT_PATTERNS = [
     r"optimism ad",
     r"750 million.*gemini",
     r"gemini.*750 million",
+    r"half-life 2",
+    r"haikuos",
+    r"haiku os",
+    r"nvidia driver",
+    r"turing gpu",
 ]
 
 
