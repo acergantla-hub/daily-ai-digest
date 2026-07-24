@@ -2,111 +2,143 @@
 title: "Daily AI Digest — July 24, 2026"
 date: "2026-07-24"
 category: Daily Digest
-excerpt: "14 stories today: Google expands Gemini managed agents, Anthropic launches Cowork for non-coders, OpenAI debuts Presence, Sierra acquires TakeOff, NousCoder-14B matches closed models, OneCLI secures agent secrets, and AegisAI raises $36M against AI phishing."
-tags: ai-agents, gemini, anthropic, openai, open-source-models, security, claude-code, enterprise-ai
+excerpt: "5 signal stories across 3 categories. 7 noise items filtered."
+tags: agent-platforms, open-models, ai-research, daily-digest
 ---
 
 # Daily AI Digest — July 24, 2026
 
-**14 stories from the last 24 hours.** Here's what matters today.
+**5 signal • 7 filtered • July 24, 2026**
 
 ---
 
-## Top Stories
+## Signal
 
-### Agents & Agent Platforms
+*Stories that move the needle for builders.*
 
-**1. Google Expands Managed Agents in Gemini API — Background Tasks, Remote MCP, and More**
-Google announced new capabilities in Managed Agents for the Gemini API, enabling developers to build production-ready agents with background task execution and remote MCP (Model Context Protocol) support. The update targets reliability for long-running agent workflows.
-[Read more](https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/)
+### 🤖 Agent Platforms
 
-**2. Anthropic Launches Cowork — Claude Desktop Agent for Non-Technical Users**
-Anthropic released Cowork, extending Claude Code's capabilities to non-technical users. It works directly in your files without coding — a "Claude Code for everyone" move that broadens the agent surface area beyond developers.
-[Read more](https://venturebeat.com/technology/anthropic-launches-cowork-a-claude-desktop-agent-that-works-in-your-files-no)
+#### Claude Cookbook
 
-**3. OpenAI Launches Presence — Enterprise AI Agent Platform for Voice and Chat**
-OpenAI introduced Presence, an enterprise-grade platform for deploying trusted voice and chat agents across customer and internal workflows. It signals OpenAI moving upmarket into the agent platform layer, competing with the likes of Sierra and Adept.
-[Read more](https://openai.com/index/introducing-openai-presence)
+**Agent Platforms** | July 24, 2026 | Hacker News
 
-**4. Sierra Acquires TakeOff — Long-Horizon AI Agent Platform**
-Bret Taylor's Sierra acquired TakeOff, a platform focused on long-horizon agent execution. The acquisition signals consolidation in the agent platform layer as companies race to own the full stack from orchestration to execution.
-[Read more](https://runtimewire.com/article/sierra-acquires-takeoff-long-horizon-ai-agents)
+Claude Cookbook Cookbook Claude Cookbook Practical guides and examples for using Claude effectively Programmatic tool calling (PTC) Reduce latency and token consumption by letting Claude write code that calls tools programmatically in the code execution environment. Tool search with embeddings Scale Claude applications to thousands of tools using semantic embeddings for dynamic tool discovery. Automatic context compaction Manage context limits in long-running agentic workflows by automatically compressing conversation history.
 
-**5. Salesforce Rebuilds Slackbot as Full AI Agent to Battle Microsoft and Google**
-Salesforce launched a completely rebuilt Slackbot, transforming it from a notification tool into a full workplace AI agent. It's a direct shot at Microsoft Copilot and Google's Gemini in Workspace — the workplace agent war is officially hot.
-[Read more](https://venturebeat.com/technology/salesforce-rolls-out-new-slackbot-ai-agent-as-it-battles-microsoft-and)
+> **Key data:** 4.8 • harness that reproduces published
+
+**Why it matters:**
+- Orchestration layer (agent platforms) is becoming the differentiator — models are commodities, the router isn't.
+- Managed runtimes (Gemini, OpenAI Presence, Sierra) mean you build tools/memory/evals, not the agent loop.
+- Multi-agent swarms (Cursor, Sierra/TakeOff) shift complexity from prompt engineering to system design.
+
+[Read full story →](https://platform.claude.com/cookbook/)
 
 ---
 
-### Models & Open Source
+#### Latest Airbus Single Aisle Aircraft Innovations
 
-**6. NousCoder-14B — Open-Source Coding Model Matches Closed-Source Leaders**
-Nous Research (backed by Paradigm) released NousCoder-14B, claiming it matches or exceeds several closed-source coding models. It lands squarely in the Claude Code moment — an open alternative arriving right as developers question $200/month CLI agent costs.
-[Read more](https://venturebeat.com/technology/nous-researchs-nouscoder-14b-is-an-open-source-coding-model-landing-right-in)
+**Agent Platforms** | July 24, 2026 | Hacker News
 
-**7. OpenClaw: Local Models Triage GitHub Repos for Free**
-Hugging Face demonstrated using local models to triage the OpenClaw repository at zero API cost. A practical proof point that small local models can handle real repository maintenance tasks — no cloud credits required.
-[Read more](https://huggingface.co/blog/local-models-pr-triage)
+Latest Airbus Single Aisle Aircraft Innovations. Full story at source.
 
-**8. USB AI Agent — Portable Uncensored AI with 13 Tools, Runs from a USB Stick**
-A portable, uncensored AI agent packaged with 13 tools that runs entirely from a USB drive. No install, no cloud, no censorship. A striking proof-of-concept for fully local, air-gapped agent workflows.
-[Read more](https://github.com/pusucip25/USB-AI-Agent)
+**Why it matters:**
+- Orchestration layer (agent platforms) is becoming the differentiator — models are commodities, the router isn't.
+- Managed runtimes (Gemini, OpenAI Presence, Sierra) mean you build tools/memory/evals, not the agent loop.
+- Multi-agent swarms (Cursor, Sierra/TakeOff) shift complexity from prompt engineering to system design.
 
----
-
-### Security & Safety
-
-**9. One ChatGPT Link Could Smuggle a Rogue AI Agent Into Your Company**
-The Register reports on a novel attack vector: a single shared ChatGPT link can inject a persistent, malicious agent into an organization's workspace. It's a supply-chain-style risk for the agent era — sharing a conversation becomes an attack surface.
-[Read more](https://www.theregister.com/security/2026/07/23/one-chatgpt-link-could-smuggle-a-rogue-ai-agent-into-your-company/5275116)
-
-**10. Stronger AI Agents Did More Damage, Not Less — Safety Research**
-AgentX Core research found that more capable agents caused *more* damage when unguarded, not less. Capability gains don't automatically improve safety; they amplify the blast radius of failures. A critical finding for anyone deploying autonomous agents.
-[Read more](https://www.agentx-core.com/blog/stronger-agents-more-dangerous-unguarded)
-
-**11. AegisAI Raises $36M to Stop AI-Driven Spear Phishing**
-Founded by former Google security executives, AegisAI landed $36M to build agents that analyze messages like humans do — catching anomalies checklists miss. The threat: AI-generated phishing that adapts in real time. The defense: AI agents that think like defenders.
-[Read more](https://techcrunch.com/2026/07/23/aegisai-founded-by-former-google-security-execs-lands-36m-to-stop-ai-driven-spear-phishing/)
+[Read full story →](https://www.airbus.com/en/newsroom/stories/2026-07-how-the-a321xlr-is-redefining-single-aisle-comfort-for-passengers)
 
 ---
 
-### Agent Infrastructure & Tooling
+### 🔓 Open Models
 
-**12. OneCLI — OSS Credential Gateway Keeps Secrets Out of AI Agents (92 pts on HN)**
-OneCLI is an open-source credential gateway that sits between agents and secrets, preventing credential leakage. At 92 points on HN, it's striking a nerve — the "secrets in agent context" problem is real and widely felt.
-[Read more](https://github.com/onecli/onecli)
+#### Hetzner is working on LLM Inference
 
-**13. ScarfBench — Benchmarking AI Agents for Enterprise Java Migration (IBM Research)**
-IBM Research released ScarfBench, a benchmark evaluating agents on real enterprise Java framework migration tasks. It moves agent evaluation beyond coding puzzles into the messy reality of legacy modernization — where most enterprise value sits.
-[Read more](https://huggingface.co/blog/ibm-research/scarfbench)
+**Open Models** | July 24, 2026 | Hacker News
 
-**14. Sunglasses — Open-Source Input Scanner for AI Agents**
-An open-source input scanner that inspects and sanitizes data before it reaches your agent. Think of it as a WAF for agent inputs — catching prompt injection, PII leakage, and malformed payloads before they hit the model.
-[Read more](https://github.com/sunglasses-dev/sunglasses)
+Hetzner Inference: First Look Products App Runtime Managed Postgres Object Storage Solutions Frontend Hosting Backend Hosting Audiences Industries Use cases All solutions Resources Docs API Reference Apps Blog Pricing Dashboard Products App Runtime Managed Postgres Object Storage Solutions Frontend Hosting Backend Hosting Audiences Industries Use cases All solutions Pricing Resources Docs API Reference Apps Blog Dashboard Back to articles Contents What Is Hetzner Inference? I Tried It The Product Is More Interesting Than the Model The Big Question Is Hardware Hetzner Inference: First Look Jonas Scholz 7 min Hetzner is experimenting with LLM inference. That is not a sentence I expected to write, but I think it is pretty interesting :) Before anyone moves their production AI workloads to Hetzner: this is very much an experiment .
 
----
+> **Key data:** Hetzner also published
 
-## Quick Hits
+**Why it matters:**
+- Kimi K3 / Qwen 3.8 / NousCoder-14B prove SOTA is reachable with open weights. Changes cost structure entirely.
+- Local models (24GB VRAM) now handle real repo maintenance (OpenClaw). No API bills, no vendor lock-in.
+- Open weights ≠ open everything. License, training data, tooling ecosystem determine real usability.
 
-- **OpenAI: Managing AI Investments in the Agentic Era** — Framework for measuring useful work per dollar as agents scale. [Read](https://openai.com/index/managing-ai-investments-in-agentic-era)
-- **Notion Kills Skiff-Inspired Email App** — "Going all in on using agents to run your inbox." [Read](https://arstechnica.com/gadgets/2026/06/notion-killing-skiff-influenced-email-app-since-most-users-use-ai-agents-instead/)
-- **Turo — Aggressive Token-Saving Proxy for CLI AI Agents** — Cuts token spend for terminal agents. [Read](https://github.com/kdeps/turo)
-- **Setoku — Self-Hosted Knowledge Server for AI Agents** — Private knowledge base for agent RAG. [Read](https://setoku.com/)
-- **Mwe-MCP — Self-Hosted Memory for AI Agents** — Remembers who knows what across sessions. [Read](https://github.com/Fr4nZ82/mwe-mcp)
-- **Ego Lite — Chromium Browser Where You and AI Agents Work in Parallel** — Side-by-side human-agent browsing. [Read](https://lite.ego.app)
+[Read full story →](https://sliplane.io/blog/hetzner-inference)
 
 ---
 
-## Why This Matters Today
+#### Open Weights and American AI Leadership [pdf]
 
-**1. The agent platform war has entered the enterprise.** In one day: Google (Gemini Managed Agents), Anthropic (Cowork), OpenAI (Presence), Salesforce (Slackbot), and Sierra (TakeOff acquisition) all shipped or acquired. The battle isn't about model quality anymore — it's about who owns the orchestration, memory, tooling, and enterprise trust layer.
+**Open Models** | July 24, 2026 | Hacker News
 
-**2. Open-source coding models have caught up.** NousCoder-14B and local-model repo triage (OpenClaw) prove you no longer need closed APIs for serious code work. Combined with tools like OneCLI (secrets), Turo (token savings), and USB AI Agent (air-gapped), a fully local, sovereign agent stack is becoming real.
+Open Weights and American AI Leadership [pdf]. Full story at source.
 
-**3. Agent security is shifting from theoretical to exploited.** The ChatGPT link injection attack and "stronger agents = more damage" research show the threat model has moved from prompt injection to *persistent agent compromise* and *capability-amplified harm*. OneCLI, Sunglasses, and AegisAI are the first wave of purpose-built defenses.
+**Why it matters:**
+- Kimi K3 / Qwen 3.8 / NousCoder-14B prove SOTA is reachable with open weights. Changes cost structure entirely.
+- Local models (24GB VRAM) now handle real repo maintenance (OpenClaw). No API bills, no vendor lock-in.
+- Open weights ≠ open everything. License, training data, tooling ecosystem determine real usability.
 
-**4. The enterprise benchmark gap is closing.** ScarfBench evaluates agents on Java framework migration — real legacy modernization work. This matters because enterprises don't care about HumanEval scores; they care whether an agent can upgrade Spring Boot 2 to 3 without breaking prod. Benchmarks that reflect actual enterprise pain points will drive adoption.
+[Read full story →](https://images.nvidia.com/pdf/Open-Weights-and-American-AI-Leadership.pdf)
 
 ---
 
-*Stay ahead. Check back tomorrow.*
+### 🔬 AI Research
+
+#### AMD's Instinct MI455X: Aiming for the Sun
+
+**AI Research** | July 24, 2026 | Hacker News
+
+AMD’s Instinct MI455X: Aiming for the Sun Chips and Cheese Subscribe Sign in AMD’s Instinct MI455X: Aiming for the Sun George Cozma , Aurora Nockert , and Nintonito Jul 23, 2026 16 1 2 Share Hello you fine Internet folks, here at AMD’s Advancing AI event we are looking at AMD’s brand new Instinct MI455X, replacing the older Instinct MI355X at the top of their AI stack. It is AMD’s first GPU designed for rack-scale AI deployments and is based on the new CDNA5 architecture with major changes to the compute unit and SoC, including enhancements to compute performance, improved memory bandwidth, larger memory capacity, and packaged using TSMC’s CoWoS-L. Instinct MI455X package It comes along with the new Helios rackscale solution, enabling scaling to 72 GPUs in a single pod, up from 8 GPUs for previous MI355X systems.
+
+> **Key data:** 40.26 • 23.3
+
+**Why it matters:**
+- Unslop detector: ~33% of new arXiv papers read as machine-written (0.4% false positive floor).
+- Claude Fable counterexample to Jacobian Conjecture — LLMs contributing to pure math research.
+- Measurement methodology matters: detector calibrated on pre-2023 papers, not vibes.
+
+[Read full story →](https://chipsandcheese.com/p/amds-instinct-mi455x-aiming-for-the)
+
+---
+
+## Noise
+
+*Filtered out — not worth your build time.*
+
+- **Writing by hand is good for your brain** (Hacker News) — Press release / category page / low signal
+- **IRGC Claims It Destroyed Amazon's Bahrain Data Center** (Hacker News) — Press release / category page / low signal
+- **Kaizen #4: Overhauled Homelab** (Hacker News) — Press release / category page / low signal
+- **Interview with a Maintainer** (Hacker News) — Press release / category page / low signal
+- **Fundraising** (techcrunch.com/category/artificial-intelligence) — Press release / category page / low signal
+- **Media &amp; Entertainment** (techcrunch.com/category/artificial-intelligence) — Press release / category page / low signal
+- …and 1 more category pages, fundraising rounds, and launch announcements.
+
+---
+
+## Building
+
+*What this means if you're shipping agents this week.*
+
+- **Agent orchestration is the new backend.** Managed runtimes (Gemini Managed Agents, OpenAI Presence, Sierra) mean you don't build the loop — you build tools, memory, and evals.
+- **Local models are production-ready for coding agents.** NousCoder-14B, Qwen 3.8, OpenClaw prove you can run agent loops on a 24GB GPU. Changes unit economics entirely.
+
+---
+
+## Reading List
+
+*Papers, repos, and deep dives worth your weekend.*
+
+- **[Claude Cookbook](https://platform.claude.com/cookbook/)** (Hacker News) — Claude Cookbook Cookbook Claude Cookbook Practical guides and examples for using Claude effectively Programmatic tool calling (PTC) Reduce l...
+- **[Hetzner is working on LLM Inference](https://sliplane.io/blog/hetzner-inference)** (Hacker News) — Hetzner Inference: First Look Products App Runtime Managed Postgres Object Storage Solutions Frontend Hosting Backend Hosting Audiences Indu...
+- **[AMD's Instinct MI455X: Aiming for the Sun](https://chipsandcheese.com/p/amds-instinct-mi455x-aiming-for-the)** (Hacker News) — AMD’s Instinct MI455X: Aiming for the Sun Chips and Cheese Subscribe Sign in AMD’s Instinct MI455X: Aiming for the Sun George Cozma , Aurora...
+- **[Latest Airbus Single Aisle Aircraft Innovations](https://www.airbus.com/en/newsroom/stories/2026-07-how-the-a321xlr-is-redefining-single-aisle-comfort-for-passengers)** (Hacker News) — Latest Airbus Single Aisle Aircraft Innovations. Full story at source....
+
+---
+
+*Curated by [LancerLoki](https://instagram.com/lancerloki1) — CS student building AI agents, shipping side projects, reading papers so you don't have to.*
+
+*Missed yesterday? [Browse all digests](/)*
+
+*Got a story worth signal? [DM me](https://x.com/lancerlokig) or reply to the [daily post](https://instagram.com/lancerloki1).*
