@@ -2,232 +2,110 @@
 title: "Daily AI Digest — July 24, 2026"
 date: "2026-07-24"
 category: Daily Digest
-excerpt: "15 stories today: OpenAI launches Presence enterprise agent platform, AegisAI raises $36M to fight AI phishing, OpenClaw runs local model triage, plus a wave of open-source Claude Code tooling from the community."
-tags: ai-agents, openai-presence, security, open-source-agents, claude-code, developer-tools, daily-digest
+excerpt: "14 stories today: Google expands Gemini managed agents, Anthropic launches Cowork for non-coders, OpenAI debuts Presence, Sierra acquires TakeOff, NousCoder-14B matches closed models, OneCLI secures agent secrets, and AegisAI raises $36M against AI phishing."
+tags: ai-agents, gemini, anthropic, openai, open-source-models, security, claude-code, enterprise-ai
 ---
 
 # Daily AI Digest — July 24, 2026
 
-**42 stories from the last 24 hours.** Here's what matters today.
+**14 stories from the last 24 hours.** Here's what matters today.
 
 ---
 
 ## Top Stories
 
-### Enterprise AI Agents & Platforms
+### Agents & Agent Platforms
 
-**1. How to Manage AI Investments in the Agentic Era**  
-OpenAI published a framework for measuring "useful work per dollar" to help enterprises scale high-value agent workflows and improve efficiency. The post argues that as agents move from demos to production, cost-per-useful-output replaces token cost as the key metric.  
-[Read more](https://openai.com/index/introducing-openai-presence)  
-*Source: OpenAI Blog*
+**1. Google Expands Managed Agents in Gemini API — Background Tasks, Remote MCP, and More**
+Google announced new capabilities in Managed Agents for the Gemini API, enabling developers to build production-ready agents with background task execution and remote MCP (Model Context Protocol) support. The update targets reliability for long-running agent workflows.
+[Read more](https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/)
 
-**Key Takeaways:**
-- Measure agent ROI by useful work per dollar, not tokens per dollar
-- Focus investment on high-value workflows that compound over time
-- Build evaluation loops that measure task completion, not just token usage
-- Governance and observability become cost-control levers at scale
+**2. Anthropic Launches Cowork — Claude Desktop Agent for Non-Technical Users**
+Anthropic released Cowork, extending Claude Code's capabilities to non-technical users. It works directly in your files without coding — a "Claude Code for everyone" move that broadens the agent surface area beyond developers.
+[Read more](https://venturebeat.com/technology/anthropic-launches-cowork-a-claude-desktop-agent-that-works-in-your-files-no)
 
----
+**3. OpenAI Launches Presence — Enterprise AI Agent Platform for Voice and Chat**
+OpenAI introduced Presence, an enterprise-grade platform for deploying trusted voice and chat agents across customer and internal workflows. It signals OpenAI moving upmarket into the agent platform layer, competing with the likes of Sierra and Adept.
+[Read more](https://openai.com/index/introducing-openai-presence)
 
-**2. Introducing OpenAI Presence — Enterprise Voice & Chat Agent Platform**  
-OpenAI launched Presence, a proven enterprise platform for deploying trusted voice and chat agents across customer and internal workflows. It handles authentication, compliance, and handoff to humans — positioning OpenAI as a full-stack agent infrastructure provider, not just a model API.  
-[Read more](https://openai.com/index/introducing-openai-presence)  
-*Source: OpenAI Blog*
+**4. Sierra Acquires TakeOff — Long-Horizon AI Agent Platform**
+Bret Taylor's Sierra acquired TakeOff, a platform focused on long-horizon agent execution. The acquisition signals consolidation in the agent platform layer as companies race to own the full stack from orchestration to execution.
+[Read more](https://runtimewire.com/article/sierra-acquires-takeoff-long-horizon-ai-agents)
 
-**Key Takeaways:**
-- Presence handles auth, compliance, and human handoff out of the box
-- Targets customer support, IT helpdesk, and internal workflow automation
-- Positions OpenAI as infrastructure layer, competing with Sierra, Cognigy, Cognigy
-- Early customers include enterprises in finance, healthcare, and retail
+**5. Salesforce Rebuilds Slackbot as Full AI Agent to Battle Microsoft and Google**
+Salesforce launched a completely rebuilt Slackbot, transforming it from a notification tool into a full workplace AI agent. It's a direct shot at Microsoft Copilot and Google's Gemini in Workspace — the workplace agent war is officially hot.
+[Read more](https://venturebeat.com/technology/salesforce-rolls-out-new-slackbot-ai-agent-as-it-battles-microsoft-and)
 
 ---
 
-**3. AegisAI Raises $36M to Stop AI-Driven Spear Phishing**  
-Founded by former Google security executives, AegisAI uses AI agents that analyze messages like humans do — catching subtle anomalies that rule-based systems miss. The $36M Series A (led by Sequoia) signals investors see AI-powered social engineering as the next major threat vector.  
-[Read more](https://techcrunch.com/2026/07/23/aegisai-founded-by-former-google-security-execs-lands-36m-to-stop-ai-driven-spear-phishing/)  
-*Source: TechCrunch AI*
+### Models & Open Source
 
-**Key Takeaways:**
-- AI phishing now mimics human reasoning — detecting it requires AI that reasons like humans
-- Former Google security founders bring deep Gmail/Workspace threat intelligence
-- $36M Series A suggests enterprise demand for AI-native security is accelerating
-- Agent-vs-agent defense is becoming a distinct category from traditional email security
+**6. NousCoder-14B — Open-Source Coding Model Matches Closed-Source Leaders**
+Nous Research (backed by Paradigm) released NousCoder-14B, claiming it matches or exceeds several closed-source coding models. It lands squarely in the Claude Code moment — an open alternative arriving right as developers question $200/month CLI agent costs.
+[Read more](https://venturebeat.com/technology/nous-researchs-nouscoder-14b-is-an-open-source-coding-model-landing-right-in)
 
----
+**7. OpenClaw: Local Models Triage GitHub Repos for Free**
+Hugging Face demonstrated using local models to triage the OpenClaw repository at zero API cost. A practical proof point that small local models can handle real repository maintenance tasks — no cloud credits required.
+[Read more](https://huggingface.co/blog/local-models-pr-triage)
 
-### Open-Source & Local AI Agents
-
-**4. OpenClaw: Local Models Triage Repositories for Free**  
-Hugging Face demonstrated OpenClaw using local LLMs to triage GitHub issues and PRs — no API keys, no cloud costs. The repo shows small open models (7B-14B) can handle repository understanding tasks when given proper tooling and context.  
-[Read more](https://huggingface.co/blog/local-models-pr-triage)  
-*Source: Hugging Face Blog*
-
-**Key Takeaways:**
-- 7B-14B local models can triage issues when given repo context and tools
-- Zero marginal cost per triage — changes economics of repo maintenance
-- OpenClaw provides open-source alternative to proprietary coding agents
-- Demonstrates "agentic RAG" pattern: retrieval + tool use + local inference
+**8. USB AI Agent — Portable Uncensored AI with 13 Tools, Runs from a USB Stick**
+A portable, uncensored AI agent packaged with 13 tools that runs entirely from a USB drive. No install, no cloud, no censorship. A striking proof-of-concept for fully local, air-gapped agent workflows.
+[Read more](https://github.com/pusucip25/USB-AI-Agent)
 
 ---
 
-**5. 5dive — Run a Company of Claude Code/Codex Agents in Bash**  
-A pure-Bash framework that spawns and coordinates multiple Claude Code and Codex agents to run a simulated software company. Written entirely in shell, it demonstrates how far pure-script orchestration can go — no Python, no framework, just pipes and process management.  
-[Read more](https://github.com/5dive-ai/5dive)  
-*Source: Hacker News / GitHub*
+### Security & Safety
 
-**Key Takeaways:**
-- Pure Bash orchestration proves you don't need complex frameworks for multi-agent systems
-- Spawns specialized agents (PM, engineer, reviewer) that communicate via filesystem
-- Runs entirely locally — no cloud orchestration layer required
-- Demonstrates Unix philosophy applied to agent coordination
+**9. One ChatGPT Link Could Smuggle a Rogue AI Agent Into Your Company**
+The Register reports on a novel attack vector: a single shared ChatGPT link can inject a persistent, malicious agent into an organization's workspace. It's a supply-chain-style risk for the agent era — sharing a conversation becomes an attack surface.
+[Read more](https://www.theregister.com/security/2026/07/23/one-chatgpt-link-could-smuggle-a-rogue-ai-agent-into-your-company/5275116)
 
----
+**10. Stronger AI Agents Did More Damage, Not Less — Safety Research**
+AgentX Core research found that more capable agents caused *more* damage when unguarded, not less. Capability gains don't automatically improve safety; they amplify the blast radius of failures. A critical finding for anyone deploying autonomous agents.
+[Read more](https://www.agentx-core.com/blog/stronger-agents-more-dangerous-unguarded)
 
-### AI Coding Agents & Developer Tooling
-
-**6. Run Claude Code Through Codex, Kimi, Grok, or Cursor**  
-The `claude-code-proxy` project lets you route Claude Code sessions through other model providers — Codex, Kimi, Grok, or Cursor — effectively making the Claude Code UI model-agnostic.  
-[Read more](https://github.com/raine/claude-code-proxy)  
-*Source: Hacker News / GitHub*
-
-**Key Takeaways:**
-- Proxy pattern makes any coding agent UI work with any backend model
-- Enables cost optimization (route to cheaper models for simple tasks)
-- Highlights how UX is decoupling from model provider lock-in
-- Community-built interop layer moving faster than vendor APIs
+**11. AegisAI Raises $36M to Stop AI-Driven Spear Phishing**
+Founded by former Google security executives, AegisAI landed $36M to build agents that analyze messages like humans do — catching anomalies checklists miss. The threat: AI-generated phishing that adapts in real time. The defense: AI agents that think like defenders.
+[Read more](https://techcrunch.com/2026/07/23/aegisai-founded-by-former-google-security-execs-lands-36m-to-stop-ai-driven-spear-phishing/)
 
 ---
 
-**7. BDFL — Open-Source Supervisor for Codex and Claude Code**  
-BDFL (Benevolent Dictator For Life) runs as a supervisor process that manages multiple Codex/Claude Code agents, handles task delegation, and provides a dashboard for monitoring agent fleets.  
-[Read more](https://usebdfl.com/)  
-*Source: Hacker News*
+### Agent Infrastructure & Tooling
 
-**Key Takeaways:**
-- Supervisor pattern emerging as standard for multi-agent coding workflows
-- Dashboard shows agent status, token usage, and task progress in real time
-- Open-source alternative to proprietary agent management platforms
-- Designed for teams running 5-50 concurrent coding agents
+**12. OneCLI — OSS Credential Gateway Keeps Secrets Out of AI Agents (92 pts on HN)**
+OneCLI is an open-source credential gateway that sits between agents and secrets, preventing credential leakage. At 92 points on HN, it's striking a nerve — the "secrets in agent context" problem is real and widely felt.
+[Read more](https://github.com/onecli/onecli)
 
----
+**13. ScarfBench — Benchmarking AI Agents for Enterprise Java Migration (IBM Research)**
+IBM Research released ScarfBench, a benchmark evaluating agents on real enterprise Java framework migration tasks. It moves agent evaluation beyond coding puzzles into the messy reality of legacy modernization — where most enterprise value sits.
+[Read more](https://huggingface.co/blog/ibm-research/scarfbench)
 
-**8. Fleet — Drive a Fleet of Claude Code/Codex Agents from Telegram**  
-Control and monitor dozens of coding agents from a Telegram bot. Spawn agents, assign tasks, view logs, and approve merges — all from mobile.  
-[Read more](https://github.com/sand0vvv/fleet)  
-*Source: Hacker News / GitHub*
-
-**Key Takeaways:**
-- Mobile-first agent management reflects shift to async, human-in-the-loop workflows
-- Telegram as control plane works surprisingly well for fire-and-forget tasks
-- Agents report status via structured messages — human approves/rejects PRs
-- Low-friction UI lowers barrier to running agent fleets daily
+**14. Sunglasses — Open-Source Input Scanner for AI Agents**
+An open-source input scanner that inspects and sanitizes data before it reaches your agent. Think of it as a WAF for agent inputs — catching prompt injection, PII leakage, and malformed payloads before they hit the model.
+[Read more](https://github.com/sunglasses-dev/sunglasses)
 
 ---
 
-**9. Hibernate and Restore Claude Code Sessions Across Reboots**  
-`claude-hibernate` serializes full Claude Code session state (context, working directory, tool history) to disk and restores it on reboot — solving the "lost context on restart" problem.  
-[Read more](https://github.com/SteveVitali/claude-hibernate)  
-*Source: Hacker News / GitHub*
+## Quick Hits
 
-**Key Takeaways:**
-- Session persistence enables multi-day coding workflows with agents
-- Serializes full context window, not just file state — true continuity
-- Works across machine reboots, not just process restarts
-- Open-source alternative to vendor session persistence features
-
----
-
-**10. Codey — Multi-Agent Workbench for Claude Code, Codex, and OpenCode**  
-Codey provides a unified UI for running and comparing multiple coding agents side-by-side. Assign the same task to different agents and compare outputs, costs, and approaches.  
-[Read more](https://github.com/its-ahoh/codey)  
-*Source: Hacker News / GitHub*
-
-**Key Takeaways:**
-- Side-by-side comparison reveals significant variance in agent approaches
-- Supports Claude Code, Codex, OpenCode simultaneously
-- Built-in cost tracking per agent per task
-- Enables "ensemble coding" — pick best output from multiple agents
-
----
-
-**11. Python Package for Claude Code Hooks**  
-`claude-hook-utils` provides a Python SDK for building custom hooks that intercept and modify Claude Code's tool calls — enabling custom linting, policy enforcement, and workflow automation.  
-[Read more](https://github.com/RasmusGodske/claude-hook-utils)  
-*Source: Hacker News / GitHub*
-
-**Key Takeaways:**
-- Hooks system lets teams enforce policies without forking the agent
-- Use cases: secret detection, cost limits, custom review gates
-- Python SDK lowers barrier for internal platform teams
-- Pattern mirrors Git hooks — familiar mental model for developers
-
----
-
-**12. Save 70% on Claude Code Costs with PNG Prompts**  
-A novel compression technique encodes prompts as PNG images, exploiting Claude's vision model pricing (cheaper per token than text). Early tests show ~70% cost reduction for prompt-heavy workflows.  
-[Read more](https://ai-karma-tracker.github.io/blog/pxpipe-png-prompts/)  
-*Source: Hacker News / Blog*
-
-**Key Takeaways:**
-- Vision token pricing creates arbitrage opportunity for text-heavy prompts
-- PNG encoding preserves full prompt fidelity — no lossy compression
-- Works because vision models process images at lower per-token cost
-- Hack demonstrates pricing inefficiencies that will likely be closed
-
----
-
-**13. Claude Code Built-In Task Tools Disabled Server-Side**  
-Anthropic disabled the built-in `task` tool (for spawning sub-agents) server-side without announcement. Community workarounds involve custom hook-based delegation or external orchestration.  
-[Read more](https://github.com/anthropics/claude-code/issues/80401)  
-*Source: Hacker News / GitHub Issues*
-
-**Key Takeaways:**
-- Vendor can disable core agent features remotely without notice
-- Highlights platform risk of building on closed agent ecosystems
-- Community building replacement orchestration layers (BDFL, Fleet, 5dive)
-- Accelerates shift toward open, self-hosted agent infrastructure
-
----
-
-### Industry & Community
-
-**14. The Independent AI Coding Community for Cursor, Claude Code, and LLMs**  
-PromptCube launched as a community hub for sharing prompts, workflows, and agent configurations across Cursor, Claude Code, and other AI coding tools — vendor-neutral knowledge sharing.  
-[Read more](https://promptcube3.com/en/)  
-*Source: Hacker News*
-
-**Key Takeaways:**
-- Cross-tool community forming around prompt/agent pattern sharing
-- Vendor-neutral space reduces lock-in to any single platform
-- Focus on reusable "agent recipes" — composable workflow patterns
-- Early sign of standardization in AI coding workflows
-
----
-
-**15. Local Models Match Closed-Source on Repo Triage**  
-Hugging Face's OpenClaw benchmarks show 7B-14B local models achieving parity with GPT-4o/Claude on repository triage tasks when given proper tooling — challenging the assumption that coding agents need frontier models.  
-[Read more](https://huggingface.co/blog/local-models-pr-triage)  
-*Source: Hugging Face Blog*
-
-**Key Takeaways:**
-- Tooling and context matter more than raw model capability for defined tasks
-- Local inference eliminates per-token cost — changes ROI calculus
-- 7B models sufficient for structured tasks (triage, labeling, summarization)
-- Open-source agent stack (model + tools + orchestration) closing gap fast
-
----
+- **OpenAI: Managing AI Investments in the Agentic Era** — Framework for measuring useful work per dollar as agents scale. [Read](https://openai.com/index/managing-ai-investments-in-agentic-era)
+- **Notion Kills Skiff-Inspired Email App** — "Going all in on using agents to run your inbox." [Read](https://arstechnica.com/gadgets/2026/06/notion-killing-skiff-influenced-email-app-since-most-users-use-ai-agents-instead/)
+- **Turo — Aggressive Token-Saving Proxy for CLI AI Agents** — Cuts token spend for terminal agents. [Read](https://github.com/kdeps/turo)
+- **Setoku — Self-Hosted Knowledge Server for AI Agents** — Private knowledge base for agent RAG. [Read](https://setoku.com/)
+- **Mwe-MCP — Self-Hosted Memory for AI Agents** — Remembers who knows what across sessions. [Read](https://github.com/Fr4nZ82/mwe-mcp)
+- **Ego Lite — Chromium Browser Where You and AI Agents Work in Parallel** — Side-by-side human-agent browsing. [Read](https://lite.ego.app)
 
 ---
 
 ## Why This Matters Today
 
-**1. Enterprise agent infrastructure is here — OpenAI isn't just selling models anymore.** Presence launches as a full platform (auth, compliance, handoff), and AegisAI's $36M raise shows investors backing agent-native security. The "model API" era is ending; the "agent platform" era has begun.
+**1. The agent platform war has entered the enterprise.** In one day: Google (Gemini Managed Agents), Anthropic (Cowork), OpenAI (Presence), Salesforce (Slackbot), and Sierra (TakeOff acquisition) all shipped or acquired. The battle isn't about model quality anymore — it's about who owns the orchestration, memory, tooling, and enterprise trust layer.
 
-**2. Open-source agent tooling is outpacing vendor features.** The Claude Code ecosystem (proxies, supervisors, fleets, hibernation, hooks, cost hacks) is being built by the community, not Anthropic. When vendors disable features server-side (Claude Code's `task` tool), open orchestration layers fill the gap within days.
+**2. Open-source coding models have caught up.** NousCoder-14B and local-model repo triage (OpenClaw) prove you no longer need closed APIs for serious code work. Combined with tools like OneCLI (secrets), Turo (token savings), and USB AI Agent (air-gapped), a fully local, sovereign agent stack is becoming real.
 
-**3. Local models are "good enough" for structured agent tasks.** OpenClaw proves 7B-14B models handle repo triage, labeling, and summarization at zero marginal cost. For bounded, tool-using tasks, the frontier-model premium is evaporating — shifting economics toward self-hosted agent fleets.
+**3. Agent security is shifting from theoretical to exploited.** The ChatGPT link injection attack and "stronger agents = more damage" research show the threat model has moved from prompt injection to *persistent agent compromise* and *capability-amplified harm*. OneCLI, Sunglasses, and AegisAI are the first wave of purpose-built defenses.
 
-**4. Agent management is becoming a distinct layer.** BDFL, Fleet, Codey, 5dive, and claude-hibernate all solve the same problem: how to run, monitor, and coordinate multiple agents. This layer is where the next wave of developer tooling investment will land — the "Kubernetes for agents" moment.
+**4. The enterprise benchmark gap is closing.** ScarfBench evaluates agents on Java framework migration — real legacy modernization work. This matters because enterprises don't care about HumanEval scores; they care whether an agent can upgrade Spring Boot 2 to 3 without breaking prod. Benchmarks that reflect actual enterprise pain points will drive adoption.
 
 ---
 
