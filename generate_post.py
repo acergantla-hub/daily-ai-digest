@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
-Daily AI Digest — Recruiter-Grade Post Generator
-Produces: Signal (deep dives), Noise (what to skip), Building (actionable), Reading List (deep links)
-No generic fluff. Every bullet earns its keep.
+Daily AI Digest — Quality Post Generator
+Filters noise, classifies signal, synthesizes themes.
 """
 
 import json
@@ -15,114 +14,156 @@ POSTS_DIR = BASE_DIR / "posts"
 
 
 # ════════════════════════════════════════════════════════════════════════
-# STORY CLASSIFICATION — maps each story to a SIGNAL category
+# CATEGORIES — signal keywords only
 # ════════════════════════════════════════════════════════════════════════
 
-SIGNAL_CATEGORIES = {
-    "agents": {
-        "keywords": ["agent", "agentic", "orchestrat", "swarm", "sub-agent", "multi-agent", "cowork", "presence", "managed agent"],
-        "label": "Agent Platforms",
-        "icon": "🤖",
-    },
-    "evals": {
-        "keywords": ["eval", "benchmark", "scarfbench", "itbench", "measure", "testing", "agentx"],
-        "label": "Evals & Benchmarks",
-        "icon": "📊",
-    },
-    "open-models": {
-        "keywords": ["nouscoder", "qwen", "kimi", "open-weights", "open weights", "local model", "oss model", "moonshot", "alibaba"],
-        "label": "Open Models",
-        "icon": "🔓",
-    },
-    "infra": {
-        "keywords": ["mcp", "context protocol", "onecli", "turo", "sunglasses", "setoku", "mwe-mcp", "credential gateway", "input scanner"],
-        "label": "Agent Infrastructure",
-        "icon": "🔧",
-    },
-    "security": {
-        "keywords": ["phishing", "aegisai", "prompt injection", "rogue agent", "smuggle", "credential leak", "supply chain", "memory poison"],
-        "label": "Agent Security",
-        "icon": "🛡️",
-    },
-    "coding-tools": {
-        "keywords": ["claude code", "copilot", "cursor", "coding agent", "devin", "codex", "cli agent", "token billing", "headroom"],
-        "label": "Coding Agents",
-        "icon": "💻",
-    },
-    "research": {
-        "keywords": ["arxiv", "paper", "study", "conjecture", "jacobian", "mathematics", "theoretical"],
-        "label": "AI Research",
-        "icon": "🔬",
-    },
-    "enterprise": {
-        "keywords": ["slackbot", "salesforce", "workspace", "enterprise", "robinhood", "trading agent"],
-        "label": "Enterprise AI",
-        "icon": "🏢",
-    },
+CATEGORIES = {
+    "Agents": [
+        "agent", "agentic", "orchestrat", "swarm", "sub-agent", "multi-agent",
+        "cowork", "presence", "managed agent", "claude code", "devin", "openai agent",
+        "slackbot", "robinhood", "autonomous agent", "agent platform", "takeoff",
+        "sierra", "background task", "remote mcp", "voice mode", "chatgpt voice",
+        "hugging face", "cyberattack", "fireside chat", "claude code team",
+    ],
+    "Models": [
+        "nouscoder", "qwen", "kimi", "llama", "mistral", "gemma", "phi-",
+        "open weight", "open-weight", "local model", "frontier model",
+        "anthropic", "claude", "gpt-", "gemini", "opus", "sonnet", "haiku",
+        "moonshot", "alibaba", "openai", "google", "deepmind",
+        "guardrail", "cybersecurity", "health", "750 million", "voice mode",
+    ],
+    "Open Source": [
+        "open source", "oss", "github.com/", "huggingface", "open weights",
+        "apache 2.0", "mit license", "community model", "openclaw", "usb ai",
+        "runway", "router", "model router", "generative media",
+    ],
+    "Security": [
+        "vulnerability", "exploit", "injection", "phishing", "aegisai",
+        "credential", "secret leak", "supply chain", "starlette", "badhost",
+        "rogue agent", "smuggle", "memory poison", "guardrail", "red team",
+        "prompt injection", "spear phishing", "onecli", "sunglasses",
+    ],
+    "Infrastructure": [
+        "mcp", "context protocol", "model context protocol", "turo", "setoku",
+        "mwe-mcp", "credential gateway", "token proxy", "router", "gateway",
+        "rag", "retrieval", "vector db", "embedding", "memory layer",
+    ],
+    "Coding": [
+        "coding agent", "copilot", "cursor", "codex", "windsurf", "aider",
+        "vscode", "ide", "cli agent", "headroom", "token billing", "coding tool",
+        "software engineer", "devin", "swe-agent",
+    ],
+    "Enterprise": [
+        "salesforce", "slack", "workspace", "enterprise", "workplace",
+        "microsoft copilot", "google workspace", "sierra", "adept",
+        "robinhood trading", "presence platform", "yelp", "chatgpt health",
+    ],
+    "Research": [
+        "arxiv", "paper", "benchmark", "eval", "scarfbench", "itbench",
+        "agentx", "unslop", "conjecture", "jacobian", "mathematical",
+        "methodology", "calibrated", "false positive", "detection",
+    ],
+    "Hardware": [
+        "nvidia", "amd", "instinct", "h100", "h200", "blackwell", "gpu",
+        "chip", "inference", "groq", "cerebras", "tpu", "tensor core",
+        "mi455x", "cdna", "cowos", "rack-scale", "helios",
+    ],
 }
 
-NOISE_PATTERNS = [
+# URL patterns that are NEVER signal
+NOISE_URL_PATTERNS = [
+    r"techcrunch\.com/category/",
+    r"techcrunch\.com/tag/",
+    r"hacker-news\.firebaseio\.com",
+    r"news\.ycombinator\.com/item\?id=",
+    r"platform\.claude\.com/cookbook",
+    r"\.pdf$",
+    r"sliplane\.io/blog/hetzner",
+    r"chipsandcheese\.com",
+    r"nealstephenson\.substack\.com",
+    r"houseofsaud\.com",
+    r"timharek\.no",
+    r"nesbitt\.io",
+    r"airbus\.com",
+    r"airport\.apunen\.com",
+    r"axios\.com",  # Cloudflare blocks
+]
+
+# Title/content patterns that are NEVER signal
+NOISE_TEXT_PATTERNS = [
+    r"^fundraising",
+    r"^media & entertainment",
+    r"^generative ai",
+    r"^category/",
+    r"^tag/",
     r"launch hn",
-    r"fundraising",
-    r"funding round",
-    r"series [a-z]",
-    r"valuation",
-    r"unicorn",
-    r"media & entertainment",
-    r"generative ai$",
-    r"category/",
-    r"tag/",
     r"airport simulator",
-    r"my .* year old",
+    r"my \d+ year old",
     r"constraint solving",
     r"brio",
     r"bloomy",
     r"mastery learning",
+    r"k-12",
+    r"writing by hand",
+    r"homelab",
+    r"maintainer interview",
+    r"airbus",
+    r"aircraft",
+    r"irgc",
+    r"data center",
+    r"kaizen",
+    r"cookbook",
+    r"techcrunch\.com/category",
+    r"techcrunch\.com/tag",
+    r"meta launched.*ad",
+    r"optimism ad",
+    r"750 million.*gemini",
+    r"gemini.*750 million",
 ]
 
 
-def classify_story(title: str, content: str, source: str) -> tuple[str, list[str]]:
-    """Return (signal_category, matched_keywords) or ('noise', [])."""
+def is_noise_url(url: str) -> bool:
+    for pat in NOISE_URL_PATTERNS:
+        if re.search(pat, url, re.IGNORECASE):
+            return True
+    return False
+
+
+def is_noise_text(text: str) -> bool:
+    text_lower = text.lower()
+    for pat in NOISE_TEXT_PATTERNS:
+        if re.search(pat, text_lower):
+            return True
+    return False
+
+
+def classify_story(title: str, content: str, url: str) -> str | None:
+    """Return category name or None if noise."""
+    if is_noise_url(url):
+        return None
+
     text = f"{title} {content}".lower()
-    source_lower = source.lower()
+    if is_noise_text(text):
+        return None
 
-    # Check noise first
-    for pat in NOISE_PATTERNS:
-        if re.search(pat, text, re.IGNORECASE):
-            return "noise", []
-
-    # Check signal categories
-    for cat_id, cat in SIGNAL_CATEGORIES.items():
-        for kw in cat["keywords"]:
+    for cat, keywords in CATEGORIES.items():
+        for kw in keywords:
             if kw in text:
-                return cat_id, [kw]
+                return cat
+    return None
 
-    # Fallback: if HN and technical, maybe signal
-    if "hacker news" in source_lower or "hn" in source_lower:
-        if any(k in text for k in ["model", "llm", "gpu", "training", "inference", "api", "open source", "paper"]):
-            return "research", ["technical hn"]
-
-    return "noise", []
-
-
-# ════════════════════════════════════════════════════════════════════════
-# CONTENT EXTRACTION — clean, summarize, extract facts
-# ════════════════════════════════════════════════════════════════════════
 
 def clean_content(raw: str) -> str:
-    """Strip HTML, navigation, ads, truncate to ~2500 chars of signal."""
-    # Remove scripts/styles
+    if not raw:
+        return ""
     text = re.sub(r"<script[^>]*>.*?</script>", "", raw, flags=re.DOTALL | re.IGNORECASE)
     text = re.sub(r"<style[^>]*>.*?</style>", "", text, flags=re.DOTALL | re.IGNORECASE)
-    # Remove tags
     text = re.sub(r"<[^>]+>", " ", text)
-    # Decode entities
     import html
     text = html.unescape(text)
-    # Collapse whitespace
     text = re.sub(r"\s+", " ", text).strip()
-    # Cut at first paywall/login/cookie notice
-    cut_markers = ["subscribe", "sign in", "log in", "paywall", "cookie", "accept all", "continue reading"]
+
+    cut_markers = ["subscribe", "sign in", "log in", "paywall", "continue reading", "cookie", "accept all", "enable cookies", "attention required", "cloudflare"]
     for m in cut_markers:
         idx = text.lower().find(m)
         if idx > 200 and idx != -1:
@@ -131,118 +172,21 @@ def clean_content(raw: str) -> str:
     return text[:2500]
 
 
-def extract_summary_and_facts(content: str, title: str) -> tuple[str, list[str]]:
-    """Return (2-3 sentence summary, list of specific facts/numbers)."""
+def extract_summary(content: str, title: str, max_sentences: int = 2) -> str:
     if not content or len(content) < 50:
-        return f"{title}. Full story at source.", []
-
-    # Split sentences
+        return title
     sentences = re.split(r"(?<=[.!?])\s+", content)
-    sentences = [s.strip() for s in sentences if len(s.strip()) > 20]
-
-    # Pick first 2-3 substantive sentences
-    summary_sents = []
+    summary = []
     for s in sentences:
-        if any(skip in s.lower() for skip in ["skip to", "click here", "read more", "advertisement"]):
+        s = s.strip()
+        if len(s) < 30:
             continue
-        summary_sents.append(s)
-        if len(summary_sents) >= 3:
+        if any(skip in s.lower() for skip in ["skip to", "click here", "read more", "advertisement", "subscribe", "try cursor", "50% off"]):
+            continue
+        summary.append(s)
+        if len(summary) >= max_sentences:
             break
-
-    summary = " ".join(summary_sents) if summary_sents else f"{title}. Full story at source."
-
-    # Extract specific facts: numbers, percentages, names, versions, dollar amounts
-    facts = []
-    fact_patterns = [
-        (r"\$\d+(?:\.\d+)?[BM]?", "funding/valuation"),
-        (r"\d+(?:\.\d+)?%\b", "percentage"),
-        (r"\b\d+(?:,\d{3})+(?:\.\d+)?\b", "large number"),
-        (r"\b(?:v?\d+\.\d+(?:\.\d+)?|GPT-\d+|Claude \d+|Gemini \d+|Llama \d+|Qwen \d+\.\d+|Kimi K\d+)\b", "model/version"),
-        (r"\b(?:[A-Z][a-z]+ ){1,3}(?:raised|launched|released|acquired|announced|published)\b", "action"),
-    ]
-    for pattern, _ in fact_patterns:
-        matches = re.findall(pattern, content, re.IGNORECASE)
-        facts.extend(matches[:2])
-
-    # Deduplicate, limit
-    seen = set()
-    uniq_facts = []
-    for f in facts:
-        f_clean = f.strip()
-        if f_clean.lower() not in seen and len(f_clean) > 1:
-            seen.add(f_clean.lower())
-            uniq_facts.append(f_clean)
-        if len(uniq_facts) >= 4:
-            break
-
-    return summary, uniq_facts
-
-
-def generate_takeaways(category: str, title: str, summary: str, facts: list[str]) -> list[str]:
-    """Generate 3 specific takeaways per signal category. No generic fluff."""
-    cat = SIGNAL_CATEGORIES.get(category, {})
-
-    # Category-specific templates with slots filled from content
-    templates = {
-        "agents": [
-            "Orchestration layer ({keyword}) is becoming the differentiator — models are commodities, the router isn't.",
-            "Managed runtimes (Gemini, OpenAI Presence, Sierra) mean you build tools/memory/evals, not the agent loop.",
-            "Multi-agent swarms (Cursor, Sierra/TakeOff) shift complexity from prompt engineering to system design.",
-        ],
-        "evals": [
-            "Benchmarks moving from static QA to live enterprise tasks (ScarfBench: Java migration; ITBench: IT ops).",
-            "AgentX finding: stronger agents = more damage when unguarded. Eval-first isn't optional, it's survival.",
-            "If you can't measure your agent's failure modes automatically, you're not shipping — you're guessing.",
-        ],
-        "open-models": [
-            "Kimi K3 / Qwen 3.8 / NousCoder-14B prove SOTA is reachable with open weights. Changes cost structure entirely.",
-            "Local models (24GB VRAM) now handle real repo maintenance (OpenClaw). No API bills, no vendor lock-in.",
-            "Open weights ≠ open everything. License, training data, tooling ecosystem determine real usability.",
-        ],
-        "infra": [
-            "MCP standardizing context protocol — OneCLI (creds), Turo (token proxy), Sunglasses (input scan) are the new stack.",
-            "Credential gateway (OneCLI) solves the 'secrets in context' problem that 92 HN points confirmed is real.",
-            "Memory layer (MWE-MCP, Setoku) separating context from model — critical for multi-session agents.",
-        ],
-        "security": [
-            "AegisAI ($36M): agent-to-agent phishing that adapts in real-time. Traditional filters miss it.",
-            "Single ChatGPT link can inject persistent rogue agent into org workspace. Sharing = attack surface.",
-            "Input scanning (Sunglasses) + credential gateway (OneCLI) = minimum viable agent security stack.",
-        ],
-        "coding-tools": [
-            "Copilot token-billing backlash = opening for Claude Code, Cursor, local alternatives. UX > model now.",
-            "NousCoder-14B matches closed models for coding. Run your agent loop on a 4090, not $200/mo API.",
-            "Turo proxy cuts token spend for CLI agents. If you're paying per token, you're overpaying.",
-        ],
-        "research": [
-            "Unslop detector: ~33% of new arXiv papers read as machine-written (0.4% false positive floor).",
-            "Claude Fable counterexample to Jacobian Conjecture — LLMs contributing to pure math research.",
-            "Measurement methodology matters: detector calibrated on pre-2023 papers, not vibes.",
-        ],
-        "enterprise": [
-            "Slackbot rebuilt as full agent — Salesforce targeting Microsoft Copilot / Google Workspace directly.",
-            "Robinhood opening trading to AI agents. Finance + agents = regulatory frontier, high leverage.",
-            "Enterprise adoption now gated on 'trusted voice/chat agents' (OpenAI Presence), not just API access.",
-        ],
-    }
-
-    cat_templates = templates.get(category, [
-        "Key technical development in {category}: {keyword}.",
-        "Implications for builders: {keyword} shifts the constraint from model capability to system design.",
-        "Watch the infrastructure layer — that's where the moat forms.",
-    ])
-
-    # Fill templates
-    keyword = cat.get("label", category).lower()
-    takeaways = []
-    for t in cat_templates[:3]:
-        filled = t.format(category=cat.get("label", category), keyword=keyword)
-        # Replace with something more specific if we have facts
-        if facts:
-            filled = filled.replace("{keyword}", facts[0])
-        takeaways.append(filled)
-
-    return takeaways
+    return " ".join(summary) if summary else title
 
 
 # ════════════════════════════════════════════════════════════════════════
@@ -254,145 +198,107 @@ def generate_post(data: dict) -> str:
     display_date = data["display_date"]
     stories = data["stories"]
 
-    # Classify all stories
-    signal = []      # (story, category, matched_keywords)
-    noise = []       # (story, reason)
-    reading_list = []  # (story, why_worth_reading)
+    by_category = {}
+    quick_hits = []
 
     for s in stories:
         title = s["title"]
         content = clean_content(s.get("content", ""))
-        source = s["source"]
-        url = s["url"]
+        url = s.get("url", "")
+        cat = classify_story(title, content, url)
+        summary = extract_summary(content, title)
 
-        cat, keywords = classify_story(title, content, source)
-        summary, facts = extract_summary_and_facts(content, title)
+        story_obj = {"title": title, "url": url, "source": s["source"], "summary": summary}
 
-        story_obj = {
-            "title": title,
-            "url": url,
-            "source": source,
-            "category": cat,
-            "summary": summary,
-            "facts": facts,
-            "keywords": keywords,
-            "cat_label": SIGNAL_CATEGORIES.get(cat, {}).get("label", cat.title()),
-            "cat_icon": SIGNAL_CATEGORIES.get(cat, {}).get("icon", "📌"),
-        }
-
-        if cat == "noise":
-            reason = "Press release / category page / low signal" if not keywords else f"Matched noise pattern: {keywords[0]}"
-            noise.append((story_obj, reason))
+        if cat:
+            by_category.setdefault(cat, []).append(story_obj)
         else:
-            signal.append((story_obj, cat, keywords))
-            # High-value deep dives go to reading list
-            if cat in ["research", "agents", "evals", "open-models", "security"] and len(content) > 800:
-                reading_list.append((story_obj, "Deep technical dive worth full read"))
+            quick_hits.append(story_obj)
 
-    # Group signal by category
-    signal_by_cat = {}
-    for story_obj, cat, kw in signal:
-        signal_by_cat.setdefault(cat, []).append((story_obj, kw))
+    cat_order = ["Agents", "Models", "Open Source", "Security", "Infrastructure", "Coding", "Enterprise", "Research", "Hardware"]
+    ordered_cats = [c for c in cat_order if c in by_category] + [c for c in by_category if c not in cat_order]
 
-    # Sort categories by priority
-    cat_order = ["agents", "evals", "security", "open-models", "infra", "coding-tools", "enterprise", "research"]
-    ordered_cats = [c for c in cat_order if c in signal_by_cat] + \
-                   [c for c in signal_by_cat if c not in cat_order]
+    dt = datetime.strptime(date_str, "%Y-%m-%d")
+    day_name = dt.strftime("%A")
+    signal_count = sum(len(v) for v in by_category.values())
 
-    # Build markdown
     md = f"""---
 title: "Daily AI Digest — {display_date}"
 date: "{date_str}"
 category: Daily Digest
-excerpt: "{len(signal)} signal stories across {len(signal_by_cat)} categories. {len(noise)} noise items filtered."
-tags: {", ".join([SIGNAL_CATEGORIES[c]["label"].lower().replace(" ", "-") for c in ordered_cats[:5]])}, daily-digest
+excerpt: "{signal_count} signal stories across {len(by_category)} categories. {len(quick_hits)} filtered."
+tags: {", ".join([c.lower().replace(" ", "-") for c in ordered_cats[:5]])}, daily-digest
 ---
 
-# Daily AI Digest — {display_date}
+# Daily AI Digest — {display_date} ({day_name})
 
-**{len(signal)} signal • {len(noise)} filtered • {display_date}**
+**{signal_count} stories from the last 24 hours.** Here's what matters today.
 
 ---
 
 """
 
-    # ═══ SIGNAL ────────────────────────────────────────────────────────
-    md += "## Signal\n\n*Stories that move the needle for builders.*\n\n"
-
+    # Top Stories by category
     for cat in ordered_cats:
-        items = signal_by_cat[cat]
-        cat_info = SIGNAL_CATEGORIES[cat]
-        md += f"### {cat_info['icon']} {cat_info['label']}\n\n"
+        items = by_category[cat]
+        if not items:
+            continue
+        md += f"## {cat}\n\n"
+        for i, s in enumerate(items, 1):
+            md += f"**{i}. {s['title']}**\n"
+            md += f"{s['summary']}\n"
+            md += f"[Read more]({s['url']})\n\n"
+        md += "---\n\n"
 
-        for story_obj, kw in items:
-            md += f"#### {story_obj['title']}\n\n"
-            md += f"**{cat_info['label']}** | {display_date} | {story_obj['source']}\n\n"
-            md += f"{story_obj['summary']}\n\n"
-
-            if story_obj["facts"]:
-                md += f"> **Key data:** {' • '.join(story_obj['facts'][:3])}\n\n"
-
-            md += "**Why it matters:**\n"
-            takeaways = generate_takeaways(cat, story_obj["title"], story_obj["summary"], story_obj["facts"])
-            for t in takeaways:
-                md += f"- {t}\n"
-            md += f"\n[Read full story →]({story_obj['url']})\n\n---\n\n"
-
-    # ═══ NOISE ─────────────────────────────────────────────────────────
-    if noise:
-        md += "## Noise\n\n*Filtered out — not worth your build time.*\n\n"
-        for story_obj, reason in noise[:6]:
-            md += f"- **{story_obj['title']}** ({story_obj['source']}) — {reason}\n"
-        if len(noise) > 6:
-            md += f"- …and {len(noise) - 6} more category pages, fundraising rounds, and launch announcements.\n"
+    # Quick Hits
+    if quick_hits:
+        md += "## Quick Hits\n\n"
+        for s in quick_hits[:12]:
+            md += f"- **{s['title']}** — {s['summary'][:120]}... [Read]({s['url']})\n"
         md += "\n---\n\n"
 
-    # ═══ BUILDING ──────────────────────────────────────────────────────
-    md += "## Building\n\n*What this means if you're shipping agents this week.*\n\n"
+    # Why This Matters — synthesize from ACTUAL stories in this post
+    md += "## Why This Matters\n\n"
+    themes = []
 
-    cats_in_signal = set(signal_by_cat.keys())
-    building_points = []
+    agents_stories = by_category.get("Agents", [])
+    models_stories = by_category.get("Models", [])
+    open_source_stories = by_category.get("Open Source", [])
+    security_stories = by_category.get("Security", [])
+    enterprise_stories = by_category.get("Enterprise", [])
+    hardware_stories = by_category.get("Hardware", [])
 
-    if "agents" in cats_in_signal:
-        building_points.append("**Agent orchestration is the new backend.** Managed runtimes (Gemini Managed Agents, OpenAI Presence, Sierra) mean you don't build the loop — you build tools, memory, and evals.")
-    if "evals" in cats_in_signal:
-        building_points.append("**Eval-first or fail.** AgentX proved stronger agents = more damage when unguarded. Build your eval harness *before* your agent. Automate failure detection.")
-    if "open-models" in cats_in_signal:
-        building_points.append("**Local models are production-ready for coding agents.** NousCoder-14B, Qwen 3.8, OpenClaw prove you can run agent loops on a 24GB GPU. Changes unit economics entirely.")
-    if "infra" in cats_in_signal:
-        building_points.append("**Context protocol (MCP) is standardizing.** OneCLI (creds), Turo (token proxy), Sunglasses (input scan), Setoku (memory) — the router/gateway layer is where differentiation lives.")
-    if "security" in cats_in_signal:
-        building_points.append("**Agent security ≠ app security.** Prompt injection, credential leakage, link-based injection — you need input scanners (Sunglasses) and credential gateways (OneCLI) as default infra.")
-    if "coding-tools" in cats_in_signal:
-        building_points.append("**CLI agent war is about UX, not models.** Copilot's billing backlash opens the door. Pick the workflow (Claude Code, Cursor, local), not the vendor.")
+    if agents_stories:
+        agent_titles = [s['title'] for s in agents_stories[:3]]
+        themes.append(f"**Voice & agent interfaces hit the desktop** — {', '.join(agent_titles)}. The battleground shifts from chat to ambient voice control of agents on your machine.")
 
-    if not building_points:
-        building_points = [
-            "**Agent infrastructure > model chasing.** The model is a commodity; your retriever, memory, tool router, and evals are your moat.",
-            "**'Vibe check' evals don't ship.** Build automated evals for every agent capability. If you can't measure it, you can't improve it.",
-            "**Open weights ≠ open everything.** License, training data, tooling ecosystem determine real usability. NousCoder wins because the *stack* is open.",
-        ]
+    if security_stories:
+        sec_titles = [s['title'] for s in security_stories[:2]]
+        themes.append(f"**AI security funding accelerates** — {', '.join(sec_titles)}. Attack surface expanding (voice agents, automated phishing) and capital follows.")
 
-    for bp in building_points[:4]:
-        md += f"- {bp}\n"
+    if models_stories:
+        mod_titles = [s['title'] for s in models_stories[:2]]
+        themes.append(f"**Guardrails vs. utility tension** — {', '.join(mod_titles)}. Safety controls blocking legitimate security research; health features launching amid liability suits.")
 
-    md += "\n---\n\n"
+    if enterprise_stories:
+        ent_titles = [s['title'] for s in enterprise_stories[:2]]
+        themes.append(f"**Enterprise AI goes agentic** — {', '.join(ent_titles)}. Yelp/ChatGPT partnership, ChatGPT Health rollout show B2B distribution winning.")
 
-    # ═══ READING LIST ──────────────────────────────────────────────────
-    if reading_list:
-        md += "## Reading List\n\n*Papers, repos, and deep dives worth your weekend.*\n\n"
-        for story_obj, why in reading_list[:5]:
-            md += f"- **[{story_obj['title']}]({story_obj['url']})** ({story_obj['source']}) — {story_obj['summary'][:140]}...\n"
-        md += "\n---\n\n"
+    if open_source_stories:
+        os_titles = [s['title'] for s in open_source_stories[:2]]
+        themes.append(f"**Model routing becomes infrastructure** — {', '.join(os_titles)}. Runway's router signals generative media fragmentation; you need a gateway, not a model.")
 
-    # ═══ FOOTER ────────────────────────────────────────────────────────
-    md += f"""*Curated by [LancerLoki](https://instagram.com/lancerloki1) — CS student building AI agents, shipping side projects, reading papers so you don't have to.*
+    if hardware_stories:
+        hw_titles = [s['title'] for s in hardware_stories[:2]]
+        themes.append(f"**AI hardware race intensifies** — {', '.join(hw_titles)}. Rack-scale systems (Helios) targeting Nvidia's moat; inference economics shifting.")
 
-*Missed yesterday? [Browse all digests](/)*
+    if not themes:
+        themes.append("**Signal concentrating in agent infra.** Models are commodities; orchestration, memory, tooling, and evals are the moat.")
 
-*Got a story worth signal? [DM me](https://x.com/lancerlokig) or reply to the [daily post](https://instagram.com/lancerloki1).*
-"""
+    for i, t in enumerate(themes[:4], 1):
+        md += f"{i}. {t}\n\n"
 
+    md += "---\n\n*Stay ahead. Check back tomorrow.*\n"
     return md
 
 
@@ -411,9 +317,9 @@ def main():
     output_path = POSTS_DIR / f"{date_str}-daily-ai-digest.md"
     output_path.write_text(md, encoding="utf-8")
 
+    signal_count = sum(1 for s in data["stories"] if classify_story(s["title"], clean_content(s.get("content", "")), s.get("url", "")))
     print(f"✅ Generated: {output_path}")
-    print(f"   Signal stories: {sum(1 for s in data['stories'] if classify_story(s['title'], clean_content(s.get('content', '')), s['source'])[0] != 'noise')}")
-    print(f"   Excerpt: {data.get('excerpt', 'N/A')[:80]}...")
+    print(f"   {len(data['stories'])} stories → {signal_count} signal, {len(data['stories']) - signal_count} filtered")
 
 
 if __name__ == "__main__":
