@@ -203,28 +203,57 @@ def gen_story(index, title, category, summary_lines, takeaways, date_str, accent
     d.line([(60,y),(200,y)], fill=accent, width=3)
     d.line([(210,y),(W-60,y)], fill=(42,42,58), width=1)
 
-    # Summary
+    # Summary - limit lines to leave room for takeaways
     y += 24
-    for line in summary_lines[:4]:  # Increased to 4 lines
+    summary_max_y = 520  # Reserve space below for takeaways card
+    for line in summary_lines[:3]:  # Limit to 3 summary lines
         wl = wrap(line, freg(26), W-120, d)
-        for w in wl[:2]:
+        for w in wl[:1]:  # Only first wrapped line per summary
+            if y > summary_max_y:
+                break
             d.text((60, y), w, font=freg(26), fill=(160,160,185))
             y += 34
-        if y > 520: break
 
-    # Key Takeaways card
+    # Key Takeaways card - always at fixed position, properly sized
     if takeaways:
-        cy0 = max(y+30, 560)
-        cy1 = min(cy0 + 20 + len(takeaways[:5])*38, cy0+150)  # Increased to 5 takeaways
-        rr(d, [50, cy0, W-50, cy1], 16, with_alpha((0,0,0), 0.40), accent, 1)
-        d.text((70, cy0+12), "🔑  KEY TAKEAWAYS", font=fsemibold(20), fill=accent)
-        ty = cy0+44
+        # Card dimensions with proper padding
+        card_left = 60
+        card_right = W - 60
+        card_top = 580
+        line_height = 36
+        padding_top = 48
+        padding_bottom = 24
+        num_kt = min(len(takeaways), 5)
+        card_height = padding_top + num_kt * line_height + padding_bottom
+        card_bottom = card_top + card_height
+        
+        # Ensure card fits on screen
+        if card_bottom > H - 80:
+            card_bottom = H - 80
+            card_top = card_bottom - card_height
+        
+        # Draw card background
+        rr(d, [card_left, card_top, card_right, card_bottom], 16, 
+           with_alpha((0,0,0), 0.55), accent, 2)
+        
+        # Title
+        d.text((card_left + 20, card_top + 16), "🔑  KEY TAKEAWAYS", 
+               font=fsemibold(22), fill=accent)
+        
+        # Takeaway items - properly wrapped to fit card width
+        max_text_width = card_right - card_left - 40
+        ty = card_top + padding_top
         for t in takeaways[:5]:
-            d.text((70, ty), "▸  "+t, font=freg(22), fill=(200,200,220))
-            ty += 32
+            # Wrap long takeaways
+            wl = wrap(t, freg(22), max_text_width, d)
+            for w in wl[:2]:  # Max 2 lines per takeaway
+                if ty + 32 > card_bottom - padding_bottom:
+                    break
+                d.text((card_left + 20, ty), "▸  " + w, font=freg(22), fill=(200,200,220))
+                ty += 32
 
     d.line([(60,H-50),(W-60,H-50)], fill=(30,30,45), width=1)
-    tc(d, H-38, "Daily AI Digest  •  Story "+str(index)+" of 3", freg(16), (80,80,100))  # Updated to 3
+    tc(d, H-38, "Daily AI Digest  •  Story "+str(index)+" of 3", freg(16), fill=(80,80,100))
     draw_bar(img, accent, y0=H-3, h=3)
     return img
 
