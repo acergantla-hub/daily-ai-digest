@@ -5,10 +5,12 @@ const POSTS_DATA = [
     "dateDisplay": "July 30, 2026",
     "category": "Daily Digest",
     "categoryClass": "digest",
-    "excerpt": "11 signal stories across 2 categories. 1 filtered.",
+    "excerpt": "11 signal stories across 4 categories. 1 filtered.",
     "tags": [
       "agents",
       "models",
+      "open-source",
+      "infrastructure",
       "daily-digest"
     ],
     "url": "/posts/daily-ai-digest-july-30-2026.html",
