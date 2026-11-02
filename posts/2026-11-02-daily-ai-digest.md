@@ -39,7 +39,7 @@ In Brief Posted: 9:12 AM PDT · October 31, 2026 Image Credits: Samuel Boivin/Nu
 [Read more](https://techcrunch.com/2026/10/31/openai-reportedly-lowers-funding-target-for-new-round/)
 
 **3. Apple and OpenAI trade secrets lawsuit now has an official trial date - 9to5Mac**
-Here’s how the new MacBook Pro and macOS 27 are optimized for touch Michael Burkhardt Oct 31 2026 Download all 20 Apple HomeView wallpapers in light and dark mode here Marcus Mendes Oct 30 2026 Apple confirms iOS 27.3 beta is coming next week with Apple Intelligence in China Marcus Mendes Oct 30 2026 iPadOS 27.2: Two new features just upgraded your iPad Ryan Christoffel Oct 30 2026
+MacBook Pro with PROLED XDR vs MacBook Pro: Here’s every difference Ryan Christoffel Oct 28 2026 Apple seems to have the right approach to the first touchscreen Mac Ben Lovejoy Oct 29 2026 Apple’s best MacBook Pro decision this week had nothing to do with touch Marcus Mendes Oct 29 2026 iOS 27.2 adds new video feature that’s perfect for iPhone Duo Ryan Christoffel Oct 29 2026
 [Read more](https://9to5mac.com/2026/10/28/apple-and-openai-trade-secrets-lawsuit-now-has-an-official-trial-date/)
 
 ---
